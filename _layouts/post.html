@@ -19,7 +19,7 @@
             <article class="post">
               <header>
                 <div class="title">
-                  <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+                  <h2><a href="{{ page.url | site.baseurl }}">{{ page.title }}</a></h2>
                 <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
                 </div>
                 <div class="meta">
@@ -34,7 +34,7 @@
                 </div>
               </header>
               {% if page.image %}
-                <a href="{{ page.url }}" class="image featured"><img src="{{page.image}}" alt="" /></a>
+                <a href="{{site.baseurl}}{{ page.image}}" class="image featured"><img src="{{site.baseurl}}{{ page.image}}" alt="" /></a>
               {% endif %}
               {{ content }}
               <footer>
@@ -52,12 +52,12 @@
            </article>
   					<ul class="actions pagination">
   					  {% if page.previous %}
-  	  				  <li><a href="{{ page.previous.url }}" class="button big previous">Previous Post</a></li>
+  	  				  <li><a href="{{ page.previous.url | prepend: site.baseurl }}" class="button big previous">Previous Post</a></li>
   						{% else %}
   						  <li><a href="#" class="disabled button big previous">Previous Post</a></li>
   						{% endif %}
 							{% if page.next %}
-  						  <li><a href="{{ page.next.url }}" class="button big next">Next Post</a></li>
+  						  <li><a href="{{ page.next.url | prepend: site.baseurl }}" class="button big next">Next Post</a></li>
   						{% else %}
   						  <li><a href="#" class="disabled button big next">Next Post</a></li>
   						{% endif %}

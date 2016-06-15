@@ -1,12 +1,12 @@
 ---
-layout: no-about-page
+layout: page
 title: About
-permalink: /about/
+permalink: about/
 image: /images/pic02.jpg
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+待回收廢柴。烏賊愛好者。宵夜覓食中
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+喜歡美食、二次元ロリ、貓咪，興趣是耍廢、睡覺、喝淺焙咖啡、寫程式。
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+不定時出沒在各種開源社群當中，歡迎拍打餵食。

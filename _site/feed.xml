@@ -4,10 +4,10 @@
     <title>Fumitsuki&#39;s magic box</title>
     <description>這是文月放部落格文章的備份的地方。 希望這個破破爛爛的百寶箱，你也能找到許多引起你興趣的小東西:)
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 15 Jun 2016 06:25:43 +0000</pubDate>
-    <lastBuildDate>Wed, 15 Jun 2016 06:25:43 +0000</lastBuildDate>
+    <link>http://requiemformemories.github.io/blog/</link>
+    <atom:link href="http://requiemformemories.github.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 15 Jun 2016 07:17:43 +0000</pubDate>
+    <lastBuildDate>Wed, 15 Jun 2016 07:17:43 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -62,8 +62,8 @@ $(this).find(&#39;.title&#39;).toggleClass(&#39;active&#39;);
 
 </description>
         <pubDate>Wed, 01 Jun 2016 17:23:32 +0000</pubDate>
-        <link>http://yourdomain.com/rails/2016/06/01/2016-spring-5xruby-rails-course.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/rails/2016/06/01/2016-spring-5xruby-rails-course.html</guid>
+        <link>http://requiemformemories.github.io/blog/rails/2016/06/01/2016-spring-5xruby-rails-course.html</link>
+        <guid isPermaLink="true">http://requiemformemories.github.io/blog/rails/2016/06/01/2016-spring-5xruby-rails-course.html</guid>
         
         <category>javascript</category>
         
@@ -243,8 +243,8 @@ gorails 上的教學，不過這篇就比較複雜一些了。&lt;/li&gt;
 
 </description>
         <pubDate>Thu, 26 May 2016 15:40:58 +0000</pubDate>
-        <link>http://yourdomain.com/rails/2016/05/26/build-rails-environment-with-vagrant.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/rails/2016/05/26/build-rails-environment-with-vagrant.html</guid>
+        <link>http://requiemformemories.github.io/blog/rails/2016/05/26/build-rails-environment-with-vagrant.html</link>
+        <guid isPermaLink="true">http://requiemformemories.github.io/blog/rails/2016/05/26/build-rails-environment-with-vagrant.html</guid>
         
         <category>vagrant</category>
         
@@ -286,8 +286,8 @@ gorails 上的教學，不過這篇就比較複雜一些了。&lt;/li&gt;
 
 </description>
         <pubDate>Thu, 12 May 2016 12:52:27 +0000</pubDate>
-        <link>http://yourdomain.com/rails/2016/05/12/two-articles-recommend-to-rails-beginner.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/rails/2016/05/12/two-articles-recommend-to-rails-beginner.html</guid>
+        <link>http://requiemformemories.github.io/blog/rails/2016/05/12/two-articles-recommend-to-rails-beginner.html</link>
+        <guid isPermaLink="true">http://requiemformemories.github.io/blog/rails/2016/05/12/two-articles-recommend-to-rails-beginner.html</guid>
         
         <category>article</category>
         
@@ -438,8 +438,8 @@ admin_path_prefix: your_admin_path
 
 </description>
         <pubDate>Thu, 12 May 2016 12:33:54 +0000</pubDate>
-        <link>http://yourdomain.com/rails/2016/05/12/hide-routes-and-authenticate-with-settingslogic.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/rails/2016/05/12/hide-routes-and-authenticate-with-settingslogic.html</guid>
+        <link>http://requiemformemories.github.io/blog/rails/2016/05/12/hide-routes-and-authenticate-with-settingslogic.html</link>
+        <guid isPermaLink="true">http://requiemformemories.github.io/blog/rails/2016/05/12/hide-routes-and-authenticate-with-settingslogic.html</guid>
         
         <category>hide</category>
         
@@ -478,8 +478,8 @@ admin_path_prefix: your_admin_path
 
 </description>
         <pubDate>Thu, 28 Apr 2016 16:56:13 +0000</pubDate>
-        <link>http://yourdomain.com/html/css/2016/04/28/2016-spring-5xruby-html&css-course.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/html/css/2016/04/28/2016-spring-5xruby-html&css-course.html</guid>
+        <link>http://requiemformemories.github.io/blog/html/css/2016/04/28/2016-spring-5xruby-html&css-course.html</link>
+        <guid isPermaLink="true">http://requiemformemories.github.io/blog/html/css/2016/04/28/2016-spring-5xruby-html&css-course.html</guid>
         
         <category>5xruby,</category>
         
@@ -562,8 +562,8 @@ admin_path_prefix: your_admin_path
 
 </description>
         <pubDate>Wed, 27 Apr 2016 16:07:19 +0000</pubDate>
-        <link>http://yourdomain.com/rails/2016/04/27/2016-spring-5xruby-javascript-course.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/rails/2016/04/27/2016-spring-5xruby-javascript-course.html</guid>
+        <link>http://requiemformemories.github.io/blog/rails/2016/04/27/2016-spring-5xruby-javascript-course.html</link>
+        <guid isPermaLink="true">http://requiemformemories.github.io/blog/rails/2016/04/27/2016-spring-5xruby-javascript-course.html</guid>
         
         <category>backend</category>
         
@@ -630,8 +630,8 @@ $(this).find(&#39;.title&#39;).toggleClass(&#39;active&#39;);
 
 </description>
         <pubDate>Wed, 27 Apr 2016 16:02:15 +0000</pubDate>
-        <link>http://yourdomain.com/javascript/2016/04/27/backend-with-namespace.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/javascript/2016/04/27/backend-with-namespace.html</guid>
+        <link>http://requiemformemories.github.io/blog/javascript/2016/04/27/backend-with-namespace.html</link>
+        <guid isPermaLink="true">http://requiemformemories.github.io/blog/javascript/2016/04/27/backend-with-namespace.html</guid>
         
         <category>javascript</category>
         
