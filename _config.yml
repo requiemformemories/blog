@@ -1,20 +1,19 @@
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
+title: Fumitsuki's magic box
+email: requiem.for.memories@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  這是文月放部落格文章的備份的地方。
+  希望這個破破爛爛的百寶箱，你也能找到許多引起你興趣的小東西:)
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+twitter_username: Fumitsuki0802
+github_username:  requiemformemories
 
 # Build settings
 markdown: kramdown
 
 paginate: 4
 
-author: Your name
+author: Fumitsuki 文月
 
 gems: [jekyll-paginate]

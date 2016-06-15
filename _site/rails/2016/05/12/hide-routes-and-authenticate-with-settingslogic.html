@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+  <title>Fumitsuki's magic box</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+  <link rel="stylesheet" href="/css/main.css">
+  <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+  <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+<header id="header">
+  <h1><a href="http://yourdomain.com">Fumitsuki's magic box</a></h1>
+	<nav class="links">
+    <!--
+    <ul>
+      <li><a href="#">Lorem</a></li>
+			<li><a href="#">Ipsum</a></li>
+			<li><a href="#">Feugiat</a></li>
+			<li><a href="#">Tempus</a></li>
+			<li><a href="#">Adipiscing</a></li>
+		</ul>
+  -->
+	</nav>
+	<nav class="main">
+    <ul>
+                <!--
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+              -->
+		  <li class="menu">
+		  	<a class="fa-bars" href="#menu">Menu</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<!-- Menu -->
+<section id="menu">
+  <!-- Search -->
+  <!--
+  <section>
+	  <form class="search" method="get" action="#">
+	    <input type="text" name="query" placeholder="Search" />
+		</form>
+	</section>
+  -->
+	<!-- Links -->
+	<section>
+	  <ul class="links">
+	    <li>
+		    <a href="http://fumitsuki.tw">
+				  <h3>About Fumitsuki</h3>
+				  <p>關於文月</p>
+				</a>
+			</li>
+			<li>
+		    <a href="http://fumitsuki-blog.herokuapp.com">
+				  <h3>Fumitsuki's Blog</h3>
+				  <p>文月的部落格</p>
+				</a>
+			</li>
+    </ul>
+	</section>
+	<!-- Actions -->
+  <!--
+  <section>
+	  <ul class="actions vertical">
+	    <li><a href="#" class="button big fit">Log In</a></li>
+    </ul>
+  </section>
+  -->
+</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+            <article class="post">
+              <header>
+                <div class="title">
+                  <h2><a href="/rails/2016/05/12/hide-routes-and-authenticate-with-settingslogic.html">[Rails學習筆記] 用Settingslogic把重要資訊藏起來!</a></h2>
+                <!-- <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p> -->
+                </div>
+                <div class="meta">
+                  <time class="published" datetime="2016-05-12">May 12, 2016</time>
+                  
+                    <a href="#">Rails</a>
+                  
+
+        <!--
+        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+        -->
+                </div>
+              </header>
+              
+                <a href="/rails/2016/05/12/hide-routes-and-authenticate-with-settingslogic.html" class="image featured"><img src="/images/pic03.jpg" alt="" /></a>
+              
+              <p>首先來碎碎念一下XD
+最近花了好多時間在寫自己的blog，
+其實一直很想把它推到Github上(為了綠綠的attribute!!)，
+但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD</p>
+
+<p>經過大師提點(?)之後才知道原來這是可以解決的呢XD
+要解決這個問題有兩種方法，
+一種是把設定值放在ENV，
+另一種則是用settinglogic來解決這個問題。
+這邊會提到的是後者~</p>
+
+<p>(正文要開始了w)</p>
+
+<h3 id="gem">安裝gem</h3>
+
+<p>首先呢，先在 <strong>Gemfile</strong> 中加入：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gem  "settingslogic"
+</code></pre>
+</div>
+
+<p>然後在terminal執行 <code class="highlighter-rouge">$ bundle</code> 就安裝完成了。</p>
+
+<h3 id="settinglogic">使用Settinglogic</h3>
+<p>這個gem的詳細說明可以看github上的<a href="https://github.com/binarylogic/settingslogic">README</a>。
+那這邊就簡單介紹初步的使用~</p>
+
+<p>在 <strong>app/model</strong> 中加入 <strong>settings.rb</strong>，
+裡面加入以下的內容：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Settings &lt; Settingslogic
+  source "#{Rails.root}/config/application.yml"
+  namespace Rails.env
+end
+</code></pre>
+</div>
+
+<p>那code中的 <code class="highlighter-rouge">application.yml</code> 就是等一下要放後台路徑跟帳密的地方~</p>
+
+<p>接著務必記得把 <strong>application.yml</strong> 加到 <strong>.gitignore</strong> 中，
+否則所有努力都是白費的噢~~~</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ echo "config/application.yml" &gt;&gt; .gitignore
+</code></pre>
+</div>
+
+<h3 id="section">後台路徑</h3>
+<p>上次在文章 <a href="http://fumitsuki-blog.herokuapp.com/articles/backend-with-namespace">善用namespace建立後台</a> 中有提到後台路徑的作法，
+這邊要更進階的把後台路徑藏起來~</p>
+
+<p>打開 <strong>config/route.rb</strong> ，原本的後台路徑應該是：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> namespace :admin do
+  # ...
+end
+</code></pre>
+</div>
+
+<p>這邊要把它改成：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> namespace :admin, path: Settings.admin_path_prefix do
+  # ...
+end
+</code></pre>
+</div>
+
+<p>這裡的 ‘admin_path_prefix<code class="highlighter-rouge"> 到時候會放在 **application.yml** 存後台路徑。
+(可以自己取，要叫 </code>backend_path` 什麼的隨意~)
+所以接著就在 <strong>config/</strong> 中加入 <strong>application.yml</strong>，裡面加上：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defaults: &amp;defaults
+development:
+  &lt;&lt;: *defaults
+  admin_path_prefix: your_admin_path
+test:
+  &lt;&lt;: *defaults
+  admin_path_prefix: your_admin_path
+production:
+  &lt;&lt;: *defaults
+  admin_path_prefix: your_admin_path
+</code></pre>
+</div>
+
+<p>這裡的 ` your_admin_path<code class="highlighter-rouge"> 就是後台路徑~ 
+可以根據不同的環境自訂後台~
+如果 </code>$ rails s` 的時候會出錯，建議檢查一下有沒有多打少打什麼，還有縮排正不正確。</p>
+
+<h3 id="http-basic-authetication">http basic authetication</h3>
+<p>常常用 http basic authetication 都是在 controller 中加入：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>http_basic_authenticate_with name: "my_name", password: "my_secret"
+</code></pre>
+</div>
+
+<p>如果這行跟著 controller 一起被推上github repo的話，肯定會被黑黑攻陷的！(誤)
+所以也要想辦法放到 application.yml 中。
+所以先把現在這行改成：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>http_basic_authenticate_with  Settings.http_basic_auth.to_h
+</code></pre>
+</div>
+
+<p>這裡的 <code class="highlighter-rouge">http_basic_auth</code> 就是會在 <strong>application.yml</strong> 中加入的帳密，
+<code class="highlighter-rouge">.to_h</code> 會把 <code class="highlighter-rouge">http_basic_auth</code> 轉成雜湊。</p>
+
+<p>接著呢，在 <strong>application.yml</strong>加入<code class="highlighter-rouge">http_basic_auth</code> ：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defaults: &amp;defaults
+development:
+ &lt;&lt;: *defaults
+ admin_path_prefix: your_admin_path
+ http_basic_auth:
+    :name: your_name 
+    :password: Your_password
+test:
+ &lt;&lt;: *defaults
+production:
+ &lt;&lt;: *defaults
+admin_path_prefix: your_admin_path
+ http_basic_auth:
+    :name: your_name 
+    :password: Your_password
+</code></pre>
+</div>
+
+<p>這樣就大功告成了！接著只要開啟server確定有好好運作就OK了~
+照理來說後台路徑會變成 <code class="highlighter-rouge">your_admin_path/your_controller_name</code> 噢~</p>
+
+<p>到這裡告一段落~ 趕快來試試看吧！</p>
+
+
+              <footer>
+                <ul class="stats">
+                
+                  <li><a href="#">hide</a></li>
+                
+                  <li><a href="#">route</a></li>
+                
+                  <li><a href="#">authenticate</a></li>
+                
+        <!--
+        <li><a href="#">General</a></li>
+        <li><a href="#" class="icon fa-heart">28</a></li>
+        <li><a href="#" class="icon fa-comment">128</a></li>
+        -->
+                </ul>
+              </footer>
+           </article>
+  					<ul class="actions pagination">
+  					  
+  	  				  <li><a href="/html/css/2016/04/28/2016-spring-5xruby-html&css-course.html" class="button big previous">Previous Post</a></li>
+  						
+							
+  						  <li><a href="/rails/2016/05/12/two-articles-recommend-to-rails-beginner.html" class="button big next">Next Post</a></li>
+  						
+  					</ul>
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+						<section id="intro">
+  <a href="http://yourdomain.com" class="logo"><img src="/images/logo.jpg" alt="" /></a>
+	<header>
+    <h2>Fumitsuki's magic box</h2>
+		<p>Keep calm and eat eight plates.
+    </p>
+	</header>
+</section>
+
+
+						<!-- Mini Posts -->
+						<section>
+  <div class="mini-posts">
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/rails/2016/06/01/2016-spring-5xruby-rails-course.html">[5xRuby實習日記] Javascript 課程心得</a></h3>
+		      <time class="published" datetime="2016-06-01">June 01, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+          <a href="/rails/2016/06/01/2016-spring-5xruby-rails-course.html" class="image"><img src="/images/pic02.jpg" alt="" /></a>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/rails/2016/05/26/build-rails-environment-with-vagrant.html">[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</a></h3>
+		      <time class="published" datetime="2016-05-26">May 26, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+          <a href="/rails/2016/05/26/build-rails-environment-with-vagrant.html" class="image"><img src="/images/pic01.jpg" alt="" /></a>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/rails/2016/05/12/two-articles-recommend-to-rails-beginner.html">[Rails學習筆記] 推薦初學者閱讀的兩篇文章</a></h3>
+		      <time class="published" datetime="2016-05-12">May 12, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+          <a href="/rails/2016/05/12/two-articles-recommend-to-rails-beginner.html" class="image"><img src="/images/pic02.jpg" alt="" /></a>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+      <article class="mini-post">
+  	    <header>
+  		    <h3><a href="/rails/2016/05/12/hide-routes-and-authenticate-with-settingslogic.html">[Rails學習筆記] 用Settingslogic把重要資訊藏起來!</a></h3>
+		      <time class="published" datetime="2016-05-12">May 12, 2016</time>
+						<!--<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>-->
+			  </header>
+        
+          <a href="/rails/2016/05/12/hide-routes-and-authenticate-with-settingslogic.html" class="image"><img src="/images/pic03.jpg" alt="" /></a>
+        
+		  </article>
+									<!-- Mini Post -->
+									  <!--
+										<article class="mini-post">
+											<header>
+												<h3><a href="#">Vitae sed condimentum</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#" class="author"><img src="/images/avatar.jpg" alt="" /></a>
+											</header>
+											<a href="#" class="image"><img src="/images/pic04.jpg" alt="" /></a>
+										</article>
+									-->
+    
+  </div>
+</section>
+
+
+						<!-- Posts List -->
+
+						<!-- About -->
+					  <section class="blurb">
+  <h2>About</h2>
+	<p>這是文月放部落格文章的備份的地方。 希望這個破破爛爛的百寶箱，你也能找到許多引起你興趣的小東西:)
+</p>
+	<ul class="actions">
+	  <li><a href="/about" class="button">Learn More</a></li>
+	</ul>
+</section>
+
+
+						<!-- Footer -->
+						<section id="footer">
+  <ul class="icons">
+  	<li><a href="https://twitter.com/Fumitsuki0802" class="fa-twitter"><span class="label">Twitter</span></a></li>
+		<li><a href="https://github.com/requiemformemories" class="fa-github"><span class="label">GitHub</span></a></li>
+		<li><a href="/feed.xml" class="fa-rss"><span class="label">RSS</span></a></li>
+		<li><a href="mailto:requiem.for.memories@gmail.com" class="fa-envelope"><span class="label">Email</span></a></li>
+	</ul>
+	<p class="copyright">fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
+  <p class="copyright">Copyright &copy; 2015 Fumitsuki 文月</p>
+</section>
+
+					</section>
+			</div>
+		<!-- Scripts -->
+		<script src="/js/jquery.min.js"></script>
+<script src="/js/skel.min.js"></script>
+<script src="/js/util.js"></script>
+<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="/js/main.js"></script>
+
+	</body>
+</html>
