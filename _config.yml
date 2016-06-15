@@ -4,7 +4,7 @@ email: requiem.for.memories@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   這是文月放部落格文章的備份的地方。
   希望這個破破爛爛的百寶箱，你也能找到許多引起你興趣的小東西:)
-baseurl: "" # the subpath of your site, e.g. /blog/
+baseurl: "/blog"
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 twitter_username: Fumitsuki0802
 github_username:  requiemformemories
