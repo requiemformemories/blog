@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>keep calm and eat eight Plates.</description>
+    <link>
+    http://localhost:4000</link>
+    
+      
+      <item>
+        <title>[5xRuby實習日記] Javascript 課程心得</title>
+        
+          <description>&lt;p&gt;覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
+不過由於個人還在就學的緣故，
+因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 01 Jun 2016 17:23:32 +0000</pubDate>
+        <link>
+        http://localhost:4000/2016-spring-5xruby-rails-course</link>
+        <guid isPermaLink="true">http://localhost:4000/2016-spring-5xruby-rails-course</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</title>
+        
+          <description>&lt;p&gt;相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ”
+到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 &lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt; 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊…&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 26 May 2016 15:40:58 +0000</pubDate>
+        <link>
+        http://localhost:4000/build-rails-environment-with-vagrant</link>
+        <guid isPermaLink="true">http://localhost:4000/build-rails-environment-with-vagrant</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[Rails學習筆記] 推薦初學者閱讀的兩篇文章</title>
+        
+          <description>&lt;p&gt;最近一直在反思學習歷程，
+還有探討接下來應該要怎麼樣繼續磨練技術，
+剛好看到兩篇不錯的文章：&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 12 May 2016 12:52:27 +0000</pubDate>
+        <link>
+        http://localhost:4000/two-articles-recommend-to-rails-beginner</link>
+        <guid isPermaLink="true">http://localhost:4000/two-articles-recommend-to-rails-beginner</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[Rails學習筆記] 用Settingslogic把重要資訊藏起來!</title>
+        
+          <description>&lt;p&gt;首先來碎碎念一下XD
+最近花了好多時間在寫自己的blog，
+其實一直很想把它推到Github上(為了綠綠的contributions!!)，
+但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 12 May 2016 12:33:54 +0000</pubDate>
+        <link>
+        http://localhost:4000/hide-routes-and-authenticate-with-settingslogic</link>
+        <guid isPermaLink="true">http://localhost:4000/hide-routes-and-authenticate-with-settingslogic</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[5xRuby實習日記] HTML &amp; CSS課程心得</title>
+        
+          <description>&lt;p&gt;首先呢，我要先懺悔一下XD
+由於課務的關係有點忙忙的，所以沒有全程參與HTML的課程，
+而且老實說我只有去上第一堂課QwQ”
+要不然我覺得Amos講師講得還不錯的說…&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 28 Apr 2016 16:56:13 +0000</pubDate>
+        <link>
+        http://localhost:4000/2016-spring-5xruby-html&css-course</link>
+        <guid isPermaLink="true">http://localhost:4000/2016-spring-5xruby-html&css-course</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[Rails 學習筆記]善用namespace建立後台</title>
+        
+          <description>&lt;p&gt;在寫blog的時候一直很苦惱要怎麼寫後台，
+是要另外有一個叫backend的controller嗎？還是怎麼樣呢？&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 27 Apr 2016 16:07:19 +0000</pubDate>
+        <link>
+        http://localhost:4000/backend-with-namespace</link>
+        <guid isPermaLink="true">http://localhost:4000/backend-with-namespace</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[5xRuby實習日記] Javascript 課程心得</title>
+        
+          <description>&lt;p&gt;覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
+不過由於個人還在就學的緣故，
+因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 27 Apr 2016 16:02:15 +0000</pubDate>
+        <link>
+        http://localhost:4000/2016-spring-5xruby-javascript-course</link>
+        <guid isPermaLink="true">http://localhost:4000/2016-spring-5xruby-javascript-course</guid>
+      </item>
+      
+    
+  </channel>
+</rss>
