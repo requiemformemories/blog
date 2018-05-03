@@ -1,9 +1,3 @@
----
-layout: error
-current: error
-title: "404 - Page Not Found"
-permalink: 404.html
----
 <!--
 This error template is used for all 404 errors, which might occur on your site.
 It's a good idea to keep this template as minimal as possible in terms of both file size and complexity.
@@ -14,25 +8,82 @@ It's a good idea to keep this template as minimal as possible in terms of both f
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{{ page.title }}</title>
+    <title>404 - Page Not Found</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/screen.css" />
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.edited.css" />
     <!-- This tag outputs SEO meta+structured data and other important settings -->
-    {% include head.html %}
+    <meta name="description" content="keep calm and eat eight Plates." />
+    <link rel="shortcut icon" href="http://localhost:4000/blog/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="http://localhost:4000/blog/404.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Fumitsuki's magic box" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="404 - Page Not Found" />
+    <meta property="og:description" content="keep calm and eat eight Plates." />
+    <meta property="og:url" content="http://localhost:4000/blog/404.html" />
+    <meta property="og:image" content="http://localhost:4000/blog/assets/images/blog-cover.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="404 - Page Not Found" />
+    <meta name="twitter:description" content="keep calm and eat eight Plates." />
+    <meta name="twitter:url" content="http://localhost:4000/blog/" />
+    <meta name="twitter:image" content="http://localhost:4000/blog/assets/images/blog-cover.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Fumitsuki's magic box" />
+    <meta name="twitter:site" content="@Fumitsuki0802" />
+    <meta name="twitter:creator" content="@Fumitsuki0802" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="666" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Fumitsuki's magic box",
+        "logo": "http://localhost:4000/blog/assets/images/blog-icon.png"
+    },
+    "url": "http://localhost:4000/blog/404.html",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:4000/blog/assets/images/blog-cover.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:4000/blog/404.html"
+    },
+    "description": "keep calm and eat eight Plates."
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="404 - Page Not Found" href="/blog/feed.xml" />
+
 </head>
 <body class="error-template">
     <div class="site-wrapper">
 
-        <header class="site-header outer {% if page.cover %}" style="background-image: url({{ site.baseurl }}{{ page.cover }})){% else %}no-cover{% endif %}">
+        <header class="site-header outer no-cover">
             <div class="inner">
                 <nav class="site-nav-center">
-                    {% if site.logo %}
-                        <a class="site-nav-logo" href="{{ site.baseurl }}"><img src="{{site.baseurl}}{{ site.logo }}" alt="{{ site.title }}" /></a>
-                    {% else %}
-                        <a class="site-nav-logo" href="{{ site.baseurl }}">{{ site.title }}</a>
-                    {% endif %}
+                    
+                        <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+                    
                 </nav>
             </div>
         </header>
@@ -43,7 +94,7 @@ It's a good idea to keep this template as minimal as possible in terms of both f
                 <section class="error-message">
                     <h1 class="error-code">404</h1>
                     <p class="error-description">Page not found</p>
-                    <a class="error-link" href="{{ site.baseurl }}">Go to the front page →</a>
+                    <a class="error-link" href="/blog/">Go to the front page →</a>
                 </section>
             </div>
         </main>
@@ -53,7 +104,190 @@ It's a good idea to keep this template as minimal as possible in terms of both f
             <div class="inner">
                 <div class="post-feed">
                     <!-- The tag below includes the markup for each post - partials/post-card.hbs -->
-                    {%  include post-card-error.html %}
+                    
+
+    
+    
+        <article class="post-card ">
+            
+                <a class="post-card-image-link" href="/blog/2016-spring-5xruby-rails-course">
+                    <div class="post-card-image" style="background-image: url(/blog/assets/images/5xruby-post.jpg)"></div>
+                </a>
+            
+            <div class="post-card-content">
+                <a class="post-card-content-link" href="/blog/2016-spring-5xruby-rails-course">
+                    <header class="post-card-header">
+                        
+                            
+                                
+                                    <span class="post-card-tags">5xruby</span>
+                                
+                            
+                        
+
+                        <h2 class="post-card-title">[5xRuby實習日記] Javascript 課程心得</h2>
+                    </header>
+                    <section class="post-card-excerpt">
+                        <p>覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
+不過由於個人還在就學的緣故，
+因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”
+
+這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
+(沒有HTML只上到第一堂課這麼淒慘就是了)
+我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
+終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。
+
+我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
+而且可以實際上了解要怎麼使用，有什麼時機可以使用。
+
+接著提供一下最後一堂課的筆記：
+善用find找子元素
+$(this).find('.title').toggleClass('active');
+
+用trigger觸發事件
+例如：
+
+	$(.b).on('click',function(){
+	$(.a).trigger('click');
+});
+
+
+這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b
+
+利用data存取、指定
+
+  存取 ex.
+
+
+	$('.home').data('show')
+
+
+如此一來可以存取有home這個class的物件的data-show的值
+
+  指定 ex.
+
+
+	$('.home').data('show','home')
+
+
+把有home這個class的物件的data-show的值改成home
+
+剩下晚一點再來補，不過我有寫在hackMD上提供參考
+
+</p>
+                    </section>
+                </a>
+                <footer class="post-card-meta">
+                    
+                        
+                            
+                            <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                            
+                            <span class="post-card-author">
+                                <a href="/blog/author/fumitsuki/">文月</a>
+                            </span>
+                        
+                    
+                </footer>
+            </div>
+        </article>
+    
+
+    
+    
+        <article class="post-card ">
+            
+                <a class="post-card-image-link" href="/blog/build-rails-environment-with-vagrant">
+                    <div class="post-card-image" style="background-image: url(/blog/assets/images/rails-post.jpg)"></div>
+                </a>
+            
+            <div class="post-card-content">
+                <a class="post-card-content-link" href="/blog/build-rails-environment-with-vagrant">
+                    <header class="post-card-header">
+                        
+                            
+                                
+                                    <span class="post-card-tags">Rails</span>
+                                
+                            
+                        
+
+                        <h2 class="post-card-title">[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</h2>
+                    </header>
+                    <section class="post-card-excerpt">
+                        <p>相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ” 到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 rake db:migrate 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊… 所以呢，想說用Vagrant來建虛擬機，這似乎是比較簡單的方法呢。對於我這個小腦殘來說應該不會耍雷得太嚴重XD 其實網路上Vagrant的教學文還不少(而且還是中文的)，遇到問題還可以上stackoverflow查，個人覺得資源蠻多的。如果是docker的話我個人絕對沒有信心把它裝起來XD 不過說實在的，心底還是默默的期望可以買mac啊&gt;&lt;” 總而言之廢話不多說(已經講很多了)就來裝裝看吧！ BTW，在下的電腦目前是萬惡的 windows 10，所以安裝過程可能跟大家不太一樣，細節可以參考底下的教材。然後安裝過程中的問題跟雷點我也會一併分享的w 安裝步驟 安裝Vagrant、Virtual Box、MobaxTerm 首先來安裝等等會需要用到的東西： Vagrant 依照自己的作業系統環境找適合的版本安裝 VirtualBox VirtualBox platform packages VirtualBox 5.0.20 Oracle VM VirtualBox Extension Pack MobaXterm 可以拿來連telnet、ssh、http、ftp…等等的，很方便 這次會拿來連ssh 安裝過程中只要一直按</p>
+                    </section>
+                </a>
+                <footer class="post-card-meta">
+                    
+                        
+                            
+                            <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                            
+                            <span class="post-card-author">
+                                <a href="/blog/author/fumitsuki/">文月</a>
+                            </span>
+                        
+                    
+                </footer>
+            </div>
+        </article>
+    
+
+    
+    
+        <article class="post-card ">
+            
+                <a class="post-card-image-link" href="/blog/two-articles-recommend-to-rails-beginner">
+                    <div class="post-card-image" style="background-image: url(/blog/assets/images/rails-post.jpg)"></div>
+                </a>
+            
+            <div class="post-card-content">
+                <a class="post-card-content-link" href="/blog/two-articles-recommend-to-rails-beginner">
+                    <header class="post-card-header">
+                        
+                            
+                                
+                                    <span class="post-card-tags">Rails</span>
+                                
+                            
+                        
+
+                        <h2 class="post-card-title">[Rails學習筆記] 推薦初學者閱讀的兩篇文章</h2>
+                    </header>
+                    <section class="post-card-excerpt">
+                        <p>最近一直在反思學習歷程， 還有探討接下來應該要怎麼樣繼續磨練技術， 剛好看到兩篇不錯的文章： How I trained to learn rails How I trained to learn rails 文中有推薦的學習資源，還有一些學習的建議。 我個人覺得”Not Copying/Pasting Code”、”Not getting tired of Google-ing”、”Reading Documentation and Source Codes”三個建議蠻受用的。 Top 10 mistakes that rails programmers</p>
+                    </section>
+                </a>
+                <footer class="post-card-meta">
+                    
+                        
+                            
+                            <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                            
+                            <span class="post-card-author">
+                                <a href="/blog/author/fumitsuki/">文月</a>
+                            </span>
+                        
+                    
+                </footer>
+            </div>
+        </article>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
                 </div>
             </div>
         </aside>
@@ -62,3 +296,4 @@ It's a good idea to keep this template as minimal as possible in terms of both f
     </div>
 </body>
 </html>
+
