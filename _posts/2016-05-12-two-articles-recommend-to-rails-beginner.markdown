@@ -1,10 +1,14 @@
 ---
 layout: post
+current: post
+class: post-template
+subclass: 'post tag-speeches'
+cover: 'assets/images/rails-post.jpg'
 title:  "[Rails學習筆記] 推薦初學者閱讀的兩篇文章"
 date:   2016-05-12 12:52:27
 categories: Rails
-tags: article recommend beginner learn-rails mistakes
-image: /images/pic02.jpg
+tags: rails
+author: fumitsuki
 ---
 最近一直在反思學習歷程，
 還有探討接下來應該要怎麼樣繼續磨練技術，

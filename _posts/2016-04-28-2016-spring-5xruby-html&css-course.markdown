@@ -1,10 +1,14 @@
 ---
 layout: post
+current: post
+class: post-template
+cover: 'assets/images/5xruby-post.jpg'
+subclass: 'post tag-speeches'
 title:  "[5xRuby實習日記] HTML & CSS課程心得"
 date:   2016-04-28 16:56:13 
 categories: HTML CSS
-tags: 5xruby, intern, 2016, html, css, amos
-image: /images/pic03.jpg
+tags: 5xruby
+author: fumitsuki
 ---
 首先呢，我要先懺悔一下XD
 由於課務的關係有點忙忙的，所以沒有全程參與HTML的課程，

@@ -1,14 +1,19 @@
 ---
 layout: post
+current: post
+class: post-template
+subclass: 'post tag-speeches'
+cover: 'assets/images/rails-post.jpg'
 title:  "[Rails學習筆記] 用Settingslogic把重要資訊藏起來!"
 date:   2016-05-12 12:33:54
 categories: Rails
-tags: hide route authenticate settingslogic
-image: /images/pic03.jpg
+tags: rails
+author: fumitsuki
 ---
+
 首先來碎碎念一下XD
 最近花了好多時間在寫自己的blog，
-其實一直很想把它推到Github上(為了綠綠的attribute!!)，
+其實一直很想把它推到Github上(為了綠綠的contributions!!)，
 但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD
 
 經過大師提點(?)之後才知道原來這是可以解決的呢XD
@@ -23,7 +28,7 @@ image: /images/pic03.jpg
 
 首先呢，先在 **Gemfile** 中加入：
 
-```
+```ruby
 gem  "settingslogic"
 ```
 
@@ -36,7 +41,7 @@ gem  "settingslogic"
 在 **app/model** 中加入 **settings.rb**，
 裡面加入以下的內容：
 
-```
+```ruby
 class Settings < Settingslogic
   source "#{Rails.root}/config/application.yml"
   namespace Rails.env
@@ -48,7 +53,7 @@ end
 接著務必記得把 **application.yml** 加到 **.gitignore** 中，
 否則所有努力都是白費的噢~~~
 
-```
+```yaml
 $ echo "config/application.yml" >> .gitignore
 ```
 
@@ -58,7 +63,7 @@ $ echo "config/application.yml" >> .gitignore
 
 打開 **config/route.rb** ，原本的後台路徑應該是：
 
-```
+```ruby
  namespace :admin do
   # ...
 end
@@ -66,7 +71,7 @@ end
 
 這邊要把它改成：
 
-```
+```ruby
  namespace :admin, path: Settings.admin_path_prefix do
   # ...
 end
@@ -76,7 +81,7 @@ end
 (可以自己取，要叫 `backend_path` 什麼的隨意~)
 所以接著就在 **config/** 中加入 **application.yml**，裡面加上：
 
-```
+```yaml
 defaults: &defaults
 development:
   <<: *defaults
@@ -96,7 +101,7 @@ production:
 ### http basic authetication
 常常用 http basic authetication 都是在 controller 中加入：
 
-```
+```ruby
 http_basic_authenticate_with name: "my_name", password: "my_secret"
 ```
 
@@ -104,7 +109,7 @@ http_basic_authenticate_with name: "my_name", password: "my_secret"
 所以也要想辦法放到 application.yml 中。
 所以先把現在這行改成：
 
-```
+```ruby
 http_basic_authenticate_with  Settings.http_basic_auth.to_h
 ```
 
@@ -113,7 +118,7 @@ http_basic_authenticate_with  Settings.http_basic_auth.to_h
 
 接著呢，在 **application.yml**加入`http_basic_auth` ：
 
-```
+```yaml
 defaults: &defaults
 development:
  <<: *defaults

@@ -1,10 +1,14 @@
 ---
 layout: post
+current: post
+class: post-template
+subclass: 'post tag-speeches'
+cover: 'assets/images/5xruby-post.jpg'
 title:  "[5xRuby實習日記] Javascript 課程心得"
 date:   2016-06-01 17:23:32 
 categories: Rails
-tags: javascript jquery kuro 5xruby intern 2016
-image: /images/pic02.jpg
+tags: 5xruby
+author: fumitsuki
 ---
 
 覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)

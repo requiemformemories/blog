@@ -1,11 +1,16 @@
 ---
 layout: post
+current: post
+class: post-template
+subclass: 'post tag-speeches'
+cover: 'assets/images/rails-post.jpg'
 title:  "[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！"
 date:   2016-05-26 15:40:58
 categories: Rails
-tags: vagrant rails mobaxterm virtualbox
-image: /images/pic01.jpg
+tags: rails
+author: fumitsuki
 ---
+
 相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ"
 到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 `rake db:migrate` 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊...
 
@@ -41,7 +46,7 @@ BTW，在下的電腦目前是萬惡的 windows 10，所以安裝過程可能跟
 接著到[Vagrant Cloud]物色一下要安裝的box，個人這次用的是 `ubuntu/trusty64`。
 找到需要的版本以後會看到這樣一行command line，像這樣：
 
-```
+```{}
 $ vagrant init ubuntu/trusty64; vagrant up --provider virtualbox
 ```
 
@@ -52,7 +57,7 @@ $ vagrant init ubuntu/trusty64; vagrant up --provider virtualbox
 #### ssh連線
 接著差不多跑玩了的時候，稍微翻一下terminal上的訊息，應該會有類似這樣的訊息：
 
-```
+```{}
 default: SSH address: 127.0.0.1:2222
 default: SSH username: vagrant
 default: SSH auth method: private key
@@ -89,7 +94,7 @@ default: SSH auth method: private key
 
 windows的話可以照著這個做：
 
-```
+```{}
 $ vagrant halt
 $ vagrant destroy --force
 $ del /F /Q  Vagrantfile
@@ -100,7 +105,7 @@ $ rmdir /S /Q %USERPROFILE%\.vagrant.d\boxes\ubuntu-VAGRANTSLASH-trusty64
 ```
 mac的話可以參考以下的寫法：
 
-```
+```{}
 $ vagrant halt ; vagrant destroy --force
 $ rm -rf .vagrant Vagrantfile
  
@@ -117,7 +122,7 @@ $ rm -rf $HOME/.vagrant.d/boxes/ubuntu-VAGRANTSLASH-trusty64
 
 這一次的話就：
 
-```
+```{}
 $ git clone https://github.com/rails/rails-dev-box.git
 $ cd rails-dev-box
 $ vagrant up
@@ -132,7 +137,7 @@ $ vagrant up
 
 所以還是要自己裝一下XDD
 
-```
+```{}
 sudo gem install rails --no-ri --no-rdoc
 ```
 

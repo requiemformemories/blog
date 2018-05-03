@@ -1,0 +1,10 @@
+rails:
+  name: rails
+  description: Ruby on Rails 耍雷新手的小筆記分享。
+  cover: assets/images/rails.jpg
+5xruby:
+  name: 5xruby
+  description: 五倍紅寶石實習點滴與心得。
+  cover: assets/images/5xruby.jpg 
+
+

@@ -1,70 +1,60 @@
 ---
 layout: post
-title:  "[Rails 學習筆記]善用namespace建立後台"
-date:   2016-04-27 16:07:19
-categories: Rails
-tags: backend namespace devise rails
-image: /images/pic01.jpg
+current: post
+class: post-template
+subclass: 'post tag-speeches'
+cover: 'assets/images/5xruby-post.jpg'
+title:  "[5xRuby實習日記] Javascript 課程心得"
+date:   2016-04-27 16:02:15
+categories: Javascript
+tags: 5xruby
+author: fumitsuki
 ---
-在寫blog的時候一直很苦惱要怎麼寫後台，
-是要另外有一個叫backend的controller嗎？還是怎麼樣呢？
+覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
+不過由於個人還在就學的緣故，
+因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ"
 
-後來才知道原來有namespace這東西，覺得人間愉快(X)
+這次的JS課程很遺憾地只上了最後一堂課QAQ" (而且只有後半段QAQ) 
+(沒有HTML只上到第一堂課這麼淒慘就是了)
+我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
+終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。
 
-所以廢話少說就開始吧！
+我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
+而且可以實際上了解要怎麼使用，有什麼時機可以使用。
 
-### route的部分
-首先到 **route.rb** 加入：
+接著提供一下最後一堂課的筆記：
+### 善用find找子元素
+```
+$(this).find('.title').toggleClass('active');
+```
+### 用trigger觸發事件
+例如：
 
-```ruby
-namespace :admin do
-    resources :articles
- end
+```
+	$(.b).on('click',function(){
+	$(.a).trigger('click');
+});
 ```
 
-這樣index的路徑就換變成 **admin/articles** 了， 
-可以用`$ rake routes`來看一下路徑長什麼樣子。
+這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b
 
-然後這邊要特別注意（大師提點的，不是我自己說的w），
-盡量不要用admin、backend這種大家都想得到的名稱。
-否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵))
+### 利用data存取、指定
+- 存取 ex.
 
-當然，article的部分就是controller的名字，要叫posts...什麼的都可以。
-
-### Controller的部分
-接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。
-（其他功能就自己盡情加吧，那就跟本文無關了w）
-可以善用command line來建立controller，像是：`$ rails g controller admin/articles`
-這個時候可以發現多出了 **app/controllers/admin/articles_controller.rb** 這個檔案，
-到這裡後台的路徑就差不多了。
-
-### 使用者認證
-這個部分看是多使用者還是單一使用者，
-如果是單一使用者的話可以用簡單的 **http basic authenticate** 來處理。
-
-在剛剛的 **admin/articles_controller.rb** 中加入：
-
-``` ruby
-http_basic_authenticate_with name: "your_name", password: "your_password"
+```
+	$('.home').data('show')
 ```
 
-這邊的`your_name`跟`your_password`就自由填入自訂的帳號密碼吧！
-多使用者的話，可以用 **devise** 這個方便好用的套件。
+如此一來可以存取有home這個class的物件的data-show的值
+- 指定 ex.
 
-首先，在 **Gemfile** 中加入：
-
-``` ruby
-gem 'devise'
+```
+	$('.home').data('show','home')
 ```
 
-
-然後在命令列輸入`$ bundle`就可以安裝套件了。
-接著呢，再命令列輸入`$ rails g devise:install`來產生devise設定檔
-再輸入`$ rails g devise user`產生user model，然後便忘了`rake db:migrate`來migrate它。Devise也提供view的樣板可以使用，在命令列輸入`rails generate devise:views`就可以自動產生了。
+把有home這個class的物件的data-show的值改成home
 
 
-除此之外，
-其實也有後台的套件可以用，像說[rails_admin]之類的，可以參考看看呢。
+剩下晚一點再來補，不過我有寫在[hackMD]上提供參考
 
-
-[rails_admin]: https://github.com/sferik/rails_admin
+[hackMD]: https://hackmd.io/s/rk_X2cdl
