@@ -24,8 +24,8 @@
 
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
-    <link rel="shortcut icon" href="http://localhost:4000/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="http://localhost:4000/blog/build-rails-environment-with-vagrant" />
+    <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/blog/build-rails-environment-with-vagrant" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
@@ -33,8 +33,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！" />
     <meta property="og:description" content="相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ” 到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 rake db:migrate 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊… 所以呢，想說用Vagrant來建虛擬機，這似乎是比較簡單的方法呢。對於我這個小腦殘來說應該不會耍雷得太嚴重XD 其實網路上Vagrant的教學文還不少(而且還是中文的)，遇到問題還可以上stackoverflow查，個人覺得資源蠻多的。如果是docker的話我個人絕對沒有信心把它裝起來XD 不過說實在的，心底還是默默的期望可以買mac啊&gt;&lt;” 總而言之廢話不多說(已經講很多了)就來裝裝看吧！ BTW，在下的電腦目前是萬惡的 windows 10，所以安裝過程可能跟大家不太一樣，細節可以參考底下的教材。然後安裝過程中的問題跟雷點我也會一併分享的w 安裝步驟 安裝Vagrant、Virtual Box、MobaxTerm 首先來安裝等等會需要用到的東西： Vagrant 依照自己的作業系統環境找適合的版本安裝 VirtualBox VirtualBox platform packages VirtualBox 5.0.20 Oracle VM VirtualBox Extension Pack MobaXterm 可以拿來連telnet、ssh、http、ftp…等等的，很方便 這次會拿來連ssh 安裝過程中只要一直按 next 基本上就會裝好了XD 個人安裝沒有遇到什麼問題，有遇到的話可以google一下解決辦法。 生出虛擬機 接著到Vagrant Cloud物色一下要安裝的box，個人這次用的是 ubuntu/trusty64。 找到需要的版本以後會看到這樣一行command line，像這樣： $ vagrant init ubuntu/trusty64; vagrant up --provider virtualbox" />
-    <meta property="og:url" content="http://localhost:4000/blog/build-rails-environment-with-vagrant" />
-    <meta property="og:image" content="http://localhost:4000/blog/assets/images/rails-post.jpg" />
+    <meta property="og:url" content="/blog/build-rails-environment-with-vagrant" />
+    <meta property="og:image" content="/blog/assets/images/rails-post.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="2016-05-26T23:40:58+08:00" />
@@ -43,8 +43,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！" />
     <meta name="twitter:description" content="相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ” 到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 rake db:migrate 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊… 所以呢，想說用Vagrant來建虛擬機，這似乎是比較簡單的方法呢。對於我這個小腦殘來說應該不會耍雷得太嚴重XD 其實網路上Vagrant的教學文還不少(而且還是中文的)，遇到問題還可以上stackoverflow查，個人覺得資源蠻多的。如果是docker的話我個人絕對沒有信心把它裝起來XD 不過說實在的，心底還是默默的期望可以買mac啊&gt;&lt;” 總而言之廢話不多說(已經講很多了)就來裝裝看吧！ BTW，在下的電腦目前是萬惡的 windows 10，所以安裝過程可能跟大家不太一樣，細節可以參考底下的教材。然後安裝過程中的問題跟雷點我也會一併分享的w 安裝步驟 安裝Vagrant、Virtual Box、MobaxTerm 首先來安裝等等會需要用到的東西： Vagrant 依照自己的作業系統環境找適合的版本安裝 VirtualBox VirtualBox platform packages VirtualBox 5.0.20 Oracle VM VirtualBox Extension Pack MobaXterm 可以拿來連telnet、ssh、http、ftp…等等的，很方便 這次會拿來連ssh 安裝過程中只要一直按 next 基本上就會裝好了XD 個人安裝沒有遇到什麼問題，有遇到的話可以google一下解決辦法。 生出虛擬機 接著到Vagrant Cloud物色一下要安裝的box，個人這次用的是 ubuntu/trusty64。 找到需要的版本以後會看到這樣一行command line，像這樣： $ vagrant init ubuntu/trusty64; vagrant up --provider virtualbox" />
-    <meta name="twitter:url" content="http://localhost:4000/blog/" />
-    <meta name="twitter:image" content="http://localhost:4000/blog/assets/images/rails-post.jpg" />
+    <meta name="twitter:url" content="/blog/" />
+    <meta name="twitter:image" content="/blog/assets/images/rails-post.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
@@ -61,18 +61,18 @@
     "publisher": {
         "@type": "Organization",
         "name": "Fumitsuki's magic box",
-        "logo": "http://localhost:4000/blog/assets/images/blog-icon.png"
+        "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "http://localhost:4000/blog/build-rails-environment-with-vagrant",
+    "url": "/blog/build-rails-environment-with-vagrant",
     "image": {
         "@type": "ImageObject",
-        "url": "http://localhost:4000/blog/assets/images/rails-post.jpg",
+        "url": "/blog/assets/images/rails-post.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:4000/blog/build-rails-environment-with-vagrant"
+        "@id": "/blog/build-rails-environment-with-vagrant"
     },
     "description": "相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ” 到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 rake db:migrate 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊… 所以呢，想說用Vagrant來建虛擬機，這似乎是比較簡單的方法呢。對於我這個小腦殘來說應該不會耍雷得太嚴重XD 其實網路上Vagrant的教學文還不少(而且還是中文的)，遇到問題還可以上stackoverflow查，個人覺得資源蠻多的。如果是docker的話我個人絕對沒有信心把它裝起來XD 不過說實在的，心底還是默默的期望可以買mac啊&gt;&lt;” 總而言之廢話不多說(已經講很多了)就來裝裝看吧！ BTW，在下的電腦目前是萬惡的 windows 10，所以安裝過程可能跟大家不太一樣，細節可以參考底下的教材。然後安裝過程中的問題跟雷點我也會一併分享的w 安裝步驟 安裝Vagrant、Virtual Box、MobaxTerm 首先來安裝等等會需要用到的東西： Vagrant 依照自己的作業系統環境找適合的版本安裝 VirtualBox VirtualBox platform packages VirtualBox 5.0.20 Oracle VM VirtualBox Extension Pack MobaXterm 可以拿來連telnet、ssh、http、ftp…等等的，很方便 這次會拿來連ssh 安裝過程中只要一直按 next 基本上就會裝好了XD 個人安裝沒有遇到什麼問題，有遇到的話可以google一下解決辦法。 生出虛擬機 接著到Vagrant Cloud物色一下要安裝的box，個人這次用的是 ubuntu/trusty64。 找到需要的版本以後會看到這樣一行command line，像這樣： $ vagrant init ubuntu/trusty64; vagrant up --provider virtualbox"
 }
@@ -106,7 +106,7 @@ into the {body} of the default.hbs template -->
     <div class="site-nav-left">
         
             
-                <a class="site-nav-logo" href="http://localhost:4000/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+                <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
             
         
         
@@ -574,7 +574,7 @@ gorails 上的教學，不過這篇就比較複雜一些了。</li>
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="http://localhost:4000/blog/">Fumitsuki's magic box</a> &copy; 2018</section>
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2018</section>
                 <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
                     <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>

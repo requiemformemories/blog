@@ -24,8 +24,8 @@
 
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
-    <link rel="shortcut icon" href="http://localhost:4000/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="http://localhost:4000/blog/backend-with-namespace" />
+    <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/blog/backend-with-namespace" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
@@ -33,8 +33,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="[Rails 學習筆記]善用namespace建立後台" />
     <meta property="og:description" content="在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？ 後來才知道原來有namespace這東西，覺得人間愉快(X) 所以廢話少說就開始吧！ route的部分 首先到 route.rb 加入： namespace :admin do resources :articles end 這樣index的路徑就換變成 admin/articles 了， 可以用$ rake routes來看一下路徑長什麼樣子。 然後這邊要特別注意（大師提點的，不是我自己說的w）， 盡量不要用admin、backend這種大家都想得到的名稱。 否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵)) 當然，article的部分就是controller的名字，要叫posts…什麼的都可以。 Controller的部分 接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。 （其他功能就自己盡情加吧，那就跟本文無關了w） 可以善用command line來建立controller，像是：$ rails g controller admin/articles 這個時候可以發現多出了 app/controllers/admin/articles_controller.rb 這個檔案， 到這裡後台的路徑就差不多了。 使用者認證 這個部分看是多使用者還是單一使用者， 如果是單一使用者的話可以用簡單的 http basic authenticate 來處理。 在剛剛的 admin/articles_controller.rb 中加入： http_basic_authenticate_with name: "your_name"," />
-    <meta property="og:url" content="http://localhost:4000/blog/backend-with-namespace" />
-    <meta property="og:image" content="http://localhost:4000/blog/assets/images/rails-post.jpg" />
+    <meta property="og:url" content="/blog/backend-with-namespace" />
+    <meta property="og:image" content="/blog/assets/images/rails-post.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="2016-04-28T00:07:19+08:00" />
@@ -43,8 +43,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="[Rails 學習筆記]善用namespace建立後台" />
     <meta name="twitter:description" content="在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？ 後來才知道原來有namespace這東西，覺得人間愉快(X) 所以廢話少說就開始吧！ route的部分 首先到 route.rb 加入： namespace :admin do resources :articles end 這樣index的路徑就換變成 admin/articles 了， 可以用$ rake routes來看一下路徑長什麼樣子。 然後這邊要特別注意（大師提點的，不是我自己說的w）， 盡量不要用admin、backend這種大家都想得到的名稱。 否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵)) 當然，article的部分就是controller的名字，要叫posts…什麼的都可以。 Controller的部分 接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。 （其他功能就自己盡情加吧，那就跟本文無關了w） 可以善用command line來建立controller，像是：$ rails g controller admin/articles 這個時候可以發現多出了 app/controllers/admin/articles_controller.rb 這個檔案， 到這裡後台的路徑就差不多了。 使用者認證 這個部分看是多使用者還是單一使用者， 如果是單一使用者的話可以用簡單的 http basic authenticate 來處理。 在剛剛的 admin/articles_controller.rb 中加入： http_basic_authenticate_with name: "your_name"," />
-    <meta name="twitter:url" content="http://localhost:4000/blog/" />
-    <meta name="twitter:image" content="http://localhost:4000/blog/assets/images/rails-post.jpg" />
+    <meta name="twitter:url" content="/blog/" />
+    <meta name="twitter:image" content="/blog/assets/images/rails-post.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
@@ -61,18 +61,18 @@
     "publisher": {
         "@type": "Organization",
         "name": "Fumitsuki's magic box",
-        "logo": "http://localhost:4000/blog/assets/images/blog-icon.png"
+        "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "http://localhost:4000/blog/backend-with-namespace",
+    "url": "/blog/backend-with-namespace",
     "image": {
         "@type": "ImageObject",
-        "url": "http://localhost:4000/blog/assets/images/rails-post.jpg",
+        "url": "/blog/assets/images/rails-post.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:4000/blog/backend-with-namespace"
+        "@id": "/blog/backend-with-namespace"
     },
     "description": "在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？ 後來才知道原來有namespace這東西，覺得人間愉快(X) 所以廢話少說就開始吧！ route的部分 首先到 route.rb 加入： namespace :admin do resources :articles end 這樣index的路徑就換變成 admin/articles 了， 可以用$ rake routes來看一下路徑長什麼樣子。 然後這邊要特別注意（大師提點的，不是我自己說的w）， 盡量不要用admin、backend這種大家都想得到的名稱。 否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵)) 當然，article的部分就是controller的名字，要叫posts…什麼的都可以。 Controller的部分 接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。 （其他功能就自己盡情加吧，那就跟本文無關了w） 可以善用command line來建立controller，像是：$ rails g controller admin/articles 這個時候可以發現多出了 app/controllers/admin/articles_controller.rb 這個檔案， 到這裡後台的路徑就差不多了。 使用者認證 這個部分看是多使用者還是單一使用者， 如果是單一使用者的話可以用簡單的 http basic authenticate 來處理。 在剛剛的 admin/articles_controller.rb 中加入： http_basic_authenticate_with name: "your_name","
 }
@@ -106,7 +106,7 @@ into the {body} of the default.hbs template -->
     <div class="site-nav-left">
         
             
-                <a class="site-nav-logo" href="http://localhost:4000/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+                <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
             
         
         
@@ -546,7 +546,7 @@ $(this).find('.title').toggleClass('active');
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="http://localhost:4000/blog/">Fumitsuki's magic box</a> &copy; 2018</section>
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2018</section>
                 <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
                     <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>

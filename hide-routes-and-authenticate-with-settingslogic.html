@@ -24,8 +24,8 @@
 
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
-    <link rel="shortcut icon" href="http://localhost:4000/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="http://localhost:4000/blog/hide-routes-and-authenticate-with-settingslogic" />
+    <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/blog/hide-routes-and-authenticate-with-settingslogic" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
@@ -33,8 +33,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="[Rails學習筆記] 用Settingslogic把重要資訊藏起來!" />
     <meta property="og:description" content="首先來碎碎念一下XD 最近花了好多時間在寫自己的blog， 其實一直很想把它推到Github上(為了綠綠的contributions!!)， 但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD 經過大師提點(?)之後才知道原來這是可以解決的呢XD 要解決這個問題有兩種方法， 一種是把設定值放在ENV， 另一種則是用settinglogic來解決這個問題。 這邊會提到的是後者~ (正文要開始了w) 安裝gem 首先呢，先在 Gemfile 中加入： gem "settingslogic" 然後在terminal執行 $ bundle 就安裝完成了。 使用Settinglogic 這個gem的詳細說明可以看github上的README。 那這邊就簡單介紹初步的使用~ 在 app/model 中加入 settings.rb， 裡面加入以下的內容： class Settings &lt; Settingslogic source "#{Rails.root}/config/application.yml" namespace Rails.env end 那code中的 application.yml 就是等一下要放後台路徑跟帳密的地方~ 接著務必記得把 application.yml 加到 .gitignore 中， 否則所有努力都是白費的噢~~~ $ echo "config/application.yml" &gt;&gt;" />
-    <meta property="og:url" content="http://localhost:4000/blog/hide-routes-and-authenticate-with-settingslogic" />
-    <meta property="og:image" content="http://localhost:4000/blog/assets/images/rails-post.jpg" />
+    <meta property="og:url" content="/blog/hide-routes-and-authenticate-with-settingslogic" />
+    <meta property="og:image" content="/blog/assets/images/rails-post.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="2016-05-12T20:33:54+08:00" />
@@ -43,8 +43,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="[Rails學習筆記] 用Settingslogic把重要資訊藏起來!" />
     <meta name="twitter:description" content="首先來碎碎念一下XD 最近花了好多時間在寫自己的blog， 其實一直很想把它推到Github上(為了綠綠的contributions!!)， 但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD 經過大師提點(?)之後才知道原來這是可以解決的呢XD 要解決這個問題有兩種方法， 一種是把設定值放在ENV， 另一種則是用settinglogic來解決這個問題。 這邊會提到的是後者~ (正文要開始了w) 安裝gem 首先呢，先在 Gemfile 中加入： gem "settingslogic" 然後在terminal執行 $ bundle 就安裝完成了。 使用Settinglogic 這個gem的詳細說明可以看github上的README。 那這邊就簡單介紹初步的使用~ 在 app/model 中加入 settings.rb， 裡面加入以下的內容： class Settings &lt; Settingslogic source "#{Rails.root}/config/application.yml" namespace Rails.env end 那code中的 application.yml 就是等一下要放後台路徑跟帳密的地方~ 接著務必記得把 application.yml 加到 .gitignore 中， 否則所有努力都是白費的噢~~~ $ echo "config/application.yml" &gt;&gt;" />
-    <meta name="twitter:url" content="http://localhost:4000/blog/" />
-    <meta name="twitter:image" content="http://localhost:4000/blog/assets/images/rails-post.jpg" />
+    <meta name="twitter:url" content="/blog/" />
+    <meta name="twitter:image" content="/blog/assets/images/rails-post.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
@@ -61,18 +61,18 @@
     "publisher": {
         "@type": "Organization",
         "name": "Fumitsuki's magic box",
-        "logo": "http://localhost:4000/blog/assets/images/blog-icon.png"
+        "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "http://localhost:4000/blog/hide-routes-and-authenticate-with-settingslogic",
+    "url": "/blog/hide-routes-and-authenticate-with-settingslogic",
     "image": {
         "@type": "ImageObject",
-        "url": "http://localhost:4000/blog/assets/images/rails-post.jpg",
+        "url": "/blog/assets/images/rails-post.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:4000/blog/hide-routes-and-authenticate-with-settingslogic"
+        "@id": "/blog/hide-routes-and-authenticate-with-settingslogic"
     },
     "description": "首先來碎碎念一下XD 最近花了好多時間在寫自己的blog， 其實一直很想把它推到Github上(為了綠綠的contributions!!)， 但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD 經過大師提點(?)之後才知道原來這是可以解決的呢XD 要解決這個問題有兩種方法， 一種是把設定值放在ENV， 另一種則是用settinglogic來解決這個問題。 這邊會提到的是後者~ (正文要開始了w) 安裝gem 首先呢，先在 Gemfile 中加入： gem "settingslogic" 然後在terminal執行 $ bundle 就安裝完成了。 使用Settinglogic 這個gem的詳細說明可以看github上的README。 那這邊就簡單介紹初步的使用~ 在 app/model 中加入 settings.rb， 裡面加入以下的內容： class Settings &lt; Settingslogic source "#{Rails.root}/config/application.yml" namespace Rails.env end 那code中的 application.yml 就是等一下要放後台路徑跟帳密的地方~ 接著務必記得把 application.yml 加到 .gitignore 中， 否則所有努力都是白費的噢~~~ $ echo "config/application.yml" &gt;&gt;"
 }
@@ -106,7 +106,7 @@ into the {body} of the default.hbs template -->
     <div class="site-nav-left">
         
             
-                <a class="site-nav-logo" href="http://localhost:4000/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+                <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
             
         
         
@@ -564,7 +564,7 @@ into the {body} of the default.hbs template -->
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="http://localhost:4000/blog/">Fumitsuki's magic box</a> &copy; 2018</section>
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2018</section>
                 <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
                     <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
