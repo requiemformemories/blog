@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>[工作日常] 如何用建立巢狀的 tailwindcss config？</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="keep calm and eat eight Plates." />
+    <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/blog/tailwind-nested-config" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Fumitsuki's magic box" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[工作日常] 如何用建立巢狀的 tailwindcss config？" />
+    <meta property="og:description" content="前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組" />
+    <meta property="og:url" content="/blog/tailwind-nested-config" />
+    <meta property="og:image" content="/blog/assets/images/tailwind-post.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:author" content="https://www.facebook.com/" />
+    <meta property="article:published_time" content="2019-08-22T14:13:00+08:00" />
+    <meta property="article:modified_time" content="2019-08-22T14:13:00+08:00" />
+    <meta property="article:tag" content="Css" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[工作日常] 如何用建立巢狀的 tailwindcss config？" />
+    <meta name="twitter:description" content="前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組" />
+    <meta name="twitter:url" content="/blog/" />
+    <meta name="twitter:image" content="/blog/assets/images/tailwind-post.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Fumitsuki's magic box" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Css" />
+    <meta name="twitter:site" content="@Fumitsuki0802" />
+    <meta name="twitter:creator" content="@Fumitsuki0802" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Fumitsuki's magic box",
+        "logo": "/blog/assets/images/blog-icon.png"
+    },
+    "url": "/blog/tailwind-nested-config",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/blog/assets/images/tailwind-post.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/blog/tailwind-nested-config"
+    },
+    "description": "前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" href="/blog/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+            
+        
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://github.com/requiemformemories" target="_blank" rel="noopener"><?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 478.613 478.613" xml:space="default" width="19px" height="32px">
+<g id="XMLID_122_">
+	<g>
+		<path d="M427.501,200.695c1.776-11.238,2.884-23.56,3.163-37.377c-0.107-59.246-28.468-80.21-33.925-90.038    c8.037-44.89-1.331-65.309-5.688-72.299c-16.07-5.704-55.91,14.722-77.678,29.101c-35.491-10.389-110.494-9.375-138.621,2.689    C122.856-4.389,95.408,1.277,95.408,1.277s-17.745,31.82-4.691,78.371c-17.075,21.759-29.802,37.143-29.802,77.949    c0,9.773,0.607,19.008,1.637,27.893c14.705,77.318,75.97,110.674,136.15,116.426c-9.056,6.881-19.928,19.903-21.432,34.992    c-11.379,7.357-34.268,9.789-52.067,4.193c-24.939-7.88-34.486-57.266-71.833-50.221c-8.081,1.512-6.475,6.842,0.523,11.386    c11.378,7.38,22.094,16.554,30.354,36.185c6.344,15.072,19.687,41.982,61.873,41.982c16.747,0,28.477-1.979,28.477-1.979    s0.319,38.406,0.319,53.385c0,17.238-23.264,22.078-23.264,30.348c0,3.289,7.7,3.601,13.888,3.601    c12.229,0,37.673-10.186,37.673-28.103c0-14.237,0.227-62.081,0.227-70.46c0-18.307,9.811-24.136,9.811-24.136    s1.201,97.727-2.361,110.829c-4.177,15.408-11.744,13.219-11.744,20.076c0,10.233,30.589,2.502,40.735-19.897    c7.849-17.495,4.334-113.331,4.334-113.331l8.183-0.178c0,0,0.094,43.892-0.188,63.944c-0.295,20.769-2.438,47.025,9.898,59.417    c8.097,8.15,32.903,22.451,32.903,9.382c0-7.574-17.371-13.833-17.371-34.353V344.45c10.553,0,12.734,31.072,12.734,31.072    l3.804,57.727c0,0-2.526,21.065,22.756,29.856c8.925,3.126,28.018,3.976,28.913-1.271c0.897-5.26-22.99-13.038-23.217-29.342    c-0.123-9.93,0.445-15.742,0.445-58.934c0-43.168-5.799-59.137-26.007-71.863C355.669,295.681,416.536,269.51,427.501,200.695z" fill="white"/>
+	</g>
+</g>
+</svg>
+</a>
+            
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-speeches ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="22 August 2019">22 August 2019</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/blog/tag/css/'>CSS</a>,
+                            
+                        
+                            
+                               <a href='/blog/tag/javascript/'>JAVASCRIPT</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">[工作日常] 如何用建立巢狀的 tailwindcss config？</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/blog/assets/images/tailwind-post.jpg)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <h2 id="前言">前言</h2>
+
+<p>最近因為工作緣故使用到 <a href="https://tailwindcss.com/">Tailwind CSS</a> 這款 css 框架。</p>
+
+<p>有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w</p>
+
+<p>Tailwind 本身就提供一些 default settings，像是 <code class="highlighter-rouge">margin: 0.25rem</code>（<code class="highlighter-rouge">.m-1</code>），或是 <code class="highlighter-rouge">color: #fff</code>（<code class="highlighter-rouge">.text-white</code>） 等等。如果需要客製化，也可以在 <code class="highlighter-rouge">tailwind.config.js </code> 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。</p>
+
+<h2 id="可不可以建立-nested-config">可不可以建立 nested config？</h2>
+
+<p>然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 <code class="highlighter-rouge">primary</code> 這組 color）兩邊都要有，這個時候該怎麼辦呢？</p>
+
+<h3 id="方案一佛系解決問題等待官方處理的那一天">方案一：佛系解決問題，等待官方處理的那一天</h3>
+
+<p>如標題所示，緣份到來，問題自然解決。說不定哪一天官方的 new release 就幫你把問題處理好了。</p>
+
+<p><del>如果對專案放置 play 問題就會解決，我也是很想這樣。</del></p>
+
+<h3 id="方案二一邊一組-customized-config">方案二：一邊一組 customized config</h3>
+
+<p>是個非常直觀簡單的解決方案，直接前台一個 <code class="highlighter-rouge">tailwind.config.js </code>，後台一個 <code class="highlighter-rouge">tailwind.config.js </code>，共同的部分就兩邊的 config 都放就好了。但是總覺得不夠 dry (Don’t repeat yourself)，維護的時候要小心保持兩邊的共同設定都一樣，實在不是個漂亮的作法。</p>
+
+<h3 id="方案三把-tailwind-裡面的-resolveconfigobjects-拿來-merge-你的-customized-config">方案三：把 tailwind 裡面的 ResolveConfigObjects() 拿來 merge 你的 customized config</h3>
+
+<p>如果打開 <code class="highlighter-rouge">node_modules/tailwindcss</code> 觀察觀察，會發現檔案 <code class="highlighter-rouge">resolveConfig.js</code> 中，Tailwind 透過一個叫 resolveConfigObjects() 的 function 幫你把你的 customized config 跟 Tailwind 的 default config 合併起來。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// node_modules/tailwindcss/resolveConfig.js</span>
+
+<span class="kd">const</span> <span class="nx">resolveConfigObjects</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./lib/util/resolveConfig'</span><span class="p">).</span><span class="k">default</span>
+<span class="kd">const</span> <span class="nx">defaultConfig</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./stubs/defaultConfig.stub.js'</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">resolveConfig</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">resolveConfigObjects</span><span class="p">([</span><span class="nx">config</span><span class="p">,</span> <span class="nx">defaultConfig</span><span class="p">])</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>那如果我們把這個 resolveConfigObjects() 抽出來用，是不是也可以達到 nested config 的效果呢？</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">resolveConfigObjects</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tailwindcss/lib/util/resolveConfig'</span><span class="p">).</span><span class="k">default</span>
+<span class="kd">const</span> <span class="nx">defaultConfig</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'#{共同設定的那個 config 檔案}'</span><span class="p">.</span><span class="nx">js</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">extendedConfig</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">//這裡放你前台 or 後台的設定 }</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">resolveConfigObjects</span><span class="p">([</span><span class="nx">extendedConfig</span><span class="p">,</span> <span class="nx">defaultTheme</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>經過實際測試後，發現會有難以解決的問題。</p>
+
+<p>在 Tailwind 的 config 中，有一些部分的設定會像這樣：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">textColor</span><span class="p">:</span> <span class="nx">theme</span> <span class="o">=&gt;</span> <span class="nx">theme</span><span class="p">(</span><span class="s1">'colors'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>經過 resolveConfigObjects() 這個 function 以後，這樣的 function 會被處理成 Object：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">textColor</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nl">transparent</span><span class="p">:</span> <span class="s1">'transparent'</span><span class="p">,</span>
+      <span class="nx">black</span><span class="p">:</span> <span class="s1">'#000'</span><span class="p">,</span>
+      <span class="nx">white</span><span class="p">:</span> <span class="s1">'#fff'</span><span class="p">,</span>
+      <span class="nx">gray</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">red</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">orange</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">yellow</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">green</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">teal</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">blue</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">indigo</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">purple</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">],</span>
+      <span class="nx">pink</span><span class="p">:</span> <span class="p">[</span><span class="nb">Object</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>如果這個時候在你的前台 config 裡加上一個新的顏色：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">extendedConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+      <span class="p">...</span><span class="nx">defaultTheme</span><span class="p">.</span><span class="nx">theme</span><span class="p">.</span><span class="nx">colors</span><span class="p">,</span>
+      <span class="na">sakura</span><span class="p">:</span> <span class="s1">'#f2a5b7'</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>textColor 是不會更新的！如果在網頁當中有 <code class="highlighter-rouge">.text-sakura</code>，會因為沒吃到設定而壞掉。</p>
+
+<p>看來還是沒辦法漂亮地解決問題呢。</p>
+
+<h3 id="方案四先把你的-customized-config-都-deep-merge-過">方案四：先把你的 customized config 都 deep merge 過</h3>
+
+<p>一樣分成共同的 config，還有前台、後台的 config。但是自行用 deepmerge 套件或 lodash 的 defaultsDeep() 把 customized config 合併起來。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">deepMerge</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'deepmerge'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">baseTheme</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'#{共同設定的那個 config 檔案}'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">extendedTheme</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">//這裡放你前台 or 後台的設定</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">customizedTheme</span> <span class="o">=</span> <span class="nx">deepMerge</span><span class="p">(</span><span class="nx">baseTheme</span><span class="p">,</span> <span class="nx">extendedTheme</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">customizedTheme</span>
+</code></pre></div></div>
+
+<p>這四種方案（其實只有三種？）中，比較推薦這種呢。</p>
+
+<h2 id="顏色的-shallow-merge-問題">顏色的 shallow merge 問題</h2>
+
+<p>在 Tailwind 中，customize 你的設定基本上分兩種方式：</p>
+
+<ol>
+  <li>蓋掉原本的設定（直接放到 theme 底下）</li>
+</ol>
+
+<p>以下方的 code 為例，md 和 lg 的設定被更動成 666px 和 888px，同時 default 的其他設定也不復存在。比方說原本的 <code class="highlighter-rouge">sm: '640px'</code> 設定就沒有了。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">screens</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">md</span><span class="p">:</span> <span class="s1">'666px'</span><span class="p">,</span>
+      <span class="na">lg</span><span class="p">:</span> <span class="s1">'888px'</span><span class="p">,</span>
+  	<span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>延展原本的設定（放到 theme.extend 底下）</li>
+</ol>
+
+<p>和剛剛類似的範例，只是改成放在 extend底下。此時 md 和 lg 的設定被更動成 666px 和 888px之餘，其他 default 的設定依舊保持。比方說原本的 <code class="highlighter-rouge">sm: '640px'</code> 還會存在。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">screens</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">md</span><span class="p">:</span> <span class="s1">'666px'</span><span class="p">,</span>
+        <span class="na">lg</span><span class="p">:</span> <span class="s1">'888px'</span><span class="p">,</span>
+  	  <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>但很奇妙地，Tailwind 的顏色設定無法好好的 extend。以底下的範例來說，我們的想像是 gray 原本的設定(100 ~ 900)都在，但奇蹟似地都會壞光光（欸</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">gray</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">primary</span><span class="p">:</span> <span class="s1">'#9f9e9f'</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>這個時候必須再加上一行 <code class="highlighter-rouge">...#{你的 defaultTheme 的名字}.theme.colors.gray</code>，把 default 的資料代回來。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">gray</span><span class="p">:</span> <span class="p">{</span>
+          <span class="p">...</span><span class="nx">defaultTheme</span><span class="p">.</span><span class="nx">theme</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">gray</span><span class="p">,</span>
+          <span class="na">primary</span><span class="p">:</span> <span class="s1">'#9f9e9f'</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>根據官方在 <a href="https://github.com/tailwindcss/discuss/issues/242">github issue</a> 上的說法，似乎是因為設定還只是 shallow merge 而已。</p>
+
+<p>這個問題就佛系等待官方解決吧。</p>
+
+<p>（筆者使用 tailwindcss v1.0.1）</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="fumitsuki" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/blog/author/fumitsuki">文月</a></h4>
+                                
+                                    <p>擅長耍雷的フレンズ，在茫茫海海探索人生中</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/blog/author/fumitsuki">Read More</a>
+                        </div>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/blog/2016-spring-5xruby-rails-course">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/5xruby-post.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/blog/2016-spring-5xruby-rails-course">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">5xruby</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">[5xRuby實習日記] Javascript 課程心得</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
+不過由於個人還在就學的緣故，
+因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”
+
+這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
+(沒有HTML只上到第一堂課這麼淒慘就是了)
+我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
+終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。
+
+我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
+而且可以實際上了解要怎麼使用，有什麼時機可以使用。
+
+接著提供一下最後一堂課的筆記：
+善用find找子元素
+$(this).find('.title').toggleClass('active');
+
+用trigger觸發事件
+例如：
+
+	$(.b).on('click',function(){
+	$(.a).trigger('click');
+});
+
+
+這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b
+
+利用data存取、指定
+
+  存取 ex.
+
+
+	$('.home').data('show')
+
+
+如此一來可以存取有home這個class的物件的data-show的值
+
+  指定 ex.
+
+
+	$('.home').data('show','home')
+
+
+把有home這個class的物件的data-show的值改成home
+
+剩下晚一點再來補，不過我有寫在hackMD上提供參考
+
+</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                        
+                        <span class="post-card-author">
+                            <a href="/blog/author/fumitsuki/">文月</a>
+                        </span>
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="http://localhost:4000/blog/">
+            
+                <img src="/blog/assets/images/favicon.png" alt="Fumitsuki's magic box icon" />
+            
+            <span>Fumitsuki's magic box</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">[工作日常] 如何用建立巢狀的 tailwindcss config？</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%5B%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%B8%B8%5D+%E5%A6%82%E4%BD%95%E7%94%A8%E5%BB%BA%E7%AB%8B%E5%B7%A2%E7%8B%80%E7%9A%84+tailwindcss+config%EF%BC%9F&amp;url=https://jekyller.github.io/jasper2/tailwind-nested-config"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://jekyller.github.io/jasper2/tailwind-nested-config"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2019</section>
+                <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/blog/">Latest Posts</a>
+                    <a href="https://GitHub.com/requiemformemories" target="_blank" rel="noopener">Github</a>
+                    <a href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/blog/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/blog/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69281367-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>
