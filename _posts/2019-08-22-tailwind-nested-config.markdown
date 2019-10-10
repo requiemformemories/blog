@@ -122,7 +122,7 @@ module.exports = customizedTheme
 
 這四種方案（其實只有三種？）中，比較推薦這種呢。
 
-## 顏色的 shallow merge 問題
+#### 顏色的 shallow merge 問題
 
 在 Tailwind 中，customize 你的設定基本上分兩種方式：
 
@@ -194,5 +194,32 @@ module.exports = {
 根據官方在 [github issue](https://github.com/tailwindcss/discuss/issues/242) 上的說法，似乎是因為設定還只是 shallow merge 而已。
 
 這個問題就佛系等待官方解決吧。
+
+#### variants 重複問題
+如果同時在上層跟下層加上一樣的 variants 會發生什麼事情呢？
+```javascript
+// 上層：
+module.exports = {
+  variants: {
+    borderColor: ['hover']
+  },
+}
+// 下層：
+module.exports = {
+  variants: {
+    borderColor: ['responsive', 'hover']
+  },
+}
+```
+
+因為兩個 config 是我們自己用 deepmerge 弄的，所以合併完會變成：
+
+```javascript
+borderColor: [ 'responsive', 'hover', 'hover' ]
+```
+
+接著你就會發現所有 hover 的 borderColor 的 css 都變成兩倍（哭）
+
+目前想到的方式就是 variants 還是固定寫某一個檔案就好這樣。但願之後 Tailwind 官方會有更好的實務做法。
 
 （筆者使用 tailwindcss v1.0.1）
