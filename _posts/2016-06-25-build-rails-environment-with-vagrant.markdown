@@ -11,14 +11,16 @@ tags: rails
 author: fumitsuki
 ---
 
-相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ"
+相信這個世界上有許多人和我一樣，窮窮的買不起mac，
+又沒有可以用 linux 的腦袋跟耐心，所以只好一直被windows慘虐QAQ"
+
 到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 `rake db:migrate` 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊...
 
 所以呢，想說用Vagrant來建虛擬機，這似乎是比較簡單的方法呢。對於我這個小腦殘來說應該不會耍雷得太嚴重XD
 
 其實網路上Vagrant的教學文還不少(而且還是中文的)，遇到問題還可以上stackoverflow查，個人覺得資源蠻多的。如果是docker的話我個人絕對沒有信心把它裝起來XD
 
-不過說實在的，心底還是默默的期望可以買mac啊><" 
+不過說實在的，心底還是默默的期望可以買mac啊><"
 
 總而言之廢話不多說(已經講很多了)就來裝裝看吧！
 
@@ -69,7 +71,7 @@ default: SSH auth method: private key
 把MobaXterm打開以後，到session新增ssh session，在host、username、port填入：
 ![new session]
 
-在左邊側欄對 `127.0.0.1(vibrant)` 點兩下，照理來說會出現類似 `vagrant@vagrant-ubuntu-trusty-64:~$` 的東西，或是要你輸入password。 
+在左邊側欄對 `127.0.0.1(vibrant)` 點兩下，照理來說會出現類似 `vagrant@vagrant-ubuntu-trusty-64:~$` 的東西，或是要你輸入password。
 沒有的話，到 **Settings > Configurations > Terminal** 把 `Use Windows PATH environment`打勾。
 
 預設的username和password都會是vagrant。
@@ -99,7 +101,7 @@ $ vagrant halt
 $ vagrant destroy --force
 $ del /F /Q  Vagrantfile
 $ rmdir /S /Q  .vagrant
- 
+
 $ vagrant box remove ubuntu/trusty64
 $ rmdir /S /Q %USERPROFILE%\.vagrant.d\boxes\ubuntu-VAGRANTSLASH-trusty64
 ```
@@ -108,13 +110,13 @@ mac的話可以參考以下的寫法：
 ```{}
 $ vagrant halt ; vagrant destroy --force
 $ rm -rf .vagrant Vagrantfile
- 
+
 $ vagrant box remove ubuntu/trusty64
 $ rm -rf $HOME/.vagrant.d/boxes/ubuntu-VAGRANTSLASH-trusty64
 ```
 
 #### 建立環境
-到這裡，我們已經學會怎麼把虛擬機開好了噢！而且還知道怎麼把它砍掉呢！可是網羅(?)還沒有結束，懂得把虛擬機開起來還要懂得安裝環境才行XDD 
+到這裡，我們已經學會怎麼把虛擬機開好了噢！而且還知道怎麼把它砍掉呢！可是網羅(?)還沒有結束，懂得把虛擬機開起來還要懂得安裝環境才行XDD
 開起來的乾乾淨淨的虛擬機是沒有git、ruby...什麼都沒有的XD 所以還是要把環境架起來才能開心寫rails(淚顏)
 
 所以就來重新建一次虛擬機吧，不過這一次用人家架好的環境XDD
