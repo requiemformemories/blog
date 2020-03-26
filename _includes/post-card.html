@@ -21,7 +21,7 @@
                     <h2 class="post-card-title">{{ post.title }}</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>{{  post.content | strip_html | truncate: 40 }}</p>
+                    <p>{{  post.content | strip_html | truncatewords: 2, "..." }}</p>
                 </section>
             </a>
             <footer class="post-card-meta">
