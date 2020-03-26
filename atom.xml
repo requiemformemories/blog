@@ -4,7 +4,7 @@
     <title> - Articles</title>
     <description>keep calm and eat eight Plates.</description>
     <link>
-    http://localhost:4000</link>
+    </link>
     
       
       <item>
@@ -16,8 +16,8 @@
         
         <pubDate>Thu, 22 Aug 2019 06:13:00 +0000</pubDate>
         <link>
-        http://localhost:4000/tailwind-nested-config</link>
-        <guid isPermaLink="true">http://localhost:4000/tailwind-nested-config</guid>
+        /tailwind-nested-config</link>
+        <guid isPermaLink="true">/tailwind-nested-config</guid>
       </item>
       
     
@@ -33,8 +33,8 @@
         
         <pubDate>Wed, 01 Jun 2016 17:23:32 +0000</pubDate>
         <link>
-        http://localhost:4000/2016-spring-5xruby-rails-course</link>
-        <guid isPermaLink="true">http://localhost:4000/2016-spring-5xruby-rails-course</guid>
+        /2016-spring-5xruby-rails-course</link>
+        <guid isPermaLink="true">/2016-spring-5xruby-rails-course</guid>
       </item>
       
     
@@ -49,8 +49,8 @@
         
         <pubDate>Thu, 26 May 2016 15:40:58 +0000</pubDate>
         <link>
-        http://localhost:4000/build-rails-environment-with-vagrant</link>
-        <guid isPermaLink="true">http://localhost:4000/build-rails-environment-with-vagrant</guid>
+        /build-rails-environment-with-vagrant</link>
+        <guid isPermaLink="true">/build-rails-environment-with-vagrant</guid>
       </item>
       
     
@@ -66,8 +66,8 @@
         
         <pubDate>Thu, 12 May 2016 12:52:27 +0000</pubDate>
         <link>
-        http://localhost:4000/two-articles-recommend-to-rails-beginner</link>
-        <guid isPermaLink="true">http://localhost:4000/two-articles-recommend-to-rails-beginner</guid>
+        /two-articles-recommend-to-rails-beginner</link>
+        <guid isPermaLink="true">/two-articles-recommend-to-rails-beginner</guid>
       </item>
       
     
@@ -84,8 +84,8 @@
         
         <pubDate>Thu, 12 May 2016 12:33:54 +0000</pubDate>
         <link>
-        http://localhost:4000/hide-routes-and-authenticate-with-settingslogic</link>
-        <guid isPermaLink="true">http://localhost:4000/hide-routes-and-authenticate-with-settingslogic</guid>
+        /hide-routes-and-authenticate-with-settingslogic</link>
+        <guid isPermaLink="true">/hide-routes-and-authenticate-with-settingslogic</guid>
       </item>
       
     
@@ -102,8 +102,8 @@
         
         <pubDate>Thu, 28 Apr 2016 16:56:13 +0000</pubDate>
         <link>
-        http://localhost:4000/2016-spring-5xruby-html&css-course</link>
-        <guid isPermaLink="true">http://localhost:4000/2016-spring-5xruby-html&css-course</guid>
+        /2016-spring-5xruby-html&css-course</link>
+        <guid isPermaLink="true">/2016-spring-5xruby-html&css-course</guid>
       </item>
       
     
@@ -118,8 +118,8 @@
         
         <pubDate>Wed, 27 Apr 2016 16:07:19 +0000</pubDate>
         <link>
-        http://localhost:4000/backend-with-namespace</link>
-        <guid isPermaLink="true">http://localhost:4000/backend-with-namespace</guid>
+        /backend-with-namespace</link>
+        <guid isPermaLink="true">/backend-with-namespace</guid>
       </item>
       
     
@@ -135,8 +135,8 @@
         
         <pubDate>Wed, 27 Apr 2016 16:02:15 +0000</pubDate>
         <link>
-        http://localhost:4000/2016-spring-5xruby-javascript-course</link>
-        <guid isPermaLink="true">http://localhost:4000/2016-spring-5xruby-javascript-course</guid>
+        /2016-spring-5xruby-javascript-course</link>
+        <guid isPermaLink="true">/2016-spring-5xruby-javascript-course</guid>
       </item>
       
     
