@@ -39,7 +39,7 @@
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="2019-08-22T14:13:00+08:00" />
     <meta property="article:modified_time" content="2019-08-22T14:13:00+08:00" />
-    <meta property="article:tag" content="Css" />
+    <meta property="article:tag" content="css" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="[工作日常] 如何用建立巢狀的 tailwindcss config？" />
     <meta name="twitter:description" content="前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組" />
@@ -48,7 +48,7 @@
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Css" />
+    <meta name="twitter:data2" content="css" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -277,7 +277,7 @@ into the {body} of the default.hbs template -->
 
 <p>這四種方案（其實只有三種？）中，比較推薦這種呢。</p>
 
-<h2 id="顏色的-shallow-merge-問題">顏色的 shallow merge 問題</h2>
+<h4 id="顏色的-shallow-merge-問題">顏色的 shallow merge 問題</h4>
 
 <p>在 Tailwind 中，customize 你的設定基本上分兩種方式：</p>
 
@@ -349,6 +349,31 @@ into the {body} of the default.hbs template -->
 <p>根據官方在 <a href="https://github.com/tailwindcss/discuss/issues/242">github issue</a> 上的說法，似乎是因為設定還只是 shallow merge 而已。</p>
 
 <p>這個問題就佛系等待官方解決吧。</p>
+
+<h4 id="variants-重複問題">variants 重複問題</h4>
+<p>如果同時在上層跟下層加上一樣的 variants 會發生什麼事情呢？</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 上層：</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">borderColor</span><span class="p">:</span> <span class="p">[</span><span class="s1">'hover'</span><span class="p">]</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+<span class="c1">// 下層：</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">borderColor</span><span class="p">:</span> <span class="p">[</span><span class="s1">'responsive'</span><span class="p">,</span> <span class="s1">'hover'</span><span class="p">]</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>因為兩個 config 是我們自己用 deepmerge 弄的，所以合併完會變成：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">borderColor</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'responsive'</span><span class="p">,</span> <span class="s1">'hover'</span><span class="p">,</span> <span class="s1">'hover'</span> <span class="p">]</span>
+</code></pre></div></div>
+
+<p>接著你就會發現所有 hover 的 borderColor 的 css 都變成兩倍（哭）</p>
+
+<p>目前想到的方式就是 variants 還是固定寫某一個檔案就好這樣。但願之後 Tailwind 官方會有更好的實務做法。</p>
 
 <p>（筆者使用 tailwindcss v1.0.1）</p>
 
@@ -429,53 +454,7 @@ into the {body} of the default.hbs template -->
                     <h2 class="post-card-title">[5xRuby實習日記] Javascript 課程心得</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
-不過由於個人還在就學的緣故，
-因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”
-
-這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
-(沒有HTML只上到第一堂課這麼淒慘就是了)
-我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
-終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。
-
-我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
-而且可以實際上了解要怎麼使用，有什麼時機可以使用。
-
-接著提供一下最後一堂課的筆記：
-善用find找子元素
-$(this).find('.title').toggleClass('active');
-
-用trigger觸發事件
-例如：
-
-	$(.b).on('click',function(){
-	$(.a).trigger('click');
-});
-
-
-這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b
-
-利用data存取、指定
-
-  存取 ex.
-
-
-	$('.home').data('show')
-
-
-如此一來可以存取有home這個class的物件的data-show的值
-
-  指定 ex.
-
-
-	$('.home').data('show','home')
-
-
-把有home這個class的物件的data-show的值改成home
-
-剩下晚一點再來補，不過我有寫在hackMD上提供參考
-
-</p>
+                    <p>覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X) 不過由於個人還在就學的緣故，...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -546,7 +525,7 @@ $(this).find('.title').toggleClass('active');
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2019</section>
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2020</section>
                 <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
                     <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>

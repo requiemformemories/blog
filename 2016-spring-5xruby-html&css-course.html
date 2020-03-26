@@ -384,7 +384,7 @@ into the {body} of the default.hbs template -->
                     <h2 class="post-card-title">[Rails學習筆記] 用Settingslogic把重要資訊藏起來!</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>首先來碎碎念一下XD 最近花了好多時間在寫自己的blog， 其實一直很想把它推到Github上(為了綠綠的contributions!!)， 但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD 經過大師提點(?)之後才知道原來這是可以解決的呢XD 要解決這個問題有兩種方法， 一種是把設定值放在ENV， 另一種則是用settinglogic來解決這個問題。 這邊會提到的是後者~ (正文要開始了w) ### 安裝gem 首先呢，先在 **Gemfile** 中加入： ```ruby gem "settingslogic" ``` 然後在terminal執行 `$ bundle` 就安裝完成了。 ### 使用Settinglogic 這個gem的詳細說明可以看github上的[README]。 那這邊就簡單介紹初步的使用~ 在 **app/model** 中加入 **settings.rb**， 裡面加入以下的內容： ```ruby</p>
+                    <p>首先來碎碎念一下XD 最近花了好多時間在寫自己的blog，...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -427,7 +427,7 @@ into the {body} of the default.hbs template -->
                     <h2 class="post-card-title">[Rails 學習筆記]善用namespace建立後台</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？ 後來才知道原來有namespace這東西，覺得人間愉快(X) 所以廢話少說就開始吧！ route的部分 首先到 route.rb 加入： namespace :admin do resources :articles end 這樣index的路徑就換變成 admin/articles 了， 可以用$ rake routes來看一下路徑長什麼樣子。 然後這邊要特別注意（大師提點的，不是我自己說的w）， 盡量不要用admin、backend這種大家都想得到的名稱。 否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵)) 當然，article的部分就是controller的名字，要叫posts…什麼的都可以。 Controller的部分 接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。 （其他功能就自己盡情加吧，那就跟本文無關了w） 可以善用command line來建立controller，像是：$ rails g controller admin/articles</p>
+                    <p>在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -498,7 +498,7 @@ into the {body} of the default.hbs template -->
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2019</section>
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2020</section>
                 <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
                     <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>

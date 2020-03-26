@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2019-08-23T11:59:39+08:00</updated><id>http://localhost:4000/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">[工作日常] 如何用建立巢狀的 tailwindcss config？</title><link href="http://localhost:4000/blog/tailwind-nested-config" rel="alternate" type="text/html" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" /><published>2019-08-22T14:13:00+08:00</published><updated>2019-08-22T14:13:00+08:00</updated><id>http://localhost:4000/blog/tailwind-nested-config</id><content type="html" xml:base="http://localhost:4000/blog/tailwind-nested-config">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2020-03-26T23:05:03+08:00</updated><id>http://localhost:4000/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">[工作日常] 如何用建立巢狀的 tailwindcss config？</title><link href="http://localhost:4000/blog/tailwind-nested-config" rel="alternate" type="text/html" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" /><published>2019-08-22T14:13:00+08:00</published><updated>2019-08-22T14:13:00+08:00</updated><id>http://localhost:4000/blog/tailwind-nested-config</id><content type="html" xml:base="http://localhost:4000/blog/tailwind-nested-config">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
 
 &lt;p&gt;最近因為工作緣故使用到 &lt;a href=&quot;https://tailwindcss.com/&quot;&gt;Tailwind CSS&lt;/a&gt; 這款 css 框架。&lt;/p&gt;
 
@@ -102,7 +102,7 @@
 
 &lt;p&gt;這四種方案（其實只有三種？）中，比較推薦這種呢。&lt;/p&gt;
 
-&lt;h2 id=&quot;顏色的-shallow-merge-問題&quot;&gt;顏色的 shallow merge 問題&lt;/h2&gt;
+&lt;h4 id=&quot;顏色的-shallow-merge-問題&quot;&gt;顏色的 shallow merge 問題&lt;/h4&gt;
 
 &lt;p&gt;在 Tailwind 中，customize 你的設定基本上分兩種方式：&lt;/p&gt;
 
@@ -175,6 +175,31 @@
 
 &lt;p&gt;這個問題就佛系等待官方解決吧。&lt;/p&gt;
 
+&lt;h4 id=&quot;variants-重複問題&quot;&gt;variants 重複問題&lt;/h4&gt;
+&lt;p&gt;如果同時在上層跟下層加上一樣的 variants 會發生什麼事情呢？&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 上層：&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'hover'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 下層：&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'responsive'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hover'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;因為兩個 config 是我們自己用 deepmerge 弄的，所以合併完會變成：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;borderColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'responsive'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hover'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hover'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接著你就會發現所有 hover 的 borderColor 的 css 都變成兩倍（哭）&lt;/p&gt;
+
+&lt;p&gt;目前想到的方式就是 variants 還是固定寫某一個檔案就好這樣。但願之後 Tailwind 官方會有更好的實務做法。&lt;/p&gt;
+
 &lt;p&gt;（筆者使用 tailwindcss v1.0.1）&lt;/p&gt;</content><author><name>文月</name></author><category term="css" /><category term="javascript" /><summary type="html">前言</summary></entry><entry><title type="html">[5xRuby實習日記] Javascript 課程心得</title><link href="http://localhost:4000/blog/2016-spring-5xruby-rails-course" rel="alternate" type="text/html" title="[5xRuby實習日記] Javascript 課程心得" /><published>2016-06-02T01:23:32+08:00</published><updated>2016-06-02T01:23:32+08:00</updated><id>http://localhost:4000/blog/2016-spring-5xruby-rails-course</id><content type="html" xml:base="http://localhost:4000/blog/2016-spring-5xruby-rails-course">&lt;p&gt;覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
 不過由於個人還在就學的緣故，
 因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”&lt;/p&gt;
@@ -219,8 +244,10 @@
 
 &lt;p&gt;把有home這個class的物件的data-show的值改成home&lt;/p&gt;
 
-&lt;p&gt;剩下晚一點再來補，不過我有寫在&lt;a href=&quot;https://hackmd.io/s/rk_X2cdl&quot;&gt;hackMD&lt;/a&gt;上提供參考&lt;/p&gt;</content><author><name>文月</name></author><category term="5xruby" /><summary type="html">覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X) 不過由於個人還在就學的緣故， 因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”</summary></entry><entry><title type="html">[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</title><link href="http://localhost:4000/blog/build-rails-environment-with-vagrant" rel="alternate" type="text/html" title="[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！" /><published>2016-05-26T23:40:58+08:00</published><updated>2016-05-26T23:40:58+08:00</updated><id>http://localhost:4000/blog/build-rails-environment-with-vagrant</id><content type="html" xml:base="http://localhost:4000/blog/build-rails-environment-with-vagrant">&lt;p&gt;相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ”
-到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 &lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt; 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊…&lt;/p&gt;
+&lt;p&gt;剩下晚一點再來補，不過我有寫在&lt;a href=&quot;https://hackmd.io/s/rk_X2cdl&quot;&gt;hackMD&lt;/a&gt;上提供參考&lt;/p&gt;</content><author><name>文月</name></author><category term="5xruby" /><summary type="html">覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X) 不過由於個人還在就學的緣故， 因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”</summary></entry><entry><title type="html">[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</title><link href="http://localhost:4000/blog/build-rails-environment-with-vagrant" rel="alternate" type="text/html" title="[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！" /><published>2016-05-26T23:40:58+08:00</published><updated>2016-05-26T23:40:58+08:00</updated><id>http://localhost:4000/blog/build-rails-environment-with-vagrant</id><content type="html" xml:base="http://localhost:4000/blog/build-rails-environment-with-vagrant">&lt;p&gt;相信這個世界上有許多人和我一樣，窮窮的買不起mac，
+又沒有可以用 linux 的腦袋跟耐心，所以只好一直被windows慘虐QAQ”&lt;/p&gt;
+
+&lt;p&gt;到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 &lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt; 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊…&lt;/p&gt;
 
 &lt;p&gt;所以呢，想說用Vagrant來建虛擬機，這似乎是比較簡單的方法呢。對於我這個小腦殘來說應該不會耍雷得太嚴重XD&lt;/p&gt;
 
@@ -286,7 +313,7 @@ default: SSH auth method: private key
 &lt;p&gt;把MobaXterm打開以後，到session新增ssh session，在host、username、port填入：
 &lt;img src=&quot;http://i.imgur.com/ZF8sTSt.png&quot; alt=&quot;new session&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;在左邊側欄對 &lt;code class=&quot;highlighter-rouge&quot;&gt;127.0.0.1(vibrant)&lt;/code&gt; 點兩下，照理來說會出現類似 &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant@vagrant-ubuntu-trusty-64:~$&lt;/code&gt; 的東西，或是要你輸入password。 
+&lt;p&gt;在左邊側欄對 &lt;code class=&quot;highlighter-rouge&quot;&gt;127.0.0.1(vibrant)&lt;/code&gt; 點兩下，照理來說會出現類似 &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant@vagrant-ubuntu-trusty-64:~$&lt;/code&gt; 的東西，或是要你輸入password。
 沒有的話，到 &lt;strong&gt;Settings &amp;gt; Configurations &amp;gt; Terminal&lt;/strong&gt; 把 &lt;code class=&quot;highlighter-rouge&quot;&gt;Use Windows PATH environment&lt;/code&gt;打勾。&lt;/p&gt;
 
 &lt;p&gt;預設的username和password都會是vagrant。&lt;/p&gt;
@@ -314,7 +341,7 @@ default: SSH auth method: private key
 $ vagrant destroy --force
 $ del /F /Q  Vagrantfile
 $ rmdir /S /Q  .vagrant
- 
+
 $ vagrant box remove ubuntu/trusty64
 $ rmdir /S /Q %USERPROFILE%\.vagrant.d\boxes\ubuntu-VAGRANTSLASH-trusty64
 &lt;/code&gt;&lt;/pre&gt;
@@ -322,13 +349,13 @@ $ rmdir /S /Q %USERPROFILE%\.vagrant.d\boxes\ubuntu-VAGRANTSLASH-trusty64
 
 &lt;pre&gt;&lt;code class=&quot;language-{}&quot;&gt;$ vagrant halt ; vagrant destroy --force
 $ rm -rf .vagrant Vagrantfile
- 
+
 $ vagrant box remove ubuntu/trusty64
 $ rm -rf $HOME/.vagrant.d/boxes/ubuntu-VAGRANTSLASH-trusty64
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&quot;建立環境&quot;&gt;建立環境&lt;/h4&gt;
-&lt;p&gt;到這裡，我們已經學會怎麼把虛擬機開好了噢！而且還知道怎麼把它砍掉呢！可是網羅(?)還沒有結束，懂得把虛擬機開起來還要懂得安裝環境才行XDD 
+&lt;p&gt;到這裡，我們已經學會怎麼把虛擬機開好了噢！而且還知道怎麼把它砍掉呢！可是網羅(?)還沒有結束，懂得把虛擬機開起來還要懂得安裝環境才行XDD
 開起來的乾乾淨淨的虛擬機是沒有git、ruby…什麼都沒有的XD 所以還是要把環境架起來才能開心寫rails(淚顏)&lt;/p&gt;
 
 &lt;p&gt;所以就來重新建一次虛擬機吧，不過這一次用人家架好的環境XDD
@@ -368,7 +395,7 @@ $ vagrant up
   &lt;li&gt;&lt;a href=&quot;https://gorails.com/guides/using-vagrant-for-rails-development&quot;&gt;Using Vagrant for Rails Development&lt;/a&gt;
 gorails 上的教學，不過這篇就比較複雜一些了。&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/rails/rails-dev-box&quot;&gt;Rails dev box&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ” 到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 rake db:migrate 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊…</summary></entry><entry><title type="html">[Rails學習筆記] 推薦初學者閱讀的兩篇文章</title><link href="http://localhost:4000/blog/two-articles-recommend-to-rails-beginner" rel="alternate" type="text/html" title="[Rails學習筆記] 推薦初學者閱讀的兩篇文章" /><published>2016-05-12T20:52:27+08:00</published><updated>2016-05-12T20:52:27+08:00</updated><id>http://localhost:4000/blog/two-articles-recommend-to-rails-beginner</id><content type="html" xml:base="http://localhost:4000/blog/two-articles-recommend-to-rails-beginner">&lt;p&gt;最近一直在反思學習歷程，
+&lt;/ul&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">相信這個世界上有許多人和我一樣，窮窮的買不起mac， 又沒有可以用 linux 的腦袋跟耐心，所以只好一直被windows慘虐QAQ”</summary></entry><entry><title type="html">[Rails學習筆記] 推薦初學者閱讀的兩篇文章</title><link href="http://localhost:4000/blog/two-articles-recommend-to-rails-beginner" rel="alternate" type="text/html" title="[Rails學習筆記] 推薦初學者閱讀的兩篇文章" /><published>2016-05-12T20:52:27+08:00</published><updated>2016-05-12T20:52:27+08:00</updated><id>http://localhost:4000/blog/two-articles-recommend-to-rails-beginner</id><content type="html" xml:base="http://localhost:4000/blog/two-articles-recommend-to-rails-beginner">&lt;p&gt;最近一直在反思學習歷程，
 還有探討接下來應該要怎麼樣繼續磨練技術，
 剛好看到兩篇不錯的文章：&lt;/p&gt;
 

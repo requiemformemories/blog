@@ -42,8 +42,8 @@
       <item>
         <title>[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</title>
         
-          <description>&lt;p&gt;相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ”
-到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 &lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt; 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊…&lt;/p&gt;
+          <description>&lt;p&gt;相信這個世界上有許多人和我一樣，窮窮的買不起mac，
+又沒有可以用 linux 的腦袋跟耐心，所以只好一直被windows慘虐QAQ”&lt;/p&gt;
 
 </description>
         

@@ -39,7 +39,7 @@
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="2016-05-12T20:52:27+08:00" />
     <meta property="article:modified_time" content="2016-05-12T20:52:27+08:00" />
-    <meta property="article:tag" content="Rails" />
+    <meta property="article:tag" content="rails" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="[Rails學習筆記] 推薦初學者閱讀的兩篇文章" />
     <meta name="twitter:description" content="最近一直在反思學習歷程， 還有探討接下來應該要怎麼樣繼續磨練技術， 剛好看到兩篇不錯的文章： How I trained to learn rails How I trained to learn rails 文中有推薦的學習資源，還有一些學習的建議。 我個人覺得”Not Copying/Pasting Code”、”Not getting tired of Google-ing”、”Reading Documentation and Source Codes”三個建議蠻受用的。 Top 10 mistakes that rails programmers make Top 10 mistakes that rails programmers make 這篇文章提到許多rails開發者會犯的錯誤， 比方說不要放太多logic在view或controller裡面， 用太多的gems (我覺得像我現在就很依賴gem，又不知所以然)， 忽略log file，沒有注意到N+1 Queues的問題…等等。 我覺得都還蠻重要的。 除了以上10個錯誤以外，" />
@@ -48,7 +48,7 @@
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Rails" />
+    <meta name="twitter:data2" content="rails" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -334,7 +334,7 @@ into the {body} of the default.hbs template -->
                     <h2 class="post-card-title">[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>相信這個世界上有許多人和我一樣，窮窮的買不起mac，又沒有可以用linux的腦袋跟耐心，所以只好一直被windows慘虐QAQ" 到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 `rake db:migrate` 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊... 所以呢，想說用Vagrant來建虛擬機，這似乎是比較簡單的方法呢。對於我這個小腦殘來說應該不會耍雷得太嚴重XD 其實網路上Vagrant的教學文還不少(而且還是中文的)，遇到問題還可以上stackoverflow查，個人覺得資源蠻多的。如果是docker的話我個人絕對沒有信心把它裝起來XD 不過說實在的，心底還是默默的期望可以買mac啊> Configurations > Terminal** 把 `Use Windows PATH environment`打勾。 預設的username和password都會是vagrant。 #### 問題: VT-x/AMD-V 硬體加速在您的系統不可用 我個人就是遇到這個狀況，虛擬機開不起來。 這個時候可以檢查一下虛擬化技術有沒有開起來，這個部分可以到 **工作管理員 > CPU** 去看。 ![虛擬化技術] 英文版的應該會寫virtualization之類的。 如果上面不是寫著「已啟用」的話，那就到BIOS去把virtualization technology 開起來吧！怎麼把BIOS開起來可以google一下。 至於windows10的話，就一邊按著shift一邊重新啟動，出現藍藍畫面後選</p>
+                    <p>相信這個世界上有許多人和我一樣，窮窮的買不起mac， 又沒有可以用...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -377,7 +377,7 @@ into the {body} of the default.hbs template -->
                     <h2 class="post-card-title">[Rails學習筆記] 用Settingslogic把重要資訊藏起來!</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>首先來碎碎念一下XD 最近花了好多時間在寫自己的blog， 其實一直很想把它推到Github上(為了綠綠的contributions!!)， 但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD 經過大師提點(?)之後才知道原來這是可以解決的呢XD 要解決這個問題有兩種方法， 一種是把設定值放在ENV， 另一種則是用settinglogic來解決這個問題。 這邊會提到的是後者~ (正文要開始了w) 安裝gem 首先呢，先在 Gemfile 中加入： gem "settingslogic" 然後在terminal執行 $ bundle 就安裝完成了。 使用Settinglogic 這個gem的詳細說明可以看github上的README。 那這邊就簡單介紹初步的使用~ 在 app/model 中加入 settings.rb， 裡面加入以下的內容： class Settings &lt; Settingslogic source</p>
+                    <p>首先來碎碎念一下XD 最近花了好多時間在寫自己的blog，...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -448,7 +448,7 @@ into the {body} of the default.hbs template -->
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2019</section>
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2020</section>
                 <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
                     <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>

@@ -39,7 +39,7 @@
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="2016-04-28T00:07:19+08:00" />
     <meta property="article:modified_time" content="2016-04-28T00:07:19+08:00" />
-    <meta property="article:tag" content="Rails" />
+    <meta property="article:tag" content="rails" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="[Rails 學習筆記]善用namespace建立後台" />
     <meta name="twitter:description" content="在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？ 後來才知道原來有namespace這東西，覺得人間愉快(X) 所以廢話少說就開始吧！ route的部分 首先到 route.rb 加入： namespace :admin do resources :articles end 這樣index的路徑就換變成 admin/articles 了， 可以用$ rake routes來看一下路徑長什麼樣子。 然後這邊要特別注意（大師提點的，不是我自己說的w）， 盡量不要用admin、backend這種大家都想得到的名稱。 否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵)) 當然，article的部分就是controller的名字，要叫posts…什麼的都可以。 Controller的部分 接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。 （其他功能就自己盡情加吧，那就跟本文無關了w） 可以善用command line來建立controller，像是：$ rails g controller admin/articles 這個時候可以發現多出了 app/controllers/admin/articles_controller.rb 這個檔案， 到這裡後台的路徑就差不多了。 使用者認證 這個部分看是多使用者還是單一使用者， 如果是單一使用者的話可以用簡單的 http basic authenticate 來處理。 在剛剛的 admin/articles_controller.rb 中加入： http_basic_authenticate_with name: "your_name"," />
@@ -48,7 +48,7 @@
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Rails" />
+    <meta name="twitter:data2" content="rails" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -366,29 +366,7 @@ into the {body} of the default.hbs template -->
                     <h2 class="post-card-title">[5xRuby實習日記] HTML & CSS課程心得</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>首先呢，我要先懺悔一下XD
-由於課務的關係有點忙忙的，所以沒有全程參與HTML的課程，
-而且老實說我只有去上第一堂課QwQ"
-要不然我覺得Amos講師講得還不錯的說...
-
-所幸這是第二次上Amos的課，所以我還生得出心得來(X)
-
-雖然以前就碰過一點點HTML跟CSS，
-但是一直倚賴bootstrap套版，
-其實沒有好好的練習過自己切版、寫RWD，
-而且也沒有顧及SEO的部分，
-我覺得這點就還重要的。
-
-覺得雖然可以看過網路上的文件，就大概知道怎麼樣使用標籤、怎麼刻CSS，
-但其中還是有很多枚枚角角，真的還是要有有經驗的人來提點，
-還有怎麼刻會有那些缺點之類的，我覺得這點也是收穫最多的部分吧。
-
-有興趣的話可以追蹤一下Amos講師的網站[CSS可樂]，
-還有容我工商服務一下w 可以參考一下[五倍紅寶石的前端課程]噢XD
-
-[CSS可樂]: csscoke.com
-[五倍紅寶石的前端課程]: https://5xruby.tw/talks?category=front-end
-</p>
+                    <p>首先呢，我要先懺悔一下XD 由於課務的關係有點忙忙的，所以沒有全程參與HTML的課程，...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -431,53 +409,7 @@ into the {body} of the default.hbs template -->
                     <h2 class="post-card-title">[5xRuby實習日記] Javascript 課程心得</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
-不過由於個人還在就學的緣故，
-因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”
-
-這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
-(沒有HTML只上到第一堂課這麼淒慘就是了)
-我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
-終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。
-
-我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
-而且可以實際上了解要怎麼使用，有什麼時機可以使用。
-
-接著提供一下最後一堂課的筆記：
-善用find找子元素
-$(this).find('.title').toggleClass('active');
-
-用trigger觸發事件
-例如：
-
-	$(.b).on('click',function(){
-	$(.a).trigger('click');
-});
-
-
-這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b
-
-利用data存取、指定
-
-  存取 ex.
-
-
-	$('.home').data('show')
-
-
-如此一來可以存取有home這個class的物件的data-show的值
-
-  指定 ex.
-
-
-	$('.home').data('show','home')
-
-
-把有home這個class的物件的data-show的值改成home
-
-剩下晚一點再來補，不過我有寫在hackMD上提供參考
-
-</p>
+                    <p>覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X) 不過由於個人還在就學的緣故，...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -548,7 +480,7 @@ $(this).find('.title').toggleClass('active');
         <!-- The footer at the very bottom of the screen -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2019</section>
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2020</section>
                 <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
                     <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
