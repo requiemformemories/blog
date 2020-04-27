@@ -32,7 +32,7 @@
     <meta property="og:site_name" content="Fumitsuki's magic box" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="[工作日常] 如何用建立巢狀的 tailwindcss config？" />
-    <meta property="og:description" content="前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組" />
+    <meta property="og:description" content="內容更新 Tailwind 在 v1.2.0 的時候推出了 Allow plugins to extend the user’s config的功能，我在公司的技術文章中「還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！」有提到這個功能，與 Tailwind 的基本介紹。 前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的" />
     <meta property="og:url" content="/blog/tailwind-nested-config" />
     <meta property="og:image" content="/blog/assets/images/tailwind-post.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
@@ -42,7 +42,7 @@
     <meta property="article:tag" content="css" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="[工作日常] 如何用建立巢狀的 tailwindcss config？" />
-    <meta name="twitter:description" content="前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組" />
+    <meta name="twitter:description" content="內容更新 Tailwind 在 v1.2.0 的時候推出了 Allow plugins to extend the user’s config的功能，我在公司的技術文章中「還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！」有提到這個功能，與 Tailwind 的基本介紹。 前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的" />
     <meta name="twitter:url" content="/blog/" />
     <meta name="twitter:image" content="/blog/assets/images/tailwind-post.jpg" />
     <meta name="twitter:label1" content="Written by" />
@@ -74,7 +74,7 @@
         "@type": "WebPage",
         "@id": "/blog/tailwind-nested-config"
     },
-    "description": "前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組"
+    "description": "內容更新 Tailwind 在 v1.2.0 的時候推出了 Allow plugins to extend the user’s config的功能，我在公司的技術文章中「還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！」有提到這個功能，與 Tailwind 的基本介紹。 前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的"
 }
     </script>
 
@@ -173,7 +173,11 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <h2 id="前言">前言</h2>
+                    <h2 id="內容更新">內容更新</h2>
+
+<p>Tailwind 在 v1.2.0 的時候推出了 <a href="https://github.com/tailwindcss/tailwindcss/pull/1162">Allow plugins to extend the user’s config</a>的功能，我在公司的技術文章中「<a href="http://5xruby.tw/posts/tailwind-css-plugin/">還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</a>」有提到這個功能，與 Tailwind 的基本介紹。</p>
+
+<h2 id="前言">前言</h2>
 
 <p>最近因為工作緣故使用到 <a href="https://tailwindcss.com/">Tailwind CSS</a> 這款 css 框架。</p>
 
@@ -277,7 +281,7 @@ into the {body} of the default.hbs template -->
 
 <p>這四種方案（其實只有三種？）中，比較推薦這種呢。</p>
 
-<h4 id="顏色的-shallow-merge-問題">顏色的 shallow merge 問題</h4>
+<h3 id="顏色的-shallow-merge-問題">顏色的 shallow merge 問題</h3>
 
 <p>在 Tailwind 中，customize 你的設定基本上分兩種方式：</p>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-04-27T23:46:19+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title><link href="/blog/sql-primary-key" rel="alternate" type="text/html" title="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" /><published>2020-04-27T14:13:00+08:00</published><updated>2020-04-27T14:13:00+08:00</updated><id>/blog/sql-primary-key</id><content type="html" xml:base="/blog/sql-primary-key">&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-04-28T00:02:41+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title><link href="/blog/sql-primary-key" rel="alternate" type="text/html" title="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" /><published>2020-04-27T14:13:00+08:00</published><updated>2020-04-27T14:13:00+08:00</updated><id>/blog/sql-primary-key</id><content type="html" xml:base="/blog/sql-primary-key">&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;
 &lt;p&gt;primary key 主要的作用為：&lt;/p&gt;
 
 &lt;h3 id=&quot;1-避免產生一堆重複又無法識別的-row&quot;&gt;1. 避免產生一堆重複又無法識別的 row&lt;/h3&gt;
@@ -369,7 +369,11 @@ JOIN bug_products USING(bug_id)
 
 &lt;hr /&gt;
 
-&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第四章 ID required 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content><author><name>文月</name></author><category term="sql" /><summary type="html">問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為：</summary></entry><entry><title type="html">[工作日常] 如何用建立巢狀的 tailwindcss config？</title><link href="/blog/tailwind-nested-config" rel="alternate" type="text/html" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" /><published>2019-08-22T14:13:00+08:00</published><updated>2019-08-22T14:13:00+08:00</updated><id>/blog/tailwind-nested-config</id><content type="html" xml:base="/blog/tailwind-nested-config">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第四章 ID required 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content><author><name>文月</name></author><category term="sql" /><summary type="html">問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為：</summary></entry><entry><title type="html">[工作日常] 如何用建立巢狀的 tailwindcss config？</title><link href="/blog/tailwind-nested-config" rel="alternate" type="text/html" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" /><published>2019-08-22T14:13:00+08:00</published><updated>2019-08-22T14:13:00+08:00</updated><id>/blog/tailwind-nested-config</id><content type="html" xml:base="/blog/tailwind-nested-config">&lt;h2 id=&quot;內容更新&quot;&gt;內容更新&lt;/h2&gt;
+
+&lt;p&gt;Tailwind 在 v1.2.0 的時候推出了 &lt;a href=&quot;https://github.com/tailwindcss/tailwindcss/pull/1162&quot;&gt;Allow plugins to extend the user’s config&lt;/a&gt;的功能，我在公司的技術文章中「&lt;a href=&quot;http://5xruby.tw/posts/tailwind-css-plugin/&quot;&gt;還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！&lt;/a&gt;」有提到這個功能，與 Tailwind 的基本介紹。&lt;/p&gt;
+
+&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
 
 &lt;p&gt;最近因為工作緣故使用到 &lt;a href=&quot;https://tailwindcss.com/&quot;&gt;Tailwind CSS&lt;/a&gt; 這款 css 框架。&lt;/p&gt;
 
@@ -473,7 +477,7 @@ JOIN bug_products USING(bug_id)
 
 &lt;p&gt;這四種方案（其實只有三種？）中，比較推薦這種呢。&lt;/p&gt;
 
-&lt;h4 id=&quot;顏色的-shallow-merge-問題&quot;&gt;顏色的 shallow merge 問題&lt;/h4&gt;
+&lt;h3 id=&quot;顏色的-shallow-merge-問題&quot;&gt;顏色的 shallow merge 問題&lt;/h3&gt;
 
 &lt;p&gt;在 Tailwind 中，customize 你的設定基本上分兩種方式：&lt;/p&gt;
 
@@ -571,7 +575,7 @@ JOIN bug_products USING(bug_id)
 
 &lt;p&gt;目前想到的方式就是 variants 還是固定寫某一個檔案就好這樣。但願之後 Tailwind 官方會有更好的實務做法。&lt;/p&gt;
 
-&lt;p&gt;（筆者使用 tailwindcss v1.0.1）&lt;/p&gt;</content><author><name>文月</name></author><category term="css" /><category term="javascript" /><summary type="html">前言</summary></entry><entry><title type="html">[5xRuby實習日記] Javascript 課程心得</title><link href="/blog/2016-spring-5xruby-rails-course" rel="alternate" type="text/html" title="[5xRuby實習日記] Javascript 課程心得" /><published>2016-06-02T01:23:32+08:00</published><updated>2016-06-02T01:23:32+08:00</updated><id>/blog/2016-spring-5xruby-rails-course</id><content type="html" xml:base="/blog/2016-spring-5xruby-rails-course">&lt;p&gt;覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
+&lt;p&gt;（筆者使用 tailwindcss v1.0.1）&lt;/p&gt;</content><author><name>文月</name></author><category term="css" /><category term="javascript" /><summary type="html">內容更新</summary></entry><entry><title type="html">[5xRuby實習日記] Javascript 課程心得</title><link href="/blog/2016-spring-5xruby-rails-course" rel="alternate" type="text/html" title="[5xRuby實習日記] Javascript 課程心得" /><published>2016-06-02T01:23:32+08:00</published><updated>2016-06-02T01:23:32+08:00</updated><id>/blog/2016-spring-5xruby-rails-course</id><content type="html" xml:base="/blog/2016-spring-5xruby-rails-course">&lt;p&gt;覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
 不過由於個人還在就學的緣故，
 因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”&lt;/p&gt;
 
