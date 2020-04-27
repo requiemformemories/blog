@@ -8,6 +8,22 @@
     
       
       <item>
+        <title>[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title>
+        
+          <description>&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;
+&lt;p&gt;primary key 主要的作用為：&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 27 Apr 2020 06:13:00 +0000</pubDate>
+        <link>
+        /sql-primary-key</link>
+        <guid isPermaLink="true">/sql-primary-key</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>[工作日常] 如何用建立巢狀的 tailwindcss config？</title>
         
           <description>&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
