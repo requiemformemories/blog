@@ -3,7 +3,7 @@ layout: post
 current: post
 class: post-template
 subclass: 'post tag-speeches'
-cover: 'assets/images/sql-post.jpg'
+cover: 'assets/images/sql.jpg'
 title: '[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？'
 date: 2020-04-27 06:13:00
 categories: SQL
