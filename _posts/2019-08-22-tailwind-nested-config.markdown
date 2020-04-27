@@ -11,6 +11,10 @@ tags: css javascript
 author: fumitsuki
 ---
 
+## 內容更新
+
+Tailwind 在 v1.2.0 的時候推出了 [Allow plugins to extend the user's config](https://github.com/tailwindcss/tailwindcss/pull/1162)的功能，我在公司的技術文章中「[還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！](http://5xruby.tw/posts/tailwind-css-plugin/)」有提到這個功能，與 Tailwind 的基本介紹。
+
 ## 前言
 
 最近因為工作緣故使用到 [Tailwind CSS](https://tailwindcss.com/) 這款 css 框架。
@@ -122,7 +126,7 @@ module.exports = customizedTheme
 
 這四種方案（其實只有三種？）中，比較推薦這種呢。
 
-#### 顏色的 shallow merge 問題
+### 顏色的 shallow merge 問題
 
 在 Tailwind 中，customize 你的設定基本上分兩種方式：
 
