@@ -5,6 +5,11 @@ rails:
 5xruby:
   name: 5xruby
   description: 五倍紅寶石實習點滴與心得。
-  cover: assets/images/5xruby.jpg 
+  cover: assets/images/5xruby.jpg
+sql:
+  name: SQL
+  description: SQL 相關的知識彙整，新手容易犯的錯誤等等
+  cover: assets/images/sql.jpg
+
 
 
