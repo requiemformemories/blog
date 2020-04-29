@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</title>
+        
+          <description>&lt;p&gt;想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 29 Apr 2020 06:13:00 +0000</pubDate>
+        <link>
+        /sql-no-comma-seperated-list</link>
+        <guid isPermaLink="true">/sql-no-comma-seperated-list</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title>
         
           <description>&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;

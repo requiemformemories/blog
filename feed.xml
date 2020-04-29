@@ -1,4 +1,216 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-04-28T00:02:41+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title><link href="/blog/sql-primary-key" rel="alternate" type="text/html" title="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" /><published>2020-04-27T14:13:00+08:00</published><updated>2020-04-27T14:13:00+08:00</updated><id>/blog/sql-primary-key</id><content type="html" xml:base="/blog/sql-primary-key">&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-04-29T17:47:23+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</title><link href="/blog/sql-no-comma-seperated-list" rel="alternate" type="text/html" title="[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？" /><published>2020-04-29T14:13:00+08:00</published><updated>2020-04-29T14:13:00+08:00</updated><id>/blog/sql-no-comma-seperated-list</id><content type="html" xml:base="/blog/sql-no-comma-seperated-list">&lt;p&gt;想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。&lt;/p&gt;
+
+&lt;p&gt;如果直接把資料想辦法塞在一個欄位裡，比方說在 table &lt;code class=&quot;highlighter-rouge&quot;&gt;users&lt;/code&gt; 上新增 &lt;code class=&quot;highlighter-rouge&quot;&gt;orders&lt;/code&gt; 欄位（type 為 &lt;code class=&quot;highlighter-rouge&quot;&gt;VARCHAR&lt;/code&gt;），把 order_id 們像是 &lt;code class=&quot;highlighter-rouge&quot;&gt;1, 34, 135&lt;/code&gt; 這樣地塞在 &lt;code class=&quot;highlighter-rouge&quot;&gt;orders&lt;/code&gt;欄位中，不是也可以嗎？（或是反過來新增 &lt;code class=&quot;highlighter-rouge&quot;&gt;users&lt;/code&gt; 欄位在資料表 &lt;code class=&quot;highlighter-rouge&quot;&gt;orders&lt;/code&gt; 上）&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;id&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+      &lt;th&gt;….&lt;/th&gt;
+      &lt;th&gt;orders&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Grace&lt;/td&gt;
+      &lt;td&gt;….&lt;/td&gt;
+      &lt;td&gt;2, 14, 65, 11&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Carol&lt;/td&gt;
+      &lt;td&gt;….&lt;/td&gt;
+      &lt;td&gt;3, 2, 1, 12, 100&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;乍聽之下，這個想法真是聰明，這樣就可以省得新增一個表格呢！&lt;/p&gt;
+
+&lt;p&gt;但是今天就要為大家破除這個迷思，一但試了一次這個方法，&lt;strong&gt;未來恐怕後患無窮&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;未來恐怕後患無窮&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;未來恐怕後患無窮&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;因為很重要所以說三次（咦）&lt;/p&gt;
+
+&lt;p&gt;大家務必三思以後再考慮這樣設計 schema 呢。&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-1-當我想要在-users-裡-where-order_id--11卻發現行不通&quot;&gt;Problem 1: 當我想要在 &lt;code class=&quot;highlighter-rouge&quot;&gt;users&lt;/code&gt; 裡 &lt;code class=&quot;highlighter-rouge&quot;&gt;WHERE order_id = 11&lt;/code&gt;，卻發現行不通。&lt;/h2&gt;
+
+&lt;p&gt;如果我&lt;del&gt;沒有採用這大膽的想法&lt;/del&gt;乖乖地把 user 跟 order 用另一張表 &lt;code class=&quot;highlighter-rouge&quot;&gt;user_orders&lt;/code&gt; 來整理他們之間的多對多關係，就可以像這樣查找 id 為 11 的 order 對應到哪些 user：&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_orders&lt;/span&gt;
+                          &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但如果今天是上面那個存 comma-seperated list 的做法呢？&lt;/p&gt;
+
+&lt;p&gt;這個時候只好改寫醜一點的 SQL query 來查找你要的 users，比方說想辦法用 REGEXP 去 match 它：&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REGEXP&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[[:&amp;lt;:]]11[[:&amp;gt;:]]'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;一方面要提心吊膽自己的 REGEXP 沒寫法，會 match 到不該 match 的，另一方面還要擔心資料有不符合規範的東西，例如 &lt;code class=&quot;highlighter-rouge&quot;&gt;1, 2, 4, 11aaaa, 12&lt;/code&gt; 等等。自己 match 資料時出錯的風險也大大提高。&lt;/p&gt;
+
+&lt;p&gt;除此之外，查找 order_id 的部分也無法加 index 來提升效能。&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-2-很難反過來找使用者的訂單資料&quot;&gt;Problem 2: 很難反過來找使用者的訂單資料&lt;/h2&gt;
+
+&lt;p&gt;接著，如果我今天想要找&lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; 為 1 的 user 的訂單資料，如果是乖乖新增第三張表的時候，可以簡單地 join table 解決。如果是現在這個 comma-seperated list 的作法，就只好再來寫醜醜的 SQL：&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REGEXP&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[[:&amp;lt;:]]'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[[:&amp;gt;:]]'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;是否開始感覺到為了一時輕率的選擇，造成的後果要用一世來彌補（欸）&lt;/p&gt;
+
+&lt;p&gt;然而問題還沒完，讓我們望向第三個問題。&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-3-不能用sumavg-等等-function-來做-aggregate-queries&quot;&gt;Problem 3: 不能用&lt;code class=&quot;highlighter-rouge&quot;&gt;SUM()&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;AVG()&lt;/code&gt; 等等 function 來做 aggregate queries&lt;/h2&gt;
+
+&lt;p&gt;如果今天你想要統計每個使用者有多少訂單，如果是好好地使用第三張表的做法，就可以簡單地使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;SUM()&lt;/code&gt; 來找出訂單數量：&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;order_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_orders&lt;/span&gt;
+                                            &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但是用了 comma-seperated list 以後，這些資料不是分開一個 row 一個 row，而是全部擠在某個 user 的一個欄位裡。這個時候要計算訂單數量只好用一些奇妙的方法來解決。&lt;/p&gt;
+
+&lt;p&gt;比方說，如果保證每個使用者一定有對應的帳單的話，就可以透過「逗點的數量」來計算有幾筆訂單。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;12&lt;/code&gt;: 一筆訂單&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;12, 27&lt;/code&gt;: 兩筆訂單&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;12, 27, 33&lt;/code&gt;: 三筆訂單&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;12, 27, 33, 65&lt;/code&gt;: 四筆訂單&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;也就是說，逗點數量 + 1 會是訂單數量。於是就可以透過 (總字數) - (去掉 &lt;code class=&quot;highlighter-rouge&quot;&gt;,&lt;/code&gt; 的字數) 來計算有幾個逗號。&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;REPLACE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;problem-4-順序問題&quot;&gt;Problem 4: 順序問題&lt;/h2&gt;
+
+&lt;p&gt;想到這個 comma-seperated list 的做法的朋友們，可能會想說這個做法最簡單的地方在於，可以簡單地 append 新的 order_id 在欄位的最後面。比方說，id 為 5 的 user 原本的 orders 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;11, 14, 18&lt;/code&gt;，如果要建立他跟 id 為 20 帳單的關係，只要在 &lt;code class=&quot;highlighter-rouge&quot;&gt;11, 14, 18&lt;/code&gt; 後面加上逗號與 20 就好，變成 &lt;code class=&quot;highlighter-rouge&quot;&gt;11, 14, 18, 20&lt;/code&gt; 這樣。&lt;/p&gt;
+
+&lt;p&gt;但是如果今天正好要加進來的 id 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt;，就會變成 &lt;code class=&quot;highlighter-rouge&quot;&gt;11, 14, 18, 5&lt;/code&gt;，經過日日夜夜的累積，你的 orders 變得順序雜亂。哪天需要照順序的 id 的時候，只好一個 row 一個 row 的資料抓出來排序QQ&lt;/p&gt;
+
+&lt;p&gt;這個時候你或許會想說：「哦哦，那我再把它塞進去資料庫之前，先把新加的 &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt; 放到正確的位置！這樣就沒問題了吧？」&lt;/p&gt;
+
+&lt;p&gt;的確是如此，這個時候必須要跑兩個 query，一個把舊資料撈出來，下一個把你把 &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt; 加好的資料塞回去。只是當初好好地新增一張表，現在就可以用一個 SQL 就新增新的 order_id，查詢時也可以用 ORDER BY 無痛解決排序問題。&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-5-刪除特定-id&quot;&gt;Problem 5: 刪除特定 id&lt;/h2&gt;
+
+&lt;p&gt;再來下一個難題是，該如何刪掉特定的 id 呢？&lt;/p&gt;
+
+&lt;p&gt;一樣要跑兩個 query，一個把資料撈出來，自己寫程式找出 id 在哪，去掉以後再把新字串塞回去。&lt;/p&gt;
+
+&lt;p&gt;開始感覺到做出了錯誤的抉擇，會讓日後的維護很阿雜XD&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-6-資料驗證&quot;&gt;Problem 6: 資料驗證&lt;/h2&gt;
+
+&lt;p&gt;用了 comma-seperated list 的做法以後，因為 order_id 的資料不是一個個 row 獨立存起來的，已經無法透過建立 constraint 來管理資料的正確性與完整性。當 SQL 不再幫你檢驗 constraint，如果程式那邊沒有檢查好，到時候連自己都不會知道欄位被亂塞了什麼東西（eg. &lt;code class=&quot;highlighter-rouge&quot;&gt;3, 12, 1, banana&lt;/code&gt;）&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-7-seperator-被當成-string-的一部分&quot;&gt;Problem 7: seperator 被當成 string 的一部分&lt;/h2&gt;
+
+&lt;p&gt;假設今天 order_id 有可能使用者自訂的字串，今天有個壞心眼的使用者，把 &lt;code class=&quot;highlighter-rouge&quot;&gt;a,b,c&lt;/code&gt; 當成 order_id。於是這個 user 的 orders 就多了 &lt;code class=&quot;highlighter-rouge&quot;&gt;a,b,c&lt;/code&gt;。當你要解析這個使用者有哪些訂單時，&lt;code class=&quot;highlighter-rouge&quot;&gt;a,b,c&lt;/code&gt; 就很開心地被解析成 &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;c&lt;/code&gt;，然後使用者永遠都無法正常地找回他的資料。&lt;/p&gt;
+
+&lt;p&gt;於是大家可能會開始想，我就用一個正常人不可能拿來用的字元當 seperator 吧！或者是在存入 order_id 時就限制不可以用 &lt;code class=&quot;highlighter-rouge&quot;&gt;,&lt;/code&gt; 這個字元。的確是可以這樣修正，但如果是功能都開發下去、被使用了才出事，中途搶救也會很麻煩。&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-8長度限制&quot;&gt;Problem 8:長度限制&lt;/h2&gt;
+&lt;p&gt;畢竟是用一個欄位來存 order_id 們，就要特別注意長度限制。比方說 &lt;code class=&quot;highlighter-rouge&quot;&gt;user_id&lt;/code&gt; 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;VARCHAR(255)&lt;/code&gt;，如果裡面塞長度為 9 的字串，可以塞到 25 個才會爆炸。於是你只好想辦法說服你的客戶，一個 user 就是不能有太多 order。&lt;/p&gt;
+
+&lt;p&gt;這個時候，你心中的小惡魔可能會冒出來跟你說：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;齁齁齁，有什麼關係，用 TEXT 我可以塞到 65535 bytes 呢 ヽ(́◕◞౪◟◕‵)ﾉ
+TEXT 不夠我可以用 LONGTEXT 呀 (☝ ՞ਊ ՞）☝&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;拜託….拜託不要亂來（欸&lt;/p&gt;
+
+&lt;p&gt;以上已經提出這種方法的八個疑慮了，就不要再用邪魔歪道與大量 workaround 來處理事情了吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;如何發現這個-antipattern&quot;&gt;如何發現這個 Antipattern&lt;/h2&gt;
+
+&lt;p&gt;當專案小夥伴問你：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;「這個 list 最多會有幾個 entries 呢？」
+代表他已經在算 VARCHAR 長度要給多少了 ヽ(́◕◞౪◟◕‵)ﾉ&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;「用 SQL 要怎麼 match word boundary 呢？」
+極有可能他正在思量怎麼從 list 裡挑出某個 entry (例子裡的 order_id) &amp;gt;&amp;lt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;「這些 entries 裡會出現哪些符號呢？有什麼絕對不可能出現的特定符號嗎？」
+代表他已經在考慮 seperator 要用哪個符號了 (☝ ՞ਊ ՞）☝&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;使用這個-pattern-的合理情況&quot;&gt;使用這個 pattern 的合理情況&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;比方說你有個欄位要顯示 comma-seperated list，你不會需要取這個 list 裡的單一 item，這個時候你可能會考慮反正規化一下，加了欄位放這個 comma-seperated list&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;從別的 source 剛取回來的資料，正好有 comma-seperated list。在你 process 這些資料之前可能會考慮原封不動地存起來。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;解方intersection-table&quot;&gt;解方：intersection table&lt;/h2&gt;
+
+&lt;p&gt;就跟以前學校老師講得一樣（欸
+乖乖地新增一個 table 來存其他兩張 table 多對多的關係。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;user_id&lt;/th&gt;
+      &lt;th&gt;order_id&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;補充regexp&quot;&gt;補充：REGEXP&lt;/h2&gt;
+&lt;p&gt;參考 &lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/regexp.html#operator_regexp&quot;&gt;Regular Expressions - MYSQL&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;character_class-character_class&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[=character_class=]&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;[:character_class:]&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;在剛剛內文裡有用到的：&lt;/p&gt;
+
+&lt;h3 id=&quot;-&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[[:&amp;lt;:]], [[:&amp;gt;:]]&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;可以用來查找有沒有包含特定字串：&lt;/p&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'a word a'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REGEXP&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[[:&amp;lt;:]]word[[:&amp;gt;:]]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'a xword a'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REGEXP&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'[[:&amp;lt;:]]word[[:&amp;gt;:]]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第二章 Jaywalking 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content><author><name>文月</name></author><category term="sql" /><summary type="html">想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。</summary></entry><entry><title type="html">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title><link href="/blog/sql-primary-key" rel="alternate" type="text/html" title="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" /><published>2020-04-27T14:13:00+08:00</published><updated>2020-04-27T14:13:00+08:00</updated><id>/blog/sql-primary-key</id><content type="html" xml:base="/blog/sql-primary-key">&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;
 &lt;p&gt;primary key 主要的作用為：&lt;/p&gt;
 
 &lt;h3 id=&quot;1-避免產生一堆重複又無法識別的-row&quot;&gt;1. 避免產生一堆重複又無法識別的 row&lt;/h3&gt;

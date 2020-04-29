@@ -11,7 +11,7 @@
 
 
 
-    <title>[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title>
+    <title>[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -25,24 +25,24 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
     <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/blog/sql-primary-key" />
+    <link rel="canonical" href="/blog/sql-no-comma-seperated-list" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="Fumitsuki's magic box" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" />
-    <meta property="og:description" content="問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為： 1. 避免產生一堆重複又無法識別的 row 例如底下的表格，上一筆跟下一筆長一模一樣，根本無法識別。 name price quantity banana 100 1 banana 100 1 2. 有辦法撈到特定的 row 如下，每個 row 都長一樣，根本無法撈到特定某個 row。 name price quantity banana 100 1 banana 100 1 但是改成這樣： id name price quantity 1 banana 100 1 2 banana" />
-    <meta property="og:url" content="/blog/sql-primary-key" />
+    <meta property="og:title" content="[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？" />
+    <meta property="og:description" content="想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。 如果直接把資料想辦法塞在一個欄位裡，比方說在 table users 上新增 orders 欄位（type 為 VARCHAR），把 order_id 們像是 1, 34, 135 這樣地塞在 orders欄位中，不是也可以嗎？（或是反過來新增 users 欄位在資料表 orders 上） id name …. orders 1 Grace …. 2, 14, 65, 11 1 Carol …. 3, 2, 1, 12, 100 乍聽之下，這個想法真是聰明，這樣就可以省得新增一個表格呢！ 但是今天就要為大家破除這個迷思，一但試了一次這個方法，未來恐怕後患無窮。 未來恐怕後患無窮。 未來恐怕後患無窮。 因為很重要所以說三次（咦） 大家務必三思以後再考慮這樣設計 schema" />
+    <meta property="og:url" content="/blog/sql-no-comma-seperated-list" />
     <meta property="og:image" content="/blog/assets/images/sql.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2020-04-27T14:13:00+08:00" />
-    <meta property="article:modified_time" content="2020-04-27T14:13:00+08:00" />
+    <meta property="article:published_time" content="2020-04-29T14:13:00+08:00" />
+    <meta property="article:modified_time" content="2020-04-29T14:13:00+08:00" />
     <meta property="article:tag" content="sql" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" />
-    <meta name="twitter:description" content="問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為： 1. 避免產生一堆重複又無法識別的 row 例如底下的表格，上一筆跟下一筆長一模一樣，根本無法識別。 name price quantity banana 100 1 banana 100 1 2. 有辦法撈到特定的 row 如下，每個 row 都長一樣，根本無法撈到特定某個 row。 name price quantity banana 100 1 banana 100 1 但是改成這樣： id name price quantity 1 banana 100 1 2 banana" />
+    <meta name="twitter:title" content="[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？" />
+    <meta name="twitter:description" content="想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。 如果直接把資料想辦法塞在一個欄位裡，比方說在 table users 上新增 orders 欄位（type 為 VARCHAR），把 order_id 們像是 1, 34, 135 這樣地塞在 orders欄位中，不是也可以嗎？（或是反過來新增 users 欄位在資料表 orders 上） id name …. orders 1 Grace …. 2, 14, 65, 11 1 Carol …. 3, 2, 1, 12, 100 乍聽之下，這個想法真是聰明，這樣就可以省得新增一個表格呢！ 但是今天就要為大家破除這個迷思，一但試了一次這個方法，未來恐怕後患無窮。 未來恐怕後患無窮。 未來恐怕後患無窮。 因為很重要所以說三次（咦） 大家務必三思以後再考慮這樣設計 schema" />
     <meta name="twitter:url" content="/blog/" />
     <meta name="twitter:image" content="/blog/assets/images/sql.jpg" />
     <meta name="twitter:label1" content="Written by" />
@@ -63,7 +63,7 @@
         "name": "Fumitsuki's magic box",
         "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "/blog/sql-primary-key",
+    "url": "/blog/sql-no-comma-seperated-list",
     "image": {
         "@type": "ImageObject",
         "url": "/blog/assets/images/sql.jpg",
@@ -72,9 +72,9 @@
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/blog/sql-primary-key"
+        "@id": "/blog/sql-no-comma-seperated-list"
     },
-    "description": "問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為： 1. 避免產生一堆重複又無法識別的 row 例如底下的表格，上一筆跟下一筆長一模一樣，根本無法識別。 name price quantity banana 100 1 banana 100 1 2. 有辦法撈到特定的 row 如下，每個 row 都長一樣，根本無法撈到特定某個 row。 name price quantity banana 100 1 banana 100 1 但是改成這樣： id name price quantity 1 banana 100 1 2 banana"
+    "description": "想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。 如果直接把資料想辦法塞在一個欄位裡，比方說在 table users 上新增 orders 欄位（type 為 VARCHAR），把 order_id 們像是 1, 34, 135 這樣地塞在 orders欄位中，不是也可以嗎？（或是反過來新增 users 欄位在資料表 orders 上） id name …. orders 1 Grace …. 2, 14, 65, 11 1 Carol …. 3, 2, 1, 12, 100 乍聽之下，這個想法真是聰明，這樣就可以省得新增一個表格呢！ 但是今天就要為大家破除這個迷思，一但試了一次這個方法，未來恐怕後患無窮。 未來恐怕後患無窮。 未來恐怕後患無窮。 因為很重要所以說三次（咦） 大家務必三思以後再考慮這樣設計 schema"
 }
     </script>
 
@@ -87,7 +87,7 @@
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" href="/blog/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？" href="/blog/feed.xml" />
 
 
 </head>
@@ -149,7 +149,7 @@ into the {body} of the default.hbs template -->
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="27 April 2020">27 April 2020</time>
+                    <time class="post-full-meta-date" datetime="29 April 2020">29 April 2020</time>
                     
                         <span class="date-divider">/</span>
                         
@@ -159,7 +159,7 @@ into the {body} of the default.hbs template -->
                         
                     
                 </section>
-                <h1 class="post-full-title">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</h1>
+                <h1 class="post-full-title">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</h1>
             </header>
 
             
@@ -169,378 +169,219 @@ into the {body} of the default.hbs template -->
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <h2 id="問題一可不可以不要-primary-key-沒有-primary-key-會怎樣">問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？</h2>
-<p>primary key 主要的作用為：</p>
+                    <p>想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。</p>
 
-<h3 id="1-避免產生一堆重複又無法識別的-row">1. 避免產生一堆重複又無法識別的 row</h3>
-
-<p>例如底下的表格，上一筆跟下一筆長一模一樣，根本無法識別。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>price</th>
-      <th>quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="2-有辦法撈到特定的-row">2. 有辦法撈到特定的 row</h3>
-
-<p>如下，每個 row 都長一樣，根本無法撈到特定某個 row。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>price</th>
-      <th>quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>但是改成這樣：</p>
+<p>如果直接把資料想辦法塞在一個欄位裡，比方說在 table <code class="highlighter-rouge">users</code> 上新增 <code class="highlighter-rouge">orders</code> 欄位（type 為 <code class="highlighter-rouge">VARCHAR</code>），把 order_id 們像是 <code class="highlighter-rouge">1, 34, 135</code> 這樣地塞在 <code class="highlighter-rouge">orders</code>欄位中，不是也可以嗎？（或是反過來新增 <code class="highlighter-rouge">users</code> 欄位在資料表 <code class="highlighter-rouge">orders</code> 上）</p>
 
 <table>
   <thead>
     <tr>
       <th>id</th>
       <th>name</th>
-      <th>price</th>
-      <th>quantity</th>
+      <th>….</th>
+      <th>orders</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>1</td>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
+      <td>Grace</td>
+      <td>….</td>
+      <td>2, 14, 65, 11</td>
     </tr>
-    <tr>
-      <td>2</td>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>就可以用 <code class="highlighter-rouge">WHERE id = 1</code> 來撈到第一筆資料</p>
-
-<h3 id="3-foreign-key-reference">3. foreign key reference</h3>
-
-<p>比方說這張表是 <code class="highlighter-rouge">orders</code></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>customer</th>
-      <th>date</th>
-      <th>total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Carol</td>
-      <td>2020-01-01</td>
-      <td>2000</td>
-    </tr>
-    <tr>
-      <td>Carl</td>
-      <td>2020-01-01</td>
-      <td>500</td>
-    </tr>
-    <tr>
-      <td>Carol</td>
-      <td>2020-01-06</td>
-      <td>2500</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>有另一張表是 <code class="highlighter-rouge">order_items</code></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>price</th>
-      <th>quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>如果 <code class="highlighter-rouge">orders</code> 上沒有 primary key，無法透過在 <code class="highlighter-rouge">order_items</code> 加上 foreign key 來 reference order。</p>
-
-<p>如果 <code class="highlighter-rouge">orders</code> 改成這樣：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>customer</th>
-      <th>date</th>
-      <th>total</th>
-    </tr>
-  </thead>
-  <tbody>
     <tr>
       <td>1</td>
       <td>Carol</td>
-      <td>2020-01-01</td>
-      <td>2000</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Carl</td>
-      <td>2020-01-01</td>
-      <td>500</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Carol</td>
-      <td>2020-01-06</td>
-      <td>2500</td>
+      <td>….</td>
+      <td>3, 2, 1, 12, 100</td>
     </tr>
   </tbody>
 </table>
 
-<p>就可以簡單透過在 <code class="highlighter-rouge">order_items</code> 上加 <code class="highlighter-rouge">order_id</code>，加上 foreign key 來做 reference</p>
+<p>乍聽之下，這個想法真是聰明，這樣就可以省得新增一個表格呢！</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>price</th>
-      <th>quantity</th>
-      <th>order_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
+<p>但是今天就要為大家破除這個迷思，一但試了一次這個方法，<strong>未來恐怕後患無窮</strong>。</p>
 
-<p>沒有 primary key 的資料，就像是沒有書名的書，沒有歌名的音樂（欸）<strong>很容易造成整理上的困難。</strong></p>
+<p><strong>未來恐怕後患無窮</strong>。</p>
 
-<h2 id="問題二如何選擇-primary-key">問題二：如何選擇 primary key？</h2>
+<p><strong>未來恐怕後患無窮</strong>。</p>
 
-<p>primary key 有個必帶條件：一定要是<strong>唯一（unique）</strong>的，不可以重複。</p>
+<p>因為很重要所以說三次（咦）</p>
 
-<p>所以你通常會找個 unique 的欄位來當 primary key。然而很多大家以為 unique 的東西都沒有 unique，例如身分證字號。（身分證字號在古早年代是有可能不小心重複發的XD）</p>
+<p>大家務必三思以後再考慮這樣設計 schema 呢。</p>
 
-<p>或者是你看完 spec 以後以為應該要 unique，結果哪一天老闆跑來跟你說：「這個欄位的內容可以重複嗎？」的資料。（這個時候都會 OS：要不是我還不能離職，要不然真想打扁你XD）</p>
+<h2 id="problem-1-當我想要在-users-裡-where-order_id--11卻發現行不通">Problem 1: 當我想要在 <code class="highlighter-rouge">users</code> 裡 <code class="highlighter-rouge">WHERE order_id = 11</code>，卻發現行不通。</h2>
 
-<p>像是使用者的 email、電話等等。</p>
+<p>如果我<del>沒有採用這大膽的想法</del>乖乖地把 user 跟 order 用另一張表 <code class="highlighter-rouge">user_orders</code> 來整理他們之間的多對多關係，就可以像這樣查找 id 為 11 的 order 對應到哪些 user：</p>
 
-<p>如果 primary key 這麼難選擇，選錯就會造成自己日後還得要連夜加班，有的時候不如就用 pseudokey 就好了。那具體來說 pseudokey 是什麼呢？</p>
-
-<h3 id="pseudokey-surrogate-key">Pseudokey (Surrogate key)</h3>
-<p>基本上是一些刻意塞給每個 row 的資料，key 本身對資料來說沒有任何意義。</p>
-
-<p>我們看回剛剛的 <code class="highlighter-rouge">order_items</code>：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>price</th>
-      <th>quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>banana</td>
-      <td>100</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>上面的 <code class="highlighter-rouge">id</code> 對我來說沒有什麼意義可言， <code class="highlighter-rouge">id</code> 為 2 什麼的對我來說一點意義都沒有。但是有了這個 key 以後我就不用去思考，要用哪些欄位來組合成 primary key 了。</p>
-
-<p>各家 DB 提供 AUTO_INCREMENT、GENERATOR 等功能來讓 pseudokey 自動增加，且多個 client 同時來 DB 塞資料也不會重複</p>
-
-<p>的確很常見到教材裡面，每張表都有用來放一個 id 的 primary key 欄位，會 auto increment，甚至有些 web framework 就直接這樣設計。這個慣例很不錯，但這並不是絕對的。如果有本來就有可以拿來當 primary key 的欄位，直接拿來用也無妨。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>order_id</th>
-      <th>customer</th>
-      <th>date</th>
-      <th>total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Carol</td>
-      <td>2020-01-01</td>
-      <td>2000</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Carl</td>
-      <td>2020-01-01</td>
-      <td>500</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Carol</td>
-      <td>2020-01-06</td>
-      <td>2500</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>很多 web framework 的設計讓或書籍裡，都會讓每張表的 primary key 叫 id，然而這不是絕對的！比方說把 <code class="highlighter-rouge">products</code> 這張 table 的 primary key 叫 product_id，<code class="highlighter-rouge">users</code> 的叫 user_id 也挺好的。而且這種命名法還有一種優點，可以透過 <strong>USING</strong> 來 JOIN 資料表。</p>
-
-<p>當 bugs 的 primary key 叫 bug_id，product 上對應的 foreign key 也叫 bug_id。 除了一般的 <code class="highlighter-rouge">JOIN ... ON ...</code>：</p>
-<pre><code class="language-SQL">SELECT * FROM bugs
-JOIN bug_products ON bugs.bug_id = bug_products.bug_id
-</code></pre>
-
-<p>還可以改寫成：</p>
-
-<pre><code class="language-SQL">SELECT * FROM bugs
-JOIN bug_products USING(bug_id)
-</code></pre>
-
-<h2 id="問題三只有-primary-key-無法避免資料重複">問題三：只有 primary key 無法避免資料重複</h2>
-
-<p>如果 code 沒寫好，還是有可能出現很多重複資料。比方說這個是管理訂單跟負責員工的關聯表 <code class="highlighter-rouge">assignments</code>：</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>order_id</th>
-      <th>employee_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>330</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>2</td>
-      <td>330</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>3</td>
-      <td>331</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>除了去檢查為什麼你的 code 沒有好好地 validate 資料、避免重複，也可以檢討一下 DB 這邊沒有把 <strong>unique key</strong> 加上去的部分。</p>
-
-<p>在新增 table 的時候，可以針對 order_id 和 employee_id 加上 unique key，避免出現組合重複的 order_id、employee_id：</p>
-
-<pre><code class="language-SQL">CREATE TABLE assignments(
-   ...,
-   UNIQUE(order_id,employee_id)
-);
-</code></pre>
-
-<p>除此之外，直接拿 order_id 和 employee_id 組合成 compound key 來當 primary key 也是很 OK 的作法。</p>
-
-<h2 id="問題四maxid-vs-last_insert_id-">問題四：<code class="highlighter-rouge">MAX(id)</code> vs <code class="highlighter-rouge">LAST_INSERT_ID() </code></h2>
-
-<p>有些人會自己找 <code class="highlighter-rouge">MAX(id)</code> (資料庫裡最大的id) 去 generate 新 id。
-這樣會有 Race Condition 的問題，當多個 client 同時操作資料庫，有可能不同 client 試圖塞一樣的 id 進來。為了避免 race condition 只好做 table lock，避免同時 insert，但這樣會導致效能瓶頸。</p>
-
-<p>如果是用 AUTO_INCREAMENT ，MYSQL 可以用 LAST_INSERT_ID() 來取最後被 insert 進來的資料 id：</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT LAST_INSERT_ID() FROM products LIMIT 1;
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">users</span><span class="p">.</span><span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">JOIN</span> <span class="n">user_orders</span>
+                          <span class="k">ON</span> <span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">user_orders</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span>
+<span class="k">WHERE</span> <span class="n">order_id</span> <span class="o">=</span> <span class="mi">11</span>
 </code></pre></div></div>
 
-<h2 id="結論">結論</h2>
+<p>但如果今天是上面那個存 comma-seperated list 的做法呢？</p>
+
+<p>這個時候只好改寫醜一點的 SQL query 來查找你要的 users，比方說想辦法用 REGEXP 去 match 它：</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">orders</span> <span class="n">REGEXP</span> <span class="s1">'[[:&lt;:]]11[[:&gt;:]]'</span>
+</code></pre></div></div>
+
+<p>一方面要提心吊膽自己的 REGEXP 沒寫法，會 match 到不該 match 的，另一方面還要擔心資料有不符合規範的東西，例如 <code class="highlighter-rouge">1, 2, 4, 11aaaa, 12</code> 等等。自己 match 資料時出錯的風險也大大提高。</p>
+
+<p>除此之外，查找 order_id 的部分也無法加 index 來提升效能。</p>
+
+<h2 id="problem-2-很難反過來找使用者的訂單資料">Problem 2: 很難反過來找使用者的訂單資料</h2>
+
+<p>接著，如果我今天想要找<code class="highlighter-rouge">id</code> 為 1 的 user 的訂單資料，如果是乖乖新增第三張表的時候，可以簡單地 join table 解決。如果是現在這個 comma-seperated list 的作法，就只好再來寫醜醜的 SQL：</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">JOIN</span> <span class="n">orders</span>
+                    <span class="k">ON</span> <span class="n">users</span><span class="p">.</span><span class="n">orders</span> <span class="n">REGEXP</span> <span class="s1">'[[:&lt;:]]'</span> <span class="o">||</span> <span class="n">orders</span><span class="p">.</span><span class="n">id</span> <span class="o">||</span> <span class="s1">'[[:&gt;:]]'</span>
+<span class="k">WHERE</span> <span class="n">users</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>是否開始感覺到為了一時輕率的選擇，造成的後果要用一世來彌補（欸）</p>
+
+<p>然而問題還沒完，讓我們望向第三個問題。</p>
+
+<h2 id="problem-3-不能用sumavg-等等-function-來做-aggregate-queries">Problem 3: 不能用<code class="highlighter-rouge">SUM()</code>、<code class="highlighter-rouge">AVG()</code> 等等 function 來做 aggregate queries</h2>
+
+<p>如果今天你想要統計每個使用者有多少訂單，如果是好好地使用第三張表的做法，就可以簡單地使用 <code class="highlighter-rouge">SUM()</code> 來找出訂單數量：</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">user_orders</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">JOIN</span> <span class="n">user_orders</span>
+                                            <span class="k">ON</span> <span class="n">users</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">user_orders</span><span class="p">.</span><span class="n">user_id</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">users</span><span class="p">.</span><span class="n">id</span>
+</code></pre></div></div>
+
+<p>但是用了 comma-seperated list 以後，這些資料不是分開一個 row 一個 row，而是全部擠在某個 user 的一個欄位裡。這個時候要計算訂單數量只好用一些奇妙的方法來解決。</p>
+
+<p>比方說，如果保證每個使用者一定有對應的帳單的話，就可以透過「逗點的數量」來計算有幾筆訂單。</p>
 
 <ul>
-  <li>primary key 是一種 constraint，不是一種 data type</li>
-  <li>primary key 可以是 varchar, integer 等等等，沒有一定要是 integer</li>
-  <li>primary key 可以是 auto_increment 的 pseudokey，也可以自己定義（反正 unique 就好）</li>
+  <li><code class="highlighter-rouge">12</code>: 一筆訂單</li>
+  <li><code class="highlighter-rouge">12, 27</code>: 兩筆訂單</li>
+  <li><code class="highlighter-rouge">12, 27, 33</code>: 三筆訂單</li>
+  <li><code class="highlighter-rouge">12, 27, 33, 65</code>: 四筆訂單</li>
 </ul>
 
-<p>像 Rails 的理念是慣例優於設定（convention over configuration），這樣的理念使得大家可以降低開發成本，善用框架本身的設計帶來的便捷功能等等。一般來說就算不需要 Rails mibgration 幫你產生的 id，你也不會特別去拿掉他。</p>
+<p>也就是說，逗點數量 + 1 會是訂單數量。於是就可以透過 (總字數) - (去掉 <code class="highlighter-rouge">,</code> 的字數) 來計算有幾個逗號。</p>
 
-<p>但是這可能會讓新手誤以為 primary key 就是一個叫 id、值為 integer 的欄位，其實不是這樣的。</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">length</span><span class="p">(</span><span class="n">orders</span><span class="p">)</span> <span class="o">-</span> <span class="k">length</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span> <span class="s1">','</span><span class="p">,</span><span class="s1">''</span><span class="p">))</span> <span class="o">+</span><span class="mi">1</span> <span class="k">FROM</span> <span class="n">users</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>最後，附上作者的提醒：</p>
+<h2 id="problem-4-順序問題">Problem 4: 順序問題</h2>
+
+<p>想到這個 comma-seperated list 的做法的朋友們，可能會想說這個做法最簡單的地方在於，可以簡單地 append 新的 order_id 在欄位的最後面。比方說，id 為 5 的 user 原本的 orders 是 <code class="highlighter-rouge">11, 14, 18</code>，如果要建立他跟 id 為 20 帳單的關係，只要在 <code class="highlighter-rouge">11, 14, 18</code> 後面加上逗號與 20 就好，變成 <code class="highlighter-rouge">11, 14, 18, 20</code> 這樣。</p>
+
+<p>但是如果今天正好要加進來的 id 是 <code class="highlighter-rouge">5</code>，就會變成 <code class="highlighter-rouge">11, 14, 18, 5</code>，經過日日夜夜的累積，你的 orders 變得順序雜亂。哪天需要照順序的 id 的時候，只好一個 row 一個 row 的資料抓出來排序QQ</p>
+
+<p>這個時候你或許會想說：「哦哦，那我再把它塞進去資料庫之前，先把新加的 <code class="highlighter-rouge">5</code> 放到正確的位置！這樣就沒問題了吧？」</p>
+
+<p>的確是如此，這個時候必須要跑兩個 query，一個把舊資料撈出來，下一個把你把 <code class="highlighter-rouge">5</code> 加好的資料塞回去。只是當初好好地新增一張表，現在就可以用一個 SQL 就新增新的 order_id，查詢時也可以用 ORDER BY 無痛解決排序問題。</p>
+
+<h2 id="problem-5-刪除特定-id">Problem 5: 刪除特定 id</h2>
+
+<p>再來下一個難題是，該如何刪掉特定的 id 呢？</p>
+
+<p>一樣要跑兩個 query，一個把資料撈出來，自己寫程式找出 id 在哪，去掉以後再把新字串塞回去。</p>
+
+<p>開始感覺到做出了錯誤的抉擇，會讓日後的維護很阿雜XD</p>
+
+<h2 id="problem-6-資料驗證">Problem 6: 資料驗證</h2>
+
+<p>用了 comma-seperated list 的做法以後，因為 order_id 的資料不是一個個 row 獨立存起來的，已經無法透過建立 constraint 來管理資料的正確性與完整性。當 SQL 不再幫你檢驗 constraint，如果程式那邊沒有檢查好，到時候連自己都不會知道欄位被亂塞了什麼東西（eg. <code class="highlighter-rouge">3, 12, 1, banana</code>）</p>
+
+<h2 id="problem-7-seperator-被當成-string-的一部分">Problem 7: seperator 被當成 string 的一部分</h2>
+
+<p>假設今天 order_id 有可能使用者自訂的字串，今天有個壞心眼的使用者，把 <code class="highlighter-rouge">a,b,c</code> 當成 order_id。於是這個 user 的 orders 就多了 <code class="highlighter-rouge">a,b,c</code>。當你要解析這個使用者有哪些訂單時，<code class="highlighter-rouge">a,b,c</code> 就很開心地被解析成 <code class="highlighter-rouge">a</code>,<code class="highlighter-rouge">b</code>,<code class="highlighter-rouge">c</code>，然後使用者永遠都無法正常地找回他的資料。</p>
+
+<p>於是大家可能會開始想，我就用一個正常人不可能拿來用的字元當 seperator 吧！或者是在存入 order_id 時就限制不可以用 <code class="highlighter-rouge">,</code> 這個字元。的確是可以這樣修正，但如果是功能都開發下去、被使用了才出事，中途搶救也會很麻煩。</p>
+
+<h2 id="problem-8長度限制">Problem 8:長度限制</h2>
+<p>畢竟是用一個欄位來存 order_id 們，就要特別注意長度限制。比方說 <code class="highlighter-rouge">user_id</code> 是 <code class="highlighter-rouge">VARCHAR(255)</code>，如果裡面塞長度為 9 的字串，可以塞到 25 個才會爆炸。於是你只好想辦法說服你的客戶，一個 user 就是不能有太多 order。</p>
+
+<p>這個時候，你心中的小惡魔可能會冒出來跟你說：</p>
 
 <blockquote>
-  <p>Don’t let inflexible conventions get in the way of good design</p>
+  <p>齁齁齁，有什麼關係，用 TEXT 我可以塞到 65535 bytes 呢 ヽ(́◕◞౪◟◕‵)ﾉ
+TEXT 不夠我可以用 LONGTEXT 呀 (☝ ՞ਊ ՞）☝</p>
 </blockquote>
 
-<h2 id="補充isoiec-11179">補充：ISO/IEC 11179</h2>
-<p>針對 metadata 制訂的標準，和其他標準一樣不好閱讀。Joe Celko 在他的書 SQL propgramming style 裡有實際使用這個規範。</p>
+<p>拜託….拜託不要亂來（欸</p>
+
+<p>以上已經提出這種方法的八個疑慮了，就不要再用邪魔歪道與大量 workaround 來處理事情了吧。</p>
+
+<h2 id="如何發現這個-antipattern">如何發現這個 Antipattern</h2>
+
+<p>當專案小夥伴問你：</p>
+
+<ol>
+  <li>
+    <p>「這個 list 最多會有幾個 entries 呢？」
+代表他已經在算 VARCHAR 長度要給多少了 ヽ(́◕◞౪◟◕‵)ﾉ</p>
+  </li>
+  <li>
+    <p>「用 SQL 要怎麼 match word boundary 呢？」
+極有可能他正在思量怎麼從 list 裡挑出某個 entry (例子裡的 order_id) &gt;&lt;</p>
+  </li>
+  <li>
+    <p>「這些 entries 裡會出現哪些符號呢？有什麼絕對不可能出現的特定符號嗎？」
+代表他已經在考慮 seperator 要用哪個符號了 (☝ ՞ਊ ՞）☝</p>
+  </li>
+</ol>
+
+<h2 id="使用這個-pattern-的合理情況">使用這個 pattern 的合理情況</h2>
+
+<ol>
+  <li>
+    <p>比方說你有個欄位要顯示 comma-seperated list，你不會需要取這個 list 裡的單一 item，這個時候你可能會考慮反正規化一下，加了欄位放這個 comma-seperated list</p>
+  </li>
+  <li>
+    <p>從別的 source 剛取回來的資料，正好有 comma-seperated list。在你 process 這些資料之前可能會考慮原封不動地存起來。</p>
+  </li>
+</ol>
+
+<h2 id="解方intersection-table">解方：intersection table</h2>
+
+<p>就跟以前學校老師講得一樣（欸
+乖乖地新增一個 table 來存其他兩張 table 多對多的關係。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>user_id</th>
+      <th>order_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="補充regexp">補充：REGEXP</h2>
+<p>參考 <a href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html#operator_regexp">Regular Expressions - MYSQL</a></p>
+
+<h3 id="character_class-character_class"><code class="highlighter-rouge">[=character_class=]</code>, <code class="highlighter-rouge">[:character_class:]</code></h3>
+
+<p>在剛剛內文裡有用到的：</p>
+
+<h3 id="-"><code class="highlighter-rouge">[[:&lt;:]], [[:&gt;:]]</code></h3>
+<p>可以用來查找有沒有包含特定字串：</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">'a word a'</span> <span class="n">REGEXP</span> <span class="s1">'[[:&lt;:]]word[[:&gt;:]]'</span><span class="p">;</span>   <span class="o">-&gt;</span> <span class="mi">1</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="s1">'a xword a'</span> <span class="n">REGEXP</span> <span class="s1">'[[:&lt;:]]word[[:&gt;:]]'</span><span class="p">;</span>  <span class="o">-&gt;</span> <span class="mi">0</span>
+</code></pre></div></div>
 
 <hr />
 
-<p>本文是參考 Bill Karwin 的 SQL Antipatterns 第四章 ID required 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。</p>
+<p>本文是參考 Bill Karwin 的 SQL Antipatterns 第二章 Jaywalking 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。</p>
 
                 </div>
             </section>
@@ -610,14 +451,14 @@ JOIN bug_products USING(bug_id)
                                 
                                   
                                     
-                                        
-                                        
-                                            <li><a href="/blog/sql-no-comma-seperated-list">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</a></li>
-                                        
-                                    
                                   
                                 
                                   
+                                    
+                                        
+                                        
+                                            <li><a href="/blog/sql-primary-key">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</a></li>
+                                        
                                     
                                   
                                 
@@ -652,15 +493,18 @@ JOIN bug_products USING(bug_id)
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
             
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
                 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/blog/sql-no-comma-seperated-list">
+            <a class="post-card-image-link" href="/blog/sql-primary-key">
                 <div class="post-card-image" style="background-image: url(/blog/assets/images/sql.jpg)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/sql-no-comma-seperated-list">
+            <a class="post-card-content-link" href="/blog/sql-primary-key">
                 <header class="post-card-header">
                     
                         
@@ -670,57 +514,10 @@ JOIN bug_products USING(bug_id)
                         
                     
 
-                    <h2 class="post-card-title">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</h2>
+                    <h2 class="post-card-title">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>想當初小的在學校學 SQL...</p>
-                </section>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-            </footer>
-        </div>
-    </article>
-
-            
-
-            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
-            
-                
-    <article class="post-card post-template">
-        
-            <a class="post-card-image-link" href="/blog/tailwind-nested-config">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/tailwind-post.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/tailwind-nested-config">
-                <header class="post-card-header">
-                    
-                        
-                            
-                               <span class="post-card-tags">Css</span>
-                            
-                        
-                            
-                                <span class="post-card-tags">Javascript</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">[工作日常] 如何用建立巢狀的 tailwindcss config？</h2>
-                </header>
-                <section class="post-card-excerpt">
-                    <p>內容更新 Tailwind...</p>
+                    <p>問題一：可不可以不要 primary...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -755,18 +552,18 @@ JOIN bug_products USING(bug_id)
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</div>
+    <div class="floating-header-title">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%5BSQL%5D+%E4%BB%80%E9%BA%BC%E8%A6%81+primary+key%EF%BC%9Fprimary+key+%E4%B8%80%E5%AE%9A%E8%A6%81%E5%8F%AB+id+%E5%97%8E%EF%BC%9F&amp;url=https://requiemformemories.github.io/blog/sql-primary-key"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%5BSQL%5D+%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E5%A4%9A%E4%B8%80%E5%BC%B5%E8%A1%A8%E8%99%95%E7%90%86%E5%A4%9A%E5%B0%8D%E5%A4%9A%E9%97%9C%E4%BF%82%EF%BC%9F%E6%8A%8A%E6%95%B8%E5%80%BC%E9%83%BD%E9%80%97%E8%99%9F%E5%88%86%E9%9A%94%E5%AD%98%E8%B5%B7%E4%BE%86%E4%B8%8D%E8%A1%8C%E5%97%8E%EF%BC%9F&amp;url=https://requiemformemories.github.io/blog/sql-no-comma-seperated-list"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/sql-primary-key"
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/sql-no-comma-seperated-list"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
 
