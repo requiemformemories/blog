@@ -11,7 +11,7 @@
 
 
 
-    <title>[Rails 學習筆記]善用namespace建立後台</title>
+    <title>三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -25,30 +25,30 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
     <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/blog/backend-with-namespace" />
+    <link rel="canonical" href="/blog/install-node-lts-on-opsworks-stack" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="Fumitsuki's magic box" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="[Rails 學習筆記]善用namespace建立後台" />
-    <meta property="og:description" content="在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？ 後來才知道原來有namespace這東西，覺得人間愉快(X) 所以廢話少說就開始吧！ route的部分 首先到 route.rb 加入： namespace :admin do resources :articles end 這樣index的路徑就換變成 admin/articles 了， 可以用$ rake routes來看一下路徑長什麼樣子。 然後這邊要特別注意（大師提點的，不是我自己說的w）， 盡量不要用admin、backend這種大家都想得到的名稱。 否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵)) 當然，article的部分就是controller的名字，要叫posts…什麼的都可以。 Controller的部分 接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。 （其他功能就自己盡情加吧，那就跟本文無關了w） 可以善用command line來建立controller，像是：$ rails g controller admin/articles 這個時候可以發現多出了 app/controllers/admin/articles_controller.rb 這個檔案， 到這裡後台的路徑就差不多了。 使用者認證 這個部分看是多使用者還是單一使用者， 如果是單一使用者的話可以用簡單的 http basic authenticate 來處理。 在剛剛的 admin/articles_controller.rb 中加入： http_basic_authenticate_with name: "your_name"," />
-    <meta property="og:url" content="/blog/backend-with-namespace" />
-    <meta property="og:image" content="/blog/assets/images/rails-post.jpg" />
+    <meta property="og:title" content="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" />
+    <meta property="og:description" content="最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。 Chef 都出到 16 了。AWS 是沒打算出新的意思嗎 😨 然後再來看看 Chef 11 的 build-in recipes 和 OS packages。 nodejs 的版本居然是 0.10.x，現在的 LTS 版本不是 12.x 嗎（抖抖抖 這個工具到底何時會被 AWS 淘汰啊，覺得驚恐。 nodejs 這麼舊，一定會有人反應對吧？沒錯！ 不過 AWS 官方的態度是希望大家都去用 community cookbooks，沒打算再更新現有的 cookbooks 了。 簡單第一句話打發了來開 issue、加一的眾人：" />
+    <meta property="og:url" content="/blog/install-node-lts-on-opsworks-stack" />
+    <meta property="og:image" content="/blog/assets/images/stack.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2016-04-28T00:07:19+08:00" />
-    <meta property="article:modified_time" content="2016-04-28T00:07:19+08:00" />
-    <meta property="article:tag" content="rails" />
+    <meta property="article:published_time" content="2020-08-11T20:09:00+08:00" />
+    <meta property="article:modified_time" content="2020-08-11T20:09:00+08:00" />
+    <meta property="article:tag" content="opsworks" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[Rails 學習筆記]善用namespace建立後台" />
-    <meta name="twitter:description" content="在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？ 後來才知道原來有namespace這東西，覺得人間愉快(X) 所以廢話少說就開始吧！ route的部分 首先到 route.rb 加入： namespace :admin do resources :articles end 這樣index的路徑就換變成 admin/articles 了， 可以用$ rake routes來看一下路徑長什麼樣子。 然後這邊要特別注意（大師提點的，不是我自己說的w）， 盡量不要用admin、backend這種大家都想得到的名稱。 否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵)) 當然，article的部分就是controller的名字，要叫posts…什麼的都可以。 Controller的部分 接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。 （其他功能就自己盡情加吧，那就跟本文無關了w） 可以善用command line來建立controller，像是：$ rails g controller admin/articles 這個時候可以發現多出了 app/controllers/admin/articles_controller.rb 這個檔案， 到這裡後台的路徑就差不多了。 使用者認證 這個部分看是多使用者還是單一使用者， 如果是單一使用者的話可以用簡單的 http basic authenticate 來處理。 在剛剛的 admin/articles_controller.rb 中加入： http_basic_authenticate_with name: "your_name"," />
+    <meta name="twitter:title" content="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" />
+    <meta name="twitter:description" content="最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。 Chef 都出到 16 了。AWS 是沒打算出新的意思嗎 😨 然後再來看看 Chef 11 的 build-in recipes 和 OS packages。 nodejs 的版本居然是 0.10.x，現在的 LTS 版本不是 12.x 嗎（抖抖抖 這個工具到底何時會被 AWS 淘汰啊，覺得驚恐。 nodejs 這麼舊，一定會有人反應對吧？沒錯！ 不過 AWS 官方的態度是希望大家都去用 community cookbooks，沒打算再更新現有的 cookbooks 了。 簡單第一句話打發了來開 issue、加一的眾人：" />
     <meta name="twitter:url" content="/blog/" />
-    <meta name="twitter:image" content="/blog/assets/images/rails-post.jpg" />
+    <meta name="twitter:image" content="/blog/assets/images/stack.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="rails" />
+    <meta name="twitter:data2" content="opsworks" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -63,18 +63,18 @@
         "name": "Fumitsuki's magic box",
         "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "/blog/backend-with-namespace",
+    "url": "/blog/install-node-lts-on-opsworks-stack",
     "image": {
         "@type": "ImageObject",
-        "url": "/blog/assets/images/rails-post.jpg",
+        "url": "/blog/assets/images/stack.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/blog/backend-with-namespace"
+        "@id": "/blog/install-node-lts-on-opsworks-stack"
     },
-    "description": "在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？ 後來才知道原來有namespace這東西，覺得人間愉快(X) 所以廢話少說就開始吧！ route的部分 首先到 route.rb 加入： namespace :admin do resources :articles end 這樣index的路徑就換變成 admin/articles 了， 可以用$ rake routes來看一下路徑長什麼樣子。 然後這邊要特別注意（大師提點的，不是我自己說的w）， 盡量不要用admin、backend這種大家都想得到的名稱。 否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵)) 當然，article的部分就是controller的名字，要叫posts…什麼的都可以。 Controller的部分 接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。 （其他功能就自己盡情加吧，那就跟本文無關了w） 可以善用command line來建立controller，像是：$ rails g controller admin/articles 這個時候可以發現多出了 app/controllers/admin/articles_controller.rb 這個檔案， 到這裡後台的路徑就差不多了。 使用者認證 這個部分看是多使用者還是單一使用者， 如果是單一使用者的話可以用簡單的 http basic authenticate 來處理。 在剛剛的 admin/articles_controller.rb 中加入： http_basic_authenticate_with name: "your_name","
+    "description": "最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。 Chef 都出到 16 了。AWS 是沒打算出新的意思嗎 😨 然後再來看看 Chef 11 的 build-in recipes 和 OS packages。 nodejs 的版本居然是 0.10.x，現在的 LTS 版本不是 12.x 嗎（抖抖抖 這個工具到底何時會被 AWS 淘汰啊，覺得驚恐。 nodejs 這麼舊，一定會有人反應對吧？沒錯！ 不過 AWS 官方的態度是希望大家都去用 community cookbooks，沒打算再更新現有的 cookbooks 了。 簡單第一句話打發了來開 issue、加一的眾人："
 }
     </script>
 
@@ -87,7 +87,7 @@
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="[Rails 學習筆記]善用namespace建立後台" href="/blog/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" href="/blog/feed.xml" />
 
 
 </head>
@@ -149,81 +149,152 @@ into the {body} of the default.hbs template -->
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="27 April 2016">27 April 2016</time>
+                    <time class="post-full-meta-date" datetime="11 August 2020">11 August 2020</time>
                     
                         <span class="date-divider">/</span>
                         
                             
-                               <a href='/blog/tag/rails/'>RAILS</a>
+                               <a href='/blog/tag/opsworks/'>OPSWORKS</a>,
+                            
+                        
+                            
+                               <a href='/blog/tag/nodejs/'>NODEJS</a>
                             
                         
                     
                 </section>
-                <h1 class="post-full-title">[Rails 學習筆記]善用namespace建立後台</h1>
+                <h1 class="post-full-title">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</h1>
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/blog/assets/images/rails-post.jpg)">
+            <figure class="post-full-image" style="background-image: url(/blog/assets/images/stack.jpg)">
             </figure>
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>在寫blog的時候一直很苦惱要怎麼寫後台，
-是要另外有一個叫backend的controller嗎？還是怎麼樣呢？</p>
+                    <p>最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。</p>
 
-<p>後來才知道原來有namespace這東西，覺得人間愉快(X)</p>
+<p><img src="https://i.imgur.com/wVA9b2O.jpg" alt="新增 stack" /></p>
 
-<p>所以廢話少說就開始吧！</p>
+<p>Chef 都出到 16 了。AWS 是沒打算出新的意思嗎 😨</p>
 
-<h3 id="route的部分">route的部分</h3>
-<p>首先到 <strong>route.rb</strong> 加入：</p>
+<p>然後再來看看 Chef 11 的 build-in recipes 和 OS packages。 nodejs 的版本居然是 0.10.x，現在的 LTS 版本不是 12.x 嗎（抖抖抖</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">namespace</span> <span class="ss">:admin</span> <span class="k">do</span>
-    <span class="n">resources</span> <span class="ss">:articles</span>
- <span class="k">end</span>
+<p>這個工具到底何時會被 AWS 淘汰啊，覺得驚恐。</p>
+
+<p>nodejs 這麼舊，一定會有人<a href="https://github.com/aws/opsworks-cookbooks/issues/377">反應</a>對吧？沒錯！</p>
+
+<p>不過 AWS 官方的態度是希望大家都去用 community cookbooks，沒打算再更新現有的 cookbooks 了。 簡單第一句話打發了來開 issue、加一的眾人：</p>
+
+<blockquote>
+  <p>Yes, please use the Chef community cookbook for Nodejs on Chef 12 for OpsWorks.</p>
+</blockquote>
+
+<p>2020 年看到這句話的我覺得格外厭世，叫我上哪去找 community cookbooks 啦，Chef 11 跟 12 大家都差不多放棄支援了QQ</p>
+
+<p>另外，Chef 12 Stack 再也沒有 build-in cookbooks 了，果然是官方不想在維護這個了嗎XD</p>
+
+<p>所幸經過了黑暗的一個禮拜，終於成功把 nodejs override 成 12.x 了！真是謝天謝地！</p>
+
+<p>接下來就跟大家說說該怎麼做。</p>
+
+<h2 id="觀察一下官方的-cookbook-做了什麼">觀察一下官方的 cookbook 做了什麼</h2>
+
+<p>當我把 nodejs 加到 OS package 裡以後，跑一下 setup，再看一下 instance log ，發現加上了 nodejs 套件以後，多了 opsworks_nodejs 這個 cookbook。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INFO: Storing updated cookbooks/opsworks_nodejs/recipes/create_env_file.rb in the cache.
 </code></pre></div></div>
 
-<p>這樣index的路徑就換變成 <strong>admin/articles</strong> 了， 
-可以用<code class="highlighter-rouge">$ rake routes</code>來看一下路徑長什麼樣子。</p>
+<p>要看看這個 cookbook 的內容可以不用直接上 <code class="highlighter-rouge">/opt/aws/opsworks/current/cookbooks/</code>，可以在 <a href="https://github.com/aws/opsworks-cookbooks/tree/release-chef-11.10/opsworks_nodejs">GitHub</a> 上把他下載下來。</p>
 
-<p>然後這邊要特別注意（大師提點的，不是我自己說的w），
-盡量不要用admin、backend這種大家都想得到的名稱。
-否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵))</p>
+<p>打開 recipe 看看他是怎麼裝 node 的。會看到這個 <code class="highlighter-rouge">opsworks_commons_assets_installer</code></p>
 
-<p>當然，article的部分就是controller的名字，要叫posts…什麼的都可以。</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># opsworks_nodejs/recipes/default.rb:32-39</span>
+<span class="n">opsworks_commons_assets_installer</span> <span class="s2">"Install user space OpsWorks NodeJS package"</span> <span class="k">do</span>
+  <span class="n">asset</span> <span class="no">PACKAGE_BASENAME</span>
+  <span class="n">version</span> <span class="n">node</span><span class="p">[</span><span class="ss">:opsworks_nodejs</span><span class="p">][</span><span class="ss">:version</span><span class="p">]</span>
+  <span class="n">release</span> <span class="n">node</span><span class="p">[</span><span class="ss">:opsworks_nodejs</span><span class="p">][</span><span class="ss">:pkgrelease</span><span class="p">]</span>
 
-<h3 id="controller的部分">Controller的部分</h3>
-<p>接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。
-（其他功能就自己盡情加吧，那就跟本文無關了w）
-可以善用command line來建立controller，像是：<code class="highlighter-rouge">$ rails g controller admin/articles</code>
-這個時候可以發現多出了 <strong>app/controllers/admin/articles_controller.rb</strong> 這個檔案，
-到這裡後台的路徑就差不多了。</p>
-
-<h3 id="使用者認證">使用者認證</h3>
-<p>這個部分看是多使用者還是單一使用者，
-如果是單一使用者的話可以用簡單的 <strong>http basic authenticate</strong> 來處理。</p>
-
-<p>在剛剛的 <strong>admin/articles_controller.rb</strong> 中加入：</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http_basic_authenticate_with</span> <span class="ss">name: </span><span class="s2">"your_name"</span><span class="p">,</span> <span class="ss">password: </span><span class="s2">"your_password"</span>
+  <span class="n">notifies</span> <span class="ss">:write</span><span class="p">,</span> <span class="s2">"log[downloading]"</span><span class="p">,</span> <span class="ss">:immediately</span>
+  <span class="n">action</span> <span class="ss">:install</span>
+<span class="k">end</span>
 </code></pre></div></div>
 
-<p>這邊的<code class="highlighter-rouge">your_name</code>跟<code class="highlighter-rouge">your_password</code>就自由填入自訂的帳號密碼吧！
-多使用者的話，可以用 <strong>devise</strong> 這個方便好用的套件。</p>
+<p>也就是他是在這裡吃到 <code class="highlighter-rouge">node[:opsworks_nodejs][:version]</code> ，然後會試著把這個版本裝起來。</p>
 
-<p>首先，在 <strong>Gemfile</strong> 中加入：</p>
+<p>那這個 installer 幫我們做了哪些事呢？我們可以在 <code class="highlighter-rouge">opsworks_commons/providers/assets_installer.rb</code> 看到他的實作。觀察一下可以看出來他會去一個 S3 bucket（預設是 <code class="highlighter-rouge">https://opsworks-instance-assets-us-east-1.s3.amazonaws.com</code>）把對應的套件包抓下來裝起來。根據 linux 發行版、發行版版本、處理器的不同決定在哪一個 path。</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'devise'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@asset_url</span> <span class="o">||=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">node</span><span class="p">[</span><span class="ss">:opsworks_commons</span><span class="p">][</span><span class="ss">:assets_url</span><span class="p">]</span><span class="si">}</span><span class="s2">/packages/</span><span class="si">#{</span><span class="n">_platform</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">_platform_version</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">asset_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>然後在命令列輸入<code class="highlighter-rouge">$ bundle</code>就可以安裝套件了。
-接著呢，再命令列輸入<code class="highlighter-rouge">$ rails g devise:install</code>來產生devise設定檔
-再輸入<code class="highlighter-rouge">$ rails g devise user</code>產生user model，然後便忘了<code class="highlighter-rouge">rake db:migrate</code>來migrate它。Devise也提供view的樣板可以使用，在命令列輸入<code class="highlighter-rouge">rails generate devise:views</code>就可以自動產生了。</p>
+<p>例如 Amazon Linux 2018.03 最後的 asset_url 可能會長這樣 <code class="highlighter-rouge">/packages/amazon/2018.03/opsworks-nodejs-12.18.3-1.x86_64.rpm</code>。Ubuntu 14.04 可能會像這樣 <code class="highlighter-rouge">/packages/ubuntu/14.04/opsworks-nodejs_12.18.3-1_amd64.deb</code>。</p>
 
-<p>除此之外，
-其實也有後台的套件可以用，像說<a href="https://github.com/sferik/rails_admin">rails_admin</a>之類的，可以參考看看呢。</p>
+<p>AWS 提供的 bucket 上沒有我們要的 12.x 版本，但是我們可以自己指定我們要的 node 版本，放到我們自己的 S3 上。這樣也不需要魔改太多東西XD</p>
 
+<p>不過這邊要 <strong>特別注意</strong>，<strong>注意！注意！注意！</strong>，既然我們把 asset_url 改掉了，那之後 berkshelf 各種玩意兒都會試圖從我們新開的 S3 bucket 抓，所有會用到的套件等等都要記得放上來。</p>
+
+<p>比方說我用 Rails 的 cookbook，就不能少了 ruby。如果開機器失敗了，可以檢查一下 log，應該會告訴你是少了哪一個 package 才會 setup 失敗。在 S3 補上對應的 package 即可。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to download asset opsworks-ruby2.5 for Install user space OpsWorks ruby package with url https://your-bucket-name.s3-your-region.amazonaws.com/packages/amazon/2018.03/opsworks-ruby25-2.5.1-1.x86_64.rpm.
+</code></pre></div></div>
+
+<h2 id="override-attributes--上傳-package-file--完成">Override Attributes + 上傳 package file = 完成！</h2>
+
+<p>所以我們要做的事情是，想辦法蓋掉原本的 <code class="highlighter-rouge">opsworks_nodejs</code> 的 <code class="highlighter-rouge">version</code>，然後把對應的 package 傳上 S3。</p>
+
+<p>至於怎麼覆蓋掉 version，可以看看 <code class="highlighter-rouge">opsworks_commons/attributes/customize.rb</code> 上面的說明</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">###</span>
+<span class="c1"># This is the place to override the opsworks_commons cookbook's default attributes.</span>
+<span class="c1">#</span>
+<span class="c1"># Do not edit THIS file directly. Instead, create</span>
+<span class="c1"># "opsworks_commons/attributes/customize.rb" in your cookbook repository and</span>
+<span class="c1"># put the overrides in YOUR customize.rb file.</span>
+<span class="c1">###</span>
+</code></pre></div></div>
+
+<p>他希望你另外開個 custom-cookbook，在裡面留下這個 customize.rb 來蓋掉 version 的值。所以我們可以先到 GitHub （或其他你喜歡的平台w）開個 repo 來放你的 custom-cookbook，然後在裡面複製貼上 <code class="highlighter-rouge">opsworks_commons/attributes/customize.rb</code>（那個註解要不要留著看你）。</p>
+
+<p>在裡面加上你要的 node 版本：</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">normal</span><span class="p">[</span><span class="ss">:opsworks_nodejs</span><span class="p">][</span><span class="ss">:version</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'12.18.3'</span>
+</code></pre></div></div>
+
+<p>記得要去改 Stack setting，到<code class="highlighter-rouge">Use custom Chef cookbooks</code> 的區塊把這個 custom-cookbook 的 repo URL、branch name 加進去。</p>
+
+<p>完成第一部分了，接著來做第二部分。到 S3 開個 bucket （名字看起來就是跟 OpsWorks 有關且不會誤刪即可w）。根據對應的 path 來放你的 assets。像上面提到的 <code class="highlighter-rouge">/packages/amazon/2018.03</code> 這樣。然後把 deb/rpm file 傳上來，名字改一改。像是我除了 node 還會用到 berkshelf 和 ruby，這些也要放上來。</p>
+
+<p>然後在 custom json 加上新開的 bucket：</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"opsworks_commons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"assets_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://your-bucket-name.s3-your-region.amazonaws.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>最後去開台新的機器（或是把舊的停掉重開），看看有沒有順利完成 setup。如果當初檔名或 path 有設定錯，應該都可以在 log 中找到錯誤訊息。</p>
+
+<p>如果順利 setup 了，連上機器檢查一下 node 版本是不是對的。</p>
+
+<p>包含機器開開關關的過程可能不止三分鐘XD 這樣是不是有點標題詐欺 🤭</p>
+
+<h2 id="同場加映消失的-ruby-24-與-25">同場加映：消失的 Ruby 2.4 與 2.5</h2>
+<p>如果你有設定過 Rails App Server，會發現只有 Ruby 2.1、2.2、2.3、2.6。</p>
+
+<p>咦？2.4 跟 2.5 飛去哪了？如果我想用 2.5 要怎麼辦？</p>
+
+<p>這件事情也是有人<a href="https://github.com/aws/opsworks-cookbooks/issues/421">抱怨</a>過，官方目前置之不理（？）</p>
+
+<p>不過有善良的 user 上來告訴大家解方，其實<a href="https://github.com/aws/opsworks-cookbooks/issues/421#issuecomment-423540014">解法</a>跟上述 nodejs 的差不多，一樣是改掉 ruby 版本、asset url，然後自己把各種套件包傳上 S3 這樣。</p>
+
+<h2 id="結論">結論</h2>
+
+<p>實際上操作使用以後，覺得 OpsWorks Stack 的確是對 DevOps 人力不足的團隊來說相當友善，很多服務都被抽象成各種 layer，很好做設定。尤其時使用 build-in cookbook，真的是滑鼠點一點一個好好的環境就出來了。真的是可以理解為什麼業主到現在都還是使用… (ry</p>
+
+<p>如果今年還是 2018 年之類的，我可能還是會覺得 OpsWorks Stacks 真是棒 owo</p>
+
+<p>不過哪天沒有太多 issue 纏身，我還是想看看是否能改用其他工具www</p>
+
+<p>最後也希望大家都有成功把 node 設定成想要的版本，一切順利 🌟</p>
 
                 </div>
             </section>
@@ -274,122 +345,9 @@ into the {body} of the default.hbs template -->
                 
                 
                 
-                    <article class="read-next-card"
-                        
-                            style="background-image: url(/blog/assets/images/blog-cover.jpg)"
-                        
-                    >
-                        <header class="read-next-card-header">
-                            <small class="read-next-card-header-sitetitle">&mdash; Fumitsuki's magic box &mdash;</small>
-                            
-                                <h3 class="read-next-card-header-title"><a href="/blog/tag/rails/">Rails</a></h3>
-                            
-                        </header>
-                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
-</div>
-                        <div class="read-next-card-content">
-                            <ul>
-                                
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                    
-                                        
-                                        
-                                            <li><a href="/blog/build-rails-environment-with-vagrant">[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</a></li>
-                                        
-                                    
-                                  
-                                
-                                  
-                                    
-                                        
-                                        
-                                            <li><a href="/blog/two-articles-recommend-to-rails-beginner">[Rails學習筆記] 推薦初學者閱讀的兩篇文章</a></li>
-                                        
-                                    
-                                  
-                                
-                                  
-                                    
-                                        
-                                        
-                                            <li><a href="/blog/hide-routes-and-authenticate-with-settingslogic">[Rails學習筆記] 用Settingslogic把重要資訊藏起來!</a></li>
-                                        
-                                    
-                                  
-                                
-                                  
-                                
-                                  
-                                    
-                                  
-                                
-                                  
-                                
-                            </ul>
-                        </div>
-                        <footer class="read-next-card-footer">
-                            <a href="/blog/tag/rails/">
-                                
-                                    See all 3 posts  →
-                                
-                            </a>
-                        </footer>
-                    </article>
-                
             
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
-            
-                
-    <article class="post-card post-template">
-        
-            <a class="post-card-image-link" href="/blog/2016-spring-5xruby-html&css-course">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/5xruby-post.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/2016-spring-5xruby-html&css-course">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">5xruby</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">[5xRuby實習日記] HTML & CSS課程心得</h2>
-                </header>
-                <section class="post-card-excerpt">
-                    <p>首先呢，我要先懺悔一下XD 由於課務的關係有點忙忙的，所以沒有全程參與HTML的課程，...</p>
-                </section>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-            </footer>
-        </div>
-    </article>
-
             
 
             <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
@@ -397,25 +355,25 @@ into the {body} of the default.hbs template -->
                 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/blog/2016-spring-5xruby-javascript-course">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/5xruby-post.jpg)"></div>
+            <a class="post-card-image-link" href="/blog/sql-no-comma-seperated-list">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/sql.jpg)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/2016-spring-5xruby-javascript-course">
+            <a class="post-card-content-link" href="/blog/sql-no-comma-seperated-list">
                 <header class="post-card-header">
                     
                         
                             
-                                <span class="post-card-tags">5xruby</span>
+                                <span class="post-card-tags">Sql</span>
                             
                         
                     
 
-                    <h2 class="post-card-title">[5xRuby實習日記] Javascript 課程心得</h2>
+                    <h2 class="post-card-title">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X) 不過由於個人還在就學的緣故，...</p>
+                    <p>想當初小的在學校學 SQL...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -450,18 +408,18 @@ into the {body} of the default.hbs template -->
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">[Rails 學習筆記]善用namespace建立後台</div>
+    <div class="floating-header-title">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%5BRails+%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%5D%E5%96%84%E7%94%A8namespace%E5%BB%BA%E7%AB%8B%E5%BE%8C%E5%8F%B0&amp;url=https://requiemformemories.github.io/blog/backend-with-namespace"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E4%B8%89%E5%88%86%E9%90%98%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%9C%A8+OpsWorks+Stack+%E4%B8%8A%E9%9D%A2%E7%94%A8+12.x+%E7%9A%84+nodejs&amp;url=https://requiemformemories.github.io/blog/install-node-lts-on-opsworks-stack"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/backend-with-namespace"
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/install-node-lts-on-opsworks-stack"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
 

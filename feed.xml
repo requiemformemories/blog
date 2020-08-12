@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-04-29T17:47:23+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</title><link href="/blog/sql-no-comma-seperated-list" rel="alternate" type="text/html" title="[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？" /><published>2020-04-29T14:13:00+08:00</published><updated>2020-04-29T14:13:00+08:00</updated><id>/blog/sql-no-comma-seperated-list</id><content type="html" xml:base="/blog/sql-no-comma-seperated-list">&lt;p&gt;想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-08-12T12:59:38+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title><link href="/blog/install-node-lts-on-opsworks-stack" rel="alternate" type="text/html" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" /><published>2020-08-11T20:09:00+08:00</published><updated>2020-08-11T20:09:00+08:00</updated><id>/blog/install-node-lts-on-opsworks-stack</id><content type="html" xml:base="/blog/install-node-lts-on-opsworks-stack">&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/wVA9b2O.jpg&quot; alt=&quot;新增 stack&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Chef 都出到 16 了。AWS 是沒打算出新的意思嗎 😨&lt;/p&gt;
+
+&lt;p&gt;然後再來看看 Chef 11 的 build-in recipes 和 OS packages。 nodejs 的版本居然是 0.10.x，現在的 LTS 版本不是 12.x 嗎（抖抖抖&lt;/p&gt;
+
+&lt;p&gt;這個工具到底何時會被 AWS 淘汰啊，覺得驚恐。&lt;/p&gt;
+
+&lt;p&gt;nodejs 這麼舊，一定會有人&lt;a href=&quot;https://github.com/aws/opsworks-cookbooks/issues/377&quot;&gt;反應&lt;/a&gt;對吧？沒錯！&lt;/p&gt;
+
+&lt;p&gt;不過 AWS 官方的態度是希望大家都去用 community cookbooks，沒打算再更新現有的 cookbooks 了。 簡單第一句話打發了來開 issue、加一的眾人：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Yes, please use the Chef community cookbook for Nodejs on Chef 12 for OpsWorks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;2020 年看到這句話的我覺得格外厭世，叫我上哪去找 community cookbooks 啦，Chef 11 跟 12 大家都差不多放棄支援了QQ&lt;/p&gt;
+
+&lt;p&gt;另外，Chef 12 Stack 再也沒有 build-in cookbooks 了，果然是官方不想在維護這個了嗎XD&lt;/p&gt;
+
+&lt;p&gt;所幸經過了黑暗的一個禮拜，終於成功把 nodejs override 成 12.x 了！真是謝天謝地！&lt;/p&gt;
+
+&lt;p&gt;接下來就跟大家說說該怎麼做。&lt;/p&gt;
+
+&lt;h2 id=&quot;觀察一下官方的-cookbook-做了什麼&quot;&gt;觀察一下官方的 cookbook 做了什麼&lt;/h2&gt;
+
+&lt;p&gt;當我把 nodejs 加到 OS package 裡以後，跑一下 setup，再看一下 instance log ，發現加上了 nodejs 套件以後，多了 opsworks_nodejs 這個 cookbook。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;INFO: Storing updated cookbooks/opsworks_nodejs/recipes/create_env_file.rb in the cache.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;要看看這個 cookbook 的內容可以不用直接上 &lt;code class=&quot;highlighter-rouge&quot;&gt;/opt/aws/opsworks/current/cookbooks/&lt;/code&gt;，可以在 &lt;a href=&quot;https://github.com/aws/opsworks-cookbooks/tree/release-chef-11.10/opsworks_nodejs&quot;&gt;GitHub&lt;/a&gt; 上把他下載下來。&lt;/p&gt;
+
+&lt;p&gt;打開 recipe 看看他是怎麼裝 node 的。會看到這個 &lt;code class=&quot;highlighter-rouge&quot;&gt;opsworks_commons_assets_installer&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# opsworks_nodejs/recipes/default.rb:32-39&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;opsworks_commons_assets_installer&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Install user space OpsWorks NodeJS package&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;asset&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PACKAGE_BASENAME&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:opsworks_nodejs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;release&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:opsworks_nodejs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:pkgrelease&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;notifies&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;log[downloading]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:immediately&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:install&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;也就是他是在這裡吃到 &lt;code class=&quot;highlighter-rouge&quot;&gt;node[:opsworks_nodejs][:version]&lt;/code&gt; ，然後會試著把這個版本裝起來。&lt;/p&gt;
+
+&lt;p&gt;那這個 installer 幫我們做了哪些事呢？我們可以在 &lt;code class=&quot;highlighter-rouge&quot;&gt;opsworks_commons/providers/assets_installer.rb&lt;/code&gt; 看到他的實作。觀察一下可以看出來他會去一個 S3 bucket（預設是 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://opsworks-instance-assets-us-east-1.s3.amazonaws.com&lt;/code&gt;）把對應的套件包抓下來裝起來。根據 linux 發行版、發行版版本、處理器的不同決定在哪一個 path。&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;vi&quot;&gt;@asset_url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:opsworks_commons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:assets_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/packages/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_platform&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_platform_version&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asset_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;例如 Amazon Linux 2018.03 最後的 asset_url 可能會長這樣 &lt;code class=&quot;highlighter-rouge&quot;&gt;/packages/amazon/2018.03/opsworks-nodejs-12.18.3-1.x86_64.rpm&lt;/code&gt;。Ubuntu 14.04 可能會像這樣 &lt;code class=&quot;highlighter-rouge&quot;&gt;/packages/ubuntu/14.04/opsworks-nodejs_12.18.3-1_amd64.deb&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;AWS 提供的 bucket 上沒有我們要的 12.x 版本，但是我們可以自己指定我們要的 node 版本，放到我們自己的 S3 上。這樣也不需要魔改太多東西XD&lt;/p&gt;
+
+&lt;p&gt;不過這邊要 &lt;strong&gt;特別注意&lt;/strong&gt;，&lt;strong&gt;注意！注意！注意！&lt;/strong&gt;，既然我們把 asset_url 改掉了，那之後 berkshelf 各種玩意兒都會試圖從我們新開的 S3 bucket 抓，所有會用到的套件等等都要記得放上來。&lt;/p&gt;
+
+&lt;p&gt;比方說我用 Rails 的 cookbook，就不能少了 ruby。如果開機器失敗了，可以檢查一下 log，應該會告訴你是少了哪一個 package 才會 setup 失敗。在 S3 補上對應的 package 即可。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Failed to download asset opsworks-ruby2.5 for Install user space OpsWorks ruby package with url https://your-bucket-name.s3-your-region.amazonaws.com/packages/amazon/2018.03/opsworks-ruby25-2.5.1-1.x86_64.rpm.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;override-attributes--上傳-package-file--完成&quot;&gt;Override Attributes + 上傳 package file = 完成！&lt;/h2&gt;
+
+&lt;p&gt;所以我們要做的事情是，想辦法蓋掉原本的 &lt;code class=&quot;highlighter-rouge&quot;&gt;opsworks_nodejs&lt;/code&gt; 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;version&lt;/code&gt;，然後把對應的 package 傳上 S3。&lt;/p&gt;
+
+&lt;p&gt;至於怎麼覆蓋掉 version，可以看看 &lt;code class=&quot;highlighter-rouge&quot;&gt;opsworks_commons/attributes/customize.rb&lt;/code&gt; 上面的說明&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;###&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# This is the place to override the opsworks_commons cookbook's default attributes.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Do not edit THIS file directly. Instead, create&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# &quot;opsworks_commons/attributes/customize.rb&quot; in your cookbook repository and&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# put the overrides in YOUR customize.rb file.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;###&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;他希望你另外開個 custom-cookbook，在裡面留下這個 customize.rb 來蓋掉 version 的值。所以我們可以先到 GitHub （或其他你喜歡的平台w）開個 repo 來放你的 custom-cookbook，然後在裡面複製貼上 &lt;code class=&quot;highlighter-rouge&quot;&gt;opsworks_commons/attributes/customize.rb&lt;/code&gt;（那個註解要不要留著看你）。&lt;/p&gt;
+
+&lt;p&gt;在裡面加上你要的 node 版本：&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:opsworks_nodejs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'12.18.3'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;記得要去改 Stack setting，到&lt;code class=&quot;highlighter-rouge&quot;&gt;Use custom Chef cookbooks&lt;/code&gt; 的區塊把這個 custom-cookbook 的 repo URL、branch name 加進去。&lt;/p&gt;
+
+&lt;p&gt;完成第一部分了，接著來做第二部分。到 S3 開個 bucket （名字看起來就是跟 OpsWorks 有關且不會誤刪即可w）。根據對應的 path 來放你的 assets。像上面提到的 &lt;code class=&quot;highlighter-rouge&quot;&gt;/packages/amazon/2018.03&lt;/code&gt; 這樣。然後把 deb/rpm file 傳上來，名字改一改。像是我除了 node 還會用到 berkshelf 和 ruby，這些也要放上來。&lt;/p&gt;
+
+&lt;p&gt;然後在 custom json 加上新開的 bucket：&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;opsworks_commons&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;assets_url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://your-bucket-name.s3-your-region.amazonaws.com&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;最後去開台新的機器（或是把舊的停掉重開），看看有沒有順利完成 setup。如果當初檔名或 path 有設定錯，應該都可以在 log 中找到錯誤訊息。&lt;/p&gt;
+
+&lt;p&gt;如果順利 setup 了，連上機器檢查一下 node 版本是不是對的。&lt;/p&gt;
+
+&lt;p&gt;包含機器開開關關的過程可能不止三分鐘XD 這樣是不是有點標題詐欺 🤭&lt;/p&gt;
+
+&lt;h2 id=&quot;同場加映消失的-ruby-24-與-25&quot;&gt;同場加映：消失的 Ruby 2.4 與 2.5&lt;/h2&gt;
+&lt;p&gt;如果你有設定過 Rails App Server，會發現只有 Ruby 2.1、2.2、2.3、2.6。&lt;/p&gt;
+
+&lt;p&gt;咦？2.4 跟 2.5 飛去哪了？如果我想用 2.5 要怎麼辦？&lt;/p&gt;
+
+&lt;p&gt;這件事情也是有人&lt;a href=&quot;https://github.com/aws/opsworks-cookbooks/issues/421&quot;&gt;抱怨&lt;/a&gt;過，官方目前置之不理（？）&lt;/p&gt;
+
+&lt;p&gt;不過有善良的 user 上來告訴大家解方，其實&lt;a href=&quot;https://github.com/aws/opsworks-cookbooks/issues/421#issuecomment-423540014&quot;&gt;解法&lt;/a&gt;跟上述 nodejs 的差不多，一樣是改掉 ruby 版本、asset url，然後自己把各種套件包傳上 S3 這樣。&lt;/p&gt;
+
+&lt;h2 id=&quot;結論&quot;&gt;結論&lt;/h2&gt;
+
+&lt;p&gt;實際上操作使用以後，覺得 OpsWorks Stack 的確是對 DevOps 人力不足的團隊來說相當友善，很多服務都被抽象成各種 layer，很好做設定。尤其時使用 build-in cookbook，真的是滑鼠點一點一個好好的環境就出來了。真的是可以理解為什麼業主到現在都還是使用… (ry&lt;/p&gt;
+
+&lt;p&gt;如果今年還是 2018 年之類的，我可能還是會覺得 OpsWorks Stacks 真是棒 owo&lt;/p&gt;
+
+&lt;p&gt;不過哪天沒有太多 issue 纏身，我還是想看看是否能改用其他工具www&lt;/p&gt;
+
+&lt;p&gt;最後也希望大家都有成功把 node 設定成想要的版本，一切順利 🌟&lt;/p&gt;</content><author><name>文月</name></author><category term="opsworks" /><category term="nodejs" /><summary type="html">最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。</summary></entry><entry><title type="html">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</title><link href="/blog/sql-no-comma-seperated-list" rel="alternate" type="text/html" title="[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？" /><published>2020-04-29T14:13:00+08:00</published><updated>2020-04-29T14:13:00+08:00</updated><id>/blog/sql-no-comma-seperated-list</id><content type="html" xml:base="/blog/sql-no-comma-seperated-list">&lt;p&gt;想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。&lt;/p&gt;
 
 &lt;p&gt;如果直接把資料想辦法塞在一個欄位裡，比方說在 table &lt;code class=&quot;highlighter-rouge&quot;&gt;users&lt;/code&gt; 上新增 &lt;code class=&quot;highlighter-rouge&quot;&gt;orders&lt;/code&gt; 欄位（type 為 &lt;code class=&quot;highlighter-rouge&quot;&gt;VARCHAR&lt;/code&gt;），把 order_id 們像是 &lt;code class=&quot;highlighter-rouge&quot;&gt;1, 34, 135&lt;/code&gt; 這樣地塞在 &lt;code class=&quot;highlighter-rouge&quot;&gt;orders&lt;/code&gt;欄位中，不是也可以嗎？（或是反過來新增 &lt;code class=&quot;highlighter-rouge&quot;&gt;users&lt;/code&gt; 欄位在資料表 &lt;code class=&quot;highlighter-rouge&quot;&gt;orders&lt;/code&gt; 上）&lt;/p&gt;
 
@@ -1193,48 +1314,4 @@ gorails 上的教學，不過這篇就比較複雜一些了。&lt;/li&gt;
 再輸入&lt;code class=&quot;highlighter-rouge&quot;&gt;$ rails g devise user&lt;/code&gt;產生user model，然後便忘了&lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt;來migrate它。Devise也提供view的樣板可以使用，在命令列輸入&lt;code class=&quot;highlighter-rouge&quot;&gt;rails generate devise:views&lt;/code&gt;就可以自動產生了。&lt;/p&gt;
 
 &lt;p&gt;除此之外，
-其實也有後台的套件可以用，像說&lt;a href=&quot;https://github.com/sferik/rails_admin&quot;&gt;rails_admin&lt;/a&gt;之類的，可以參考看看呢。&lt;/p&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？</summary></entry><entry><title type="html">[5xRuby實習日記] Javascript 課程心得</title><link href="/blog/2016-spring-5xruby-javascript-course" rel="alternate" type="text/html" title="[5xRuby實習日記] Javascript 課程心得" /><published>2016-04-28T00:02:15+08:00</published><updated>2016-04-28T00:02:15+08:00</updated><id>/blog/2016-spring-5xruby-javascript-course</id><content type="html" xml:base="/blog/2016-spring-5xruby-javascript-course">&lt;p&gt;覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
-不過由於個人還在就學的緣故，
-因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”&lt;/p&gt;
-
-&lt;p&gt;這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
-(沒有HTML只上到第一堂課這麼淒慘就是了)
-我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
-終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。&lt;/p&gt;
-
-&lt;p&gt;我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
-而且可以實際上了解要怎麼使用，有什麼時機可以使用。&lt;/p&gt;
-
-&lt;p&gt;接著提供一下最後一堂課的筆記：&lt;/p&gt;
-&lt;h3 id=&quot;善用find找子元素&quot;&gt;善用find找子元素&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(this).find('.title').toggleClass('active');
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;用trigger觸發事件&quot;&gt;用trigger觸發事件&lt;/h3&gt;
-&lt;p&gt;例如：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$(.b).on('click',function(){
-	$(.a).trigger('click');
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b&lt;/p&gt;
-
-&lt;h3 id=&quot;利用data存取指定&quot;&gt;利用data存取、指定&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;存取 ex.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$('.home').data('show')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;如此一來可以存取有home這個class的物件的data-show的值&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;指定 ex.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$('.home').data('show','home')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;把有home這個class的物件的data-show的值改成home&lt;/p&gt;
-
-&lt;p&gt;剩下晚一點再來補，不過我有寫在&lt;a href=&quot;https://hackmd.io/s/rk_X2cdl&quot;&gt;hackMD&lt;/a&gt;上提供參考&lt;/p&gt;</content><author><name>文月</name></author><category term="5xruby" /><summary type="html">覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X) 不過由於個人還在就學的緣故， 因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”</summary></entry></feed>
+其實也有後台的套件可以用，像說&lt;a href=&quot;https://github.com/sferik/rails_admin&quot;&gt;rails_admin&lt;/a&gt;之類的，可以參考看看呢。&lt;/p&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？</summary></entry></feed>
