@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-12-22T16:24:28+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">CS50 筆記：第三講 Algorithms</title><link href="/blog/cs50-notes-algorithm" rel="alternate" type="text/html" title="CS50 筆記：第三講 Algorithms" /><published>2020-12-21T20:50:00+08:00</published><updated>2020-12-21T20:50:00+08:00</updated><id>/blog/cs50-notes-algorithm</id><content type="html" xml:base="/blog/cs50-notes-algorithm">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-12-22T16:27:21+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">CS50 筆記：第三講 Algorithms</title><link href="/blog/cs50-notes-algorithm" rel="alternate" type="text/html" title="CS50 筆記：第三講 Algorithms" /><published>2020-12-21T20:50:00+08:00</published><updated>2020-12-21T20:50:00+08:00</updated><id>/blog/cs50-notes-algorithm</id><content type="html" xml:base="/blog/cs50-notes-algorithm">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;本章先簡介了時間複雜度的概念，帶了一點 struct，最後一大半在講不同的 sorting 方式。&lt;/p&gt;
 
@@ -118,12 +118,38 @@
 
 &lt;p&gt;簡單地寫一下我的解答：&lt;/p&gt;
 
-&lt;p&gt;底下是我拿去執行 50000 筆資料的秒數。
-|資料/哪一支程式|sort1|sort2|sort3|
-|————-|—-:|—-:|—-:|
-|sorted       |    4|    1|    8|
-|random       |   16|    3|    6|
-|reversed     |   12|    3|    8|&lt;/p&gt;
+&lt;p&gt;底下是我拿去執行 50000 筆資料的秒數。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;資料/哪一支程式&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;sort1&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;sort2&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;sort3&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;sorted&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;random&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;16&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;reversed&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;12&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;8&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;sort2 穩定地時間很短，應該是 nlogn 的 merge sort&lt;/p&gt;
 
