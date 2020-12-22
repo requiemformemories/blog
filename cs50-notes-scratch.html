@@ -11,7 +11,7 @@
 
 
 
-    <title>[5xRuby實習日記] Javascript 課程心得</title>
+    <title>CS50 筆記：第零講 Scratch</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -25,122 +25,30 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
     <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/blog/2016-spring-5xruby-javascript-course" />
+    <link rel="canonical" href="/blog/cs50-notes-scratch" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="Fumitsuki's magic box" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="[5xRuby實習日記] Javascript 課程心得" />
-    <meta property="og:description" content="覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
-不過由於個人還在就學的緣故，
-因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”
-
-這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
-(沒有HTML只上到第一堂課這麼淒慘就是了)
-我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
-終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。
-
-我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
-而且可以實際上了解要怎麼使用，有什麼時機可以使用。
-
-接著提供一下最後一堂課的筆記：
-善用find找子元素
-$(this).find('.title').toggleClass('active');
-
-用trigger觸發事件
-例如：
-
-	$(.b).on('click',function(){
-	$(.a).trigger('click');
-});
-
-
-這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b
-
-利用data存取、指定
-
-  存取 ex.
-
-
-	$('.home').data('show')
-
-
-如此一來可以存取有home這個class的物件的data-show的值
-
-  指定 ex.
-
-
-	$('.home').data('show','home')
-
-
-把有home這個class的物件的data-show的值改成home
-
-剩下晚一點再來補，不過我有寫在hackMD上提供參考
-
-" />
-    <meta property="og:url" content="/blog/2016-spring-5xruby-javascript-course" />
-    <meta property="og:image" content="/blog/assets/images/5xruby-post.jpg" />
+    <meta property="og:title" content="CS50 筆記：第零講 Scratch" />
+    <meta property="og:description" content="筆記前言 誤打誤撞成為網站開發小雜工以後，默默地工作了一年，深刻地感受到基礎知識的不足。這也促使我決定跑來看看 CS50 的課，惡補一下 CS 領域的基礎知識。 覺得出社會以後可以當個網站工程師掙錢，是相當幸福的。薪資跟社會地位不算太差，又剛好到了不太加班、也給員工許多彈性跟機會的地方。每天都有新的挑戰跟問題，生活非常有趣。但相對的，必須要不斷地成長，不斷地學習，才能爭取更好的發展與未來。 CS50 系列公開課一直都有清楚的講義跟影片，這份筆記比起幫助別人，更像是記錄自己的學習跟成長。 但如果正好你有需要，有想交流討論的地方，都歡迎聯絡我owo/ email: fumitsuki0802@gmail.com lecture 0 英文講義：https://cs50.harvard.edu/college/2020/fall/notes/0/ binary 人類使用 10 進制 (0-9)來表示數字，例如 123 相當於 1 * 10^2 + 2 * 10^1 + 3 * 10 ^ 0 電腦是透過電位差、脈衝的有無來處理訊息，所以只有兩種狀態（比方說高電位、低電位），相當於 0 跟 1。透過 0 跟 1 來表示數字又稱二進制。 例如，三個燈泡最高可以表示到數字 7 （不是 3 XD）(如果只能表示到 3 也太浪費了)" />
+    <meta property="og:url" content="/blog/cs50-notes-scratch" />
+    <meta property="og:image" content="/blog/assets/images/cs50.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2016-04-28T00:02:15+08:00" />
-    <meta property="article:modified_time" content="2016-04-28T00:02:15+08:00" />
-    <meta property="article:tag" content="5xruby" />
+    <meta property="article:published_time" content="2020-12-19T20:01:00+08:00" />
+    <meta property="article:modified_time" content="2020-12-19T20:01:00+08:00" />
+    <meta property="article:tag" content="cs50" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[5xRuby實習日記] Javascript 課程心得" />
-    <meta name="twitter:description" content="覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
-不過由於個人還在就學的緣故，
-因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”
-
-這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
-(沒有HTML只上到第一堂課這麼淒慘就是了)
-我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
-終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。
-
-我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
-而且可以實際上了解要怎麼使用，有什麼時機可以使用。
-
-接著提供一下最後一堂課的筆記：
-善用find找子元素
-$(this).find('.title').toggleClass('active');
-
-用trigger觸發事件
-例如：
-
-	$(.b).on('click',function(){
-	$(.a).trigger('click');
-});
-
-
-這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b
-
-利用data存取、指定
-
-  存取 ex.
-
-
-	$('.home').data('show')
-
-
-如此一來可以存取有home這個class的物件的data-show的值
-
-  指定 ex.
-
-
-	$('.home').data('show','home')
-
-
-把有home這個class的物件的data-show的值改成home
-
-剩下晚一點再來補，不過我有寫在hackMD上提供參考
-
-" />
+    <meta name="twitter:title" content="CS50 筆記：第零講 Scratch" />
+    <meta name="twitter:description" content="筆記前言 誤打誤撞成為網站開發小雜工以後，默默地工作了一年，深刻地感受到基礎知識的不足。這也促使我決定跑來看看 CS50 的課，惡補一下 CS 領域的基礎知識。 覺得出社會以後可以當個網站工程師掙錢，是相當幸福的。薪資跟社會地位不算太差，又剛好到了不太加班、也給員工許多彈性跟機會的地方。每天都有新的挑戰跟問題，生活非常有趣。但相對的，必須要不斷地成長，不斷地學習，才能爭取更好的發展與未來。 CS50 系列公開課一直都有清楚的講義跟影片，這份筆記比起幫助別人，更像是記錄自己的學習跟成長。 但如果正好你有需要，有想交流討論的地方，都歡迎聯絡我owo/ email: fumitsuki0802@gmail.com lecture 0 英文講義：https://cs50.harvard.edu/college/2020/fall/notes/0/ binary 人類使用 10 進制 (0-9)來表示數字，例如 123 相當於 1 * 10^2 + 2 * 10^1 + 3 * 10 ^ 0 電腦是透過電位差、脈衝的有無來處理訊息，所以只有兩種狀態（比方說高電位、低電位），相當於 0 跟 1。透過 0 跟 1 來表示數字又稱二進制。 例如，三個燈泡最高可以表示到數字 7 （不是 3 XD）(如果只能表示到 3 也太浪費了)" />
     <meta name="twitter:url" content="/blog/" />
-    <meta name="twitter:image" content="/blog/assets/images/5xruby-post.jpg" />
+    <meta name="twitter:image" content="/blog/assets/images/cs50.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="5xruby" />
+    <meta name="twitter:data2" content="cs50" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -155,64 +63,18 @@ $(this).find('.title').toggleClass('active');
         "name": "Fumitsuki's magic box",
         "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "/blog/2016-spring-5xruby-javascript-course",
+    "url": "/blog/cs50-notes-scratch",
     "image": {
         "@type": "ImageObject",
-        "url": "/blog/assets/images/5xruby-post.jpg",
+        "url": "/blog/assets/images/cs50.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/blog/2016-spring-5xruby-javascript-course"
+        "@id": "/blog/cs50-notes-scratch"
     },
-    "description": "覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
-不過由於個人還在就學的緣故，
-因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”
-
-這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
-(沒有HTML只上到第一堂課這麼淒慘就是了)
-我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
-終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。
-
-我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
-而且可以實際上了解要怎麼使用，有什麼時機可以使用。
-
-接著提供一下最後一堂課的筆記：
-善用find找子元素
-$(this).find('.title').toggleClass('active');
-
-用trigger觸發事件
-例如：
-
-	$(.b).on('click',function(){
-	$(.a).trigger('click');
-});
-
-
-這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b
-
-利用data存取、指定
-
-  存取 ex.
-
-
-	$('.home').data('show')
-
-
-如此一來可以存取有home這個class的物件的data-show的值
-
-  指定 ex.
-
-
-	$('.home').data('show','home')
-
-
-把有home這個class的物件的data-show的值改成home
-
-剩下晚一點再來補，不過我有寫在hackMD上提供參考
-
-"
+    "description": "筆記前言 誤打誤撞成為網站開發小雜工以後，默默地工作了一年，深刻地感受到基礎知識的不足。這也促使我決定跑來看看 CS50 的課，惡補一下 CS 領域的基礎知識。 覺得出社會以後可以當個網站工程師掙錢，是相當幸福的。薪資跟社會地位不算太差，又剛好到了不太加班、也給員工許多彈性跟機會的地方。每天都有新的挑戰跟問題，生活非常有趣。但相對的，必須要不斷地成長，不斷地學習，才能爭取更好的發展與未來。 CS50 系列公開課一直都有清楚的講義跟影片，這份筆記比起幫助別人，更像是記錄自己的學習跟成長。 但如果正好你有需要，有想交流討論的地方，都歡迎聯絡我owo/ email: fumitsuki0802@gmail.com lecture 0 英文講義：https://cs50.harvard.edu/college/2020/fall/notes/0/ binary 人類使用 10 進制 (0-9)來表示數字，例如 123 相當於 1 * 10^2 + 2 * 10^1 + 3 * 10 ^ 0 電腦是透過電位差、脈衝的有無來處理訊息，所以只有兩種狀態（比方說高電位、低電位），相當於 0 跟 1。透過 0 跟 1 來表示數字又稱二進制。 例如，三個燈泡最高可以表示到數字 7 （不是 3 XD）(如果只能表示到 3 也太浪費了)"
 }
     </script>
 
@@ -225,7 +87,7 @@ $(this).find('.title').toggleClass('active');
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="[5xRuby實習日記] Javascript 課程心得" href="/blog/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="CS50 筆記：第零講 Scratch" href="/blog/feed.xml" />
 
 
 </head>
@@ -287,71 +149,106 @@ into the {body} of the default.hbs template -->
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="27 April 2016">27 April 2016</time>
+                    <time class="post-full-meta-date" datetime="19 December 2020">19 December 2020</time>
                     
                         <span class="date-divider">/</span>
                         
                             
-                               <a href='/blog/tag/5xruby/'>5XRUBY</a>
+                               <a href='/blog/tag/cs50/'>CS50</a>,
+                            
+                        
+                            
+                               <a href='/blog/tag/introduction/'>INTRODUCTION</a>
                             
                         
                     
                 </section>
-                <h1 class="post-full-title">[5xRuby實習日記] Javascript 課程心得</h1>
+                <h1 class="post-full-title">CS50 筆記：第零講 Scratch</h1>
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/blog/assets/images/5xruby-post.jpg)">
+            <figure class="post-full-image" style="background-image: url(/blog/assets/images/cs50.jpg)">
             </figure>
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
-不過由於個人還在就學的緣故，
-因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”</p>
+                    <h2 id="筆記前言">筆記前言</h2>
 
-<p>這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
-(沒有HTML只上到第一堂課這麼淒慘就是了)
-我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
-終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。</p>
+<p>誤打誤撞成為網站開發小雜工以後，默默地工作了一年，深刻地感受到基礎知識的不足。這也促使我決定跑來看看 CS50 的課，惡補一下 CS 領域的基礎知識。</p>
 
-<p>我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
-而且可以實際上了解要怎麼使用，有什麼時機可以使用。</p>
+<p>覺得出社會以後可以當個網站工程師掙錢，是相當幸福的。薪資跟社會地位不算太差，又剛好到了不太加班、也給員工許多彈性跟機會的地方。每天都有新的挑戰跟問題，生活非常有趣。但相對的，必須要不斷地成長，不斷地學習，才能爭取更好的發展與未來。</p>
 
-<p>接著提供一下最後一堂課的筆記：</p>
-<h3 id="善用find找子元素">善用find找子元素</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$(this).find('.title').toggleClass('active');
-</code></pre></div></div>
-<h3 id="用trigger觸發事件">用trigger觸發事件</h3>
-<p>例如：</p>
+<p>CS50 系列公開課一直都有清楚的講義跟影片，這份筆記比起幫助別人，更像是記錄自己的學習跟成長。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	$(.b).on('click',function(){
-	$(.a).trigger('click');
-});
-</code></pre></div></div>
+<p>但如果正好你有需要，有想交流討論的地方，都歡迎聯絡我owo/</p>
 
-<p>這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b</p>
+<p>email: <code class="highlighter-rouge">fumitsuki0802@gmail.com</code></p>
 
-<h3 id="利用data存取指定">利用data存取、指定</h3>
-<ul>
-  <li>存取 ex.</li>
-</ul>
+<h2 id="lecture-0">lecture 0</h2>
+<p>英文講義：https://cs50.harvard.edu/college/2020/fall/notes/0/</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	$('.home').data('show')
-</code></pre></div></div>
+<h3 id="binary">binary</h3>
 
-<p>如此一來可以存取有home這個class的物件的data-show的值</p>
-<ul>
-  <li>指定 ex.</li>
-</ul>
+<p>人類使用 10 進制 (0-9)來表示數字，例如 123 相當於 <code class="highlighter-rouge">1 * 10^2 + 2 * 10^1 + 3 * 10 ^ 0</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	$('.home').data('show','home')
+<p>電腦是透過電位差、脈衝的有無來處理訊息，所以只有兩種狀態（比方說高電位、低電位），相當於 0 跟 1。透過 0 跟 1 來表示數字又稱二進制。</p>
+
+<p>例如，三個燈泡最高可以表示到數字 7 （不是 3 XD）(如果只能表示到 3 也太浪費了)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>off off off   0
+off off on    1
+off on  off   2
+off on  on    3
+on  off off   4
+on  off on    5
+on  on  off   6
+on  on  off   7
 </code></pre></div></div>
 
-<p>把有home這個class的物件的data-show的值改成home</p>
+<p>每一個燈泡就像一個小開關，可以被開啟(1)、關閉(0)，電腦裡面有成千上萬的電晶體 (transistor)就是這個小開關的角色。</p>
 
-<p>剩下晚一點再來補，不過我有寫在<a href="https://hackmd.io/s/rk_X2cdl">hackMD</a>上提供參考</p>
+<h3 id="如何表示文字顏色圖片影片">如何表示文字、顏色、圖片、影片</h3>
+
+<h4 id="字元">字元</h4>
+<p>每個字元可以透過數字來表示，例如 A 是 65，相當於	1000001
+一般的英文字母、數字、基本符號都包含在 ASCII 中（1bytes，可以存 256 種符號）但許多語言需要的空間遠遠超過（漢字、emoji…），所以發展出 UNICODE，有 8, 16, 32…bit 等，目標是涵蓋所有人類語言的字元</p>
+
+<h4 id="顏色">顏色</h4>
+<p>例如 RGB 是用紅綠藍光的多寡來表示一個顏色</p>
+
+<h4 id="圖片">圖片</h4>
+<p>基本的點陣圖圖片是透過一個一個點陣的顏色等資訊所組成
+pixelation</p>
+
+<h3 id="演算法">演算法</h3>
+
+<p>input -&gt; algorithm -&gt; output</p>
+
+<p>演算法必須<strong>正確(correct)與精確(precise)</strong></p>
+
+<p>例如，我想在電話簿中找到我的名字，我的策略是</p>
+
+<pre><code class="language-=">打開書
+翻 10 頁
+看看這一頁
+if 我找的名字在這一頁
+  打電話
+else if 不在這一頁
+  回到 line 2
+結束
+</code></pre>
+
+<p>有可能教授要找的電話在書裡但被我跳過了，這個 algorithm 就不算正確的。</p>
+
+<p>精確的部分，因為電腦不像人類有自己的判斷（「作者可能意思是這樣」、「這裡的鹽加少許大概是一湯匙」），所以必須把步驟寫得精確才能變成可執行的步驟。</p>
+
+<h3 id="scratch">Scratch</h3>
+<p>教授第一堂課帶大家感受寫程式叫大家用用看的工具： https://scratch.mit.edu</p>
+
+<h3 id="抽象化abstraction">抽象化(abstraction)</h3>
+
+<p>把許多步驟細節包在一個 function 裡面，我知道這個 function 可以用來做什麼，但不需要知道實作細節</p>
 
 
                 </div>
@@ -411,7 +308,7 @@ into the {body} of the default.hbs template -->
                         <header class="read-next-card-header">
                             <small class="read-next-card-header-sitetitle">&mdash; Fumitsuki's magic box &mdash;</small>
                             
-                                <h3 class="read-next-card-header-title"><a href="/blog/tag/5xruby/">5xruby</a></h3>
+                                <h3 class="read-next-card-header-title"><a href="/blog/tag/cs50/">Cs50</a></h3>
                             
                         </header>
                         <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
@@ -421,48 +318,53 @@ into the {body} of the default.hbs template -->
                                 
                                 
                                   
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
                                     
-                                  
-                                
-                                  
-                                
-                                  
-                                
+                                        
+                                        
+                                            <li><a href="/blog/cs50-notes-algorithm">CS50 筆記：第三講 Algorithms</a></li>
+                                        
+                                    
                                   
                                 
                                   
                                     
                                         
                                         
-                                            <li><a href="/blog/2016-spring-5xruby-html&css-course">[5xRuby實習日記] HTML & CSS課程心得</a></li>
+                                            <li><a href="/blog/cs50-notes-c">CS50 筆記：第一講 C</a></li>
                                         
                                     
                                   
                                 
                                   
+                                    
+                                  
                                 
                                   
-                                    
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
                                   
                                 
                             </ul>
                         </div>
                         <footer class="read-next-card-footer">
-                            <a href="/blog/tag/5xruby/">
+                            <a href="/blog/tag/cs50/">
                                 
                                     See all 2 posts  →
                                 
@@ -477,25 +379,29 @@ into the {body} of the default.hbs template -->
                 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/blog/backend-with-namespace">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/rails-post.jpg)"></div>
+            <a class="post-card-image-link" href="/blog/cs50-notes-c">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/cs50.jpg)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/backend-with-namespace">
+            <a class="post-card-content-link" href="/blog/cs50-notes-c">
                 <header class="post-card-header">
                     
                         
                             
-                                <span class="post-card-tags">Rails</span>
+                               <span class="post-card-tags">Cs50</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">C</span>
                             
                         
                     
 
-                    <h2 class="post-card-title">[Rails 學習筆記]善用namespace建立後台</h2>
+                    <h2 class="post-card-title">CS50 筆記：第一講 C</h2>
                 </header>
                 <section class="post-card-excerpt">
-                    <p>在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？...</p>
+                    <p>## 筆記前言...</p>
                 </section>
             </a>
             <footer class="post-card-meta">
@@ -517,6 +423,50 @@ into the {body} of the default.hbs template -->
 
             <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
             
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/blog/install-node-lts-on-opsworks-stack">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/stack.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/blog/install-node-lts-on-opsworks-stack">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Opsworks</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Nodejs</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>最近做案子才第一次碰到 Opsworks...</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                        
+                        <span class="post-card-author">
+                            <a href="/blog/author/fumitsuki/">文月</a>
+                        </span>
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
 
         </div>
     </div>
@@ -533,18 +483,18 @@ into the {body} of the default.hbs template -->
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">[5xRuby實習日記] Javascript 課程心得</div>
+    <div class="floating-header-title">CS50 筆記：第零講 Scratch</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%5B5xRuby%E5%AF%A6%E7%BF%92%E6%97%A5%E8%A8%98%5D+Javascript+%E8%AA%B2%E7%A8%8B%E5%BF%83%E5%BE%97&amp;url=https://requiemformemories.github.io/blog/2016-spring-5xruby-javascript-course"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=CS50+%E7%AD%86%E8%A8%98%EF%BC%9A%E7%AC%AC%E9%9B%B6%E8%AC%9B+Scratch&amp;url=https://requiemformemories.github.io/blog/cs50-notes-scratch"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/2016-spring-5xruby-javascript-course"
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/cs50-notes-scratch"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
 

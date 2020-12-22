@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>CS50 筆記：第三講 Algorithms</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="keep calm and eat eight Plates." />
+    <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/blog/cs50-notes-algorithm" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Fumitsuki's magic box" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CS50 筆記：第三講 Algorithms" />
+    <meta property="og:description" content="筆記前言 本章先簡介了時間複雜度的概念，帶了一點 struct，最後一大半在講不同的 sorting 方式。 Lecture 3 Algorithms 英文講義：https://cs50.harvard.edu/college/2020/fall/notes/3 執行時間 第 0 講的時候介紹了兩種搜尋方式：一頁一頁查找電話簿的 linear search &amp; 把電話簿拆半再拆半的 binary search（其實還有每兩頁找一次的進化版 linear search XD） 這三種方式的執行時間分別是 方式 時間 一頁一頁找（linear） n 兩頁兩頁找 n/2 拆半拆半找（二分搜尋） log2 n 在估時間複雜度的時候會把常數省略，常數的影響沒有像次方、對數這麼大，例如 n 跟 n/2 跟 3n 都是 n。log2 n 跟 log3 n 都是 log n。 時間複雜度 這裡介紹了兩種 notation，" />
+    <meta property="og:url" content="/blog/cs50-notes-algorithm" />
+    <meta property="og:image" content="/blog/assets/images/cs50.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:author" content="https://www.facebook.com/" />
+    <meta property="article:published_time" content="2020-12-21T20:50:00+08:00" />
+    <meta property="article:modified_time" content="2020-12-21T20:50:00+08:00" />
+    <meta property="article:tag" content="cs50" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CS50 筆記：第三講 Algorithms" />
+    <meta name="twitter:description" content="筆記前言 本章先簡介了時間複雜度的概念，帶了一點 struct，最後一大半在講不同的 sorting 方式。 Lecture 3 Algorithms 英文講義：https://cs50.harvard.edu/college/2020/fall/notes/3 執行時間 第 0 講的時候介紹了兩種搜尋方式：一頁一頁查找電話簿的 linear search &amp; 把電話簿拆半再拆半的 binary search（其實還有每兩頁找一次的進化版 linear search XD） 這三種方式的執行時間分別是 方式 時間 一頁一頁找（linear） n 兩頁兩頁找 n/2 拆半拆半找（二分搜尋） log2 n 在估時間複雜度的時候會把常數省略，常數的影響沒有像次方、對數這麼大，例如 n 跟 n/2 跟 3n 都是 n。log2 n 跟 log3 n 都是 log n。 時間複雜度 這裡介紹了兩種 notation，" />
+    <meta name="twitter:url" content="/blog/" />
+    <meta name="twitter:image" content="/blog/assets/images/cs50.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Fumitsuki's magic box" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="cs50" />
+    <meta name="twitter:site" content="@Fumitsuki0802" />
+    <meta name="twitter:creator" content="@Fumitsuki0802" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Fumitsuki's magic box",
+        "logo": "/blog/assets/images/blog-icon.png"
+    },
+    "url": "/blog/cs50-notes-algorithm",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/blog/assets/images/cs50.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/blog/cs50-notes-algorithm"
+    },
+    "description": "筆記前言 本章先簡介了時間複雜度的概念，帶了一點 struct，最後一大半在講不同的 sorting 方式。 Lecture 3 Algorithms 英文講義：https://cs50.harvard.edu/college/2020/fall/notes/3 執行時間 第 0 講的時候介紹了兩種搜尋方式：一頁一頁查找電話簿的 linear search &amp; 把電話簿拆半再拆半的 binary search（其實還有每兩頁找一次的進化版 linear search XD） 這三種方式的執行時間分別是 方式 時間 一頁一頁找（linear） n 兩頁兩頁找 n/2 拆半拆半找（二分搜尋） log2 n 在估時間複雜度的時候會把常數省略，常數的影響沒有像次方、對數這麼大，例如 n 跟 n/2 跟 3n 都是 n。log2 n 跟 log3 n 都是 log n。 時間複雜度 這裡介紹了兩種 notation，"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="CS50 筆記：第三講 Algorithms" href="/blog/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+            
+        
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://github.com/requiemformemories" target="_blank" rel="noopener"><?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 478.613 478.613" xml:space="default" width="19px" height="32px">
+<g id="XMLID_122_">
+	<g>
+		<path d="M427.501,200.695c1.776-11.238,2.884-23.56,3.163-37.377c-0.107-59.246-28.468-80.21-33.925-90.038    c8.037-44.89-1.331-65.309-5.688-72.299c-16.07-5.704-55.91,14.722-77.678,29.101c-35.491-10.389-110.494-9.375-138.621,2.689    C122.856-4.389,95.408,1.277,95.408,1.277s-17.745,31.82-4.691,78.371c-17.075,21.759-29.802,37.143-29.802,77.949    c0,9.773,0.607,19.008,1.637,27.893c14.705,77.318,75.97,110.674,136.15,116.426c-9.056,6.881-19.928,19.903-21.432,34.992    c-11.379,7.357-34.268,9.789-52.067,4.193c-24.939-7.88-34.486-57.266-71.833-50.221c-8.081,1.512-6.475,6.842,0.523,11.386    c11.378,7.38,22.094,16.554,30.354,36.185c6.344,15.072,19.687,41.982,61.873,41.982c16.747,0,28.477-1.979,28.477-1.979    s0.319,38.406,0.319,53.385c0,17.238-23.264,22.078-23.264,30.348c0,3.289,7.7,3.601,13.888,3.601    c12.229,0,37.673-10.186,37.673-28.103c0-14.237,0.227-62.081,0.227-70.46c0-18.307,9.811-24.136,9.811-24.136    s1.201,97.727-2.361,110.829c-4.177,15.408-11.744,13.219-11.744,20.076c0,10.233,30.589,2.502,40.735-19.897    c7.849-17.495,4.334-113.331,4.334-113.331l8.183-0.178c0,0,0.094,43.892-0.188,63.944c-0.295,20.769-2.438,47.025,9.898,59.417    c8.097,8.15,32.903,22.451,32.903,9.382c0-7.574-17.371-13.833-17.371-34.353V344.45c10.553,0,12.734,31.072,12.734,31.072    l3.804,57.727c0,0-2.526,21.065,22.756,29.856c8.925,3.126,28.018,3.976,28.913-1.271c0.897-5.26-22.99-13.038-23.217-29.342    c-0.123-9.93,0.445-15.742,0.445-58.934c0-43.168-5.799-59.137-26.007-71.863C355.669,295.681,416.536,269.51,427.501,200.695z" fill="white"/>
+	</g>
+</g>
+</svg>
+</a>
+            
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-speeches ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="21 December 2020">21 December 2020</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/blog/tag/cs50/'>CS50</a>,
+                            
+                        
+                            
+                               <a href='/blog/tag/algorithm/'>ALGORITHM</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">CS50 筆記：第三講 Algorithms</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/blog/assets/images/cs50.jpg)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <h2 id="筆記前言">筆記前言</h2>
+
+<p>本章先簡介了時間複雜度的概念，帶了一點 struct，最後一大半在講不同的 sorting 方式。</p>
+
+<h2 id="lecture-3-algorithms">Lecture 3 Algorithms</h2>
+<p>英文講義：https://cs50.harvard.edu/college/2020/fall/notes/3</p>
+
+<h3 id="執行時間">執行時間</h3>
+
+<p><img src="https://cs50.harvard.edu/college/2020/fall/notes/3/running_time.png" alt="執行時間" /></p>
+
+<p>第 0 講的時候介紹了兩種搜尋方式：一頁一頁查找電話簿的 linear search &amp; 把電話簿拆半再拆半的 binary search（其實還有每兩頁找一次的進化版 linear search XD）</p>
+
+<p>這三種方式的執行時間分別是</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方式</th>
+      <th>時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>一頁一頁找（linear）</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>兩頁兩頁找</td>
+      <td>n/2</td>
+    </tr>
+    <tr>
+      <td>拆半拆半找（二分搜尋）</td>
+      <td>log2 n</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>在估時間複雜度的時候會把常數省略，常數的影響沒有像次方、對數這麼大，例如 n 跟 n/2 跟 3n 都是 n。log2 n 跟 log3 n 都是 log n。</p>
+
+<h3 id="時間複雜度">時間複雜度</h3>
+<p>這裡介紹了兩種 notation， big O 跟 big omega。表示方式像是 O(n)、Ω(n)，唸作 big O of n。</p>
+
+<p>big O 在描述這個資料量與執行時間之間的函數的 upper bound，代表執行時間的最壞情況。</p>
+
+<p>big omega 則是 lower bound，代表最佳情況。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方式</th>
+      <th style="text-align: right">O</th>
+      <th style="text-align: right">Ω</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>linear search</td>
+      <td style="text-align: right">O(n)</td>
+      <td style="text-align: right">Ω(1)</td>
+    </tr>
+    <tr>
+      <td>binary search</td>
+      <td style="text-align: right">O(log n)</td>
+      <td style="text-align: right">Ω(1)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="structs">Structs</h3>
+
+<p>比方說有聯絡人的資料，比起把聯絡人姓名跟電話分成兩個 array 存，把它用 struct 組織起來操作也比較不容易出錯。</p>
+
+<h4 id="bad">bad</h4>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="n">names</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"Brian"</span><span class="p">,</span> <span class="s">"David"</span><span class="p">};</span>
+<span class="n">string</span> <span class="n">numbers</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"+1-617-495-1000"</span><span class="p">,</span> <span class="s">"+1-949-468-2750"</span><span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="good">good</h4>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">person</span><span class="p">;</span>
+
+<span class="c1">// inside main function
+</span><span class="n">person</span> <span class="n">people</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Brian"</span><span class="p">;</span>
+<span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">number</span> <span class="o">=</span> <span class="s">"+1-617-495-1000"</span><span class="p">;</span>
+
+<span class="n">people</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="s">"David"</span><span class="p">;</span>
+<span class="n">people</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">number</span> <span class="o">=</span> <span class="s">"+1-949-468-2750"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="排序">排序</h3>
+
+<p>之所以能夠用 binary search 有一大前題是，要找資料的那個 array 資料是有 sort 過的。</p>
+
+<p>電腦無法像人類一樣一眼望過去就知道怎麼排序移動，只能一次查看一個 item、一次調動一個 item。</p>
+
+<h4 id="selection-sort">selection sort</h4>
+<p>助教影片：https://video.cs50.io/3hH8kTHFw2A （看數字動一次勝過千言萬語啊）</p>
+
+<p>從最左邊開始選定一個數字，把他跟目前右手邊最小的數字交換。</p>
+
+<h4 id="bubble-sort">bubble sort</h4>
+<p>助教影片：https://video.cs50.io/RT-hUXUWQ2I
+兩個兩個做比對，當左邊的元素比右邊大，就左右邊的互換。</p>
+
+<h4 id="merge-sort-top-down">merge sort (top-down)</h4>
+<p>助教影片：https://video.cs50.io/Ns7tGNbtvV4
+把整個 array 切成一個個小 array。切到只有一個元素的時候，每個只有 1 個元素的 array 都是排好的。接著再把排好的 array 接在一起。因為元素已經排序過，所以可以只比較最左（最小）的元素。</p>
+
+<h2 id="lab-3">Lab 3</h2>
+<p>題目給了三支程式 sort1, sort2, sort3，還有一些排序方式不同的資料。要判斷這三個 sort 的程式分別是用哪一種方式（selection? bubble? merge?）來實作。</p>
+
+<p>簡單地寫一下我的解答：</p>
+
+<p>底下是我拿去執行 50000 筆資料的秒數。
+|資料/哪一支程式|sort1|sort2|sort3|
+|————-|—-:|—-:|—-:|
+|sorted       |    4|    1|    8|
+|random       |   16|    3|    6|
+|reversed     |   12|    3|    8|</p>
+
+<p>sort2 穩定地時間很短，應該是 nlogn 的 merge sort</p>
+
+<p>sort1 「已排序」跟「沒有排」的資料執行時間差很多，應該是交換排序（最佳情況 n, 平常 n^2）</p>
+
+<p>所以 sort3 應該是 selection sort。</p>
+
+<h2 id="練習寫-merge-sort">練習寫 merge sort</h2>
+
+<p>先寫了 ruby 版的，但覺得 ruby 拿來寫這個很沒 fu XD（執行時間就素慢（誤</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">numbers</span> <span class="k">if</span> <span class="n">numbers</span><span class="p">.</span><span class="nf">length</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+
+  <span class="n">left_half</span><span class="p">,</span> <span class="n">right_half</span> <span class="o">=</span> <span class="n">split_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">merge_array</span><span class="p">(</span><span class="n">merge_sort</span><span class="p">(</span><span class="n">left_half</span><span class="p">),</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">right_half</span><span class="p">))</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">split_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="nf">length</span>
+  <span class="k">raise</span> <span class="s1">'There should be more than 2 elements in the array'</span> <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;</span> <span class="mi">2</span>
+
+  <span class="n">left_half</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span> <span class="o">..</span> <span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+  <span class="n">right_half</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">..</span> <span class="n">length</span><span class="p">]</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">left_half</span><span class="p">,</span> <span class="n">right_half</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">merge_array</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">)</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="k">while</span> <span class="kp">true</span>
+    <span class="c1"># 其中一個 array shift 空了就把還剩下的往 result 後面接</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="o">+</span> <span class="n">arr1</span> <span class="o">+</span> <span class="n">arr2</span> <span class="k">if</span> <span class="n">arr1</span><span class="p">.</span><span class="nf">empty?</span> <span class="o">||</span> <span class="n">arr2</span><span class="p">.</span><span class="nf">empty?</span>
+    <span class="k">next</span> <span class="n">result</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">arr1</span><span class="p">.</span><span class="nf">shift</span><span class="p">)</span> <span class="k">if</span> <span class="n">arr1</span><span class="p">.</span><span class="nf">first</span> <span class="o">&lt;</span> <span class="n">arr2</span><span class="p">.</span><span class="nf">first</span>
+
+    <span class="n">result</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">arr2</span><span class="p">.</span><span class="nf">shift</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">merge_sort</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+
+</code></pre></div></div>
+
+<p>接著挑戰寫一下 C。對 C 的操作還不太熟（苦笑），先直接更動了原 array。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#define NELEMS(x)  (sizeof(x) / sizeof((x)[0]))
+</span>
+<span class="kt">void</span> <span class="n">merge_sort</span><span class="p">();</span>
+<span class="kt">void</span> <span class="n">merge_array</span><span class="p">();</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">};</span>
+    <span class="n">merge_sort</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">NELEMS</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Result: "</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NELEMS</span><span class="p">(</span><span class="n">num</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">", "</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">last_idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">&gt;=</span> <span class="n">last_idx</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">mid_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="n">last_idx</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">merge_sort</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">mid_idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">merge_sort</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">mid_idx</span><span class="p">,</span> <span class="n">last_idx</span><span class="p">);</span>
+    <span class="n">merge_array</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">mid_idx</span><span class="p">,</span> <span class="n">last_idx</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">merge_array</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mid_idx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">last_idx</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">last_idx</span> <span class="o">-</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">ori_mid_idx</span> <span class="o">=</span> <span class="n">mid_idx</span> <span class="o">-</span> <span class="n">idx</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">ori_num</span><span class="p">[</span><span class="n">length</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">lselect</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">rselect</span> <span class="o">=</span> <span class="n">ori_mid_idx</span><span class="p">;</span>
+
+    <span class="c1">// 把 num array 複製進 ori_num
+</span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">length</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">ori_num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ori_num 是原本 left 跟 right 的內容
+</span>    <span class="c1">// 判斷完誰大誰小以後直接更動原 array
+</span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">length</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rselect</span> <span class="o">&gt;=</span> <span class="n">length</span><span class="p">){</span>
+            <span class="n">num</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ori_num</span><span class="p">[</span><span class="n">lselect</span><span class="o">++</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">lselect</span> <span class="o">&gt;=</span> <span class="n">ori_mid_idx</span><span class="p">){</span>
+            <span class="n">num</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ori_num</span><span class="p">[</span><span class="n">rselect</span><span class="o">++</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">ori_num</span><span class="p">[</span><span class="n">lselect</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">ori_num</span><span class="p">[</span><span class="n">rselect</span><span class="p">]){</span>
+            <span class="n">num</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ori_num</span><span class="p">[</span><span class="n">lselect</span><span class="o">++</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">num</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ori_num</span><span class="p">[</span><span class="n">rselect</span><span class="o">++</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+
+
+<span class="cp">## hello world in C
+</span>
+<span class="cp">### CS50 IDE
+</span><span class="n">https</span><span class="o">:</span><span class="c1">//ide.cs50.io/
+</span>
+<span class="o">*</span> <span class="err">看起來是被</span> <span class="n">AWS</span> <span class="err">買走的</span> <span class="n">cloud</span> <span class="mi">9</span> <span class="err">（這是</span> <span class="n">AWS</span> <span class="err">贊助嗎，有錢真好</span><span class="n">w</span><span class="err">）</span>
+<span class="o">*</span> <span class="err">相當於在操作一台遠端的機器</span>
+<span class="o">*</span> <span class="err">視窗畫面主要包含</span> <span class="n">text</span> <span class="n">editor</span> <span class="err">跟</span> <span class="n">terminal</span> <span class="n">window</span> <span class="err">兩個部分</span>
+
+<span class="cp">### source code / machine code
+</span>
+<span class="err">第一隻</span> <span class="n">C</span> <span class="err">小程式：</span>
+<span class="err">```</span><span class="n">c</span>
+<span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"hello, world"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>像這樣人類還可以理解閱讀的 code 叫做 source code。然而電腦只看得懂 0 跟 1，所以我們需要另一個程式來把 source code 轉換成 machine code。</p>
+
+<h3 id="scratch-to-c">Scratch to C</h3>
+
+<h4 id="function">function</h4>
+<p>printf 相當於 scratch 的 say block，這裡的 f 代表 formatted(使用像是 <code class="highlighter-rouge">%s</code> 這樣的 format code)。像這樣一小段可以運作的小程式就叫 <strong>function</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>argument -&gt; function -&gt; output
+</code></pre></div></div>
+
+<p>function 的 output 通常有兩種：</p>
+
+<h5 id="1-side-effects">(1) side effects</h5>
+<p>像 say block 跟 printf 會印出東西來的行為算是 side effect。</p>
+
+<h5 id="2-return-values--variables">(2) return values / variables</h5>
+
+<p>給你一個回傳值，讓你可以接起來繼續運用。例如 scratch 的 ask block，接住使用者輸入的內容之後把值傳回去給你。</p>
+
+<h4 id="assignment">assignment</h4>
+
+<p><code class="highlighter-rouge">=</code> 非數學裡面的相等之意，在這裡叫 assignment</p>
+
+<h4 id="semicolon">semicolon</h4>
+<p>syntax 的一部分，一開始忘記打常常會 debug 找半天，別讓他挫折你w</p>
+
+<h4 id="main-函式">main 函式</h4>
+<p>總之先把它當成 scratch 的 start block</p>
+
+<h4 id="header-files">header files</h4>
+<p>副檔名為 h 的檔案，像範例中的 cs50 library
+用 scratch 的 extension 相當於在 c 裡加 header file</p>
+
+<h4 id="cs50-工具">CS50 工具</h4>
+
+<ul>
+  <li>help50：編譯錯誤解釋小工具，給你比 compiler 還要人性化一點的說明
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>help50 make hello
+</code></pre></div>    </div>
+  </li>
+  <li>style50：調整 coding style 的工具</li>
+  <li>check50：跑測資的工具</li>
+</ul>
+
+<h4 id="data-types">data types</h4>
+
+<p>資料型別可以讓電腦知道怎麼解析這些 data</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>中文名稱</th>
+      <th>Data Type</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>布林值</td>
+      <td>bool</td>
+      <td><code class="highlighter-rouge">true</code> 或 <code class="highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td>字元</td>
+      <td>char</td>
+      <td>單個 ASCII 字元，例如 <code class="highlighter-rouge">a</code> 或 <code class="highlighter-rouge">2</code></td>
+    </tr>
+    <tr>
+      <td>雙精度浮點數</td>
+      <td>double</td>
+      <td>浮點數，比 float 更精確，小數點後面更多位</td>
+    </tr>
+    <tr>
+      <td>單精度浮點數</td>
+      <td>float</td>
+      <td>浮點數</td>
+    </tr>
+    <tr>
+      <td>整數</td>
+      <td>int</td>
+      <td>可以儲存特定大小以內的整數數字</td>
+    </tr>
+    <tr>
+      <td>長整數</td>
+      <td>long</td>
+      <td>用了更多 bits，比 int 可以放更大的數字</td>
+    </tr>
+    <tr>
+      <td>字串</td>
+      <td>string</td>
+      <td>一串字元</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="operators">operators</h4>
+<ul>
+  <li><code class="highlighter-rouge">+</code>: 加法</li>
+  <li><code class="highlighter-rouge">-</code>: 減法</li>
+  <li><code class="highlighter-rouge">*</code>: 乘法</li>
+  <li><code class="highlighter-rouge">/</code>: 除法</li>
+  <li><code class="highlighter-rouge">%</code>: 求餘數</li>
+</ul>
+
+<h4 id="選擇結構if">選擇結構(if)</h4>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x is less than y</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x is greater than y</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x is equal to y</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="重複結構">重複結構</h4>
+
+<ul>
+  <li>
+    <p>while 迴圈</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>for 迴圈</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="float-limitation-integer-overflow">float limitation, integer overflow</h4>
+
+<p>舉例來說 三個燈泡(相當於3個 bits)可以表示大的數字為 7 (111)，當他再進味的時候會變成 (1000)，但因為只有 3 個 bits，所以等於回到 0 (000)。</p>
+
+<p>當試圖放入 int 的數字大於他可以表示的最大範圍時也會發生這種現象，這就叫 overflow</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="fumitsuki" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/blog/author/fumitsuki">文月</a></h4>
+                                
+                                    <p>擅長耍雷的フレンズ，在茫茫海海探索人生中</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/blog/author/fumitsuki">Read More</a>
+                        </div>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/blog/assets/images/blog-cover.jpg)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; Fumitsuki's magic box &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/blog/tag/cs50/">Cs50</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/blog/cs50-notes-c">CS50 筆記：第一講 C</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/blog/cs50-notes-scratch">CS50 筆記：第零講 Scratch</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/blog/tag/cs50/">
+                                
+                                    See all 2 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/blog/cs50-notes-c">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/cs50.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/blog/cs50-notes-c">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Cs50</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">C</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">CS50 筆記：第一講 C</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>筆記前言 本章主要在講...</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                        
+                        <span class="post-card-author">
+                            <a href="/blog/author/fumitsuki/">文月</a>
+                        </span>
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/blog/">
+            
+                <img src="/blog/assets/images/favicon.png" alt="Fumitsuki's magic box icon" />
+            
+            <span>Fumitsuki's magic box</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">CS50 筆記：第三講 Algorithms</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=CS50+%E7%AD%86%E8%A8%98%EF%BC%9A%E7%AC%AC%E4%B8%89%E8%AC%9B+Algorithms&amp;url=https://requiemformemories.github.io/blog/cs50-notes-algorithm"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/cs50-notes-algorithm"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2020</section>
+                <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/blog/">Latest Posts</a>
+                    <a href="https://GitHub.com/requiemformemories" target="_blank" rel="noopener">Github</a>
+                    <a href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/blog/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/blog/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69281367-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

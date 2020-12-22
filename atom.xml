@@ -8,6 +8,51 @@
     
       
       <item>
+        <title>CS50 筆記：第三講 Algorithms</title>
+        
+          <description>&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Mon, 21 Dec 2020 12:50:00 +0000</pubDate>
+        <link>
+        /cs50-notes-algorithm</link>
+        <guid isPermaLink="true">/cs50-notes-algorithm</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>CS50 筆記：第一講 C</title>
+        
+          <description>&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sun, 20 Dec 2020 12:09:00 +0000</pubDate>
+        <link>
+        /cs50-notes-c</link>
+        <guid isPermaLink="true">/cs50-notes-c</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>CS50 筆記：第零講 Scratch</title>
+        
+          <description>&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Sat, 19 Dec 2020 12:01:00 +0000</pubDate>
+        <link>
+        /cs50-notes-scratch</link>
+        <guid isPermaLink="true">/cs50-notes-scratch</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title>
         
           <description>&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;

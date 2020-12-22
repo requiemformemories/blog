@@ -1,4 +1,665 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-08-12T12:59:38+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title><link href="/blog/install-node-lts-on-opsworks-stack" rel="alternate" type="text/html" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" /><published>2020-08-11T20:09:00+08:00</published><updated>2020-08-11T20:09:00+08:00</updated><id>/blog/install-node-lts-on-opsworks-stack</id><content type="html" xml:base="/blog/install-node-lts-on-opsworks-stack">&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-12-22T16:18:58+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">CS50 筆記：第三講 Algorithms</title><link href="/blog/cs50-notes-algorithm" rel="alternate" type="text/html" title="CS50 筆記：第三講 Algorithms" /><published>2020-12-21T20:50:00+08:00</published><updated>2020-12-21T20:50:00+08:00</updated><id>/blog/cs50-notes-algorithm</id><content type="html" xml:base="/blog/cs50-notes-algorithm">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+
+&lt;p&gt;本章先簡介了時間複雜度的概念，帶了一點 struct，最後一大半在講不同的 sorting 方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;lecture-3-algorithms&quot;&gt;Lecture 3 Algorithms&lt;/h2&gt;
+&lt;p&gt;英文講義：https://cs50.harvard.edu/college/2020/fall/notes/3&lt;/p&gt;
+
+&lt;h3 id=&quot;執行時間&quot;&gt;執行時間&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cs50.harvard.edu/college/2020/fall/notes/3/running_time.png&quot; alt=&quot;執行時間&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第 0 講的時候介紹了兩種搜尋方式：一頁一頁查找電話簿的 linear search &amp;amp; 把電話簿拆半再拆半的 binary search（其實還有每兩頁找一次的進化版 linear search XD）&lt;/p&gt;
+
+&lt;p&gt;這三種方式的執行時間分別是&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;方式&lt;/th&gt;
+      &lt;th&gt;時間&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;一頁一頁找（linear）&lt;/td&gt;
+      &lt;td&gt;n&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;兩頁兩頁找&lt;/td&gt;
+      &lt;td&gt;n/2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;拆半拆半找（二分搜尋）&lt;/td&gt;
+      &lt;td&gt;log2 n&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;在估時間複雜度的時候會把常數省略，常數的影響沒有像次方、對數這麼大，例如 n 跟 n/2 跟 3n 都是 n。log2 n 跟 log3 n 都是 log n。&lt;/p&gt;
+
+&lt;h3 id=&quot;時間複雜度&quot;&gt;時間複雜度&lt;/h3&gt;
+&lt;p&gt;這裡介紹了兩種 notation， big O 跟 big omega。表示方式像是 O(n)、Ω(n)，唸作 big O of n。&lt;/p&gt;
+
+&lt;p&gt;big O 在描述這個資料量與執行時間之間的函數的 upper bound，代表執行時間的最壞情況。&lt;/p&gt;
+
+&lt;p&gt;big omega 則是 lower bound，代表最佳情況。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;方式&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;O&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Ω&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;linear search&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;O(n)&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Ω(1)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;binary search&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;O(log n)&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;Ω(1)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;structs&quot;&gt;Structs&lt;/h3&gt;
+
+&lt;p&gt;比方說有聯絡人的資料，比起把聯絡人姓名跟電話分成兩個 array 存，把它用 struct 組織起來操作也比較不容易出錯。&lt;/p&gt;
+
+&lt;h4 id=&quot;bad&quot;&gt;bad&lt;/h4&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Brian&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;David&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;+1-617-495-1000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;+1-949-468-2750&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;good&quot;&gt;good&lt;/h4&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// inside main function
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;person&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;people&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;people&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Brian&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;people&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;+1-617-495-1000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;people&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;David&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;people&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;+1-949-468-2750&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;排序&quot;&gt;排序&lt;/h3&gt;
+
+&lt;p&gt;之所以能夠用 binary search 有一大前題是，要找資料的那個 array 資料是有 sort 過的。&lt;/p&gt;
+
+&lt;p&gt;電腦無法像人類一樣一眼望過去就知道怎麼排序移動，只能一次查看一個 item、一次調動一個 item。&lt;/p&gt;
+
+&lt;h4 id=&quot;selection-sort&quot;&gt;selection sort&lt;/h4&gt;
+&lt;p&gt;助教影片：https://video.cs50.io/3hH8kTHFw2A （看數字動一次勝過千言萬語啊）&lt;/p&gt;
+
+&lt;p&gt;從最左邊開始選定一個數字，把他跟目前右手邊最小的數字交換。&lt;/p&gt;
+
+&lt;h4 id=&quot;bubble-sort&quot;&gt;bubble sort&lt;/h4&gt;
+&lt;p&gt;助教影片：https://video.cs50.io/RT-hUXUWQ2I
+兩個兩個做比對，當左邊的元素比右邊大，就左右邊的互換。&lt;/p&gt;
+
+&lt;h4 id=&quot;merge-sort-top-down&quot;&gt;merge sort (top-down)&lt;/h4&gt;
+&lt;p&gt;助教影片：https://video.cs50.io/Ns7tGNbtvV4
+把整個 array 切成一個個小 array。切到只有一個元素的時候，每個只有 1 個元素的 array 都是排好的。接著再把排好的 array 接在一起。因為元素已經排序過，所以可以只比較最左（最小）的元素。&lt;/p&gt;
+
+&lt;h2 id=&quot;lab-3&quot;&gt;Lab 3&lt;/h2&gt;
+&lt;p&gt;題目給了三支程式 sort1, sort2, sort3，還有一些排序方式不同的資料。要判斷這三個 sort 的程式分別是用哪一種方式（selection? bubble? merge?）來實作。&lt;/p&gt;
+
+&lt;p&gt;簡單地寫一下我的解答：&lt;/p&gt;
+
+&lt;p&gt;底下是我拿去執行 50000 筆資料的秒數。
+|資料/哪一支程式|sort1|sort2|sort3|
+|————-|—-:|—-:|—-:|
+|sorted       |    4|    1|    8|
+|random       |   16|    3|    6|
+|reversed     |   12|    3|    8|&lt;/p&gt;
+
+&lt;p&gt;sort2 穩定地時間很短，應該是 nlogn 的 merge sort&lt;/p&gt;
+
+&lt;p&gt;sort1 「已排序」跟「沒有排」的資料執行時間差很多，應該是交換排序（最佳情況 n, 平常 n^2）&lt;/p&gt;
+
+&lt;p&gt;所以 sort3 應該是 selection sort。&lt;/p&gt;
+
+&lt;h2 id=&quot;練習寫-merge-sort&quot;&gt;練習寫 merge sort&lt;/h2&gt;
+
+&lt;p&gt;先寫了 ruby 版的，但覺得 ruby 拿來寫這個很沒 fu XD（執行時間就素慢（誤&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;left_half&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_half&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;split_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left_half&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right_half&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;split_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;length&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'There should be more than 2 elements in the array'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;left_half&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;right_half&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left_half&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right_half&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# 其中一個 array shift 空了就把還剩下的往 result 後面接&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;empty?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;empty?&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;shift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;shift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接著挑戰寫一下 C。對 C 的操作還不太熟（苦笑），先直接更動了原 array。&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+#define NELEMS(x)  (sizeof(x) / sizeof((x)[0]))
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NELEMS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Result: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NELEMS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid_idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid_idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;merge_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;merge_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;merge_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last_idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_mid_idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mid_idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lselect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rselect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_mid_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// 把 num array 複製進 ori_num
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ori_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// ori_num 是原本 left 跟 right 的內容
+&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// 判斷完誰大誰小以後直接更動原 array
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rselect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lselect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lselect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_mid_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rselect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ori_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lselect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rselect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lselect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ori_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rselect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+
+
+
+&lt;span class=&quot;cp&quot;&gt;## hello world in C
+&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;### CS50 IDE
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//ide.cs50.io/
+&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;看起來是被&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AWS&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;買走的&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cloud&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;（這是&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AWS&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;贊助嗎，有錢真好&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;）&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;相當於在操作一台遠端的機器&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;視窗畫面主要包含&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;editor&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;跟&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;terminal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;兩個部分&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;### source code / machine code
+&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;第一隻&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;小程式：&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;```&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;像這樣人類還可以理解閱讀的 code 叫做 source code。然而電腦只看得懂 0 跟 1，所以我們需要另一個程式來把 source code 轉換成 machine code。&lt;/p&gt;
+
+&lt;h3 id=&quot;scratch-to-c&quot;&gt;Scratch to C&lt;/h3&gt;
+
+&lt;h4 id=&quot;function&quot;&gt;function&lt;/h4&gt;
+&lt;p&gt;printf 相當於 scratch 的 say block，這裡的 f 代表 formatted(使用像是 &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt; 這樣的 format code)。像這樣一小段可以運作的小程式就叫 &lt;strong&gt;function&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;argument -&amp;gt; function -&amp;gt; output
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;function 的 output 通常有兩種：&lt;/p&gt;
+
+&lt;h5 id=&quot;1-side-effects&quot;&gt;(1) side effects&lt;/h5&gt;
+&lt;p&gt;像 say block 跟 printf 會印出東西來的行為算是 side effect。&lt;/p&gt;
+
+&lt;h5 id=&quot;2-return-values--variables&quot;&gt;(2) return values / variables&lt;/h5&gt;
+
+&lt;p&gt;給你一個回傳值，讓你可以接起來繼續運用。例如 scratch 的 ask block，接住使用者輸入的內容之後把值傳回去給你。&lt;/p&gt;
+
+&lt;h4 id=&quot;assignment&quot;&gt;assignment&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;=&lt;/code&gt; 非數學裡面的相等之意，在這裡叫 assignment&lt;/p&gt;
+
+&lt;h4 id=&quot;semicolon&quot;&gt;semicolon&lt;/h4&gt;
+&lt;p&gt;syntax 的一部分，一開始忘記打常常會 debug 找半天，別讓他挫折你w&lt;/p&gt;
+
+&lt;h4 id=&quot;main-函式&quot;&gt;main 函式&lt;/h4&gt;
+&lt;p&gt;總之先把它當成 scratch 的 start block&lt;/p&gt;
+
+&lt;h4 id=&quot;header-files&quot;&gt;header files&lt;/h4&gt;
+&lt;p&gt;副檔名為 h 的檔案，像範例中的 cs50 library
+用 scratch 的 extension 相當於在 c 裡加 header file&lt;/p&gt;
+
+&lt;h4 id=&quot;cs50-工具&quot;&gt;CS50 工具&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;help50：編譯錯誤解釋小工具，給你比 compiler 還要人性化一點的說明
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;help50 make hello
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;style50：調整 coding style 的工具&lt;/li&gt;
+  &lt;li&gt;check50：跑測資的工具&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;data-types&quot;&gt;data types&lt;/h4&gt;
+
+&lt;p&gt;資料型別可以讓電腦知道怎麼解析這些 data&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;中文名稱&lt;/th&gt;
+      &lt;th&gt;Data Type&lt;/th&gt;
+      &lt;th&gt;說明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;布林值&lt;/td&gt;
+      &lt;td&gt;bool&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;字元&lt;/td&gt;
+      &lt;td&gt;char&lt;/td&gt;
+      &lt;td&gt;單個 ASCII 字元，例如 &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;雙精度浮點數&lt;/td&gt;
+      &lt;td&gt;double&lt;/td&gt;
+      &lt;td&gt;浮點數，比 float 更精確，小數點後面更多位&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;單精度浮點數&lt;/td&gt;
+      &lt;td&gt;float&lt;/td&gt;
+      &lt;td&gt;浮點數&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;整數&lt;/td&gt;
+      &lt;td&gt;int&lt;/td&gt;
+      &lt;td&gt;可以儲存特定大小以內的整數數字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;長整數&lt;/td&gt;
+      &lt;td&gt;long&lt;/td&gt;
+      &lt;td&gt;用了更多 bits，比 int 可以放更大的數字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;字串&lt;/td&gt;
+      &lt;td&gt;string&lt;/td&gt;
+      &lt;td&gt;一串字元&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;operators&quot;&gt;operators&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;: 加法&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;: 減法&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;: 乘法&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;: 除法&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;: 求餘數&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;選擇結構if&quot;&gt;選擇結構(if)&lt;/h4&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is less than y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is greater than y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is equal to y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;重複結構&quot;&gt;重複結構&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;while 迴圈&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;for 迴圈&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;float-limitation-integer-overflow&quot;&gt;float limitation, integer overflow&lt;/h4&gt;
+
+&lt;p&gt;舉例來說 三個燈泡(相當於3個 bits)可以表示大的數字為 7 (111)，當他再進味的時候會變成 (1000)，但因為只有 3 個 bits，所以等於回到 0 (000)。&lt;/p&gt;
+
+&lt;p&gt;當試圖放入 int 的數字大於他可以表示的最大範圍時也會發生這種現象，這就叫 overflow&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="algorithm" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第一講 C</title><link href="/blog/cs50-notes-c" rel="alternate" type="text/html" title="CS50 筆記：第一講 C" /><published>2020-12-20T20:09:00+08:00</published><updated>2020-12-20T20:09:00+08:00</updated><id>/blog/cs50-notes-c</id><content type="html" xml:base="/blog/cs50-notes-c">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+
+&lt;p&gt;本章主要在講 c 的 syntax ，最基本的資料型別、if、迴圈等等。
+有趣的是他拿 scratch 的元件來跟 c 對比。
+如果已經有程式相關的基礎知識，這章其實可以跳過w&lt;/p&gt;
+
+&lt;h2 id=&quot;lecture-1&quot;&gt;Lecture 1&lt;/h2&gt;
+
+&lt;p&gt;英文講義：https://cs50.harvard.edu/college/2020/fall/notes/1&lt;/p&gt;
+
+&lt;p&gt;寫程式需要注意的三個面向：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;correctness&lt;/strong&gt;: 執行結果正確如預期&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;well-designed&lt;/strong&gt;: 效率好，沒有多做不該做的 work&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;well-styled&lt;/strong&gt;: 好的 style 才能增加可讀性&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;hello-world-in-c&quot;&gt;hello world in C&lt;/h2&gt;
+
+&lt;h3 id=&quot;cs50-ide&quot;&gt;CS50 IDE&lt;/h3&gt;
+&lt;p&gt;https://ide.cs50.io/&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;看起來是被 AWS 買走的 cloud 9 （這是 AWS 贊助嗎，有錢真好w）&lt;/li&gt;
+  &lt;li&gt;相當於在操作一台遠端的機器&lt;/li&gt;
+  &lt;li&gt;視窗畫面主要包含 text editor 跟 terminal window 兩個部分&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;source-code--machine-code&quot;&gt;source code / machine code&lt;/h3&gt;
+
+&lt;p&gt;第一隻 C 小程式：&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;像這樣人類還可以理解閱讀的 code 叫做 source code。然而電腦只看得懂 0 跟 1，所以我們需要另一個程式來把 source code 轉換成 machine code。&lt;/p&gt;
+
+&lt;h3 id=&quot;scratch-to-c&quot;&gt;Scratch to C&lt;/h3&gt;
+
+&lt;h4 id=&quot;function&quot;&gt;function&lt;/h4&gt;
+&lt;p&gt;printf 相當於 scratch 的 say block，這裡的 f 代表 formatted(使用像是 &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt; 這樣的 format code)。像這樣一小段可以運作的小程式就叫 &lt;strong&gt;function&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;argument -&amp;gt; function -&amp;gt; output
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;function 的 output 通常有兩種：&lt;/p&gt;
+
+&lt;h5 id=&quot;1-side-effects&quot;&gt;(1) side effects&lt;/h5&gt;
+&lt;p&gt;像 say block 跟 printf 會印出東西來的行為算是 side effect。&lt;/p&gt;
+
+&lt;h5 id=&quot;2-return-values--variables&quot;&gt;(2) return values / variables&lt;/h5&gt;
+
+&lt;p&gt;給你一個回傳值，讓你可以接起來繼續運用。例如 scratch 的 ask block，接住使用者輸入的內容之後把值傳回去給你。&lt;/p&gt;
+
+&lt;h4 id=&quot;assignment&quot;&gt;assignment&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;=&lt;/code&gt; 非數學裡面的相等之意，在這裡叫 assignment&lt;/p&gt;
+
+&lt;h4 id=&quot;semicolon&quot;&gt;semicolon&lt;/h4&gt;
+&lt;p&gt;syntax 的一部分，一開始忘記打常常會 debug 找半天，別讓他挫折你w&lt;/p&gt;
+
+&lt;h4 id=&quot;main-函式&quot;&gt;main 函式&lt;/h4&gt;
+&lt;p&gt;總之先把它當成 scratch 的 start block&lt;/p&gt;
+
+&lt;h4 id=&quot;header-files&quot;&gt;header files&lt;/h4&gt;
+&lt;p&gt;副檔名為 h 的檔案，像範例中的 cs50 library
+用 scratch 的 extension 相當於在 c 裡加 header file&lt;/p&gt;
+
+&lt;h4 id=&quot;cs50-工具&quot;&gt;CS50 工具&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;help50：編譯錯誤解釋小工具，給你比 compiler 還要人性化一點的說明
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;help50 make hello
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;style50：調整 coding style 的工具&lt;/li&gt;
+  &lt;li&gt;check50：跑測資的工具&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;data-types&quot;&gt;data types&lt;/h4&gt;
+
+&lt;p&gt;資料型別可以讓電腦知道怎麼解析這些 data&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;中文名稱&lt;/th&gt;
+      &lt;th&gt;Data Type&lt;/th&gt;
+      &lt;th&gt;說明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;布林值&lt;/td&gt;
+      &lt;td&gt;bool&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;字元&lt;/td&gt;
+      &lt;td&gt;char&lt;/td&gt;
+      &lt;td&gt;單個 ASCII 字元，例如 &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;雙精度浮點數&lt;/td&gt;
+      &lt;td&gt;double&lt;/td&gt;
+      &lt;td&gt;浮點數，比 float 更精確，小數點後面更多位&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;單精度浮點數&lt;/td&gt;
+      &lt;td&gt;float&lt;/td&gt;
+      &lt;td&gt;浮點數&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;整數&lt;/td&gt;
+      &lt;td&gt;int&lt;/td&gt;
+      &lt;td&gt;可以儲存特定大小以內的整數數字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;長整數&lt;/td&gt;
+      &lt;td&gt;long&lt;/td&gt;
+      &lt;td&gt;用了更多 bits，比 int 可以放更大的數字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;字串&lt;/td&gt;
+      &lt;td&gt;string&lt;/td&gt;
+      &lt;td&gt;一串字元&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;operators&quot;&gt;operators&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;: 加法&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;: 減法&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;: 乘法&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;: 除法&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;: 求餘數&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;選擇結構if&quot;&gt;選擇結構(if)&lt;/h4&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is less than y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is greater than y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is equal to y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;重複結構&quot;&gt;重複結構&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;while 迴圈&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;for 迴圈&lt;/p&gt;
+
+    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;float-limitation-integer-overflow&quot;&gt;float limitation, integer overflow&lt;/h4&gt;
+
+&lt;p&gt;舉例來說 三個燈泡(相當於3個 bits)可以表示大的數字為 7 (111)，當他再進味的時候會變成 (1000)，但因為只有 3 個 bits，所以等於回到 0 (000)。&lt;/p&gt;
+
+&lt;p&gt;當試圖放入 int 的數字大於他可以表示的最大範圍時也會發生這種現象，這就叫 overflow&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="c" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第零講 Scratch</title><link href="/blog/cs50-notes-scratch" rel="alternate" type="text/html" title="CS50 筆記：第零講 Scratch" /><published>2020-12-19T20:01:00+08:00</published><updated>2020-12-19T20:01:00+08:00</updated><id>/blog/cs50-notes-scratch</id><content type="html" xml:base="/blog/cs50-notes-scratch">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+
+&lt;p&gt;誤打誤撞成為網站開發小雜工以後，默默地工作了一年，深刻地感受到基礎知識的不足。這也促使我決定跑來看看 CS50 的課，惡補一下 CS 領域的基礎知識。&lt;/p&gt;
+
+&lt;p&gt;覺得出社會以後可以當個網站工程師掙錢，是相當幸福的。薪資跟社會地位不算太差，又剛好到了不太加班、也給員工許多彈性跟機會的地方。每天都有新的挑戰跟問題，生活非常有趣。但相對的，必須要不斷地成長，不斷地學習，才能爭取更好的發展與未來。&lt;/p&gt;
+
+&lt;p&gt;CS50 系列公開課一直都有清楚的講義跟影片，這份筆記比起幫助別人，更像是記錄自己的學習跟成長。&lt;/p&gt;
+
+&lt;p&gt;但如果正好你有需要，有想交流討論的地方，都歡迎聯絡我owo/&lt;/p&gt;
+
+&lt;p&gt;email: &lt;code class=&quot;highlighter-rouge&quot;&gt;fumitsuki0802@gmail.com&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;lecture-0&quot;&gt;lecture 0&lt;/h2&gt;
+&lt;p&gt;英文講義：https://cs50.harvard.edu/college/2020/fall/notes/0/&lt;/p&gt;
+
+&lt;h3 id=&quot;binary&quot;&gt;binary&lt;/h3&gt;
+
+&lt;p&gt;人類使用 10 進制 (0-9)來表示數字，例如 123 相當於 &lt;code class=&quot;highlighter-rouge&quot;&gt;1 * 10^2 + 2 * 10^1 + 3 * 10 ^ 0&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;電腦是透過電位差、脈衝的有無來處理訊息，所以只有兩種狀態（比方說高電位、低電位），相當於 0 跟 1。透過 0 跟 1 來表示數字又稱二進制。&lt;/p&gt;
+
+&lt;p&gt;例如，三個燈泡最高可以表示到數字 7 （不是 3 XD）(如果只能表示到 3 也太浪費了)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;off off off   0
+off off on    1
+off on  off   2
+off on  on    3
+on  off off   4
+on  off on    5
+on  on  off   6
+on  on  off   7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;每一個燈泡就像一個小開關，可以被開啟(1)、關閉(0)，電腦裡面有成千上萬的電晶體 (transistor)就是這個小開關的角色。&lt;/p&gt;
+
+&lt;h3 id=&quot;如何表示文字顏色圖片影片&quot;&gt;如何表示文字、顏色、圖片、影片&lt;/h3&gt;
+
+&lt;h4 id=&quot;字元&quot;&gt;字元&lt;/h4&gt;
+&lt;p&gt;每個字元可以透過數字來表示，例如 A 是 65，相當於	1000001
+一般的英文字母、數字、基本符號都包含在 ASCII 中（1bytes，可以存 256 種符號）但許多語言需要的空間遠遠超過（漢字、emoji…），所以發展出 UNICODE，有 8, 16, 32…bit 等，目標是涵蓋所有人類語言的字元&lt;/p&gt;
+
+&lt;h4 id=&quot;顏色&quot;&gt;顏色&lt;/h4&gt;
+&lt;p&gt;例如 RGB 是用紅綠藍光的多寡來表示一個顏色&lt;/p&gt;
+
+&lt;h4 id=&quot;圖片&quot;&gt;圖片&lt;/h4&gt;
+&lt;p&gt;基本的點陣圖圖片是透過一個一個點陣的顏色等資訊所組成
+pixelation&lt;/p&gt;
+
+&lt;h3 id=&quot;演算法&quot;&gt;演算法&lt;/h3&gt;
+
+&lt;p&gt;input -&amp;gt; algorithm -&amp;gt; output&lt;/p&gt;
+
+&lt;p&gt;演算法必須&lt;strong&gt;正確(correct)與精確(precise)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;例如，我想在電話簿中找到我的名字，我的策略是&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-=&quot;&gt;打開書
+翻 10 頁
+看看這一頁
+if 我找的名字在這一頁
+  打電話
+else if 不在這一頁
+  回到 line 2
+結束
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;有可能教授要找的電話在書裡但被我跳過了，這個 algorithm 就不算正確的。&lt;/p&gt;
+
+&lt;p&gt;精確的部分，因為電腦不像人類有自己的判斷（「作者可能意思是這樣」、「這裡的鹽加少許大概是一湯匙」），所以必須把步驟寫得精確才能變成可執行的步驟。&lt;/p&gt;
+
+&lt;h3 id=&quot;scratch&quot;&gt;Scratch&lt;/h3&gt;
+&lt;p&gt;教授第一堂課帶大家感受寫程式叫大家用用看的工具： https://scratch.mit.edu&lt;/p&gt;
+
+&lt;h3 id=&quot;抽象化abstraction&quot;&gt;抽象化(abstraction)&lt;/h3&gt;
+
+&lt;p&gt;把許多步驟細節包在一個 function 裡面，我知道這個 function 可以用來做什麼，但不需要知道實作細節&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="introduction" /><summary type="html">筆記前言</summary></entry><entry><title type="html">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title><link href="/blog/install-node-lts-on-opsworks-stack" rel="alternate" type="text/html" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" /><published>2020-08-11T20:09:00+08:00</published><updated>2020-08-11T20:09:00+08:00</updated><id>/blog/install-node-lts-on-opsworks-stack</id><content type="html" xml:base="/blog/install-node-lts-on-opsworks-stack">&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/wVA9b2O.jpg&quot; alt=&quot;新增 stack&quot; /&gt;&lt;/p&gt;
 
@@ -1124,194 +1785,4 @@ gorails 上的教學，不過這篇就比較複雜一些了。&lt;/li&gt;
 我覺得我自己還常犯的錯有：沒有把相同的html放到一個partial裡重複利用、直接在view裡面呼叫model…之類的。&lt;/p&gt;
 
 &lt;p&gt;以後還是要學習得夠扎實，還有多注意這些細節。
-希望之後能夠更熟悉rails的運作，從義大利麵程式碼中脫身而出XD&lt;/p&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">最近一直在反思學習歷程， 還有探討接下來應該要怎麼樣繼續磨練技術， 剛好看到兩篇不錯的文章：</summary></entry><entry><title type="html">[Rails學習筆記] 用Settingslogic把重要資訊藏起來!</title><link href="/blog/hide-routes-and-authenticate-with-settingslogic" rel="alternate" type="text/html" title="[Rails學習筆記] 用Settingslogic把重要資訊藏起來!" /><published>2016-05-12T20:33:54+08:00</published><updated>2016-05-12T20:33:54+08:00</updated><id>/blog/hide-routes-and-authenticate-with-settingslogic</id><content type="html" xml:base="/blog/hide-routes-and-authenticate-with-settingslogic">&lt;p&gt;首先來碎碎念一下XD
-最近花了好多時間在寫自己的blog，
-其實一直很想把它推到Github上(為了綠綠的contributions!!)，
-但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD&lt;/p&gt;
-
-&lt;p&gt;經過大師提點(?)之後才知道原來這是可以解決的呢XD
-要解決這個問題有兩種方法，
-一種是把設定值放在ENV，
-另一種則是用settinglogic來解決這個問題。
-這邊會提到的是後者~&lt;/p&gt;
-
-&lt;p&gt;(正文要開始了w)&lt;/p&gt;
-
-&lt;h3 id=&quot;安裝gem&quot;&gt;安裝gem&lt;/h3&gt;
-
-&lt;p&gt;首先呢，先在 &lt;strong&gt;Gemfile&lt;/strong&gt; 中加入：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;settingslogic&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然後在terminal執行 &lt;code class=&quot;highlighter-rouge&quot;&gt;$ bundle&lt;/code&gt; 就安裝完成了。&lt;/p&gt;
-
-&lt;h3 id=&quot;使用settinglogic&quot;&gt;使用Settinglogic&lt;/h3&gt;
-&lt;p&gt;這個gem的詳細說明可以看github上的&lt;a href=&quot;https://github.com/binarylogic/settingslogic&quot;&gt;README&lt;/a&gt;。
-那這邊就簡單介紹初步的使用~&lt;/p&gt;
-
-&lt;p&gt;在 &lt;strong&gt;app/model&lt;/strong&gt; 中加入 &lt;strong&gt;settings.rb&lt;/strong&gt;，
-裡面加入以下的內容：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Settings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Settingslogic&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/config/application.yml&quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;env&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;那code中的 &lt;code class=&quot;highlighter-rouge&quot;&gt;application.yml&lt;/code&gt; 就是等一下要放後台路徑跟帳密的地方~&lt;/p&gt;
-
-&lt;p&gt;接著務必記得把 &lt;strong&gt;application.yml&lt;/strong&gt; 加到 &lt;strong&gt;.gitignore&lt;/strong&gt; 中，
-否則所有努力都是白費的噢~~~&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;$ echo &quot;config/application.yml&quot; &amp;gt;&amp;gt; .gitignore&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;後台路徑&quot;&gt;後台路徑&lt;/h3&gt;
-&lt;p&gt;上次在文章 &lt;a href=&quot;http://fumitsuki-blog.herokuapp.com/articles/backend-with-namespace&quot;&gt;善用namespace建立後台&lt;/a&gt; 中有提到後台路徑的作法，
-這邊要更進階的把後台路徑藏起來~&lt;/p&gt;
-
-&lt;p&gt;打開 &lt;strong&gt;config/route.rb&lt;/strong&gt; ，原本的後台路徑應該是：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:admin&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這邊要把它改成：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;path: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Settings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;admin_path_prefix&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這裡的 ‘admin_path_prefix&lt;code class=&quot;highlighter-rouge&quot;&gt; 到時候會放在 **application.yml** 存後台路徑。
-(可以自己取，要叫 &lt;/code&gt;backend_path` 什麼的隨意~)
-所以接著就在 &lt;strong&gt;config/&lt;/strong&gt; 中加入 &lt;strong&gt;application.yml&lt;/strong&gt;，裡面加上：&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;&amp;amp;defaults&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;development&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;*defaults&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;admin_path_prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;your_admin_path&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;*defaults&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;admin_path_prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;your_admin_path&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;production&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;*defaults&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;admin_path_prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;your_admin_path&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這裡的 ` your_admin_path&lt;code class=&quot;highlighter-rouge&quot;&gt; 就是後台路徑~ 
-可以根據不同的環境自訂後台~
-如果 &lt;/code&gt;$ rails s` 的時候會出錯，建議檢查一下有沒有多打少打什麼，還有縮排正不正確。&lt;/p&gt;
-
-&lt;h3 id=&quot;http-basic-authetication&quot;&gt;http basic authetication&lt;/h3&gt;
-&lt;p&gt;常常用 http basic authetication 都是在 controller 中加入：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;http_basic_authenticate_with&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;password: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;my_secret&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;如果這行跟著 controller 一起被推上github repo的話，肯定會被黑黑攻陷的！(誤)
-所以也要想辦法放到 application.yml 中。
-所以先把現在這行改成：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;http_basic_authenticate_with&lt;/span&gt;  &lt;span class=&quot;no&quot;&gt;Settings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;http_basic_auth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_h&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這裡的 &lt;code class=&quot;highlighter-rouge&quot;&gt;http_basic_auth&lt;/code&gt; 就是會在 &lt;strong&gt;application.yml&lt;/strong&gt; 中加入的帳密，
-&lt;code class=&quot;highlighter-rouge&quot;&gt;.to_h&lt;/code&gt; 會把 &lt;code class=&quot;highlighter-rouge&quot;&gt;http_basic_auth&lt;/code&gt; 轉成雜湊。&lt;/p&gt;
-
-&lt;p&gt;接著呢，在 &lt;strong&gt;application.yml&lt;/strong&gt;加入&lt;code class=&quot;highlighter-rouge&quot;&gt;http_basic_auth&lt;/code&gt; ：&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;&amp;amp;defaults&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;development&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
- &lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;*defaults&lt;/span&gt;
- &lt;span class=&quot;na&quot;&gt;admin_path_prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;your_admin_path&lt;/span&gt;
- &lt;span class=&quot;na&quot;&gt;http_basic_auth&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;your_name&lt;/span&gt; 
-    &lt;span class=&quot;s&quot;&gt;:password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Your_password&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
- &lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;*defaults&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;production&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
- &lt;span class=&quot;s&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;*defaults&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;admin_path_prefix&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;your_admin_path&lt;/span&gt;
- &lt;span class=&quot;s&quot;&gt;http_basic_auth&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;your_name&lt;/span&gt; 
-    &lt;span class=&quot;s&quot;&gt;:password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Your_password&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這樣就大功告成了！接著只要開啟server確定有好好運作就OK了~
-照理來說後台路徑會變成 &lt;code class=&quot;highlighter-rouge&quot;&gt;your_admin_path/your_controller_name&lt;/code&gt; 噢~&lt;/p&gt;
-
-&lt;p&gt;到這裡告一段落~ 趕快來試試看吧！&lt;/p&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">首先來碎碎念一下XD 最近花了好多時間在寫自己的blog， 其實一直很想把它推到Github上(為了綠綠的contributions!!)， 但是又怕後台路徑跟帳號密碼會被看光光，其實煩惱了一陣子XD</summary></entry><entry><title type="html">[5xRuby實習日記] HTML &amp;amp; CSS課程心得</title><link href="/blog/2016-spring-5xruby-html&css-course" rel="alternate" type="text/html" title="[5xRuby實習日記] HTML &amp; CSS課程心得" /><published>2016-04-29T00:56:13+08:00</published><updated>2016-04-29T00:56:13+08:00</updated><id>/blog/2016-spring-5xruby-html&amp;css-course</id><content type="html" xml:base="/blog/2016-spring-5xruby-html&amp;css-course">&lt;p&gt;首先呢，我要先懺悔一下XD
-由於課務的關係有點忙忙的，所以沒有全程參與HTML的課程，
-而且老實說我只有去上第一堂課QwQ”
-要不然我覺得Amos講師講得還不錯的說…&lt;/p&gt;
-
-&lt;p&gt;所幸這是第二次上Amos的課，所以我還生得出心得來(X)&lt;/p&gt;
-
-&lt;p&gt;雖然以前就碰過一點點HTML跟CSS，
-但是一直倚賴bootstrap套版，
-其實沒有好好的練習過自己切版、寫RWD，
-而且也沒有顧及SEO的部分，
-我覺得這點就還重要的。&lt;/p&gt;
-
-&lt;p&gt;覺得雖然可以看過網路上的文件，就大概知道怎麼樣使用標籤、怎麼刻CSS，
-但其中還是有很多枚枚角角，真的還是要有有經驗的人來提點，
-還有怎麼刻會有那些缺點之類的，我覺得這點也是收穫最多的部分吧。&lt;/p&gt;
-
-&lt;p&gt;有興趣的話可以追蹤一下Amos講師的網站&lt;a href=&quot;csscoke.com&quot;&gt;CSS可樂&lt;/a&gt;，
-還有容我工商服務一下w 可以參考一下&lt;a href=&quot;https://5xruby.tw/talks?category=front-end&quot;&gt;五倍紅寶石的前端課程&lt;/a&gt;噢XD&lt;/p&gt;</content><author><name>文月</name></author><category term="5xruby" /><summary type="html">首先呢，我要先懺悔一下XD 由於課務的關係有點忙忙的，所以沒有全程參與HTML的課程， 而且老實說我只有去上第一堂課QwQ” 要不然我覺得Amos講師講得還不錯的說…</summary></entry><entry><title type="html">[Rails 學習筆記]善用namespace建立後台</title><link href="/blog/backend-with-namespace" rel="alternate" type="text/html" title="[Rails 學習筆記]善用namespace建立後台" /><published>2016-04-28T00:07:19+08:00</published><updated>2016-04-28T00:07:19+08:00</updated><id>/blog/backend-with-namespace</id><content type="html" xml:base="/blog/backend-with-namespace">&lt;p&gt;在寫blog的時候一直很苦惱要怎麼寫後台，
-是要另外有一個叫backend的controller嗎？還是怎麼樣呢？&lt;/p&gt;
-
-&lt;p&gt;後來才知道原來有namespace這東西，覺得人間愉快(X)&lt;/p&gt;
-
-&lt;p&gt;所以廢話少說就開始吧！&lt;/p&gt;
-
-&lt;h3 id=&quot;route的部分&quot;&gt;route的部分&lt;/h3&gt;
-&lt;p&gt;首先到 &lt;strong&gt;route.rb&lt;/strong&gt; 加入：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:admin&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;resources&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:articles&lt;/span&gt;
- &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這樣index的路徑就換變成 &lt;strong&gt;admin/articles&lt;/strong&gt; 了， 
-可以用&lt;code class=&quot;highlighter-rouge&quot;&gt;$ rake routes&lt;/code&gt;來看一下路徑長什麼樣子。&lt;/p&gt;
-
-&lt;p&gt;然後這邊要特別注意（大師提點的，不是我自己說的w），
-盡量不要用admin、backend這種大家都想得到的名稱。
-否則後台很容易被恐怖的大黑黑所攻陷。(黑黑最喜歡戳戳了(́◉◞౪◟◉‵))&lt;/p&gt;
-
-&lt;p&gt;當然，article的部分就是controller的名字，要叫posts…什麼的都可以。&lt;/p&gt;
-
-&lt;h3 id=&quot;controller的部分&quot;&gt;Controller的部分&lt;/h3&gt;
-&lt;p&gt;接下來是contorller的部分，這邊只要有基本的CRUD加上認證就OK了。
-（其他功能就自己盡情加吧，那就跟本文無關了w）
-可以善用command line來建立controller，像是：&lt;code class=&quot;highlighter-rouge&quot;&gt;$ rails g controller admin/articles&lt;/code&gt;
-這個時候可以發現多出了 &lt;strong&gt;app/controllers/admin/articles_controller.rb&lt;/strong&gt; 這個檔案，
-到這裡後台的路徑就差不多了。&lt;/p&gt;
-
-&lt;h3 id=&quot;使用者認證&quot;&gt;使用者認證&lt;/h3&gt;
-&lt;p&gt;這個部分看是多使用者還是單一使用者，
-如果是單一使用者的話可以用簡單的 &lt;strong&gt;http basic authenticate&lt;/strong&gt; 來處理。&lt;/p&gt;
-
-&lt;p&gt;在剛剛的 &lt;strong&gt;admin/articles_controller.rb&lt;/strong&gt; 中加入：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;http_basic_authenticate_with&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;your_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;password: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;your_password&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這邊的&lt;code class=&quot;highlighter-rouge&quot;&gt;your_name&lt;/code&gt;跟&lt;code class=&quot;highlighter-rouge&quot;&gt;your_password&lt;/code&gt;就自由填入自訂的帳號密碼吧！
-多使用者的話，可以用 &lt;strong&gt;devise&lt;/strong&gt; 這個方便好用的套件。&lt;/p&gt;
-
-&lt;p&gt;首先，在 &lt;strong&gt;Gemfile&lt;/strong&gt; 中加入：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'devise'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然後在命令列輸入&lt;code class=&quot;highlighter-rouge&quot;&gt;$ bundle&lt;/code&gt;就可以安裝套件了。
-接著呢，再命令列輸入&lt;code class=&quot;highlighter-rouge&quot;&gt;$ rails g devise:install&lt;/code&gt;來產生devise設定檔
-再輸入&lt;code class=&quot;highlighter-rouge&quot;&gt;$ rails g devise user&lt;/code&gt;產生user model，然後便忘了&lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt;來migrate它。Devise也提供view的樣板可以使用，在命令列輸入&lt;code class=&quot;highlighter-rouge&quot;&gt;rails generate devise:views&lt;/code&gt;就可以自動產生了。&lt;/p&gt;
-
-&lt;p&gt;除此之外，
-其實也有後台的套件可以用，像說&lt;a href=&quot;https://github.com/sferik/rails_admin&quot;&gt;rails_admin&lt;/a&gt;之類的，可以參考看看呢。&lt;/p&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">在寫blog的時候一直很苦惱要怎麼寫後台， 是要另外有一個叫backend的controller嗎？還是怎麼樣呢？</summary></entry></feed>
+希望之後能夠更熟悉rails的運作，從義大利麵程式碼中脫身而出XD&lt;/p&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">最近一直在反思學習歷程， 還有探討接下來應該要怎麼樣繼續磨練技術， 剛好看到兩篇不錯的文章：</summary></entry></feed>
