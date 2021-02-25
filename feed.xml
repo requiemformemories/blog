@@ -1,4 +1,213 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-12-22T16:27:21+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">CS50 筆記：第三講 Algorithms</title><link href="/blog/cs50-notes-algorithm" rel="alternate" type="text/html" title="CS50 筆記：第三講 Algorithms" /><published>2020-12-21T20:50:00+08:00</published><updated>2020-12-21T20:50:00+08:00</updated><id>/blog/cs50-notes-algorithm</id><content type="html" xml:base="/blog/cs50-notes-algorithm">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-02-25T18:08:47+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">CS50 筆記：第四講 Memory</title><link href="/blog/cs50-notes-memory" rel="alternate" type="text/html" title="CS50 筆記：第四講 Memory" /><published>2021-02-25T15:34:00+08:00</published><updated>2021-02-25T15:34:00+08:00</updated><id>/blog/cs50-notes-memory</id><content type="html" xml:base="/blog/cs50-notes-memory">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+
+&lt;p&gt;覺得這章是課程中我覺得蠻有趣的一章，除了學到了很多我以前不會的東西以外，這章的 &lt;a href=&quot;https://cs50.harvard.edu/college/2020/fall/psets/4/filter/more/&quot;&gt;problem set&lt;/a&gt; 很有趣，會帶著大家做一些基本的圖片處理（灰階、模糊、反轉、探測邊緣）。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;記憶體就像下圖的格子一樣有一格又一格的空間，我們可以幫每個 byte 編號。通常在電腦科學裡面會用十六進制來編號。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/cs50_memory_1.png&quot; alt=&quot;memory grid&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;十六進制&quot;&gt;十六進制&lt;/h3&gt;
+
+&lt;p&gt;遇到 15 進位，十進制中的 10, 11, 12, 13, 14, 15 分別用 A, B, C, D, E, F 來表示。&lt;/p&gt;
+
+&lt;p&gt;十六進制的數數就會像底下這樣
+00
+01
+02
+03
+04
+05
+06
+07
+08
+09
+0A (還沒進位！)
+0B
+0C
+0D
+0E
+0F
+10
+…&lt;/p&gt;
+
+&lt;p&gt;所以兩位數的時候最多可以算到 FF (十進制的 255)&lt;/p&gt;
+
+&lt;p&gt;正好十六進制 FF 相當於二進制的 11111111（8bits!），每個十六進制的位數都可以表示 4 個 bits，正好可以用 2 個為表示一個 bytes&lt;/p&gt;
+
+&lt;p&gt;1111 1111 =&amp;gt; FF&lt;/p&gt;
+
+&lt;h4 id=&quot;hex-color-codes&quot;&gt;Hex Color Codes&lt;/h4&gt;
+
+&lt;p&gt;常看到的網頁色碼 &lt;code class=&quot;highlighter-rouge&quot;&gt;#f0f8ff&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;#db90b5&lt;/code&gt;，就是用分別用 1 個 byte來表示紅綠藍三種顏色的光的量，來表示一個顏色。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/cs50_memory_2.png&quot; alt=&quot;hex color&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;pointer&quot;&gt;pointer&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt; address of: 這個變數在哪個記憶體位置&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;: 這個記憶體位置存的是誰&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;string&quot;&gt;string&lt;/h3&gt;
+
+&lt;p&gt;一個 string 是一個 char 組成的陣列，之前學過透過 &lt;code class=&quot;highlighter-rouge&quot;&gt;[]&lt;/code&gt; 來取得各個元素，例如 &lt;code class=&quot;highlighter-rouge&quot;&gt;s[1]&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;s[2]&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;s[3]&lt;/code&gt;。因為陣列是連續的記憶體空間，每個元素會正好相鄰（char 佔一個 byte，因此每個元素的位置都隔一個 byte）&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;HI!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%c&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 例如 0x125
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%c&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0x126
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%c&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0x127
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;於是，除了 &lt;code class=&quot;highlighter-rouge&quot;&gt;s[1]&lt;/code&gt; ，我們可以透過指標的方式 &lt;code class=&quot;highlighter-rouge&quot;&gt;*(s+1)&lt;/code&gt; 來獲得下一個元素的內容&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;HI!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%c&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%c&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%c&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;segmentation-fault&quot;&gt;segmentation fault&lt;/h4&gt;
+
+&lt;p&gt;當我們嘗試去操作不該碰的 memory ，程式會發生 segmentation fault。&lt;/p&gt;
+
+&lt;h3 id=&quot;compare--copy&quot;&gt;compare &amp;amp; copy&lt;/h3&gt;
+
+&lt;p&gt;比較兩個 &lt;code class=&quot;highlighter-rouge&quot;&gt;*char&lt;/code&gt; 其實是在比較記憶體位置，即便 value 一樣也會被判斷成是不同的（&lt;code class=&quot;highlighter-rouge&quot;&gt;str1 == str2&lt;/code&gt; 為 false）&lt;/p&gt;
+
+&lt;h3 id=&quot;valgrind&quot;&gt;valgrind&lt;/h3&gt;
+
+&lt;p&gt;如果自行 malloc 要記得 free，忘記的話就會造成 memory leak，這些被忘記 free 的記憶體無法再被其他程式使用。&lt;/p&gt;
+
+&lt;p&gt;這種時候就可以使用 valgrind ，可以用來檢查程式是否有造成 memory leak 的工具，在 CS50 IDE 裡面預設有裝。&lt;/p&gt;
+
+&lt;p&gt;比方說當前目錄有個叫 memory 的執行檔，可以跑 &lt;code class=&quot;highlighter-rouge&quot;&gt;valgrind ./memory&lt;/code&gt; 看他的分析&lt;/p&gt;
+
+&lt;h3 id=&quot;作用域&quot;&gt;作用域&lt;/h3&gt;
+
+&lt;p&gt;教授寫了一個 function swap 試圖交換兩個值的內容：&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is %i, y is %i&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is %i, y is %i&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但最後印出來的結果會是&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x is 1, y is 2
+x is 1, y is 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;實際上執行會是，在主程式裡面的時候在 stack 裡放上 x 跟 y 的值。到 swap 裡時再放上 a 跟 b 的值，如下圖。 a 和 b 交換完以後，記憶體被釋放（a 跟 b 放的 1 跟 2 變成 garbage value），回到主程式。於是 x 跟 y 都保持原樣。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/cs50_memory_3.png&quot; alt=&quot;memory stack&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;所以要在另一個 function 中交換 x, y，就必須透過指標。&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is %i, y is %i&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is %i, y is %i&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;scanf&quot;&gt;scanf&lt;/h3&gt;
+
+&lt;p&gt;之前都是用 cs50.h 的 get_string 等等，助教講師群包好的工具。實際上要自己獲得使用者的 output 的話，可以用 scanf。&lt;/p&gt;
+
+&lt;p&gt;get_string 方便的點是他把 linked list 之類的部分處理好了，可以接任意長度的用戶 input，但 scanf 就要看你自己拿來接的 &lt;code class=&quot;highlighter-rouge&quot;&gt;char *&lt;/code&gt;的長度。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;char *&lt;/code&gt; 再自己 malloc 和陣列可以做到差不多的效果，差別在於陣列用 memory 中的 stack，系統會幫你處理好不會 memory leak，malloc 則是用 heap，要記得 free 否則會造成 memory leak&lt;/p&gt;
+
+&lt;h3 id=&quot;fopen-fprintf-fclose&quot;&gt;fopen, fprintf, fclose&lt;/h3&gt;
+
+&lt;p&gt;記憶體裡的內容會隨著電源關閉而消失，如果想要長久保存資料，就必須存在印碟裡，把資料寫入檔案中。&lt;/p&gt;
+
+&lt;p&gt;教授透過電話簿的範例，來示範檔案相關的操作&lt;/p&gt;
+
+&lt;h4 id=&quot;讀檔&quot;&gt;讀檔&lt;/h4&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;phonebook.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;寫入&quot;&gt;寫入&lt;/h4&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;%s,%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;關閉檔案&quot;&gt;關閉檔案&lt;/h4&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;fclose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;jpeg&quot;&gt;jpeg&lt;/h3&gt;
+
+&lt;p&gt;可以用前幾個 bytes 就判斷一個檔案是否為 jpeg（被稱為 magic number）。因為這些檔案有特定的 standard，可以快速分辨它是什麼檔案&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;先用 fread 讀檔&lt;/li&gt;
+  &lt;li&gt;jpeg 前三個 bytes 會是: 0xff 0xd8 0xff&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;quiz&quot;&gt;quiz&lt;/h3&gt;
+
+&lt;p&gt;1) In your own words, what is a pointer?&lt;/p&gt;
+
+&lt;p&gt;我自己的答案：在 C 裡面的一種 data type，用來存放記憶體位置。在 C 裡面，我們可以透過指標去取出他指向的值（dereferencing）。&lt;/p&gt;
+
+&lt;p&gt;2) If s is of type string, in what sense is s a pointer?&lt;/p&gt;
+
+&lt;p&gt;我自己的答案：在 c 當中不存在 string 這個型別，實際上他是 &lt;code class=&quot;highlighter-rouge&quot;&gt;char *&lt;/code&gt; （只是在 cs50.h 裡把它定義成叫做 string 的 type。 &lt;code class=&quot;highlighter-rouge&quot;&gt;char *&lt;/code&gt; 代表他是個指標，指向的 value 應該被當成 char 來解讀。&lt;/p&gt;
+
+&lt;p&gt;3) If s and t are of type string, why can we not use s == t to check whether s and t contain the same characters?&lt;/p&gt;
+
+&lt;p&gt;我自己的答案：當 s 跟 t 都是 &lt;code class=&quot;highlighter-rouge&quot;&gt;char *&lt;/code&gt;，在做 &lt;code class=&quot;highlighter-rouge&quot;&gt;s == t&lt;/code&gt; 這件事情實際上的意思是在比較兩個記憶體位置，即便 t 指向的位置存的內容跟 s 指向的位置存的內容一樣，兩個記憶體位置有可能是不一樣的，所以無法用這種方式去比較 s 和 t 是否有相同的字串。&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第三講 Algorithms</title><link href="/blog/cs50-notes-algorithm" rel="alternate" type="text/html" title="CS50 筆記：第三講 Algorithms" /><published>2020-12-21T20:50:00+08:00</published><updated>2020-12-21T20:50:00+08:00</updated><id>/blog/cs50-notes-algorithm</id><content type="html" xml:base="/blog/cs50-notes-algorithm">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;本章先簡介了時間複雜度的概念，帶了一點 struct，最後一大半在講不同的 sorting 方式。&lt;/p&gt;
 
@@ -249,7 +458,7 @@
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="algorithm" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第一講 C</title><link href="/blog/cs50-notes-c" rel="alternate" type="text/html" title="CS50 筆記：第一講 C" /><published>2020-12-20T20:09:00+08:00</published><updated>2020-12-20T20:09:00+08:00</updated><id>/blog/cs50-notes-c</id><content type="html" xml:base="/blog/cs50-notes-c">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>文月</name></author><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第一講 C</title><link href="/blog/cs50-notes-c" rel="alternate" type="text/html" title="CS50 筆記：第一講 C" /><published>2020-12-20T20:09:00+08:00</published><updated>2020-12-20T20:09:00+08:00</updated><id>/blog/cs50-notes-c</id><content type="html" xml:base="/blog/cs50-notes-c">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;本章主要在講 c 的 syntax ，最基本的資料型別、if、迴圈等等。
 有趣的是他拿 scratch 的元件來跟 c 對比。
@@ -436,7 +645,7 @@
 
 &lt;p&gt;舉例來說 三個燈泡(相當於3個 bits)可以表示大的數字為 7 (111)，當他再進味的時候會變成 (1000)，但因為只有 3 個 bits，所以等於回到 0 (000)。&lt;/p&gt;
 
-&lt;p&gt;當試圖放入 int 的數字大於他可以表示的最大範圍時也會發生這種現象，這就叫 overflow&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="c" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第零講 Scratch</title><link href="/blog/cs50-notes-scratch" rel="alternate" type="text/html" title="CS50 筆記：第零講 Scratch" /><published>2020-12-19T20:01:00+08:00</published><updated>2020-12-19T20:01:00+08:00</updated><id>/blog/cs50-notes-scratch</id><content type="html" xml:base="/blog/cs50-notes-scratch">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+&lt;p&gt;當試圖放入 int 的數字大於他可以表示的最大範圍時也會發生這種現象，這就叫 overflow&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第零講 Scratch</title><link href="/blog/cs50-notes-scratch" rel="alternate" type="text/html" title="CS50 筆記：第零講 Scratch" /><published>2020-12-19T20:01:00+08:00</published><updated>2020-12-19T20:01:00+08:00</updated><id>/blog/cs50-notes-scratch</id><content type="html" xml:base="/blog/cs50-notes-scratch">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;誤打誤撞成為網站開發小雜工以後，默默地工作了一年，深刻地感受到基礎知識的不足。這也促使我決定跑來看看 CS50 的課，惡補一下 CS 領域的基礎知識。&lt;/p&gt;
 
@@ -511,7 +720,7 @@ else if 不在這一頁
 
 &lt;h3 id=&quot;抽象化abstraction&quot;&gt;抽象化(abstraction)&lt;/h3&gt;
 
-&lt;p&gt;把許多步驟細節包在一個 function 裡面，我知道這個 function 可以用來做什麼，但不需要知道實作細節&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="introduction" /><summary type="html">筆記前言</summary></entry><entry><title type="html">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title><link href="/blog/install-node-lts-on-opsworks-stack" rel="alternate" type="text/html" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" /><published>2020-08-11T20:09:00+08:00</published><updated>2020-08-11T20:09:00+08:00</updated><id>/blog/install-node-lts-on-opsworks-stack</id><content type="html" xml:base="/blog/install-node-lts-on-opsworks-stack">&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;
+&lt;p&gt;把許多步驟細節包在一個 function 裡面，我知道這個 function 可以用來做什麼，但不需要知道實作細節&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title><link href="/blog/install-node-lts-on-opsworks-stack" rel="alternate" type="text/html" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" /><published>2020-08-11T20:09:00+08:00</published><updated>2020-08-11T20:09:00+08:00</updated><id>/blog/install-node-lts-on-opsworks-stack</id><content type="html" xml:base="/blog/install-node-lts-on-opsworks-stack">&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/wVA9b2O.jpg&quot; alt=&quot;新增 stack&quot; /&gt;&lt;/p&gt;
 
@@ -1616,25 +1825,4 @@ $ vagrant up
   &lt;li&gt;&lt;a href=&quot;https://gorails.com/guides/using-vagrant-for-rails-development&quot;&gt;Using Vagrant for Rails Development&lt;/a&gt;
 gorails 上的教學，不過這篇就比較複雜一些了。&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/rails/rails-dev-box&quot;&gt;Rails dev box&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">相信這個世界上有許多人和我一樣，窮窮的買不起mac， 又沒有可以用 linux 的腦袋跟耐心，所以只好一直被windows慘虐QAQ”</summary></entry><entry><title type="html">[Rails學習筆記] 推薦初學者閱讀的兩篇文章</title><link href="/blog/two-articles-recommend-to-rails-beginner" rel="alternate" type="text/html" title="[Rails學習筆記] 推薦初學者閱讀的兩篇文章" /><published>2016-05-12T20:52:27+08:00</published><updated>2016-05-12T20:52:27+08:00</updated><id>/blog/two-articles-recommend-to-rails-beginner</id><content type="html" xml:base="/blog/two-articles-recommend-to-rails-beginner">&lt;p&gt;最近一直在反思學習歷程，
-還有探討接下來應該要怎麼樣繼續磨練技術，
-剛好看到兩篇不錯的文章：&lt;/p&gt;
-
-&lt;h3 id=&quot;how-i-trained-to-learn-rails&quot;&gt;How I trained to learn rails&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://medium.com/how-i-learned-ruby-rails/how-i-trained-to-learn-rails-e08c94e2a51e#.x8nx8aqld&quot;&gt;How I trained to learn rails&lt;/a&gt;
-文中有推薦的學習資源，還有一些學習的建議。
-我個人覺得”Not Copying/Pasting Code”、”Not getting tired of Google-ing”、”Reading Documentation and Source Codes”三個建議蠻受用的。&lt;/p&gt;
-
-&lt;h3 id=&quot;top-10-mistakes-that-rails-programmers-make&quot;&gt;Top 10 mistakes that rails programmers make&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.toptal.com/ruby-on-rails/top-10-mistakes-that-rails-programmers-make&quot;&gt;Top 10 mistakes that rails programmers make&lt;/a&gt;
-這篇文章提到許多rails開發者會犯的錯誤，
-比方說不要放太多logic在view或controller裡面，
-用太多的gems (我覺得像我現在就很依賴gem，又不知所以然)，
-忽略log file，沒有注意到N+1 Queues的問題…等等。
-我覺得都還蠻重要的。&lt;/p&gt;
-
-&lt;p&gt;除了以上10個錯誤以外，
-我覺得我自己還常犯的錯有：沒有把相同的html放到一個partial裡重複利用、直接在view裡面呼叫model…之類的。&lt;/p&gt;
-
-&lt;p&gt;以後還是要學習得夠扎實，還有多注意這些細節。
-希望之後能夠更熟悉rails的運作，從義大利麵程式碼中脫身而出XD&lt;/p&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">最近一直在反思學習歷程， 還有探討接下來應該要怎麼樣繼續磨練技術， 剛好看到兩篇不錯的文章：</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">相信這個世界上有許多人和我一樣，窮窮的買不起mac， 又沒有可以用 linux 的腦袋跟耐心，所以只好一直被windows慘虐QAQ”</summary></entry></feed>
