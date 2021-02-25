@@ -7,7 +7,7 @@ cover: 'assets/images/cs50.jpg'
 title: 'CS50 筆記：第零講 Scratch'
 date: 2020-12-19 12:01:00
 categories: cs50
-tags: cs50 introduction
+tags: cs50
 author: fumitsuki
 ---
 

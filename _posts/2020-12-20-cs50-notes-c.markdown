@@ -7,7 +7,7 @@ cover: 'assets/images/cs50.jpg'
 title: 'CS50 筆記：第一講 C'
 date: 2020-12-20 12:09:00
 categories: cs50
-tags: cs50 c
+tags: cs50
 author: fumitsuki
 ---
 

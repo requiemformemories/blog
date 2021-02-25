@@ -7,7 +7,7 @@ cover: 'assets/images/cs50.jpg'
 title: 'CS50 筆記：第三講 Algorithms'
 date: 2020-12-21 12:50:00
 categories: cs50
-tags: cs50 algorithm
+tags: cs50
 author: fumitsuki
 ---
 

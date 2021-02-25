@@ -10,6 +10,9 @@ sql:
   name: SQL
   description: SQL 相關的知識彙整，新手容易犯的錯誤等等
   cover: assets/images/sql.jpg
-
+cs50:
+  name: CS50
+  description: 哈佛公開課 CS 50 的筆記彙整
+  cover: assets/images/cs50.jpg
 
 
