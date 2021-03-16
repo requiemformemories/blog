@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>透過 amp-access 讓你在 Cache 頁面也能順利保持登入！</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="keep calm and eat eight Plates." />
+    <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/blog/amp-access-login" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Fumitsuki's magic box" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="透過 amp-access 讓你在 Cache 頁面也能順利保持登入！" />
+    <meta property="og:description" content="（範例會以 Rails 來實作，登入的部分使用 devise 套件為例） 前言 不知不覺來到了 2019 年末。從 2016 年到現在，AMP 也越發成熟完整（但我怎麼還是覺得 bug 還是有點多w），有很多實用的 components 也有豐富的範例可以參考。如果想要大大地提升網站在手機上的搜尋排序，實作 AMP 網頁會帶來相當不錯的效益呢。 由於 AMP 的種種限制，除了拿來實作 content 為主、功能不多的網站，大家很可能仍然對 AMP 望之卻步。今天就要來跟大家介紹透過實作 amp-access 顯示登入狀態的部分。 為什麼 Cache 頁面會是未登入呢？ 當你開開心心地做了一個 AMP 網站，也丟上 Google Cache（或其他家的 AMP Cache，這裡以 Google 的為例），愉快地在搜尋頁面點下自家網站的連結，讀取速度飛快又美好 ♪ 檢查了一下你突然發現：「欸？我不是一直保持登入狀態嗎？為什麼在 Cache 頁面上是沒有登入的呢？」 對於在本站已經登入的使用者來說，明明已經登入你的網站了，但是從搜尋結果進去的頁面卻是未登入狀態，也會感到相當疑惑，體驗上也不甚很好。 我們先來探討，究竟這個狀況到底是怎麼發生的呢？ 舉例來說，原本頁面的 view 可能是像這樣： &lt;% if" />
+    <meta property="og:url" content="/blog/amp-access-login" />
+    <meta property="og:image" content="/blog/assets/images/amp_access_cover.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:author" content="https://www.facebook.com/" />
+    <meta property="article:published_time" content="2019-12-07T09:00:00+08:00" />
+    <meta property="article:modified_time" content="2019-12-07T09:00:00+08:00" />
+    <meta property="article:tag" content="amp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="透過 amp-access 讓你在 Cache 頁面也能順利保持登入！" />
+    <meta name="twitter:description" content="（範例會以 Rails 來實作，登入的部分使用 devise 套件為例） 前言 不知不覺來到了 2019 年末。從 2016 年到現在，AMP 也越發成熟完整（但我怎麼還是覺得 bug 還是有點多w），有很多實用的 components 也有豐富的範例可以參考。如果想要大大地提升網站在手機上的搜尋排序，實作 AMP 網頁會帶來相當不錯的效益呢。 由於 AMP 的種種限制，除了拿來實作 content 為主、功能不多的網站，大家很可能仍然對 AMP 望之卻步。今天就要來跟大家介紹透過實作 amp-access 顯示登入狀態的部分。 為什麼 Cache 頁面會是未登入呢？ 當你開開心心地做了一個 AMP 網站，也丟上 Google Cache（或其他家的 AMP Cache，這裡以 Google 的為例），愉快地在搜尋頁面點下自家網站的連結，讀取速度飛快又美好 ♪ 檢查了一下你突然發現：「欸？我不是一直保持登入狀態嗎？為什麼在 Cache 頁面上是沒有登入的呢？」 對於在本站已經登入的使用者來說，明明已經登入你的網站了，但是從搜尋結果進去的頁面卻是未登入狀態，也會感到相當疑惑，體驗上也不甚很好。 我們先來探討，究竟這個狀況到底是怎麼發生的呢？ 舉例來說，原本頁面的 view 可能是像這樣： &lt;% if" />
+    <meta name="twitter:url" content="/blog/" />
+    <meta name="twitter:image" content="/blog/assets/images/amp_access_cover.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Fumitsuki's magic box" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="amp" />
+    <meta name="twitter:site" content="@Fumitsuki0802" />
+    <meta name="twitter:creator" content="@Fumitsuki0802" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Fumitsuki's magic box",
+        "logo": "/blog/assets/images/blog-icon.png"
+    },
+    "url": "/blog/amp-access-login",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/blog/assets/images/amp_access_cover.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/blog/amp-access-login"
+    },
+    "description": "（範例會以 Rails 來實作，登入的部分使用 devise 套件為例） 前言 不知不覺來到了 2019 年末。從 2016 年到現在，AMP 也越發成熟完整（但我怎麼還是覺得 bug 還是有點多w），有很多實用的 components 也有豐富的範例可以參考。如果想要大大地提升網站在手機上的搜尋排序，實作 AMP 網頁會帶來相當不錯的效益呢。 由於 AMP 的種種限制，除了拿來實作 content 為主、功能不多的網站，大家很可能仍然對 AMP 望之卻步。今天就要來跟大家介紹透過實作 amp-access 顯示登入狀態的部分。 為什麼 Cache 頁面會是未登入呢？ 當你開開心心地做了一個 AMP 網站，也丟上 Google Cache（或其他家的 AMP Cache，這裡以 Google 的為例），愉快地在搜尋頁面點下自家網站的連結，讀取速度飛快又美好 ♪ 檢查了一下你突然發現：「欸？我不是一直保持登入狀態嗎？為什麼在 Cache 頁面上是沒有登入的呢？」 對於在本站已經登入的使用者來說，明明已經登入你的網站了，但是從搜尋結果進去的頁面卻是未登入狀態，也會感到相當疑惑，體驗上也不甚很好。 我們先來探討，究竟這個狀況到底是怎麼發生的呢？ 舉例來說，原本頁面的 view 可能是像這樣： &lt;% if"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="透過 amp-access 讓你在 Cache 頁面也能順利保持登入！" href="/blog/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+            
+        
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://github.com/requiemformemories" target="_blank" rel="noopener"><?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 478.613 478.613" xml:space="default" width="19px" height="32px">
+<g id="XMLID_122_">
+	<g>
+		<path d="M427.501,200.695c1.776-11.238,2.884-23.56,3.163-37.377c-0.107-59.246-28.468-80.21-33.925-90.038    c8.037-44.89-1.331-65.309-5.688-72.299c-16.07-5.704-55.91,14.722-77.678,29.101c-35.491-10.389-110.494-9.375-138.621,2.689    C122.856-4.389,95.408,1.277,95.408,1.277s-17.745,31.82-4.691,78.371c-17.075,21.759-29.802,37.143-29.802,77.949    c0,9.773,0.607,19.008,1.637,27.893c14.705,77.318,75.97,110.674,136.15,116.426c-9.056,6.881-19.928,19.903-21.432,34.992    c-11.379,7.357-34.268,9.789-52.067,4.193c-24.939-7.88-34.486-57.266-71.833-50.221c-8.081,1.512-6.475,6.842,0.523,11.386    c11.378,7.38,22.094,16.554,30.354,36.185c6.344,15.072,19.687,41.982,61.873,41.982c16.747,0,28.477-1.979,28.477-1.979    s0.319,38.406,0.319,53.385c0,17.238-23.264,22.078-23.264,30.348c0,3.289,7.7,3.601,13.888,3.601    c12.229,0,37.673-10.186,37.673-28.103c0-14.237,0.227-62.081,0.227-70.46c0-18.307,9.811-24.136,9.811-24.136    s1.201,97.727-2.361,110.829c-4.177,15.408-11.744,13.219-11.744,20.076c0,10.233,30.589,2.502,40.735-19.897    c7.849-17.495,4.334-113.331,4.334-113.331l8.183-0.178c0,0,0.094,43.892-0.188,63.944c-0.295,20.769-2.438,47.025,9.898,59.417    c8.097,8.15,32.903,22.451,32.903,9.382c0-7.574-17.371-13.833-17.371-34.353V344.45c10.553,0,12.734,31.072,12.734,31.072    l3.804,57.727c0,0-2.526,21.065,22.756,29.856c8.925,3.126,28.018,3.976,28.913-1.271c0.897-5.26-22.99-13.038-23.217-29.342    c-0.123-9.93,0.445-15.742,0.445-58.934c0-43.168-5.799-59.137-26.007-71.863C355.669,295.681,416.536,269.51,427.501,200.695z" fill="white"/>
+	</g>
+</g>
+</svg>
+</a>
+            
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-speeches ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime=" 7 December 2019"> 7 December 2019</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                                AMP
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">透過 amp-access 讓你在 Cache 頁面也能順利保持登入！</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/blog/assets/images/amp_access_cover.jpg)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>（範例會以 Rails 來實作，登入的部分使用 <a href="https://github.com/plataformatec/devise">devise</a> 套件為例）</p>
+
+<h3 id="前言">前言</h3>
+
+<p>不知不覺來到了 2019 年末。從 2016 年到現在，<a href="https://amp.dev/">AMP</a> 也越發成熟完整（但我怎麼還是覺得 bug 還是有點多w），有很多實用的 components 也有豐富的範例可以參考。如果想要大大地提升網站在手機上的搜尋排序，實作 AMP 網頁會帶來相當不錯的效益呢。</p>
+
+<p>由於 AMP 的種種限制，除了拿來實作 content 為主、功能不多的網站，大家很可能仍然對 AMP 望之卻步。今天就要來跟大家介紹透過實作 amp-access 顯示登入狀態的部分。</p>
+
+<h3 id="為什麼-cache-頁面會是未登入呢">為什麼 Cache 頁面會是未登入呢？</h3>
+
+<p>當你開開心心地做了一個 AMP 網站，也丟上 Google Cache（或其他家的 AMP Cache，這裡以 Google 的為例），愉快地在搜尋頁面點下自家網站的連結，讀取速度飛快又美好 ♪</p>
+
+<p>檢查了一下你突然發現：「欸？我不是一直保持登入狀態嗎？為什麼在 Cache 頁面上是沒有登入的呢？」</p>
+
+<p><img src="assets/images/amp_access_1.png" alt="Cache 頁面跟本站看起來不一樣" /></p>
+
+<p>對於在本站已經登入的使用者來說，明明已經登入你的網站了，但是從搜尋結果進去的頁面卻是未登入狀態，也會感到相當疑惑，體驗上也不甚很好。</p>
+
+<p>我們先來探討，究竟這個狀況到底是怎麼發生的呢？</p>
+
+<p>舉例來說，原本頁面的 view 可能是像這樣：</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">user_signed_in?</span> <span class="cp">%&gt;</span>
+    親愛的 <span class="cp">&lt;%=</span> <span class="n">current_user</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span> 你好！
+<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+    你還沒登入哦！快點擊
+    <span class="cp">&lt;%=</span> <span class="n">link_to</span><span class="p">(</span><span class="s1">'這裡'</span><span class="p">,</span> <span class="n">new_user_session_path</span><span class="p">)</span> <span class="cp">%&gt;</span>
+    登入吧～
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<p>當 Google AMP Cache 要來爬你的網站的時候，他當然是沒有登入的狀態，所以就會爬到寫著「你還沒登入哦！快點擊這裡登入吧～」的版本，於是你的 cache 頁面永遠都是沒登入的狀況。</p>
+
+<p>如果希望 cache 到的頁面上可以正常地顯示「親愛的 XXX 你好！」，可以借助 amp-access 這個元件來實現。</p>
+
+<h3 id="components">Components</h3>
+
+<p><a href="https://amp.dev/documentation/components/amp-access/">AMP-access</a> 主要分成這些部分：</p>
+
+<h4 id="amp-reader-id">AMP Reader ID</h4>
+<p>匿名、唯一、不跨裝置的 ID，如果使用者沒有清理 cookie，有效期會是一年。</p>
+
+<p>根據官方文件：</p>
+<blockquote>
+  <p>Publishers can use their own authentication cookies, or they may rely on the Reader ID, or a combination of both.</p>
+</blockquote>
+
+<p>如果是透過 cookie 來獲取登入資訊的話其實可以不用到 Reader ID。</p>
+
+<h4 id="access-content-markup">Access Content Markup</h4>
+<p>用來定義網頁上的哪些部分要在什麼情況底下顯示或不顯示的 markup。</p>
+
+<p>比方說你希望 signedIn 為 true 時顯示底下的元素，就會在元素上加上 <code class="highlighter-rouge">amp-access</code> 這個 attribute。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;section</span> <span class="na">amp-access=</span><span class="s">'signedIn'</span><span class="nt">&gt;</span>
+    登入的使用者會看到這行字哦！
+<span class="nt">&lt;/section&gt;</span>
+</code></pre></div></div>
+
+<p>如果希望是 signedIn 為 false 才顯示：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;section</span> <span class="na">amp-access=</span><span class="s">'NOT signedIn'</span><span class="nt">&gt;</span>
+    沒有登入的人會看到這行字哦！
+<span class="nt">&lt;/section&gt;</span>
+</code></pre></div></div>
+
+<p>按照上面的寫法，你可能預期一開始元件都不會出現，一直到 Authorization response 回來才會出現元件，但事實上這些元件一開始都會在畫面上，當 Authorization response 回來時才會「跳閃」一下，不該出現的元件才會隱藏起來。</p>
+
+<p><img src="assets/images/amp_access_2.gif" alt="沒有 amp-access-hide 時會跳閃" /></p>
+
+<p>如果希望一開始畫面剛 render 時不要顯示這個元件，可以加上 <code class="highlighter-rouge">amp-access-hide</code> 這個 attribute：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;section</span> <span class="na">amp-access=</span><span class="s">'signedIn'</span> <span class="na">amp-access-hide</span><span class="nt">&gt;</span>
+    一開始不會顯示，確定 response 中 signedIn 為 true 的話會看到這行字哦！
+<span class="nt">&lt;/section&gt;</span>
+</code></pre></div></div>
+
+<p>更多 access content markup 的語法請參考<a href="https://amp.dev/documentation/components/amp-access/#appendix-a:-%22amp-access%22-expression-grammar">官方說明</a>。</p>
+
+<h4 id="authorization-endpoint">Authorization Endpoint</h4>
+<p>在 AMP runtime 的時候會打這個 endpoint，根據 response 的 JSON 內容來 render 畫面。</p>
+
+<h4 id="pingback-endpoint">Pingback Endpoint</h4>
+<p>當使用者開始瀏覽畫面或是完成 login 的時候，AMP 會去打 Pingback Endpoint。Pingback Endpoint 不需要 response，有 response 也會被忽略。比方官方提供的 <a href="https://github.com/ampproject/samples/tree/master/amp-paywall-demo">Paywall 範例</a>，Pingback 就被用在計算使用者已瀏覽幾篇 article 等。</p>
+
+<h4 id="login-link-and-login-page">Login Link and Login Page</h4>
+<p>如果會用到 Reader ID 來實作登入的話，就會需要在 AMP-Access configuration 的時候加上 login 相關的 link：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mySite.blah/login?rid={READER_ID}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>接著在畫面上加上連結讓使用者登入：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">on=</span><span class="s">"tap:amp-access.login"</span><span class="nt">&gt;</span>登入<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<p>但因為等等的範例會是用自己的 cookie，就不會在 configuration 加上 login link。</p>
+
+<h3 id="簡易圖解">簡易圖解</h3>
+
+<p>到這裡還看得很糊沒有關係，我們來大致了解一下 AMP-Access 大概是怎麼運作的。</p>
+
+<p>1.一開始 AMP runtime 夾帶著 cookies 會去打你（或你們家的後端工程師）寫好的 authorization endpoint。</p>
+
+<p><img src="assets/images/amp_access_3.png" alt="Send request to authorization endpoint" /></p>
+
+<p>AMP 提供一些 <a href="https://amp.dev/documentation/components/amp-access/#access-url-variables">Access URL Variables</a>。比方說如果你的 authorization endpoint url 是像這樣：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://yourSite.blah/api/amp-access/authorization?ref=DOCUMENT_REFERRER&amp;rid=READER_ID&amp;url=CANONICAL_URL"
+</code></pre></div></div>
+
+<p>實際上 AMP runtime 打 endpoint 的時候，rid 會變成 <code class="highlighter-rouge">rid=amp-OFsqR4pPKynymPyMmplPNMvxSTsNQob3TnK-oE3nwVT0clORaZ1rkeEz8xej-vV6</code>，url 變成 <code class="highlighter-rouge">https://yourSite.blah</code>。</p>
+
+<p>2.這個時候你寫的 authorization endpoint 可能會根據 cookie 辨識使用者，回傳一個 json。</p>
+
+<p><img src="assets/images/amp_access_4.png" alt="Access Content Markup 替換" /></p>
+
+<p>3.於是在 cache 頁面上，登入狀態也能正常顯示了，開開心心 ♫</p>
+
+<h3 id="cors-in-amp">CORS in AMP</h3>
+
+<p>然而 AMP 有一些關於 CORS (Cross-Origin Resource Sharing) 的<a href="https://amp.dev/documentation/guides-and-tutorials/learn/amp-caches-and-cors/amp-cors-requests/">規範</a>。</p>
+
+<p>如果沒有把網頁送上 cache，使用者是直接向你家的 server 送 request。但是如果使用者從 AMP Cache 那邊請求你的網頁， Cache 頁面在 AMP runtime 的時候會向你的 server 打 authorization endpoint，這個時候就會變成跨網域的連線了。</p>
+
+<p>因此 AMP 也有針對這個情境，要求實作簡單的 request verification 並且根據他的要求設定 access control 相關的 header。</p>
+
+<p>基本流程大致如下：
+<img src="assets/images/amp_access_5.png" alt="CORS verification 基本流程" /></p>
+
+<p>1.如果 Header 有帶 <code class="highlighter-rouge">Origin</code>，就檢查是否是 allowed origins：</p>
+
+<ul>
+  <li>你自己的網站 eg. <code class="highlighter-rouge">mySite.blah</code></li>
+  <li>AMP cache eg. <code class="highlighter-rouge">mySite-blah.cdn.ampproject.org</code></li>
+</ul>
+
+<p>origin 不在 allowed origins 的 request 就讓你的 server 回傳 HTTP status 403 的回應，慢走不送。</p>
+
+<p>2.如果沒有 <code class="highlighter-rouge">Origin</code> header 的，就檢查是否有 <code class="highlighter-rouge">AMP-Same-Origin: true</code>，有才放行，沒有一樣回 403。</p>
+
+<p>當 AMP Runtime 在送 XHR request 的時候，如果是在 same origin 時，會自動幫你加 <code class="highlighter-rouge">AMP-Same-Origin: true</code> 這個 header。</p>
+
+<p>3.在 response header 加上 <code class="highlighter-rouge">Access-Control-Allow-Credentials: true</code> 和 <code class="highlighter-rouge">Access-Control-Allow-Origin: &lt;origin&gt;</code></p>
+
+<p>這裡的 <code class="highlighter-rouge">&lt;origin&gt;</code> 指的是 response 的 origin。</p>
+
+<p>聽到這裡，是不是覺得其實沒有很複雜呢（是嗎</p>
+
+<p>那就來動手試試看吧！</p>
+
+<h3 id="三分鐘動手實做">三分鐘動手實做！</h3>
+<p>如果沒有碰壁卡關，view 沒有要大改的話，應該是可以在三分鐘內完成吧（欸</p>
+
+<p>開始之前，請先準備一個有實作 AMP 的 Rails Application。</p>
+
+<h4 id="cors-authentication">CORS Authentication</h4>
+<p>我們先來打造一個 base controller，讓之後實作的 API 都繼承這個 controller。（其實要改成 concern 也是可以）</p>
+
+<p>除了 amp-access ，如果實作 AMP 中的 XHR request 等等也會有 CORS 的情境，這個時候就可以直接繼承這個 controller。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Api</span>
+  <span class="k">class</span> <span class="nc">BaseController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>如果<code class="highlighter-rouge">Origin</code> 屬於 allowed origins（你的網站、AMP Cache），或者有 <code class="highlighter-rouge">AMP-same-origin: true</code> 的 header 才放行。且加上規定的 response header：</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Api</span>
+  <span class="k">class</span> <span class="nc">BaseController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+    <span class="n">before_action</span> <span class="ss">:cors_verification</span>
+    <span class="no">ALLOWED_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="s1">'https://mySite.blah'</span><span class="p">,</span>
+      <span class="s1">'https://mySite-blah.cdn.ampproject.org'</span><span class="p">,</span>
+      <span class="s1">'https://mySite.blah.amp.cloudflare.com'</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">cors_verification</span>
+      <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s1">'origin'</span><span class="p">].</span><span class="nf">in?</span><span class="p">(</span><span class="no">ALLOWED_ORIGINS</span><span class="p">)</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s1">'origin'</span><span class="p">]</span>
+      <span class="k">elsif</span> <span class="n">request</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s1">'origin'</span><span class="p">].</span><span class="nf">nil?</span> <span class="o">&amp;&amp;</span> <span class="n">request</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s1">'AMP-same-origin'</span><span class="p">]</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">casecmp?</span><span class="p">(</span><span class="s1">'true'</span><span class="p">)</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">base_url</span>
+      <span class="k">else</span>
+        <span class="n">render</span><span class="p">(</span><span class="ss">json: </span><span class="p">{</span> <span class="ss">message: </span><span class="s1">'Unauthorized Request'</span> <span class="p">},</span> <span class="ss">status: :forbidden</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">return</span>
+      <span class="k">end</span>
+
+      <span class="n">response</span><span class="p">.</span><span class="nf">set_header</span><span class="p">(</span><span class="s1">'Access-Control-Allow-Credentials'</span><span class="p">,</span> <span class="s1">'true'</span><span class="p">)</span>
+      <span class="n">response</span><span class="p">.</span><span class="nf">set_header</span><span class="p">(</span><span class="s1">'Access-Control-Allow-Origin'</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="authorization-endpoint-1">Authorization Endpoint</h4>
+<p>接著我們做 authorization endpoint 的部分！這裡直接使用了 devise 的 <code class="highlighter-rouge">#{mapping}_signed_in?</code>、<code class="highlighter-rouge">current_#{mapping}</code> 等方法</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Api</span>
+  <span class="k">class</span> <span class="nc">AmpAccessController</span> <span class="o">&lt;</span> <span class="no">Api</span><span class="o">::</span><span class="no">BaseController</span>
+    <span class="k">def</span> <span class="nf">authorization</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">signedIn: </span><span class="n">user_signed_in?</span><span class="p">,</span> <span class="ss">username: </span><span class="n">current_user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">name</span> <span class="p">},</span> <span class="ss">status: :ok</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="設定-routes">設定 routes</h4>
+<p>當然不能忘了加 routes。</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">namespace</span> <span class="ss">:api</span><span class="p">,</span> <span class="ss">defaults: </span><span class="p">{</span> <span class="ss">format: </span><span class="s1">'json'</span> <span class="p">}</span> <span class="k">do</span>
+  <span class="n">get</span> <span class="ss">:authorization</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'amp_access#authorization'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="amp-access-configuration">AMP Access configuration</h4>
+<p>記得要在你的頁面上加上 amp-access 的 required script：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">async</span> <span class="na">custom-element=</span><span class="s">"amp-access"</span> <span class="na">src=</span><span class="s">"https://cdn.ampproject.org/v0/amp-access-0.1.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>接著我們來加上 amp-access 的 configuration 吧。文件上要求 authorization endpoint 和 pingback endpoint 要帶 <code class="highlighter-rouge">READER_ID</code>。而 <code class="highlighter-rouge">RANDOM</code> 會回傳隨機亂碼，可以避免被瀏覽器 cache。</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">id=</span><span class="s">'amp-access'</span> <span class="na">type=</span><span class="s">'application/json'</span><span class="nt">&gt;</span>
+<span class="p">{</span>
+    <span class="s2">"authorization"</span><span class="p">:</span> <span class="s2">"</span><span class="cp">&lt;%=</span> <span class="n">api_authorization_url</span><span class="p">(</span><span class="ss">rid: </span><span class="s1">'READER_ID'</span><span class="p">,</span> <span class="s1">'_='</span><span class="p">:</span> <span class="s1">'RANDOM'</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="s2">"</span><span class="p">,</span>
+    <span class="s2">"pingback"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"noPingback"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"authorizationFallbackResponse"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"signedIn"</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h4 id="access-content-markup-1">Access Content Markup</h4>
+<p>相信剛剛看了 Access Content Markup 的介紹，現在應該已經很了解他的基本語法了。</p>
+
+<p>如果原本你的 view 裡面有長得像這樣的東西：</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">user_signed_in?</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;section&gt;</span> ... <span class="nt">&lt;/section&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;section&gt;</span> ... <span class="nt">&lt;/section&gt;</span>
+<span class="cp">&lt;%</span><span class="k">end</span><span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<p>把它改成用 <code class="highlighter-rouge">amp-access</code> 和 <code class="highlighter-rouge">amp-access-hide</code>，管理它要不要在畫面上顯示：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;section</span> <span class="na">amp-access=</span><span class="s">"signedIn"</span> <span class="na">amp-access-hide</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;section&gt;</span>
+<span class="nt">&lt;section</span> <span class="na">amp-access=</span><span class="s">"NOT signedIn"</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;section&gt;</span>
+</code></pre></div></div>
+
+<p>那如果是要在畫面上顯示 username 呢？這個時候就會需要用到 <a href="https://amp.dev/documentation/components/amp-mustache/">amp-mushtache</a>。</p>
+
+<p>使用之前要記得加上 required script：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">async</span> <span class="na">custom-template=</span><span class="s">"amp-mustache"</span> <span class="na">src=</span><span class="s">"https://cdn.ampproject.org/v0/amp-mustache-0.2.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>使用 template 來顯示名稱：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;section</span> <span class="na">amp-access=</span><span class="s">"signedIn"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;template</span> <span class="na">amp-access-template</span> <span class="na">type=</span><span class="s">"amp-mustache"</span><span class="nt">&gt;</span>
+        親愛的 {{username}} 您好
+    <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+</code></pre></div></div>
+
+<p>基本上到這裡就大功告成了！是不是能夠正常顯示登入了呢？</p>
+
+<p>別忘了去試試看你的網站的 cache 版本是不是也運作正常哦 ( ～’ω’)～</p>
+
+<h2 id="備註">備註</h2>
+
+<p>本文最初放在五倍紅寶石的專欄文章中，然而隨著公司分家改組，文章跟著被移除了QQ</p>
+
+<p>因此將文章移至部落格中。</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="fumitsuki" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/blog/author/fumitsuki">文月</a></h4>
+                                
+                                    <p>擅長耍雷的フレンズ，在茫茫海海探索人生中</p>
+                                
+                            </section>
+                        </section>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/blog/tailwind-css-plugin">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/tailwind-example-cover.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/blog/tailwind-css-plugin">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Css</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Javascript</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>## 什麼是...</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                        
+                        <span class="post-card-author">
+                            文月
+                        </span>
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/blog/tailwind-nested-config">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/tailwind-post.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/blog/tailwind-nested-config">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Css</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Javascript</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">[工作日常] 如何用建立巢狀的 tailwindcss config？</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>內容更新 Tailwind...</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                        
+                        <span class="post-card-author">
+                            文月
+                        </span>
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/blog/">
+            
+                <img src="/blog/assets/images/favicon.png" alt="Fumitsuki's magic box icon" />
+            
+            <span>Fumitsuki's magic box</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">透過 amp-access 讓你在 Cache 頁面也能順利保持登入！</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E9%80%8F%E9%81%8E+amp-access+%E8%AE%93%E4%BD%A0%E5%9C%A8+Cache+%E9%A0%81%E9%9D%A2%E4%B9%9F%E8%83%BD%E9%A0%86%E5%88%A9%E4%BF%9D%E6%8C%81%E7%99%BB%E5%85%A5%EF%BC%81&amp;url=https://requiemformemories.github.io/blog/amp-access-login"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/amp-access-login"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2021</section>
+                <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/blog/">Latest Posts</a>
+                    <a href="https://GitHub.com/requiemformemories" target="_blank" rel="noopener">Github</a>
+                    <a href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/blog/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/blog/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69281367-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

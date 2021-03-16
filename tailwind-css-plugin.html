@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="keep calm and eat eight Plates." />
+    <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/blog/tailwind-css-plugin" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Fumitsuki's magic box" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！" />
+    <meta property="og:description" content="什麼是 Tailwind CSS？ 簡單來說 Tailwind CSS 是一套 Utility-First CSS，相當具有彈性，也非常適合快速刻板。在 Utility-First CSS 之間也算是殺出了一片天。不過這個工具的魅力到底在哪呢？且讓我慢慢說明。 Utility-First CSS 要說到 Utility-First CSS 的好，就要先從一般的 CSS framework 說起： 相信大家都對 Material-UI、Bulma、Bootstrap（framework 們表示躺著也中槍XD）這類 component 都定義好好，套上去馬上就有個像樣網站的 framework 不太陌生。 要 navbar 有 navbar，要 button 有 button，的確是非常方便。 但是使用這些前端 framework 很快就會遇到一個很頭痛的問題：不想要自己的網站看起來一眼就是套框架，但是想要客製化的話，又會遭遇維護上的麻煩跟困難。 1. 最糟糕的情況： override CSS 可能原本的框架沒有提供什麼比較好的 customize 的方式，或是自己選擇使用這些工具的方式導致很難 customize，只好各種 override 人家寫好的 CSS， 網站看起來還好好的就閉著眼睛" />
+    <meta property="og:url" content="/blog/tailwind-css-plugin" />
+    <meta property="og:image" content="/blog/assets/images/tailwind-example-cover.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:author" content="https://www.facebook.com/" />
+    <meta property="article:published_time" content="2020-04-25T09:00:00+08:00" />
+    <meta property="article:modified_time" content="2020-04-25T09:00:00+08:00" />
+    <meta property="article:tag" content="css" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！" />
+    <meta name="twitter:description" content="什麼是 Tailwind CSS？ 簡單來說 Tailwind CSS 是一套 Utility-First CSS，相當具有彈性，也非常適合快速刻板。在 Utility-First CSS 之間也算是殺出了一片天。不過這個工具的魅力到底在哪呢？且讓我慢慢說明。 Utility-First CSS 要說到 Utility-First CSS 的好，就要先從一般的 CSS framework 說起： 相信大家都對 Material-UI、Bulma、Bootstrap（framework 們表示躺著也中槍XD）這類 component 都定義好好，套上去馬上就有個像樣網站的 framework 不太陌生。 要 navbar 有 navbar，要 button 有 button，的確是非常方便。 但是使用這些前端 framework 很快就會遇到一個很頭痛的問題：不想要自己的網站看起來一眼就是套框架，但是想要客製化的話，又會遭遇維護上的麻煩跟困難。 1. 最糟糕的情況： override CSS 可能原本的框架沒有提供什麼比較好的 customize 的方式，或是自己選擇使用這些工具的方式導致很難 customize，只好各種 override 人家寫好的 CSS， 網站看起來還好好的就閉著眼睛" />
+    <meta name="twitter:url" content="/blog/" />
+    <meta name="twitter:image" content="/blog/assets/images/tailwind-example-cover.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Fumitsuki's magic box" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="css" />
+    <meta name="twitter:site" content="@Fumitsuki0802" />
+    <meta name="twitter:creator" content="@Fumitsuki0802" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Fumitsuki's magic box",
+        "logo": "/blog/assets/images/blog-icon.png"
+    },
+    "url": "/blog/tailwind-css-plugin",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/blog/assets/images/tailwind-example-cover.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/blog/tailwind-css-plugin"
+    },
+    "description": "什麼是 Tailwind CSS？ 簡單來說 Tailwind CSS 是一套 Utility-First CSS，相當具有彈性，也非常適合快速刻板。在 Utility-First CSS 之間也算是殺出了一片天。不過這個工具的魅力到底在哪呢？且讓我慢慢說明。 Utility-First CSS 要說到 Utility-First CSS 的好，就要先從一般的 CSS framework 說起： 相信大家都對 Material-UI、Bulma、Bootstrap（framework 們表示躺著也中槍XD）這類 component 都定義好好，套上去馬上就有個像樣網站的 framework 不太陌生。 要 navbar 有 navbar，要 button 有 button，的確是非常方便。 但是使用這些前端 framework 很快就會遇到一個很頭痛的問題：不想要自己的網站看起來一眼就是套框架，但是想要客製化的話，又會遭遇維護上的麻煩跟困難。 1. 最糟糕的情況： override CSS 可能原本的框架沒有提供什麼比較好的 customize 的方式，或是自己選擇使用這些工具的方式導致很難 customize，只好各種 override 人家寫好的 CSS， 網站看起來還好好的就閉著眼睛"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！" href="/blog/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+            
+        
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://github.com/requiemformemories" target="_blank" rel="noopener"><?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 478.613 478.613" xml:space="default" width="19px" height="32px">
+<g id="XMLID_122_">
+	<g>
+		<path d="M427.501,200.695c1.776-11.238,2.884-23.56,3.163-37.377c-0.107-59.246-28.468-80.21-33.925-90.038    c8.037-44.89-1.331-65.309-5.688-72.299c-16.07-5.704-55.91,14.722-77.678,29.101c-35.491-10.389-110.494-9.375-138.621,2.689    C122.856-4.389,95.408,1.277,95.408,1.277s-17.745,31.82-4.691,78.371c-17.075,21.759-29.802,37.143-29.802,77.949    c0,9.773,0.607,19.008,1.637,27.893c14.705,77.318,75.97,110.674,136.15,116.426c-9.056,6.881-19.928,19.903-21.432,34.992    c-11.379,7.357-34.268,9.789-52.067,4.193c-24.939-7.88-34.486-57.266-71.833-50.221c-8.081,1.512-6.475,6.842,0.523,11.386    c11.378,7.38,22.094,16.554,30.354,36.185c6.344,15.072,19.687,41.982,61.873,41.982c16.747,0,28.477-1.979,28.477-1.979    s0.319,38.406,0.319,53.385c0,17.238-23.264,22.078-23.264,30.348c0,3.289,7.7,3.601,13.888,3.601    c12.229,0,37.673-10.186,37.673-28.103c0-14.237,0.227-62.081,0.227-70.46c0-18.307,9.811-24.136,9.811-24.136    s1.201,97.727-2.361,110.829c-4.177,15.408-11.744,13.219-11.744,20.076c0,10.233,30.589,2.502,40.735-19.897    c7.849-17.495,4.334-113.331,4.334-113.331l8.183-0.178c0,0,0.094,43.892-0.188,63.944c-0.295,20.769-2.438,47.025,9.898,59.417    c8.097,8.15,32.903,22.451,32.903,9.382c0-7.574-17.371-13.833-17.371-34.353V344.45c10.553,0,12.734,31.072,12.734,31.072    l3.804,57.727c0,0-2.526,21.065,22.756,29.856c8.925,3.126,28.018,3.976,28.913-1.271c0.897-5.26-22.99-13.038-23.217-29.342    c-0.123-9.93,0.445-15.742,0.445-58.934c0-43.168-5.799-59.137-26.007-71.863C355.669,295.681,416.536,269.51,427.501,200.695z" fill="white"/>
+	</g>
+</g>
+</svg>
+</a>
+            
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-speeches ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="25 April 2020">25 April 2020</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                                CSS,
+                            
+                        
+                            
+                                JAVASCRIPT
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/blog/assets/images/tailwind-example-cover.jpg)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <h2 id="什麼是-tailwind-css">什麼是 Tailwind CSS？</h2>
+
+<p>簡單來說 Tailwind CSS 是一套 Utility-First CSS，相當具有彈性，也非常適合快速刻板。在 Utility-First CSS 之間也算是殺出了一片天。不過這個工具的魅力到底在哪呢？且讓我慢慢說明。</p>
+
+<p><img src="assets/images/tailwind-example-logo.svg" alt="logo" /></p>
+
+<h3 id="utility-first-css">Utility-First CSS</h3>
+
+<p>要說到 Utility-First CSS 的好，就要先從一般的 CSS framework 說起：</p>
+
+<p>相信大家都對 Material-UI、Bulma、Bootstrap（framework 們表示躺著也中槍XD）這類 component 都定義好好，套上去馬上就有個像樣網站的 framework 不太陌生。</p>
+
+<p>要 navbar 有 navbar，要 button 有 button，的確是非常方便。</p>
+
+<p>但是使用這些前端 framework 很快就會遇到一個很頭痛的問題：不想要自己的網站看起來一眼就是套框架，但是想要客製化的話，又會遭遇維護上的麻煩跟困難。</p>
+
+<h4 id="1-最糟糕的情況-override-css">1. 最糟糕的情況： override CSS</h4>
+<p>可能原本的框架沒有提供什麼比較好的 customize 的方式，或是自己選擇使用這些工具的方式導致很難 customize，只好各種 override 人家寫好的 CSS，  <strike>網站看起來還好好的就閉著眼睛 commit + push</strike>。但這種方式實在很容易把東西改壞。</p>
+
+<h4 id="2-把-customized-code-載下來">2. 把 customized code 載下來</h4>
+<p>框架本身提供 customization，可以把各個地方修修改改再把 code 載下來。乍看之下好像很棒，但如果今天你手上的專案交給另一個人接手，他要如何知道哪些地方是原始的設定，哪些地方又被動過手腳了呢？</p>
+
+<h4 id="3-import-後再-override-sass-variables">3. import 後再 override Sass variables</h4>
+<p>比較好的情況，可以 import 框架的 Sass，但又 override 部分 Sass variables，不但可以調整設定，也不容易造成管理、維護的問題。</p>
+
+<p>但只要他已經把 UI 都定好了，<strong>可以調整的範圍往往就受到不少限制</strong>。如果使用 Utility-First CSS 的時候，的因為每個元件都要自己刻，哪裡不滿意、不符合需求，都可以在 utility class 加加減減中完成。簡單來說就是非常具有<strong>彈性</strong>吧。</p>
+
+<h3 id="快速架構">快速架構</h3>
+
+<p>Tailwind CSS 把大致上 CSS 會用到的屬性都用單個 class 來表示。例如 <code class="highlighter-rouge">.mt-1</code> 對應的是 <code class="highlighter-rouge">margin-top: 0.25rem;</code>，<code class="highlighter-rouge">.my-2</code> 對應的是 <code class="highlighter-rouge">margin-top: 0.5rem; margin-bottom: 0.5rem;</code>。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.mt-1</span> <span class="p">{</span>
+  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">0.25rem</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">mt-1</code> 實在是比 <code class="highlighter-rouge">margin-top: 0.25rem;</code> 短太多，也不容易打錯字（欸）。</p>
+
+<p>因為可以直接把對應的 class 直接加在你想要作用的 element 上，大部分的情況下可以不需要自己動 stylesheet 的部分，相當方便。於是你就可以非常迅速地把網站的各種部分建構出來，也可以很輕鬆地調整。</p>
+
+<p>「輕鬆」這件事情聽我嘴上說說似乎也不準，不如自己動手試試XD</p>
+
+<p>如果還來不及在 local 新增專案、安裝 Tailwind，可以先在 <a href="https://tailwind.run">Tailwind.run</a> 嘗試看看。</p>
+
+<h3 id="官方文件齊全">官方文件齊全</h3>
+
+<p>除了 Utility-First CSS 本身的好處以外，Tailwind CSS 雖然還不是十分被廣泛使用，但想要上手的話，光是官方文件就十分充足、一目瞭然。（總覺得教學文不多，但有可能是官方文件就說得很清楚，也不多人想寫教學文XD）</p>
+
+<p>從 <a href="https://tailwindcss.com/docs/installation/#app">installation</a>、<a href="https://v1.tailwindcss.com/components">components 範例</a>、每個 utility css 的簡介……甚至來有<a href="https://tailwindcss.com/screencasts/">教學 screencasts</a> 可以看，真的非常用（ㄏㄣˇ）心（ㄏㄨㄟˋ）。</p>
+
+<blockquote>
+  <p>註： Tailwind CSS 作者推出付費的 <a href="https://tailwindui.com/components?utm_source=tailwindcss&amp;utm_medium=navigation">Tailwind UI</a> 後，官網上就不再放 component 範例給大家參考了。但舊版文件的「components 範例」連結仍可以參考</p>
+</blockquote>
+
+<h3 id="缺點">缺點</h3>
+<p>開始用 Tailwind 以後，你開始發現你的 html code 充滿了一大串像這樣的東西：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"relative w-full h-48 bg-primary-200 text-center overflow-hidden text-0 leading-48"</span><span class="nt">&gt;</span> ... <span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+<p>剛開始接觸時可能會覺得用起來會讓 code 相當醜，看起來非常不習慣，想跟我說「不是跟我說高效『整潔』嗎，在騙肖？」</p>
+
+<p><del>先別急著摔筆</del>，如果前端有使用 React、Vue 等框架並且把畫面上的組成準確的分成不同 component，其實不用太擔心會有一堆重複的 utility class 集合在你的字裡行間亂竄。要是有一些出現頻率高的元件（eg. 按鈕、input），也可以考慮用 <a href="https://tailwindcss.com/docs/extracting-components/#extracting-css-components-with-apply"><code class="highlighter-rouge">@apply</code> 適當地切出一些 CSS components</a>。</p>
+
+<p>如果我好好地切 component，其實還是會很好維護的。如果你還是要跟我 argue 一大串 class 看得很煩躁，可能必須說這本來就是工具之間的取捨，以醜醜的 code 為代價，可以換來快速開發，讓你早點下班休息也未嘗不好 ☕</p>
+
+<h3 id="和-inline-css-的差異">和 inline CSS 的差異</h3>
+
+<p>至於有些人會問：「蛤？這樣不是跟寫 inline CSS 一樣嗎？」 <strike>我一開始也是這樣想的！</strike> 但其實 Tailwind 有一些隱藏的優點，是 inline CSS 很難辦到的：</p>
+
+<h4 id="1-遵循規範">1. 遵循規範</h4>
+<p>相信新手剛開始學寫網頁的時候，都會有這樣的經驗，常常會隨心所欲地亂加 padding、margin，40px 還是 50px 都隨我心情 XD
+後來開始工作、接案以後， <strike>才會深刻體悟到原來這些數字不能像去菜市場買菜一樣亂喊價 </strike>。如果沒有對這些數值有一定的規範，各個 component 搭配起來，最後呈現給使用者的畫面也會出現視覺上的平衡問題。</p>
+
+<p>如果全部寫 inline CSS，是很難去注意有沒有哪裡違背了定義好的規範。要一一去對數值跟色碼有沒有寫對，太過辛苦也不實際：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"width: 100%;padding-top: 64px;padding-bottom: 160px;"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"padding: 24px;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1</span> <span class="na">style=</span><span class="s">"font-size:20px;color:#2d3748;font-weight: 400;"</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- ....  --&gt;</span>
+    <span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"margin-top:64px;color:#718096;"</span><span class="nt">&gt;</span>
+       <span class="c">&lt;!-- ...  --&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>改用 Tailwind CSS 以後，顏色、spacing 等等都是用 config 來做管理，可以比較嚴格地規範可以使用的數值和色碼，避免沒有規範地隨意下 padding、加 background-color 等等。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"w-full pt-16 pb-40"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"p-6"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"text-xl text-gray-800 font-normal"</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- ....  --&gt;</span>
+    <span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"m-16 text-gray-600"</span><span class="nt">&gt;</span>
+       <span class="c">&lt;!-- ...  --&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h4 id="2-responsive">2. Responsive</h4>
+
+<p>用 inline css 基本上做不到 Responsive Web Design，因為包含 <code class="highlighter-rouge">@media</code> 的 rules 是無法放在 inline css 裡的。</p>
+
+<p>在使用 Tailwind CSS 的時候，只要這個 utilty class 的 responsive variant 有被打開，就會產生像是底下的 CSS classes：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* 原本的 utilty class */</span>
+<span class="nc">.w-1</span><span class="err">\</span><span class="o">/</span><span class="nt">4</span><span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">992px</span><span class="p">){</span>
+  <span class="nc">.lg</span><span class="err">\</span><span class="nd">:w-1</span><span class="err">\</span><span class="o">/</span><span class="nt">4</span><span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">1280px</span><span class="p">){</span>
+  <span class="nc">.xl</span><span class="err">\</span><span class="nd">:w-1</span><span class="err">\</span><span class="o">/</span><span class="nt">4</span><span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>於是就可以簡單地使用 <code class="highlighter-rouge">.xl:w-1/4</code> <code class="highlighter-rouge">.lg:w-1/4</code> 等 classes 來做 responsive design。</p>
+
+<p>比方說，我想根據視窗大小改變元素的寬度跟顏色：</p>
+
+<div style="margin-bottom: 16px;">
+  <p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="requiemformemories" data-slug-hash="rNONeGo" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Tailwindcss example: responsive">
+    <span>See the Pen <a href="https://codepen.io/requiemformemories/pen/rNONeGo">
+    Tailwindcss example: responsive</a> by 文月 (<a href="https://codepen.io/requiemformemories">@requiemformemories</a>)
+    on <a href="https://codepen.io">CodePen</a>.</span>
+  </p>
+</div>
+
+<p>以 <code class="highlighter-rouge">width</code> 來說，預設 <code class="highlighter-rouge">responsive</code> 就是打開的，不需要調整 customized config (<code class="highlighter-rouge">tailwind.config.js</code>)就有得使用。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// defaultConfig.stub.js:L680</span>
+<span class="nx">width</span><span class="p">:</span> <span class="p">[</span><span class="s1">'responsive'</span><span class="p">],</span>
+</code></pre></div></div>
+
+<p>預設的 variant 可以直接參考 <a href="https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js">Tailwind Github 上的 default configuration</a>，或者每個 utility classes 的簡介都會有 <a href="https://tailwindcss.com/docs/width#responsive">Responsive and pseudo-class variants</a> 的章節可以參考</p>
+
+<h4 id="3-pseudo-classes">3. Pseudo-classes</h4>
+
+<p>要透過 inline css 加上 <code class="highlighter-rouge">:hover</code>, <code class="highlighter-rouge">:active</code> 也是辦不到的。但是 Tailwind 提供 <code class="highlighter-rouge">hover</code>、<code class="highlighter-rouge">focus</code>、<code class="highlighter-rouge">active</code>、<code class="highlighter-rouge">disabled</code>、<code class="highlighter-rouge">visited</code>、<code class="highlighter-rouge">first-child</code> …… 等 variants。讓你可以很容易地加上對應的 utility class，就能得到 hover、active 等效果。</p>
+
+<p>比方說把 <code class="highlighter-rouge">backgroundColor</code> 的 variant 預設就已經把 <code class="highlighter-rouge">hover</code>、<code class="highlighter-rouge">focus</code> 打開了，所以就可以直接使用 <code class="highlighter-rouge">hover:bg-teal-600</code>、<code class="highlighter-rouge">focus:bg-teal-600</code> 這樣的 classes 來製造 hover 或 focus 時的效果。</p>
+
+<div style="margin-bottom: 16px;">
+  <p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="requiemformemories" data-slug-hash="yLYLeMg" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="yLYLeMg">
+    <span>See the Pen <a href="https://codepen.io/requiemformemories/pen/yLYLeMg">
+    yLYLeMg</a> by 文月 (<a href="https://codepen.io/requiemformemories">@requiemformemories</a>)
+    on <a href="https://codepen.io">CodePen</a>.</span>
+  </p>
+</div>
+
+<p>順帶一提，Tailwind 還有個 <code class="highlighter-rouge">group-hover</code> 的 variant，當某個 utility 的 variant 加上 <code class="highlighter-rouge">group-hover</code> 以後，就會產生像下面這種 CSS classes：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.group</span><span class="nd">:hover</span> <span class="nc">.group-hover</span><span class="err">\</span><span class="nd">:text-blue-400</span><span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#63B3ED</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>於是你可以很輕鬆地做到 group hover 的效果：</p>
+
+<div style="margin-bottom: 16px;">
+  <p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="requiemformemories" data-slug-hash="dyYyMox" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Tailwindcss example: group hover">
+    <span>See the Pen <a href="https://codepen.io/requiemformemories/pen/dyYyMox">
+    Tailwindcss example: group hover</a> by 文月 (<a href="https://codepen.io/requiemformemories">@requiemformemories</a>)
+    on <a href="https://codepen.io">CodePen</a>.</span>
+  </p>
+</div>
+
+<h3 id="誰不適合-tailwind">誰不適合 Tailwind？</h3>
+
+<p>任何工具都不會是絕對完美或是絕對適合所有族群，自己覺得如果有一些特殊的狀況或需求，可能用 Tailwind 也會很痛苦：</p>
+
+<h4 id="1-不擅長從零開始自己刻板的新手">1. 不擅長從零開始自己刻板的新手</h4>
+
+<p>我想如果是不擅長刻板的新手，又要在時限內地交出專案，utility-first css 應該都會用得蠻痛苦的。但還是鼓勵不擅長刻板的朋友，絕對不要被 UI components 所迷惑，對於太過方便的東西產生依賴&gt;&lt;”</p>
+
+<h4 id="2-後台管理等等只需要簡單的-ui不希望花時間刻板">2. 後台管理等等，只需要簡單的 UI，不希望花時間刻板</h4>
+
+<p>如果沒有這個時間、也沒有這個需求需要自己刻版，其實也沒什麼用 utility-first css 增加自己困擾的理由。</p>
+
+<h4 id="3-網站需要支援較舊的-browser">3. 網站需要支援較舊的 browser</h4>
+
+<blockquote>
+  <p>Tailwind on the other hand is a low-level utility framework, where most of the classes map directly to individual CSS properties. <strong>This means that which browsers you support is really up to you, not the framework.</strong></p>
+</blockquote>
+
+<p>根據 Tailwind 的<a href="https://v1.tailwindcss.com/docs/browser-support#using-tailwind-with-older-browsers">官方說明</a>，browser 支援度這件事情是看使用者自己。畢竟知道自己要支援到 IE9 的人，自己就會知道不該用 <code class="highlighter-rouge">flexbox</code>、<code class="highlighter-rouge">:focus-within</code> 等等。</p>
+
+<p>但自己覺得這套工具在設計上本身就不太想顧慮到舊瀏覽器的支援，比方說大部分的單位都以 <code class="highlighter-rouge">rem</code> 為主，<code class="highlighter-rouge">transform</code> 的 utility classes 也直接用了 CSS variables 來實作。這個部分可能需要 override spacing 設定，transform 的部分也可以考慮自己寫 plugin。</p>
+
+<p>也不是說需要支援舊瀏覽器的話，Tailwind 就完全不適合。只是如果想試試 Tailwind，可能要了解一下工具的侷限，自己調整一下設定等等。</p>
+
+<blockquote>
+  <p>註：Tailwind v2.0 後放棄支援 IE11（可參考新版的 <a href="https://tailwindcss.com/docs/browser-support">Browser Support</a> 頁面）。支援度基本上都以最新穩定版本的現代瀏覽器為主。</p>
+</blockquote>
+
+<h4 id="4-只想直接-load-cdn">4. 只想直接 <a href="https://tailwindcss.com/docs/installation/#using-tailwind-via-cdn">load CDN</a></h4>
+
+<p>必須說這真的是個讓 Tailwind 優勢盡失的使用方式。所有調整 configuration 的部分完全沒有辦法使用，而且 CSS 檔案會變得很龐大（無法透過 purgeCSS 去掉沒有用到的 classes）。以上這幾點讓我強烈不推薦用 CDN。</p>
+
+<p>但如果你喜歡用 Tailwind 刻板的感覺，並且預設的設定就能滿足你的需求，那也無妨。</p>
+
+<h2 id="充滿彈性的-configuration">充滿彈性的 Configuration</h2>
+
+<p>介紹完 Tailwind CSS 是怎麼樣的工具以後，想跟大家談談一些 Tailwind 很強大的地方，透過非常具有彈性的 Configuration，配上 plugin，可以讓你比較優雅地管理繁雜的 styles 們。</p>
+
+<p>Tailwind CSS 本來就提供基礎的 configuration，包含 color、spacing 等。例如 spacing 的部分，預設的定義大概如下：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="na">spacing</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">px</span><span class="p">:</span> <span class="s1">'1px'</span><span class="p">,</span>
+      <span class="s1">'0'</span><span class="p">:</span> <span class="s1">'0'</span><span class="p">,</span>
+      <span class="s1">'1'</span><span class="p">:</span> <span class="s1">'0.25rem'</span><span class="p">,</span>
+      <span class="s1">'2'</span><span class="p">:</span> <span class="s1">'0.5rem'</span><span class="p">,</span>
+      <span class="s1">'3'</span><span class="p">:</span> <span class="s1">'0.75rem'</span><span class="p">,</span>
+      <span class="s1">'4'</span><span class="p">:</span> <span class="s1">'1rem'</span><span class="p">,</span>
+      <span class="s1">'5'</span><span class="p">:</span> <span class="s1">'1.25rem'</span><span class="p">,</span>
+      <span class="s1">'6'</span><span class="p">:</span> <span class="s1">'1.5rem'</span><span class="p">,</span>
+      <span class="s1">'8'</span><span class="p">:</span> <span class="s1">'2rem'</span><span class="p">,</span>
+      <span class="s1">'10'</span><span class="p">:</span> <span class="s1">'2.5rem'</span><span class="p">,</span>
+      <span class="s1">'12'</span><span class="p">:</span> <span class="s1">'3rem'</span><span class="p">,</span>
+      <span class="s1">'16'</span><span class="p">:</span> <span class="s1">'4rem'</span><span class="p">,</span>
+      <span class="s1">'20'</span><span class="p">:</span> <span class="s1">'5rem'</span><span class="p">,</span>
+      <span class="s1">'24'</span><span class="p">:</span> <span class="s1">'6rem'</span><span class="p">,</span>
+      <span class="s1">'32'</span><span class="p">:</span> <span class="s1">'8rem'</span><span class="p">,</span>
+      <span class="s1">'40'</span><span class="p">:</span> <span class="s1">'10rem'</span><span class="p">,</span>
+      <span class="s1">'48'</span><span class="p">:</span> <span class="s1">'12rem'</span><span class="p">,</span>
+      <span class="s1">'56'</span><span class="p">:</span> <span class="s1">'14rem'</span><span class="p">,</span>
+      <span class="s1">'64'</span><span class="p">:</span> <span class="s1">'16rem'</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>全部的 default config 可以直接看<a href="https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js">這裡</a>。總之，在不調整設定的情況下，你其實就可以輕鬆地透過 <code class="highlighter-rouge">mr-1</code>、<code class="highlighter-rouge">text-red-600</code> 等 utility classes 就把網站迅速地架構出來。</p>
+
+<p>然而，開發的時候為了要符合客戶的需求（eg. 網站配色），基本的設定往往是不夠應付的（總不能為了用 Tailwind 叫客戶改主色吧）。所幸 Tailwind CSS 可以彈性地調整 configuration，override 或 extend 一些設定，把 configuration 調整成你需要的樣子。</p>
+
+<p>當你<a href="https://tailwindcss.com/docs/installation/">安裝好 Tailwind</a> 以後，可以透過指令產生 tailwind.config.js：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># npm</span>
+npx tailwind init
+<span class="c"># yarn</span>
+yarn tailwind init
+</code></pre></div></div>
+
+<p>接者你應該會得到一個空空如也的 config：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>你可以在直接在這個 config 裡加入想要 customize 的部分，之後這份 customized config 會自動 inherit default config。所以不需要把 default config 複製一份過來。</p>
+
+<p>接著大致上你可以做底下幾件事：</p>
+
+<h3 id="override-themes">Override themes</h3>
+
+<p>如果某個設定不符合你的需求，可以直接把它整個 override 掉。舉例來說，我只想要自己定義網站的 breakpoints，不想使用 Tailwind 原本定義的 640px(sm)、768px(md)、1024px(lg)、1280px(xl)。想要改成 360px(xs)、576px(sm)、768px(md)、992px(lg)、1440px(xl)。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">screens</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">xs</span><span class="p">:</span> <span class="s1">'360px'</span><span class="p">,</span>
+      <span class="na">sm</span><span class="p">:</span> <span class="s1">'576px'</span><span class="p">,</span>
+      <span class="na">md</span><span class="p">:</span> <span class="s1">'768px'</span><span class="p">,</span>
+      <span class="na">lg</span><span class="p">:</span> <span class="s1">'992px'</span><span class="p">,</span>
+      <span class="na">xl</span><span class="p">:</span> <span class="s1">'1440px'</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>之後有用到 <code class="highlighter-rouge">{screen}</code> 的 classes 都會採用剛剛自己定義的設定：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* max-w-{screen} 的部分 */</span>
+<span class="nc">.max-w-screen-xs</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">360px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* ... */</span>
+<span class="nc">.max-w-screen-xl</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">1440px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* container 的部分 */</span>
+<span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">360px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nc">.container</span><span class="p">{</span>
+    <span class="nl">max-width</span><span class="p">:</span> <span class="m">360px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c">/* ... */</span>
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">1440px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nc">.container</span> <span class="p">{</span>
+    <span class="nl">max-width</span><span class="p">:</span> <span class="m">1440px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">/* 其他 variant 有 responsive 的 classes */</span>
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">360px</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">xs</span><span class="err">\</span><span class="p">:</span><span class="n">px-3</span> <span class="p">{</span>
+    <span class="nl">padding-left</span><span class="p">:</span> <span class="m">.75rem</span><span class="p">;</span>
+    <span class="nl">padding-right</span><span class="p">:</span> <span class="m">.75rem</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="err">}</span>
+<span class="c">/* ... */</span>
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">1440px</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">xl</span><span class="err">\</span><span class="p">:</span><span class="n">px-3</span> <span class="p">{</span>
+    <span class="nl">padding-left</span><span class="p">:</span> <span class="m">.75rem</span><span class="p">;</span>
+    <span class="nl">padding-right</span><span class="p">:</span> <span class="m">.75rem</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<h3 id="extend-themes">Extend themes</h3>
+
+<p>如果希望保留原本的設定，再另外加上自己需要的其他設定。就可以用 extend 的方式。舉例來說，除了預設的 border-radius，想要自己擴充 <code class="highlighter-rouge">border-radius: 1rem;</code> 來使用：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">borderRadius</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">xl</span><span class="p">:</span> <span class="s1">'1rem'</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>於是原本的 <code class="highlighter-rouge">rounded-none</code>、<code class="highlighter-rouge">rounded-sm</code>、<code class="highlighter-rouge">rounded</code> 等等都還會在，但又多了我們自己擴充的 <code class="highlighter-rouge">rounded-xl</code> 可以使用。</p>
+
+<h3 id="referencing-the-default-theme">Referencing the default theme</h3>
+
+<p>另外想特別提醒一下，上面的 extend 只是 shallow merging，如果像是底下這樣的情況：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">red</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">default</span><span class="p">:</span> <span class="s2">"#E53935"</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>大家心裡的預期可能會以為 inherit default config 以後的結果是這樣：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">red</span><span class="p">:</span> <span class="p">{</span>
+  <span class="mi">100</span><span class="p">:</span> <span class="s1">'#fff5f5'</span><span class="p">,</span>
+  <span class="mi">200</span><span class="p">:</span> <span class="s1">'#fed7d7'</span><span class="p">,</span>
+  <span class="mi">300</span><span class="p">:</span> <span class="s1">'#feb2b2'</span><span class="p">,</span>
+  <span class="mi">400</span><span class="p">:</span> <span class="s1">'#fc8181'</span><span class="p">,</span>
+  <span class="mi">500</span><span class="p">:</span> <span class="s1">'#f56565'</span><span class="p">,</span>
+  <span class="mi">600</span><span class="p">:</span> <span class="s1">'#e53e3e'</span><span class="p">,</span>
+  <span class="mi">700</span><span class="p">:</span> <span class="s1">'#c53030'</span><span class="p">,</span>
+  <span class="mi">800</span><span class="p">:</span> <span class="s1">'#9b2c2c'</span><span class="p">,</span>
+  <span class="mi">900</span><span class="p">:</span> <span class="s1">'#742a2a'</span><span class="p">,</span>
+  <span class="k">default</span><span class="p">:</span> <span class="s2">"#E53935"</span><span class="p">,</span>
+<span class="p">},</span>
+</code></pre></div></div>
+
+<p>實際上卻會變成這樣：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">red</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nl">default</span><span class="p">:</span> <span class="s2">"#E53935"</span><span class="p">,</span>
+<span class="p">},</span>
+</code></pre></div></div>
+
+<p>因為只會 inherit 單一層，不會往下 deep merge，所以 <code class="highlighter-rouge">100</code> - <code class="highlighter-rouge">900</code> 的設定全部都會被覆蓋掉。如果想要保留 <code class="highlighter-rouge">100</code> - <code class="highlighter-rouge">900</code> 的設定，就必須從 default config 去 reference：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">defaultTheme</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tailwindcss/defaultTheme'</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">red</span><span class="p">:</span> <span class="p">{</span>
+          <span class="p">...</span><span class="nx">defaultTheme</span><span class="p">.</span><span class="nx">theme</span><span class="p">.</span><span class="nx">colors</span><span class="p">.</span><span class="nx">red</span><span class="p">,</span>
+          <span class="na">default</span><span class="p">:</span> <span class="s2">"#E53935"</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="variant">Variant</h3>
+
+<p>上面在講 Responsive 與 Pseudo Classes 就有大概提過 variant 了。Tailwind 絕大多數 utilities 都可以加上 variant，default config 本來就會把一些常用的 variant 加上，大部分的 utilities 的 <code class="highlighter-rouge">responsive</code> 都是打開的。</p>
+
+<p>目前所有的 variants 是：<code class="highlighter-rouge">responsive</code>、<code class="highlighter-rouge">group-hover</code>、<code class="highlighter-rouge">focus-within</code>、<code class="highlighter-rouge">first</code>、<code class="highlighter-rouge">last</code>、<code class="highlighter-rouge">odd</code>、<code class="highlighter-rouge">even</code>、<code class="highlighter-rouge">hover</code>、<code class="highlighter-rouge">focus</code>、<code class="highlighter-rouge">active</code>、<code class="highlighter-rouge">visited</code>、<code class="highlighter-rouge">disabled</code>。每一個 variant 的功能可以參考官方說明。</p>
+
+<p>如果今天想要把 <code class="highlighter-rouge">borderWidth</code> 加上 <code class="highlighter-rouge">first</code> 跟 <code class="highlighter-rouge">hover</code>，可以先看一下原本 <code class="highlighter-rouge">borderWidth</code> 有哪些 variant：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// defaultConfig.stub.js:L628</span>
+<span class="nx">borderWidth</span><span class="p">:</span> <span class="p">[</span><span class="s1">'responsive'</span><span class="p">],</span>
+</code></pre></div></div>
+
+<p>接著在 <code class="highlighter-rouge">tailwind.config.js</code> 加上原本的 variant 以及要新加的 variant：</p>
+
+<pre><code class="language-javascipt">module.exports = {
+  theme: {},
+  variants: {
+    borderWidth: ['responsive', 'first', 'hover'],
+  },
+  plugins: [],
+}
+</code></pre>
+
+<p>產生出來的對應 utility classes，在 CSS 中的順序會照著上面的順序，<code class="highlighter-rouge">first</code> 的會在前，<code class="highlighter-rouge">hover</code> 的會在後：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.first</span><span class="err">\</span><span class="nd">:border-0:first-child</span> <span class="p">{</span>
+  <span class="nl">border-width</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* 略... */</span>
+
+<span class="nc">.hover</span><span class="err">\</span><span class="nd">:border-0:hover</span> <span class="p">{</span>
+  <span class="nl">border-width</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* 略... */</span>
+</code></pre></div></div>
+
+<p>換言之，hover 系列的 utility classes 優先度會比 first 系列的來得高。比方說，在同一個 element 上加上 <code class="highlighter-rouge">first:border</code> 和 <code class="highlighter-rouge">hover:border-2</code>，當元素被 hover 時，<code class="highlighter-rouge">hover:border-2</code> 會覆蓋掉 <code class="highlighter-rouge">first:border</code>。如果放反，hover 效果就不會出來。</p>
+
+<p>官方有一套建議的順序，如果沒有什麼特殊的需求導致不能遵循，就盡量參考一下吧：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="s1">'responsive'</span><span class="p">,</span> <span class="s1">'group-hover'</span><span class="p">,</span> <span class="s1">'focus-within'</span><span class="p">,</span> <span class="s1">'first'</span><span class="p">,</span> <span class="s1">'last'</span><span class="p">,</span> <span class="s1">'odd'</span><span class="p">,</span> <span class="s1">'even'</span><span class="p">,</span> <span class="s1">'hover'</span><span class="p">,</span> <span class="s1">'focus'</span><span class="p">,</span> <span class="s1">'active'</span><span class="p">,</span> <span class="s1">'visited'</span><span class="p">,</span> <span class="s1">'disabled'</span><span class="p">]</span>
+</code></pre></div></div>
+<h3 id="plugin">Plugin</h3>
+
+<p>Tailwind 也提供讓大家自己寫 plugin 擴充各種功能。可以透過 plugin 做到的事情很多，包含加上新的 <a href="https://tailwindcss.com/docs/plugins/#adding-utilities">utility</a>、<a href="https://tailwindcss.com/docs/plugins/#adding-base-styles">base styles</a>、<a href="https://tailwindcss.com/docs/plugins/#adding-components">components</a> 等等。</p>
+
+<p>另外，寫 plugin 的時候，都可以透過 <code class="highlighter-rouge">variant()</code>、<code class="highlighter-rouge">theme()</code> 取得 user’s config 的 theme 與 variant。</p>
+
+<p>至於想要用第三方的 plugin 的話，可以看看 <a href="https://github.com/aniftyco/awesome-tailwindcss">Awesome Tailwind CSS</a>、<a href="https://www.tailwindtoolbox.com/plugins">Tailwind Toolbox</a> 上有沒有符合需求的 plugin。</p>
+
+<p>除此之外，官方也有提供針對<a href="https://github.com/tailwindcss/custom-forms">表單元件的 plugin</a>。現在的網站除非特別陽春，否則表單元件通常都不會讓他是原生醜醜的樣子，但如果每次刻板都要重頭改一次 input 的樣式也是相當崩潰（就只是想讓 text field 看起來像樣一點而已&gt;&lt;）。相信這個 plugin 也是相當實用。</p>
+
+<p>這個部分這裡就不在多花篇幅說明 plugin 所有 usage，底下只針對 <code class="highlighter-rouge">v.1.2.0</code> 新增的功能：<a href="https://github.com/tailwindcss/tailwindcss/pull/1162">extend the user’s config</a> 做介紹。</p>
+
+<h2 id="試想情境公司的新網站要一部分的主站視覺又要加上新的設計">試想情境：公司的新網站要一部分的主站視覺，又要加上新的設計？</h2>
+
+<p>試想今天你的需求是這樣：</p>
+
+<p>你在做公司的子網站，主站已經有一份對應的 Tailwind Config（包含 color schemes 以及 breakpoints 等等）。但是同時新站又有新站的 primary colors 等其他 config，這個時候該怎麼辦呢？</p>
+
+<p><img src="assets/images/tailwind-example-colors.png" alt="colors" /></p>
+
+<p>像上圖，gray、red、orange 等等都要從 Tailwind 預設的色碼改成主站使用的顏色，子站的 theme colors 要 override 主站的 theme colors ，另外增加 second 系列顏色。</p>
+
+<p>主站可能還有自己定義的 lineHeight、spacing、boxShadow … 等等，以及 variants，這些子站都要繼承才行。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 主站的 tailwind.config.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">gray</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">100</span><span class="p">:</span> <span class="s1">'EBEDEF'</span><span class="p">,</span>
+        <span class="mi">200</span><span class="p">:</span> <span class="s1">'D6DBDF'</span><span class="p">,</span>
+        <span class="mi">300</span><span class="p">:</span> <span class="s1">'AEB6BF'</span><span class="p">,</span>
+        <span class="mi">400</span><span class="p">:</span> <span class="s1">'85929E'</span><span class="p">,</span>
+        <span class="mi">500</span><span class="p">:</span> <span class="s1">'5D6D7E'</span><span class="p">,</span>
+        <span class="mi">600</span><span class="p">:</span> <span class="s1">'34495E'</span><span class="p">,</span>
+        <span class="mi">700</span><span class="p">:</span> <span class="s1">'273746'</span><span class="p">,</span>
+        <span class="mi">800</span><span class="p">:</span> <span class="s1">'283747'</span><span class="p">,</span>
+        <span class="mi">900</span><span class="p">:</span> <span class="s1">'212F3C'</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="c1">// ...</span>
+    <span class="p">},</span>
+    <span class="na">boxShadow</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">default</span><span class="p">:</span> <span class="s1">'0 1px 7px rgba(0,0,0,.05)'</span>
+    <span class="p">},</span>
+    <span class="c1">// ...</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">borderRadius</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'xl'</span><span class="p">:</span> <span class="s1">'0.75rem'</span>
+      <span class="p">},</span>
+      <span class="c1">// ...</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">borderWidth</span><span class="p">:</span> <span class="p">[</span><span class="s1">'responsive'</span><span class="p">,</span> <span class="s1">'first'</span><span class="p">,</span> <span class="s1">'hover'</span><span class="p">,</span> <span class="s1">'disabled'</span><span class="p">],</span>
+    <span class="c1">// ...</span>
+  <span class="p">},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>當然也可以直接讓子站自己維護一份 config 就好。先把主站的東西加進來，再把子站的 config 都加進去，全部塞在一份 config 裡。</p>
+
+<p>但是，一旦子站的設定跟主站的混在一起，事後想要再區別開來就不是這麼容易了。</p>
+
+<p>自從 Tailwind 在 v.1.2.0 加入新功能，允許大家透過 plugin 來 extend config 以後，就可以更漂亮的解決這個問題。</p>
+
+<p>聽說只要簡單三步驟，就可以迅速完成呢！</p>
+
+<h3 id="step1-把主站的-config-放進-plugin-裡">STEP1: 把主站的 config 放進 plugin 裡</h3>
+
+<p>新增一個 plugin，把主站的 config 放進去：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// plugins/my_site_config.js</span>
+<span class="kd">const</span> <span class="nx">plugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tailwindcss/plugin'</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">plugin</span><span class="p">(</span><span class="kd">function</span> <span class="p">({</span> <span class="nx">_addUtilities</span><span class="p">,</span> <span class="nx">_variants</span><span class="p">,</span> <span class="nx">_theme</span> <span class="p">})</span> <span class="p">{},</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">gray</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">100</span><span class="p">:</span> <span class="s1">'EBEDEF'</span><span class="p">,</span>
+        <span class="mi">200</span><span class="p">:</span> <span class="s1">'D6DBDF'</span><span class="p">,</span>
+        <span class="mi">300</span><span class="p">:</span> <span class="s1">'AEB6BF'</span><span class="p">,</span>
+        <span class="mi">400</span><span class="p">:</span> <span class="s1">'85929E'</span><span class="p">,</span>
+        <span class="mi">500</span><span class="p">:</span> <span class="s1">'5D6D7E'</span><span class="p">,</span>
+        <span class="mi">600</span><span class="p">:</span> <span class="s1">'34495E'</span><span class="p">,</span>
+        <span class="mi">700</span><span class="p">:</span> <span class="s1">'273746'</span><span class="p">,</span>
+        <span class="mi">800</span><span class="p">:</span> <span class="s1">'283747'</span><span class="p">,</span>
+        <span class="mi">900</span><span class="p">:</span> <span class="s1">'212F3C'</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="c1">// ...</span>
+    <span class="p">},</span>
+    <span class="c1">// ...</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">borderRadius</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'xl'</span><span class="p">:</span> <span class="s1">'0.75rem'</span>
+      <span class="p">},</span>
+      <span class="c1">// ...</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">borderWidth</span><span class="p">:</span> <span class="p">[</span><span class="s1">'responsive'</span><span class="p">,</span> <span class="s1">'first'</span><span class="p">,</span> <span class="s1">'hover'</span><span class="p">,</span> <span class="s1">'disabled'</span><span class="p">],</span>
+    <span class="c1">// ...</span>
+  <span class="p">},</span>
+<span class="p">})</span>
+
+</code></pre></div></div>
+
+<h3 id="step2-把子站要-override-與-extend-的內容加進-config-中">STEP2: 把子站要 override 與 extend 的內容加進 config 中</h3>
+
+<p>接著把子站獨有的 color.. 等等設定放進 config：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// tailwind.config.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fontSize</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">remark</span><span class="p">:</span> <span class="s1">'.75rem'</span><span class="p">,</span>
+      <span class="na">base</span><span class="p">:</span> <span class="s1">'1.1rem'</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="s1">'2.75rem'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="c1">// ...</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+          <span class="mi">100</span><span class="p">:</span> <span class="s1">'#DDFAFF'</span><span class="p">,</span>
+          <span class="mi">200</span><span class="p">:</span> <span class="s1">'#BAF2FC'</span><span class="p">,</span>
+          <span class="mi">300</span><span class="p">:</span> <span class="s1">'#88E4F4'</span><span class="p">,</span>
+          <span class="mi">400</span><span class="p">:</span> <span class="s1">'#58D6EC'</span><span class="p">,</span>
+          <span class="mi">500</span><span class="p">:</span> <span class="s1">'#2CB6CE'</span><span class="p">,</span>
+          <span class="mi">600</span><span class="p">:</span> <span class="s1">'#009CB7'</span><span class="p">,</span>
+          <span class="mi">700</span><span class="p">:</span> <span class="s1">'#09889E'</span><span class="p">,</span>
+          <span class="mi">800</span><span class="p">:</span> <span class="s1">'#0C6D7E'</span><span class="p">,</span>
+          <span class="mi">900</span><span class="p">:</span> <span class="s1">'#025362'</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c1">// ...</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="step3-子站的-config-加上剛剛做好的-plugin">STEP3: 子站的 config 加上剛剛做好的 plugin</h3>
+<p>在 config 裡 require 剛剛放了主站 config 的那個 plugin：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// tailwind.config.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fontSize</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">remark</span><span class="p">:</span> <span class="s1">'.75rem'</span><span class="p">,</span>
+      <span class="na">base</span><span class="p">:</span> <span class="s1">'1.1rem'</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="s1">'2.75rem'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="c1">// ...</span>
+    <span class="na">extend</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">colors</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">theme</span><span class="p">:</span> <span class="p">{</span>
+          <span class="mi">100</span><span class="p">:</span> <span class="s1">'#DDFAFF'</span><span class="p">,</span>
+          <span class="mi">200</span><span class="p">:</span> <span class="s1">'#BAF2FC'</span><span class="p">,</span>
+          <span class="mi">300</span><span class="p">:</span> <span class="s1">'#88E4F4'</span><span class="p">,</span>
+          <span class="mi">400</span><span class="p">:</span> <span class="s1">'#58D6EC'</span><span class="p">,</span>
+          <span class="mi">500</span><span class="p">:</span> <span class="s1">'#2CB6CE'</span><span class="p">,</span>
+          <span class="mi">600</span><span class="p">:</span> <span class="s1">'#009CB7'</span><span class="p">,</span>
+          <span class="mi">700</span><span class="p">:</span> <span class="s1">'#09889E'</span><span class="p">,</span>
+          <span class="mi">800</span><span class="p">:</span> <span class="s1">'#0C6D7E'</span><span class="p">,</span>
+          <span class="mi">900</span><span class="p">:</span> <span class="s1">'#025362'</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c1">// ...</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">variants</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="nx">require</span><span class="p">(</span><span class="s1">'./plugins/my_site_config'</span><span class="p">)],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>這樣基本上就大功告成了！是不是很簡單呢？</p>
+
+<h2 id="最後的提醒">最後的提醒</h2>
+
+<p>恭喜大家把這篇落落長的介紹文給讀完了！希望這篇文章也能給大家一點小小的幫助。</p>
+
+<p>不知道大家有沒有想到，應該在意一下檔案大小的部分。如果沒有調整 config 的情況下安裝完，沒有壓縮或 minified 應該會是 783.5KB 左右。</p>
+
+<p>畢竟 Tailwind 幫你產生太多你大都不會用上的 utilities 了，加上 variant 的部分乘一乘，數量相當可觀。</p>
+
+<p>因此，官方建議<a href="https://tailwindcss.com/docs/controlling-file-size/#app">使用 purgeCSS</a>，把沒用上的 CSS 給去除，幫 CSS 檔案瘦身一下。</p>
+
+<blockquote>
+  <p>註： purge 功能於 <a href="">v1.4.0</a> 加進 Tailwind 中，purgeCSS 不在需要另外安裝。請改參考新版文件的 <a href="https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css">Remove unused CSS</a> 章節</p>
+</blockquote>
+
+<p>先安裝 purgeCSS：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># npm</span>
+npm install @fullhuman/postcss-purgecss <span class="nt">-D</span>
+
+<span class="c"># yarn</span>
+yarn add @fullhuman/postcss-purgecss <span class="nt">-D</span>
+</code></pre></div></div>
+
+<p>在 <code class="highlighter-rouge">postcss.config.js</code> 的 plugin 加上 PurgeCSS：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// postcss.config.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">'tailwindcss'</span><span class="p">),</span>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">'autoprefixer'</span><span class="p">),</span>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">'@fullhuman/postcss-purgecss'</span><span class="p">)({</span>
+      <span class="na">content</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">'./**/*.html'</span><span class="p">,</span>
+        <span class="s1">'./**/*.pug'</span><span class="p">,</span>
+        <span class="s1">'./**/*.jsx'</span><span class="p">,</span>
+        <span class="c1">// etc</span>
+      <span class="p">],</span>
+      <span class="na">defaultExtractor</span><span class="p">:</span> <span class="nx">content</span> <span class="o">=&gt;</span> <span class="nx">content</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/</span><span class="se">[\w</span><span class="sr">-</span><span class="se">/</span><span class="sr">:</span><span class="se">]</span><span class="sr">+</span><span class="se">(?&lt;</span><span class="sr">!:</span><span class="se">)</span><span class="sr">/g</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]</span>
+    <span class="p">})</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+</code></pre></div></div>
+<p>這邊的 content 放的是你的 template、html 的路徑，purgeCSS 會從這些檔案檢查你用到哪些 CSS，檢查有用到的才不會拔掉。</p>
+
+<p>換言之，如果你只有在某個檔案用到 <code class="highlighter-rouge">bg-gray-700</code>，但這個檔案的路徑不符合 content 中的任何一個規則，這個 <code class="highlighter-rouge">bg-gray-700</code> 的 CSS 就會被清除。</p>
+
+<p>如果發現你加了 class 卻沒反應，不妨檢查看看這個檔案有沒有涵蓋在 content 的規則裡。</p>
+
+<p>最後的最後，希望大家今天認識 Tailwind 這套工具，都有些許收穫，也玩得開心哦 ❤️</p>
+
+<h2 id="備註">備註</h2>
+
+<p>本文最初放在五倍紅寶石的專欄文章中，然而隨著公司分家改組，文章跟著被移除了QQ</p>
+
+<p>因此將文章移至部落格中。</p>
+
+<p>本文撰寫時 Tailwind 在 v.1.2.0 左右，因此裡面有些資訊可能已經有點老舊，日後有空我會再重寫一篇推坑文與心得文給大家。</p>
+
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="fumitsuki" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/blog/author/fumitsuki">文月</a></h4>
+                                
+                                    <p>擅長耍雷的フレンズ，在茫茫海海探索人生中</p>
+                                
+                            </section>
+                        </section>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/blog/assets/images/blog-cover.jpg)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; Fumitsuki's magic box &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/blog/tag/css/">Css</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/blog/tailwind-nested-config">[工作日常] 如何用建立巢狀的 tailwindcss config？</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/blog/sql-primary-key">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/sql.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/blog/sql-primary-key">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">Sql</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>## 問題一：可不可以不要...</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                        
+                        <span class="post-card-author">
+                            文月
+                        </span>
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/blog/amp-access-login">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/amp_access_cover.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/blog/amp-access-login">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">Amp</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">透過 amp-access 讓你在 Cache 頁面也能順利保持登入！</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    <p>（範例會以 Rails...</p>
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
+                        
+                        <span class="post-card-author">
+                            文月
+                        </span>
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/blog/">
+            
+                <img src="/blog/assets/images/favicon.png" alt="Fumitsuki's magic box icon" />
+            
+            <span>Fumitsuki's magic box</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E9%82%84%E5%9C%A8%E8%B7%9F%E8%A4%87%E9%9B%9C%E7%9A%84+CSS+%E7%9A%84%E8%A8%AD%E5%AE%9A%E5%A5%AE%E9%AC%A5%E5%97%8E%EF%BC%9F%E7%94%A8+Tailwind+%E4%BE%86%E5%B9%AB%E4%BD%A0%E5%AF%A6%E7%8F%BE%E7%9C%9F%E6%AD%A3%E7%9A%84%E9%AB%98%E6%95%88%E6%95%B4%E6%BD%94%EF%BC%81&amp;url=https://requiemformemories.github.io/blog/tailwind-css-plugin"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/tailwind-css-plugin"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2021</section>
+                <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/blog/">Latest Posts</a>
+                    <a href="https://GitHub.com/requiemformemories" target="_blank" rel="noopener">Github</a>
+                    <a href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/blog/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/blog/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69281367-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

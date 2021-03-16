@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-02-25T18:08:47+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">CS50 筆記：第四講 Memory</title><link href="/blog/cs50-notes-memory" rel="alternate" type="text/html" title="CS50 筆記：第四講 Memory" /><published>2021-02-25T15:34:00+08:00</published><updated>2021-02-25T15:34:00+08:00</updated><id>/blog/cs50-notes-memory</id><content type="html" xml:base="/blog/cs50-notes-memory">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-03-16T20:38:05+08:00</updated><id>/blog/</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">CS50 筆記：第四講 Memory</title><link href="/blog/cs50-notes-memory" rel="alternate" type="text/html" title="CS50 筆記：第四講 Memory" /><published>2021-02-25T15:34:00+08:00</published><updated>2021-02-25T15:34:00+08:00</updated><id>/blog/cs50-notes-memory</id><content type="html" xml:base="/blog/cs50-notes-memory">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;覺得這章是課程中我覺得蠻有趣的一章，除了學到了很多我以前不會的東西以外，這章的 &lt;a href=&quot;https://cs50.harvard.edu/college/2020/fall/psets/4/filter/more/&quot;&gt;problem set&lt;/a&gt; 很有趣，會帶著大家做一些基本的圖片處理（灰階、模糊、反轉、探測邊緣）。&lt;/p&gt;
 
@@ -1424,7 +1424,983 @@ JOIN bug_products USING(bug_id)
 
 &lt;hr /&gt;
 
-&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第四章 ID required 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content><author><name>文月</name></author><category term="sql" /><summary type="html">問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為：</summary></entry><entry><title type="html">[工作日常] 如何用建立巢狀的 tailwindcss config？</title><link href="/blog/tailwind-nested-config" rel="alternate" type="text/html" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" /><published>2019-08-22T14:13:00+08:00</published><updated>2019-08-22T14:13:00+08:00</updated><id>/blog/tailwind-nested-config</id><content type="html" xml:base="/blog/tailwind-nested-config">&lt;h2 id=&quot;內容更新&quot;&gt;內容更新&lt;/h2&gt;
+&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第四章 ID required 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content><author><name>文月</name></author><category term="sql" /><summary type="html">問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為：</summary></entry><entry><title type="html">還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</title><link href="/blog/tailwind-css-plugin" rel="alternate" type="text/html" title="還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！" /><published>2020-04-25T09:00:00+08:00</published><updated>2020-04-25T09:00:00+08:00</updated><id>/blog/tailwind-css-plugin</id><content type="html" xml:base="/blog/tailwind-css-plugin">&lt;h2 id=&quot;什麼是-tailwind-css&quot;&gt;什麼是 Tailwind CSS？&lt;/h2&gt;
+
+&lt;p&gt;簡單來說 Tailwind CSS 是一套 Utility-First CSS，相當具有彈性，也非常適合快速刻板。在 Utility-First CSS 之間也算是殺出了一片天。不過這個工具的魅力到底在哪呢？且讓我慢慢說明。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/tailwind-example-logo.svg&quot; alt=&quot;logo&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;utility-first-css&quot;&gt;Utility-First CSS&lt;/h3&gt;
+
+&lt;p&gt;要說到 Utility-First CSS 的好，就要先從一般的 CSS framework 說起：&lt;/p&gt;
+
+&lt;p&gt;相信大家都對 Material-UI、Bulma、Bootstrap（framework 們表示躺著也中槍XD）這類 component 都定義好好，套上去馬上就有個像樣網站的 framework 不太陌生。&lt;/p&gt;
+
+&lt;p&gt;要 navbar 有 navbar，要 button 有 button，的確是非常方便。&lt;/p&gt;
+
+&lt;p&gt;但是使用這些前端 framework 很快就會遇到一個很頭痛的問題：不想要自己的網站看起來一眼就是套框架，但是想要客製化的話，又會遭遇維護上的麻煩跟困難。&lt;/p&gt;
+
+&lt;h4 id=&quot;1-最糟糕的情況-override-css&quot;&gt;1. 最糟糕的情況： override CSS&lt;/h4&gt;
+&lt;p&gt;可能原本的框架沒有提供什麼比較好的 customize 的方式，或是自己選擇使用這些工具的方式導致很難 customize，只好各種 override 人家寫好的 CSS，  &lt;strike&gt;網站看起來還好好的就閉著眼睛 commit + push&lt;/strike&gt;。但這種方式實在很容易把東西改壞。&lt;/p&gt;
+
+&lt;h4 id=&quot;2-把-customized-code-載下來&quot;&gt;2. 把 customized code 載下來&lt;/h4&gt;
+&lt;p&gt;框架本身提供 customization，可以把各個地方修修改改再把 code 載下來。乍看之下好像很棒，但如果今天你手上的專案交給另一個人接手，他要如何知道哪些地方是原始的設定，哪些地方又被動過手腳了呢？&lt;/p&gt;
+
+&lt;h4 id=&quot;3-import-後再-override-sass-variables&quot;&gt;3. import 後再 override Sass variables&lt;/h4&gt;
+&lt;p&gt;比較好的情況，可以 import 框架的 Sass，但又 override 部分 Sass variables，不但可以調整設定，也不容易造成管理、維護的問題。&lt;/p&gt;
+
+&lt;p&gt;但只要他已經把 UI 都定好了，&lt;strong&gt;可以調整的範圍往往就受到不少限制&lt;/strong&gt;。如果使用 Utility-First CSS 的時候，的因為每個元件都要自己刻，哪裡不滿意、不符合需求，都可以在 utility class 加加減減中完成。簡單來說就是非常具有&lt;strong&gt;彈性&lt;/strong&gt;吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;快速架構&quot;&gt;快速架構&lt;/h3&gt;
+
+&lt;p&gt;Tailwind CSS 把大致上 CSS 會用到的屬性都用單個 class 來表示。例如 &lt;code class=&quot;highlighter-rouge&quot;&gt;.mt-1&lt;/code&gt; 對應的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;margin-top: 0.25rem;&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;.my-2&lt;/code&gt; 對應的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;margin-top: 0.5rem; margin-bottom: 0.5rem;&lt;/code&gt;。&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.mt-1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;margin-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.25rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mt-1&lt;/code&gt; 實在是比 &lt;code class=&quot;highlighter-rouge&quot;&gt;margin-top: 0.25rem;&lt;/code&gt; 短太多，也不容易打錯字（欸）。&lt;/p&gt;
+
+&lt;p&gt;因為可以直接把對應的 class 直接加在你想要作用的 element 上，大部分的情況下可以不需要自己動 stylesheet 的部分，相當方便。於是你就可以非常迅速地把網站的各種部分建構出來，也可以很輕鬆地調整。&lt;/p&gt;
+
+&lt;p&gt;「輕鬆」這件事情聽我嘴上說說似乎也不準，不如自己動手試試XD&lt;/p&gt;
+
+&lt;p&gt;如果還來不及在 local 新增專案、安裝 Tailwind，可以先在 &lt;a href=&quot;https://tailwind.run&quot;&gt;Tailwind.run&lt;/a&gt; 嘗試看看。&lt;/p&gt;
+
+&lt;h3 id=&quot;官方文件齊全&quot;&gt;官方文件齊全&lt;/h3&gt;
+
+&lt;p&gt;除了 Utility-First CSS 本身的好處以外，Tailwind CSS 雖然還不是十分被廣泛使用，但想要上手的話，光是官方文件就十分充足、一目瞭然。（總覺得教學文不多，但有可能是官方文件就說得很清楚，也不多人想寫教學文XD）&lt;/p&gt;
+
+&lt;p&gt;從 &lt;a href=&quot;https://tailwindcss.com/docs/installation/#app&quot;&gt;installation&lt;/a&gt;、&lt;a href=&quot;https://v1.tailwindcss.com/components&quot;&gt;components 範例&lt;/a&gt;、每個 utility css 的簡介……甚至來有&lt;a href=&quot;https://tailwindcss.com/screencasts/&quot;&gt;教學 screencasts&lt;/a&gt; 可以看，真的非常用（ㄏㄣˇ）心（ㄏㄨㄟˋ）。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;註： Tailwind CSS 作者推出付費的 &lt;a href=&quot;https://tailwindui.com/components?utm_source=tailwindcss&amp;amp;utm_medium=navigation&quot;&gt;Tailwind UI&lt;/a&gt; 後，官網上就不再放 component 範例給大家參考了。但舊版文件的「components 範例」連結仍可以參考&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;缺點&quot;&gt;缺點&lt;/h3&gt;
+&lt;p&gt;開始用 Tailwind 以後，你開始發現你的 html code 充滿了一大串像這樣的東西：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;relative w-full h-48 bg-primary-200 text-center overflow-hidden text-0 leading-48&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; ... &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;剛開始接觸時可能會覺得用起來會讓 code 相當醜，看起來非常不習慣，想跟我說「不是跟我說高效『整潔』嗎，在騙肖？」&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;先別急著摔筆&lt;/del&gt;，如果前端有使用 React、Vue 等框架並且把畫面上的組成準確的分成不同 component，其實不用太擔心會有一堆重複的 utility class 集合在你的字裡行間亂竄。要是有一些出現頻率高的元件（eg. 按鈕、input），也可以考慮用 &lt;a href=&quot;https://tailwindcss.com/docs/extracting-components/#extracting-css-components-with-apply&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@apply&lt;/code&gt; 適當地切出一些 CSS components&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果我好好地切 component，其實還是會很好維護的。如果你還是要跟我 argue 一大串 class 看得很煩躁，可能必須說這本來就是工具之間的取捨，以醜醜的 code 為代價，可以換來快速開發，讓你早點下班休息也未嘗不好 ☕&lt;/p&gt;
+
+&lt;h3 id=&quot;和-inline-css-的差異&quot;&gt;和 inline CSS 的差異&lt;/h3&gt;
+
+&lt;p&gt;至於有些人會問：「蛤？這樣不是跟寫 inline CSS 一樣嗎？」 &lt;strike&gt;我一開始也是這樣想的！&lt;/strike&gt; 但其實 Tailwind 有一些隱藏的優點，是 inline CSS 很難辦到的：&lt;/p&gt;
+
+&lt;h4 id=&quot;1-遵循規範&quot;&gt;1. 遵循規範&lt;/h4&gt;
+&lt;p&gt;相信新手剛開始學寫網頁的時候，都會有這樣的經驗，常常會隨心所欲地亂加 padding、margin，40px 還是 50px 都隨我心情 XD
+後來開始工作、接案以後， &lt;strike&gt;才會深刻體悟到原來這些數字不能像去菜市場買菜一樣亂喊價 &lt;/strike&gt;。如果沒有對這些數值有一定的規範，各個 component 搭配起來，最後呈現給使用者的畫面也會出現視覺上的平衡問題。&lt;/p&gt;
+
+&lt;p&gt;如果全部寫 inline CSS，是很難去注意有沒有哪裡違背了定義好的規範。要一一去對數值跟色碼有沒有寫對，太過辛苦也不實際：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width: 100%;padding-top: 64px;padding-bottom: 160px;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;padding: 24px;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size:20px;color:#2d3748;font-weight: 400;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- ....  --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;margin-top:64px;color:#718096;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+       &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- ...  --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;改用 Tailwind CSS 以後，顏色、spacing 等等都是用 config 來做管理，可以比較嚴格地規範可以使用的數值和色碼，避免沒有規範地隨意下 padding、加 background-color 等等。&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;w-full pt-16 pb-40&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;p-6&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text-xl text-gray-800 font-normal&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- ....  --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-16 text-gray-600&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+       &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- ...  --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-responsive&quot;&gt;2. Responsive&lt;/h4&gt;
+
+&lt;p&gt;用 inline css 基本上做不到 Responsive Web Design，因為包含 &lt;code class=&quot;highlighter-rouge&quot;&gt;@media&lt;/code&gt; 的 rules 是無法放在 inline css 裡的。&lt;/p&gt;
+
+&lt;p&gt;在使用 Tailwind CSS 的時候，只要這個 utilty class 的 responsive variant 有被打開，就會產生像是底下的 CSS classes：&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;/* 原本的 utilty class */&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.w-1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;25%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;992px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.lg&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:w-1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;25%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1280px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.xl&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:w-1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;25%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;於是就可以簡單地使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;.xl:w-1/4&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;.lg:w-1/4&lt;/code&gt; 等 classes 來做 responsive design。&lt;/p&gt;
+
+&lt;p&gt;比方說，我想根據視窗大小改變元素的寬度跟顏色：&lt;/p&gt;
+
+&lt;div style=&quot;margin-bottom: 16px;&quot;&gt;
+  &lt;p class=&quot;codepen&quot; data-height=&quot;265&quot; data-theme-id=&quot;dark&quot; data-default-tab=&quot;html,result&quot; data-user=&quot;requiemformemories&quot; data-slug-hash=&quot;rNONeGo&quot; style=&quot;height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;Tailwindcss example: responsive&quot;&gt;
+    &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/requiemformemories/pen/rNONeGo&quot;&gt;
+    Tailwindcss example: responsive&lt;/a&gt; by 文月 (&lt;a href=&quot;https://codepen.io/requiemformemories&quot;&gt;@requiemformemories&lt;/a&gt;)
+    on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;以 &lt;code class=&quot;highlighter-rouge&quot;&gt;width&lt;/code&gt; 來說，預設 &lt;code class=&quot;highlighter-rouge&quot;&gt;responsive&lt;/code&gt; 就是打開的，不需要調整 customized config (&lt;code class=&quot;highlighter-rouge&quot;&gt;tailwind.config.js&lt;/code&gt;)就有得使用。&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// defaultConfig.stub.js:L680&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'responsive'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;預設的 variant 可以直接參考 &lt;a href=&quot;https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js&quot;&gt;Tailwind Github 上的 default configuration&lt;/a&gt;，或者每個 utility classes 的簡介都會有 &lt;a href=&quot;https://tailwindcss.com/docs/width#responsive&quot;&gt;Responsive and pseudo-class variants&lt;/a&gt; 的章節可以參考&lt;/p&gt;
+
+&lt;h4 id=&quot;3-pseudo-classes&quot;&gt;3. Pseudo-classes&lt;/h4&gt;
+
+&lt;p&gt;要透過 inline css 加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;:hover&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;:active&lt;/code&gt; 也是辦不到的。但是 Tailwind 提供 &lt;code class=&quot;highlighter-rouge&quot;&gt;hover&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;focus&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;active&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;disabled&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;visited&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;first-child&lt;/code&gt; …… 等 variants。讓你可以很容易地加上對應的 utility class，就能得到 hover、active 等效果。&lt;/p&gt;
+
+&lt;p&gt;比方說把 &lt;code class=&quot;highlighter-rouge&quot;&gt;backgroundColor&lt;/code&gt; 的 variant 預設就已經把 &lt;code class=&quot;highlighter-rouge&quot;&gt;hover&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;focus&lt;/code&gt; 打開了，所以就可以直接使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;hover:bg-teal-600&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;focus:bg-teal-600&lt;/code&gt; 這樣的 classes 來製造 hover 或 focus 時的效果。&lt;/p&gt;
+
+&lt;div style=&quot;margin-bottom: 16px;&quot;&gt;
+  &lt;p class=&quot;codepen&quot; data-height=&quot;265&quot; data-theme-id=&quot;dark&quot; data-default-tab=&quot;html,result&quot; data-user=&quot;requiemformemories&quot; data-slug-hash=&quot;yLYLeMg&quot; style=&quot;height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;yLYLeMg&quot;&gt;
+    &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/requiemformemories/pen/yLYLeMg&quot;&gt;
+    yLYLeMg&lt;/a&gt; by 文月 (&lt;a href=&quot;https://codepen.io/requiemformemories&quot;&gt;@requiemformemories&lt;/a&gt;)
+    on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;順帶一提，Tailwind 還有個 &lt;code class=&quot;highlighter-rouge&quot;&gt;group-hover&lt;/code&gt; 的 variant，當某個 utility 的 variant 加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;group-hover&lt;/code&gt; 以後，就會產生像下面這種 CSS classes：&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.group&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.group-hover&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:text-blue-400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#63B3ED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;於是你可以很輕鬆地做到 group hover 的效果：&lt;/p&gt;
+
+&lt;div style=&quot;margin-bottom: 16px;&quot;&gt;
+  &lt;p class=&quot;codepen&quot; data-height=&quot;265&quot; data-theme-id=&quot;dark&quot; data-default-tab=&quot;html,result&quot; data-user=&quot;requiemformemories&quot; data-slug-hash=&quot;dyYyMox&quot; style=&quot;height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot; data-pen-title=&quot;Tailwindcss example: group hover&quot;&gt;
+    &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/requiemformemories/pen/dyYyMox&quot;&gt;
+    Tailwindcss example: group hover&lt;/a&gt; by 文月 (&lt;a href=&quot;https://codepen.io/requiemformemories&quot;&gt;@requiemformemories&lt;/a&gt;)
+    on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;誰不適合-tailwind&quot;&gt;誰不適合 Tailwind？&lt;/h3&gt;
+
+&lt;p&gt;任何工具都不會是絕對完美或是絕對適合所有族群，自己覺得如果有一些特殊的狀況或需求，可能用 Tailwind 也會很痛苦：&lt;/p&gt;
+
+&lt;h4 id=&quot;1-不擅長從零開始自己刻板的新手&quot;&gt;1. 不擅長從零開始自己刻板的新手&lt;/h4&gt;
+
+&lt;p&gt;我想如果是不擅長刻板的新手，又要在時限內地交出專案，utility-first css 應該都會用得蠻痛苦的。但還是鼓勵不擅長刻板的朋友，絕對不要被 UI components 所迷惑，對於太過方便的東西產生依賴&amp;gt;&amp;lt;”&lt;/p&gt;
+
+&lt;h4 id=&quot;2-後台管理等等只需要簡單的-ui不希望花時間刻板&quot;&gt;2. 後台管理等等，只需要簡單的 UI，不希望花時間刻板&lt;/h4&gt;
+
+&lt;p&gt;如果沒有這個時間、也沒有這個需求需要自己刻版，其實也沒什麼用 utility-first css 增加自己困擾的理由。&lt;/p&gt;
+
+&lt;h4 id=&quot;3-網站需要支援較舊的-browser&quot;&gt;3. 網站需要支援較舊的 browser&lt;/h4&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Tailwind on the other hand is a low-level utility framework, where most of the classes map directly to individual CSS properties. &lt;strong&gt;This means that which browsers you support is really up to you, not the framework.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;根據 Tailwind 的&lt;a href=&quot;https://v1.tailwindcss.com/docs/browser-support#using-tailwind-with-older-browsers&quot;&gt;官方說明&lt;/a&gt;，browser 支援度這件事情是看使用者自己。畢竟知道自己要支援到 IE9 的人，自己就會知道不該用 &lt;code class=&quot;highlighter-rouge&quot;&gt;flexbox&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;:focus-within&lt;/code&gt; 等等。&lt;/p&gt;
+
+&lt;p&gt;但自己覺得這套工具在設計上本身就不太想顧慮到舊瀏覽器的支援，比方說大部分的單位都以 &lt;code class=&quot;highlighter-rouge&quot;&gt;rem&lt;/code&gt; 為主，&lt;code class=&quot;highlighter-rouge&quot;&gt;transform&lt;/code&gt; 的 utility classes 也直接用了 CSS variables 來實作。這個部分可能需要 override spacing 設定，transform 的部分也可以考慮自己寫 plugin。&lt;/p&gt;
+
+&lt;p&gt;也不是說需要支援舊瀏覽器的話，Tailwind 就完全不適合。只是如果想試試 Tailwind，可能要了解一下工具的侷限，自己調整一下設定等等。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;註：Tailwind v2.0 後放棄支援 IE11（可參考新版的 &lt;a href=&quot;https://tailwindcss.com/docs/browser-support&quot;&gt;Browser Support&lt;/a&gt; 頁面）。支援度基本上都以最新穩定版本的現代瀏覽器為主。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;4-只想直接-load-cdn&quot;&gt;4. 只想直接 &lt;a href=&quot;https://tailwindcss.com/docs/installation/#using-tailwind-via-cdn&quot;&gt;load CDN&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;必須說這真的是個讓 Tailwind 優勢盡失的使用方式。所有調整 configuration 的部分完全沒有辦法使用，而且 CSS 檔案會變得很龐大（無法透過 purgeCSS 去掉沒有用到的 classes）。以上這幾點讓我強烈不推薦用 CDN。&lt;/p&gt;
+
+&lt;p&gt;但如果你喜歡用 Tailwind 刻板的感覺，並且預設的設定就能滿足你的需求，那也無妨。&lt;/p&gt;
+
+&lt;h2 id=&quot;充滿彈性的-configuration&quot;&gt;充滿彈性的 Configuration&lt;/h2&gt;
+
+&lt;p&gt;介紹完 Tailwind CSS 是怎麼樣的工具以後，想跟大家談談一些 Tailwind 很強大的地方，透過非常具有彈性的 Configuration，配上 plugin，可以讓你比較優雅地管理繁雜的 styles 們。&lt;/p&gt;
+
+&lt;p&gt;Tailwind CSS 本來就提供基礎的 configuration，包含 color、spacing 等。例如 spacing 的部分，預設的定義大概如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spacing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1px'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.25rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.5rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.75rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'5'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.25rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'6'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.5rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'8'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'10'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2.5rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'12'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'3rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'16'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'4rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'20'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'24'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'6rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'32'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'8rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'40'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'10rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'48'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'12rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'56'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'14rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'64'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'16rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;全部的 default config 可以直接看&lt;a href=&quot;https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js&quot;&gt;這裡&lt;/a&gt;。總之，在不調整設定的情況下，你其實就可以輕鬆地透過 &lt;code class=&quot;highlighter-rouge&quot;&gt;mr-1&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;text-red-600&lt;/code&gt; 等 utility classes 就把網站迅速地架構出來。&lt;/p&gt;
+
+&lt;p&gt;然而，開發的時候為了要符合客戶的需求（eg. 網站配色），基本的設定往往是不夠應付的（總不能為了用 Tailwind 叫客戶改主色吧）。所幸 Tailwind CSS 可以彈性地調整 configuration，override 或 extend 一些設定，把 configuration 調整成你需要的樣子。&lt;/p&gt;
+
+&lt;p&gt;當你&lt;a href=&quot;https://tailwindcss.com/docs/installation/&quot;&gt;安裝好 Tailwind&lt;/a&gt; 以後，可以透過指令產生 tailwind.config.js：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# npm&lt;/span&gt;
+npx tailwind init
+&lt;span class=&quot;c&quot;&gt;# yarn&lt;/span&gt;
+yarn tailwind init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接者你應該會得到一個空空如也的 config：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;你可以在直接在這個 config 裡加入想要 customize 的部分，之後這份 customized config 會自動 inherit default config。所以不需要把 default config 複製一份過來。&lt;/p&gt;
+
+&lt;p&gt;接著大致上你可以做底下幾件事：&lt;/p&gt;
+
+&lt;h3 id=&quot;override-themes&quot;&gt;Override themes&lt;/h3&gt;
+
+&lt;p&gt;如果某個設定不符合你的需求，可以直接把它整個 override 掉。舉例來說，我只想要自己定義網站的 breakpoints，不想使用 Tailwind 原本定義的 640px(sm)、768px(md)、1024px(lg)、1280px(xl)。想要改成 360px(xs)、576px(sm)、768px(md)、992px(lg)、1440px(xl)。&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;screens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'360px'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;sm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'576px'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'768px'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;lg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'992px'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;xl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1440px'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;之後有用到 &lt;code class=&quot;highlighter-rouge&quot;&gt;{screen}&lt;/code&gt; 的 classes 都會採用剛剛自己定義的設定：&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;/* max-w-{screen} 的部分 */&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.max-w-screen-xs&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;360px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;/* ... */&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.max-w-screen-xl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1440px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/* container 的部分 */&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;360px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;360px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;/* ... */&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1440px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;.container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1440px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/* 其他 variant 有 responsive 的 classes */&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;360px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;px-3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;.75rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;.75rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;/* ... */&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1440px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xl&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;px-3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;.75rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;padding-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;.75rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;extend-themes&quot;&gt;Extend themes&lt;/h3&gt;
+
+&lt;p&gt;如果希望保留原本的設定，再另外加上自己需要的其他設定。就可以用 extend 的方式。舉例來說，除了預設的 border-radius，想要自己擴充 &lt;code class=&quot;highlighter-rouge&quot;&gt;border-radius: 1rem;&lt;/code&gt; 來使用：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;borderRadius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;xl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;於是原本的 &lt;code class=&quot;highlighter-rouge&quot;&gt;rounded-none&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;rounded-sm&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;rounded&lt;/code&gt; 等等都還會在，但又多了我們自己擴充的 &lt;code class=&quot;highlighter-rouge&quot;&gt;rounded-xl&lt;/code&gt; 可以使用。&lt;/p&gt;
+
+&lt;h3 id=&quot;referencing-the-default-theme&quot;&gt;Referencing the default theme&lt;/h3&gt;
+
+&lt;p&gt;另外想特別提醒一下，上面的 extend 只是 shallow merging，如果像是底下這樣的情況：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#E53935&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;大家心裡的預期可能會以為 inherit default config 以後的結果是這樣：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#fff5f5'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#fed7d7'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#feb2b2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#fc8181'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#f56565'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#e53e3e'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#c53030'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;800&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#9b2c2c'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mi&quot;&gt;900&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#742a2a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#E53935&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;實際上卻會變成這樣：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#E53935&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;因為只會 inherit 單一層，不會往下 deep merge，所以 &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt; - &lt;code class=&quot;highlighter-rouge&quot;&gt;900&lt;/code&gt; 的設定全部都會被覆蓋掉。如果想要保留 &lt;code class=&quot;highlighter-rouge&quot;&gt;100&lt;/code&gt; - &lt;code class=&quot;highlighter-rouge&quot;&gt;900&lt;/code&gt; 的設定，就必須從 default config 去 reference：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;defaultTheme&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tailwindcss/defaultTheme'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;defaultTheme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;#E53935&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;variant&quot;&gt;Variant&lt;/h3&gt;
+
+&lt;p&gt;上面在講 Responsive 與 Pseudo Classes 就有大概提過 variant 了。Tailwind 絕大多數 utilities 都可以加上 variant，default config 本來就會把一些常用的 variant 加上，大部分的 utilities 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;responsive&lt;/code&gt; 都是打開的。&lt;/p&gt;
+
+&lt;p&gt;目前所有的 variants 是：&lt;code class=&quot;highlighter-rouge&quot;&gt;responsive&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;group-hover&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;focus-within&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;last&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;odd&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;even&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;hover&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;focus&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;active&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;visited&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;disabled&lt;/code&gt;。每一個 variant 的功能可以參考官方說明。&lt;/p&gt;
+
+&lt;p&gt;如果今天想要把 &lt;code class=&quot;highlighter-rouge&quot;&gt;borderWidth&lt;/code&gt; 加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; 跟 &lt;code class=&quot;highlighter-rouge&quot;&gt;hover&lt;/code&gt;，可以先看一下原本 &lt;code class=&quot;highlighter-rouge&quot;&gt;borderWidth&lt;/code&gt; 有哪些 variant：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// defaultConfig.stub.js:L628&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'responsive'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接著在 &lt;code class=&quot;highlighter-rouge&quot;&gt;tailwind.config.js&lt;/code&gt; 加上原本的 variant 以及要新加的 variant：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascipt&quot;&gt;module.exports = {
+  theme: {},
+  variants: {
+    borderWidth: ['responsive', 'first', 'hover'],
+  },
+  plugins: [],
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;產生出來的對應 utility classes，在 CSS 中的順序會照著上面的順序，&lt;code class=&quot;highlighter-rouge&quot;&gt;first&lt;/code&gt; 的會在前，&lt;code class=&quot;highlighter-rouge&quot;&gt;hover&lt;/code&gt; 的會在後：&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.first&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:border-0:first-child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;border-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;/* 略... */&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.hover&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:border-0:hover&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;border-width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;/* 略... */&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;換言之，hover 系列的 utility classes 優先度會比 first 系列的來得高。比方說，在同一個 element 上加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;first:border&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;hover:border-2&lt;/code&gt;，當元素被 hover 時，&lt;code class=&quot;highlighter-rouge&quot;&gt;hover:border-2&lt;/code&gt; 會覆蓋掉 &lt;code class=&quot;highlighter-rouge&quot;&gt;first:border&lt;/code&gt;。如果放反，hover 效果就不會出來。&lt;/p&gt;
+
+&lt;p&gt;官方有一套建議的順序，如果沒有什麼特殊的需求導致不能遵循，就盡量參考一下吧：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'responsive'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'group-hover'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'focus-within'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'first'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'last'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'odd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'even'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hover'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'focus'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'active'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'visited'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'disabled'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;plugin&quot;&gt;Plugin&lt;/h3&gt;
+
+&lt;p&gt;Tailwind 也提供讓大家自己寫 plugin 擴充各種功能。可以透過 plugin 做到的事情很多，包含加上新的 &lt;a href=&quot;https://tailwindcss.com/docs/plugins/#adding-utilities&quot;&gt;utility&lt;/a&gt;、&lt;a href=&quot;https://tailwindcss.com/docs/plugins/#adding-base-styles&quot;&gt;base styles&lt;/a&gt;、&lt;a href=&quot;https://tailwindcss.com/docs/plugins/#adding-components&quot;&gt;components&lt;/a&gt; 等等。&lt;/p&gt;
+
+&lt;p&gt;另外，寫 plugin 的時候，都可以透過 &lt;code class=&quot;highlighter-rouge&quot;&gt;variant()&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;theme()&lt;/code&gt; 取得 user’s config 的 theme 與 variant。&lt;/p&gt;
+
+&lt;p&gt;至於想要用第三方的 plugin 的話，可以看看 &lt;a href=&quot;https://github.com/aniftyco/awesome-tailwindcss&quot;&gt;Awesome Tailwind CSS&lt;/a&gt;、&lt;a href=&quot;https://www.tailwindtoolbox.com/plugins&quot;&gt;Tailwind Toolbox&lt;/a&gt; 上有沒有符合需求的 plugin。&lt;/p&gt;
+
+&lt;p&gt;除此之外，官方也有提供針對&lt;a href=&quot;https://github.com/tailwindcss/custom-forms&quot;&gt;表單元件的 plugin&lt;/a&gt;。現在的網站除非特別陽春，否則表單元件通常都不會讓他是原生醜醜的樣子，但如果每次刻板都要重頭改一次 input 的樣式也是相當崩潰（就只是想讓 text field 看起來像樣一點而已&amp;gt;&amp;lt;）。相信這個 plugin 也是相當實用。&lt;/p&gt;
+
+&lt;p&gt;這個部分這裡就不在多花篇幅說明 plugin 所有 usage，底下只針對 &lt;code class=&quot;highlighter-rouge&quot;&gt;v.1.2.0&lt;/code&gt; 新增的功能：&lt;a href=&quot;https://github.com/tailwindcss/tailwindcss/pull/1162&quot;&gt;extend the user’s config&lt;/a&gt; 做介紹。&lt;/p&gt;
+
+&lt;h2 id=&quot;試想情境公司的新網站要一部分的主站視覺又要加上新的設計&quot;&gt;試想情境：公司的新網站要一部分的主站視覺，又要加上新的設計？&lt;/h2&gt;
+
+&lt;p&gt;試想今天你的需求是這樣：&lt;/p&gt;
+
+&lt;p&gt;你在做公司的子網站，主站已經有一份對應的 Tailwind Config（包含 color schemes 以及 breakpoints 等等）。但是同時新站又有新站的 primary colors 等其他 config，這個時候該怎麼辦呢？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/tailwind-example-colors.png&quot; alt=&quot;colors&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;像上圖，gray、red、orange 等等都要從 Tailwind 預設的色碼改成主站使用的顏色，子站的 theme colors 要 override 主站的 theme colors ，另外增加 second 系列顏色。&lt;/p&gt;
+
+&lt;p&gt;主站可能還有自己定義的 lineHeight、spacing、boxShadow … 等等，以及 variants，這些子站都要繼承才行。&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 主站的 tailwind.config.js&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'EBEDEF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'D6DBDF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'AEB6BF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'85929E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5D6D7E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'34495E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'273746'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;800&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'283747'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;900&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'212F3C'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;boxShadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0 1px 7px rgba(0,0,0,.05)'&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;borderRadius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'xl'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.75rem'&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'responsive'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'first'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hover'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'disabled'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;當然也可以直接讓子站自己維護一份 config 就好。先把主站的東西加進來，再把子站的 config 都加進去，全部塞在一份 config 裡。&lt;/p&gt;
+
+&lt;p&gt;但是，一旦子站的設定跟主站的混在一起，事後想要再區別開來就不是這麼容易了。&lt;/p&gt;
+
+&lt;p&gt;自從 Tailwind 在 v.1.2.0 加入新功能，允許大家透過 plugin 來 extend config 以後，就可以更漂亮的解決這個問題。&lt;/p&gt;
+
+&lt;p&gt;聽說只要簡單三步驟，就可以迅速完成呢！&lt;/p&gt;
+
+&lt;h3 id=&quot;step1-把主站的-config-放進-plugin-裡&quot;&gt;STEP1: 把主站的 config 放進 plugin 裡&lt;/h3&gt;
+
+&lt;p&gt;新增一個 plugin，把主站的 config 放進去：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// plugins/my_site_config.js&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;plugin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tailwindcss/plugin'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;plugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_addUtilities&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_theme&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'EBEDEF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'D6DBDF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'AEB6BF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'85929E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'5D6D7E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'34495E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'273746'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;800&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'283747'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;900&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'212F3C'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;borderRadius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'xl'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.75rem'&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;borderWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'responsive'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'first'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hover'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'disabled'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;step2-把子站要-override-與-extend-的內容加進-config-中&quot;&gt;STEP2: 把子站要 override 與 extend 的內容加進 config 中&lt;/h3&gt;
+
+&lt;p&gt;接著把子站獨有的 color.. 等等設定放進 config：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// tailwind.config.js&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fontSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;remark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'.75rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.1rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2.75rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#DDFAFF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#BAF2FC'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#88E4F4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#58D6EC'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#2CB6CE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#009CB7'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#09889E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;800&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#0C6D7E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;900&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#025362'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;step3-子站的-config-加上剛剛做好的-plugin&quot;&gt;STEP3: 子站的 config 加上剛剛做好的 plugin&lt;/h3&gt;
+&lt;p&gt;在 config 裡 require 剛剛放了主站 config 的那個 plugin：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// tailwind.config.js&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;fontSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;remark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'.75rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1.1rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2.75rem'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#DDFAFF'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#BAF2FC'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#88E4F4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#58D6EC'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#2CB6CE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#009CB7'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#09889E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;800&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#0C6D7E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;mi&quot;&gt;900&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#025362'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;variants&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./plugins/my_site_config'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;這樣基本上就大功告成了！是不是很簡單呢？&lt;/p&gt;
+
+&lt;h2 id=&quot;最後的提醒&quot;&gt;最後的提醒&lt;/h2&gt;
+
+&lt;p&gt;恭喜大家把這篇落落長的介紹文給讀完了！希望這篇文章也能給大家一點小小的幫助。&lt;/p&gt;
+
+&lt;p&gt;不知道大家有沒有想到，應該在意一下檔案大小的部分。如果沒有調整 config 的情況下安裝完，沒有壓縮或 minified 應該會是 783.5KB 左右。&lt;/p&gt;
+
+&lt;p&gt;畢竟 Tailwind 幫你產生太多你大都不會用上的 utilities 了，加上 variant 的部分乘一乘，數量相當可觀。&lt;/p&gt;
+
+&lt;p&gt;因此，官方建議&lt;a href=&quot;https://tailwindcss.com/docs/controlling-file-size/#app&quot;&gt;使用 purgeCSS&lt;/a&gt;，把沒用上的 CSS 給去除，幫 CSS 檔案瘦身一下。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;註： purge 功能於 &lt;a href=&quot;&quot;&gt;v1.4.0&lt;/a&gt; 加進 Tailwind 中，purgeCSS 不在需要另外安裝。請改參考新版文件的 &lt;a href=&quot;https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css&quot;&gt;Remove unused CSS&lt;/a&gt; 章節&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;先安裝 purgeCSS：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# npm&lt;/span&gt;
+npm install @fullhuman/postcss-purgecss &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# yarn&lt;/span&gt;
+yarn add @fullhuman/postcss-purgecss &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;postcss.config.js&lt;/code&gt; 的 plugin 加上 PurgeCSS：&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// postcss.config.js&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tailwindcss'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'autoprefixer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'@fullhuman/postcss-purgecss'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)({&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'./**/*.html'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'./**/*.pug'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;'./**/*.jsx'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// etc&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;defaultExtractor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;[\w&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;(?&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;!:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;這邊的 content 放的是你的 template、html 的路徑，purgeCSS 會從這些檔案檢查你用到哪些 CSS，檢查有用到的才不會拔掉。&lt;/p&gt;
+
+&lt;p&gt;換言之，如果你只有在某個檔案用到 &lt;code class=&quot;highlighter-rouge&quot;&gt;bg-gray-700&lt;/code&gt;，但這個檔案的路徑不符合 content 中的任何一個規則，這個 &lt;code class=&quot;highlighter-rouge&quot;&gt;bg-gray-700&lt;/code&gt; 的 CSS 就會被清除。&lt;/p&gt;
+
+&lt;p&gt;如果發現你加了 class 卻沒反應，不妨檢查看看這個檔案有沒有涵蓋在 content 的規則裡。&lt;/p&gt;
+
+&lt;p&gt;最後的最後，希望大家今天認識 Tailwind 這套工具，都有些許收穫，也玩得開心哦 ❤️&lt;/p&gt;
+
+&lt;h2 id=&quot;備註&quot;&gt;備註&lt;/h2&gt;
+
+&lt;p&gt;本文最初放在五倍紅寶石的專欄文章中，然而隨著公司分家改組，文章跟著被移除了QQ&lt;/p&gt;
+
+&lt;p&gt;因此將文章移至部落格中。&lt;/p&gt;
+
+&lt;p&gt;本文撰寫時 Tailwind 在 v.1.2.0 左右，因此裡面有些資訊可能已經有點老舊，日後有空我會再重寫一篇推坑文與心得文給大家。&lt;/p&gt;
+
+&lt;script async=&quot;&quot; src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;</content><author><name>文月</name></author><category term="css" /><category term="javascript" /><summary type="html">什麼是 Tailwind CSS？</summary></entry><entry><title type="html">透過 amp-access 讓你在 Cache 頁面也能順利保持登入！</title><link href="/blog/amp-access-login" rel="alternate" type="text/html" title="透過 amp-access 讓你在 Cache 頁面也能順利保持登入！" /><published>2019-12-07T09:00:00+08:00</published><updated>2019-12-07T09:00:00+08:00</updated><id>/blog/amp-access-login</id><content type="html" xml:base="/blog/amp-access-login">&lt;p&gt;（範例會以 Rails 來實作，登入的部分使用 &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;devise&lt;/a&gt; 套件為例）&lt;/p&gt;
+
+&lt;h3 id=&quot;前言&quot;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;不知不覺來到了 2019 年末。從 2016 年到現在，&lt;a href=&quot;https://amp.dev/&quot;&gt;AMP&lt;/a&gt; 也越發成熟完整（但我怎麼還是覺得 bug 還是有點多w），有很多實用的 components 也有豐富的範例可以參考。如果想要大大地提升網站在手機上的搜尋排序，實作 AMP 網頁會帶來相當不錯的效益呢。&lt;/p&gt;
+
+&lt;p&gt;由於 AMP 的種種限制，除了拿來實作 content 為主、功能不多的網站，大家很可能仍然對 AMP 望之卻步。今天就要來跟大家介紹透過實作 amp-access 顯示登入狀態的部分。&lt;/p&gt;
+
+&lt;h3 id=&quot;為什麼-cache-頁面會是未登入呢&quot;&gt;為什麼 Cache 頁面會是未登入呢？&lt;/h3&gt;
+
+&lt;p&gt;當你開開心心地做了一個 AMP 網站，也丟上 Google Cache（或其他家的 AMP Cache，這裡以 Google 的為例），愉快地在搜尋頁面點下自家網站的連結，讀取速度飛快又美好 ♪&lt;/p&gt;
+
+&lt;p&gt;檢查了一下你突然發現：「欸？我不是一直保持登入狀態嗎？為什麼在 Cache 頁面上是沒有登入的呢？」&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/amp_access_1.png&quot; alt=&quot;Cache 頁面跟本站看起來不一樣&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;對於在本站已經登入的使用者來說，明明已經登入你的網站了，但是從搜尋結果進去的頁面卻是未登入狀態，也會感到相當疑惑，體驗上也不甚很好。&lt;/p&gt;
+
+&lt;p&gt;我們先來探討，究竟這個狀況到底是怎麼發生的呢？&lt;/p&gt;
+
+&lt;p&gt;舉例來說，原本頁面的 view 可能是像這樣：&lt;/p&gt;
+
+&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_signed_in?&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    親愛的 &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt; 你好！
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    你還沒登入哦！快點擊
+    &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'這裡'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_user_session_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    登入吧～
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;當 Google AMP Cache 要來爬你的網站的時候，他當然是沒有登入的狀態，所以就會爬到寫著「你還沒登入哦！快點擊這裡登入吧～」的版本，於是你的 cache 頁面永遠都是沒登入的狀況。&lt;/p&gt;
+
+&lt;p&gt;如果希望 cache 到的頁面上可以正常地顯示「親愛的 XXX 你好！」，可以借助 amp-access 這個元件來實現。&lt;/p&gt;
+
+&lt;h3 id=&quot;components&quot;&gt;Components&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://amp.dev/documentation/components/amp-access/&quot;&gt;AMP-access&lt;/a&gt; 主要分成這些部分：&lt;/p&gt;
+
+&lt;h4 id=&quot;amp-reader-id&quot;&gt;AMP Reader ID&lt;/h4&gt;
+&lt;p&gt;匿名、唯一、不跨裝置的 ID，如果使用者沒有清理 cookie，有效期會是一年。&lt;/p&gt;
+
+&lt;p&gt;根據官方文件：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Publishers can use their own authentication cookies, or they may rely on the Reader ID, or a combination of both.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果是透過 cookie 來獲取登入資訊的話其實可以不用到 Reader ID。&lt;/p&gt;
+
+&lt;h4 id=&quot;access-content-markup&quot;&gt;Access Content Markup&lt;/h4&gt;
+&lt;p&gt;用來定義網頁上的哪些部分要在什麼情況底下顯示或不顯示的 markup。&lt;/p&gt;
+
+&lt;p&gt;比方說你希望 signedIn 為 true 時顯示底下的元素，就會在元素上加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;amp-access&lt;/code&gt; 這個 attribute。&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'signedIn'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    登入的使用者會看到這行字哦！
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果希望是 signedIn 為 false 才顯示：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'NOT signedIn'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    沒有登入的人會看到這行字哦！
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;按照上面的寫法，你可能預期一開始元件都不會出現，一直到 Authorization response 回來才會出現元件，但事實上這些元件一開始都會在畫面上，當 Authorization response 回來時才會「跳閃」一下，不該出現的元件才會隱藏起來。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/amp_access_2.gif&quot; alt=&quot;沒有 amp-access-hide 時會跳閃&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果希望一開始畫面剛 render 時不要顯示這個元件，可以加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;amp-access-hide&lt;/code&gt; 這個 attribute：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'signedIn'&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access-hide&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    一開始不會顯示，確定 response 中 signedIn 為 true 的話會看到這行字哦！
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;更多 access content markup 的語法請參考&lt;a href=&quot;https://amp.dev/documentation/components/amp-access/#appendix-a:-%22amp-access%22-expression-grammar&quot;&gt;官方說明&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&quot;authorization-endpoint&quot;&gt;Authorization Endpoint&lt;/h4&gt;
+&lt;p&gt;在 AMP runtime 的時候會打這個 endpoint，根據 response 的 JSON 內容來 render 畫面。&lt;/p&gt;
+
+&lt;h4 id=&quot;pingback-endpoint&quot;&gt;Pingback Endpoint&lt;/h4&gt;
+&lt;p&gt;當使用者開始瀏覽畫面或是完成 login 的時候，AMP 會去打 Pingback Endpoint。Pingback Endpoint 不需要 response，有 response 也會被忽略。比方官方提供的 &lt;a href=&quot;https://github.com/ampproject/samples/tree/master/amp-paywall-demo&quot;&gt;Paywall 範例&lt;/a&gt;，Pingback 就被用在計算使用者已瀏覽幾篇 article 等。&lt;/p&gt;
+
+&lt;h4 id=&quot;login-link-and-login-page&quot;&gt;Login Link and Login Page&lt;/h4&gt;
+&lt;p&gt;如果會用到 Reader ID 來實作登入的話，就會需要在 AMP-Access configuration 的時候加上 login 相關的 link：&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;login&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://mySite.blah/login?rid={READER_ID}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接著在畫面上加上連結讓使用者登入：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;on=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tap:amp-access.login&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;登入&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;但因為等等的範例會是用自己的 cookie，就不會在 configuration 加上 login link。&lt;/p&gt;
+
+&lt;h3 id=&quot;簡易圖解&quot;&gt;簡易圖解&lt;/h3&gt;
+
+&lt;p&gt;到這裡還看得很糊沒有關係，我們來大致了解一下 AMP-Access 大概是怎麼運作的。&lt;/p&gt;
+
+&lt;p&gt;1.一開始 AMP runtime 夾帶著 cookies 會去打你（或你們家的後端工程師）寫好的 authorization endpoint。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/amp_access_3.png&quot; alt=&quot;Send request to authorization endpoint&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;AMP 提供一些 &lt;a href=&quot;https://amp.dev/documentation/components/amp-access/#access-url-variables&quot;&gt;Access URL Variables&lt;/a&gt;。比方說如果你的 authorization endpoint url 是像這樣：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://yourSite.blah/api/amp-access/authorization?ref=DOCUMENT_REFERRER&amp;amp;rid=READER_ID&amp;amp;url=CANONICAL_URL&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;實際上 AMP runtime 打 endpoint 的時候，rid 會變成 &lt;code class=&quot;highlighter-rouge&quot;&gt;rid=amp-OFsqR4pPKynymPyMmplPNMvxSTsNQob3TnK-oE3nwVT0clORaZ1rkeEz8xej-vV6&lt;/code&gt;，url 變成 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://yourSite.blah&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;2.這個時候你寫的 authorization endpoint 可能會根據 cookie 辨識使用者，回傳一個 json。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/amp_access_4.png&quot; alt=&quot;Access Content Markup 替換&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3.於是在 cache 頁面上，登入狀態也能正常顯示了，開開心心 ♫&lt;/p&gt;
+
+&lt;h3 id=&quot;cors-in-amp&quot;&gt;CORS in AMP&lt;/h3&gt;
+
+&lt;p&gt;然而 AMP 有一些關於 CORS (Cross-Origin Resource Sharing) 的&lt;a href=&quot;https://amp.dev/documentation/guides-and-tutorials/learn/amp-caches-and-cors/amp-cors-requests/&quot;&gt;規範&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果沒有把網頁送上 cache，使用者是直接向你家的 server 送 request。但是如果使用者從 AMP Cache 那邊請求你的網頁， Cache 頁面在 AMP runtime 的時候會向你的 server 打 authorization endpoint，這個時候就會變成跨網域的連線了。&lt;/p&gt;
+
+&lt;p&gt;因此 AMP 也有針對這個情境，要求實作簡單的 request verification 並且根據他的要求設定 access control 相關的 header。&lt;/p&gt;
+
+&lt;p&gt;基本流程大致如下：
+&lt;img src=&quot;assets/images/amp_access_5.png&quot; alt=&quot;CORS verification 基本流程&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;1.如果 Header 有帶 &lt;code class=&quot;highlighter-rouge&quot;&gt;Origin&lt;/code&gt;，就檢查是否是 allowed origins：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;你自己的網站 eg. &lt;code class=&quot;highlighter-rouge&quot;&gt;mySite.blah&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;AMP cache eg. &lt;code class=&quot;highlighter-rouge&quot;&gt;mySite-blah.cdn.ampproject.org&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;origin 不在 allowed origins 的 request 就讓你的 server 回傳 HTTP status 403 的回應，慢走不送。&lt;/p&gt;
+
+&lt;p&gt;2.如果沒有 &lt;code class=&quot;highlighter-rouge&quot;&gt;Origin&lt;/code&gt; header 的，就檢查是否有 &lt;code class=&quot;highlighter-rouge&quot;&gt;AMP-Same-Origin: true&lt;/code&gt;，有才放行，沒有一樣回 403。&lt;/p&gt;
+
+&lt;p&gt;當 AMP Runtime 在送 XHR request 的時候，如果是在 same origin 時，會自動幫你加 &lt;code class=&quot;highlighter-rouge&quot;&gt;AMP-Same-Origin: true&lt;/code&gt; 這個 header。&lt;/p&gt;
+
+&lt;p&gt;3.在 response header 加上 &lt;code class=&quot;highlighter-rouge&quot;&gt;Access-Control-Allow-Credentials: true&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Access-Control-Allow-Origin: &amp;lt;origin&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;這裡的 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;origin&amp;gt;&lt;/code&gt; 指的是 response 的 origin。&lt;/p&gt;
+
+&lt;p&gt;聽到這裡，是不是覺得其實沒有很複雜呢（是嗎&lt;/p&gt;
+
+&lt;p&gt;那就來動手試試看吧！&lt;/p&gt;
+
+&lt;h3 id=&quot;三分鐘動手實做&quot;&gt;三分鐘動手實做！&lt;/h3&gt;
+&lt;p&gt;如果沒有碰壁卡關，view 沒有要大改的話，應該是可以在三分鐘內完成吧（欸&lt;/p&gt;
+
+&lt;p&gt;開始之前，請先準備一個有實作 AMP 的 Rails Application。&lt;/p&gt;
+
+&lt;h4 id=&quot;cors-authentication&quot;&gt;CORS Authentication&lt;/h4&gt;
+&lt;p&gt;我們先來打造一個 base controller，讓之後實作的 API 都繼承這個 controller。（其實要改成 concern 也是可以）&lt;/p&gt;
+
+&lt;p&gt;除了 amp-access ，如果實作 AMP 中的 XHR request 等等也會有 CORS 的情境，這個時候就可以直接繼承這個 controller。&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Api&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BaseController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActionController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果&lt;code class=&quot;highlighter-rouge&quot;&gt;Origin&lt;/code&gt; 屬於 allowed origins（你的網站、AMP Cache），或者有 &lt;code class=&quot;highlighter-rouge&quot;&gt;AMP-same-origin: true&lt;/code&gt; 的 header 才放行。且加上規定的 response header：&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Api&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BaseController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActionController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;before_action&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:cors_verification&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;ALLOWED_ORIGINS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'https://mySite.blah'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'https://mySite-blah.cdn.ampproject.org'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'https://mySite.blah.amp.cloudflare.com'&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;cors_verification&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'origin'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;in?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ALLOWED_ORIGINS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'origin'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;elsif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'origin'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;nil?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'AMP-same-origin'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;casecmp?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'true'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;base_url&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;message: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Unauthorized Request'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :forbidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Access-Control-Allow-Credentials'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'true'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;set_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Access-Control-Allow-Origin'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;authorization-endpoint-1&quot;&gt;Authorization Endpoint&lt;/h4&gt;
+&lt;p&gt;接著我們做 authorization endpoint 的部分！這裡直接使用了 devise 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;#{mapping}_signed_in?&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;current_#{mapping}&lt;/code&gt; 等方法&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Api&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AmpAccessController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BaseController&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;authorization&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;signedIn: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_signed_in?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;username: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current_user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;status: :ok&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;設定-routes&quot;&gt;設定 routes&lt;/h4&gt;
+&lt;p&gt;當然不能忘了加 routes。&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:api&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;defaults: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;format: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'json'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:authorization&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;to: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'amp_access#authorization'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;amp-access-configuration&quot;&gt;AMP Access configuration&lt;/h4&gt;
+&lt;p&gt;記得要在你的頁面上加上 amp-access 的 required script：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;custom-element=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amp-access&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.ampproject.org/v0/amp-access-0.1.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接著我們來加上 amp-access 的 configuration 吧。文件上要求 authorization endpoint 和 pingback endpoint 要帶 &lt;code class=&quot;highlighter-rouge&quot;&gt;READER_ID&lt;/code&gt;。而 &lt;code class=&quot;highlighter-rouge&quot;&gt;RANDOM&lt;/code&gt; 會回傳隨機亂碼，可以避免被瀏覽器 cache。&lt;/p&gt;
+
+&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'amp-access'&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'application/json'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;api_authorization_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;rid: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'READER_ID'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'_='&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'RANDOM'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;pingback&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;noPingback&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;authorizationFallbackResponse&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;signedIn&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;access-content-markup-1&quot;&gt;Access Content Markup&lt;/h4&gt;
+&lt;p&gt;相信剛剛看了 Access Content Markup 的介紹，現在應該已經很了解他的基本語法了。&lt;/p&gt;
+
+&lt;p&gt;如果原本你的 view 裡面有長得像這樣的東西：&lt;/p&gt;
+
+&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user_signed_in?&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt; ... &lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt; ... &lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;把它改成用 &lt;code class=&quot;highlighter-rouge&quot;&gt;amp-access&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;amp-access-hide&lt;/code&gt;，管理它要不要在畫面上顯示：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;signedIn&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access-hide&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  ...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NOT signedIn&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  ...
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;那如果是要在畫面上顯示 username 呢？這個時候就會需要用到 &lt;a href=&quot;https://amp.dev/documentation/components/amp-mustache/&quot;&gt;amp-mushtache&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;使用之前要記得加上 required script：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;custom-template=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amp-mustache&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.ampproject.org/v0/amp-mustache-0.2.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;使用 template 來顯示名稱：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;signedIn&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;template&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;amp-access-template&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amp-mustache&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        親愛的 {{username}} 您好
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;基本上到這裡就大功告成了！是不是能夠正常顯示登入了呢？&lt;/p&gt;
+
+&lt;p&gt;別忘了去試試看你的網站的 cache 版本是不是也運作正常哦 ( ～’ω’)～&lt;/p&gt;
+
+&lt;h2 id=&quot;備註&quot;&gt;備註&lt;/h2&gt;
+
+&lt;p&gt;本文最初放在五倍紅寶石的專欄文章中，然而隨著公司分家改組，文章跟著被移除了QQ&lt;/p&gt;
+
+&lt;p&gt;因此將文章移至部落格中。&lt;/p&gt;</content><author><name>文月</name></author><category term="amp" /><summary type="html">（範例會以 Rails 來實作，登入的部分使用 devise 套件為例）</summary></entry><entry><title type="html">[工作日常] 如何用建立巢狀的 tailwindcss config？</title><link href="/blog/tailwind-nested-config" rel="alternate" type="text/html" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" /><published>2019-08-22T14:13:00+08:00</published><updated>2019-08-22T14:13:00+08:00</updated><id>/blog/tailwind-nested-config</id><content type="html" xml:base="/blog/tailwind-nested-config">&lt;h2 id=&quot;內容更新&quot;&gt;內容更新&lt;/h2&gt;
 
 &lt;p&gt;Tailwind 在 v1.2.0 的時候推出了 &lt;a href=&quot;https://github.com/tailwindcss/tailwindcss/pull/1162&quot;&gt;Allow plugins to extend the user’s config&lt;/a&gt;的功能，我在公司的技術文章中「&lt;a href=&quot;http://5xruby.tw/posts/tailwind-css-plugin/&quot;&gt;還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！&lt;/a&gt;」有提到這個功能，與 Tailwind 的基本介紹。&lt;/p&gt;
 
@@ -1630,199 +2606,4 @@ JOIN bug_products USING(bug_id)
 
 &lt;p&gt;目前想到的方式就是 variants 還是固定寫某一個檔案就好這樣。但願之後 Tailwind 官方會有更好的實務做法。&lt;/p&gt;
 
-&lt;p&gt;（筆者使用 tailwindcss v1.0.1）&lt;/p&gt;</content><author><name>文月</name></author><category term="css" /><category term="javascript" /><summary type="html">內容更新</summary></entry><entry><title type="html">[5xRuby實習日記] Javascript 課程心得</title><link href="/blog/2016-spring-5xruby-rails-course" rel="alternate" type="text/html" title="[5xRuby實習日記] Javascript 課程心得" /><published>2016-06-02T01:23:32+08:00</published><updated>2016-06-02T01:23:32+08:00</updated><id>/blog/2016-spring-5xruby-rails-course</id><content type="html" xml:base="/blog/2016-spring-5xruby-rails-course">&lt;p&gt;覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X)
-不過由於個人還在就學的緣故，
-因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”&lt;/p&gt;
-
-&lt;p&gt;這次的JS課程很遺憾地只上了最後一堂課QAQ” (而且只有後半段QAQ) 
-(沒有HTML只上到第一堂課這麼淒慘就是了)
-我覺得這次的確有對jQuery有比較多的了解，以往都是一直複製別人的code亂改，
-終於可以了解每一行code都在做什麼，然後完整地寫出一段code來。&lt;/p&gt;
-
-&lt;p&gt;我覺得Kuro講師提供很多可以參考的例子提供觀摩跟練習，這一點真的有讓我覺得比較易學、易懂。
-而且可以實際上了解要怎麼使用，有什麼時機可以使用。&lt;/p&gt;
-
-&lt;p&gt;接著提供一下最後一堂課的筆記：&lt;/p&gt;
-&lt;h3 id=&quot;善用find找子元素&quot;&gt;善用find找子元素&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(this).find('.title').toggleClass('active');
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;用trigger觸發事件&quot;&gt;用trigger觸發事件&lt;/h3&gt;
-&lt;p&gt;例如：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$(.b).on('click',function(){
-	$(.a).trigger('click');
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;這樣觸發的是a的click事件，因此如果a的click事件中有this，會的是a自己而不是b&lt;/p&gt;
-
-&lt;h3 id=&quot;利用data存取指定&quot;&gt;利用data存取、指定&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;存取 ex.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$('.home').data('show')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;如此一來可以存取有home這個class的物件的data-show的值&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;指定 ex.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$('.home').data('show','home')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;把有home這個class的物件的data-show的值改成home&lt;/p&gt;
-
-&lt;p&gt;剩下晚一點再來補，不過我有寫在&lt;a href=&quot;https://hackmd.io/s/rk_X2cdl&quot;&gt;hackMD&lt;/a&gt;上提供參考&lt;/p&gt;</content><author><name>文月</name></author><category term="5xruby" /><summary type="html">覺得在五倍紅寶石實習的好處就是有各種免費的課程資源，跟喝不完的免費飲料(X) 不過由於個人還在就學的緣故， 因為衝到期中考跟各種學校事務，一直沒能把課程上好上滿QAQ”</summary></entry><entry><title type="html">[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！</title><link href="/blog/build-rails-environment-with-vagrant" rel="alternate" type="text/html" title="[Rails 學習筆記]用Vagrant打造舒適美好的rails環境吧！" /><published>2016-05-26T23:40:58+08:00</published><updated>2016-05-26T23:40:58+08:00</updated><id>/blog/build-rails-environment-with-vagrant</id><content type="html" xml:base="/blog/build-rails-environment-with-vagrant">&lt;p&gt;相信這個世界上有許多人和我一樣，窮窮的買不起mac，
-又沒有可以用 linux 的腦袋跟耐心，所以只好一直被windows慘虐QAQ”&lt;/p&gt;
-
-&lt;p&gt;到目前為止在下都是用c9.io來寫rails的，但畢竟不是在本機寫，又沒錢買付費版，所以一直都要等c9.io的workspace緩緩慢慢的開啟，每個指令也都緩緩慢慢的。只是下個 &lt;code class=&quot;highlighter-rouge&quot;&gt;rake db:migrate&lt;/code&gt; 之類的CPU就會爆衝(下次開c9可以看右上角的值)，感覺這個環境根本不堪負荷啊…&lt;/p&gt;
-
-&lt;p&gt;所以呢，想說用Vagrant來建虛擬機，這似乎是比較簡單的方法呢。對於我這個小腦殘來說應該不會耍雷得太嚴重XD&lt;/p&gt;
-
-&lt;p&gt;其實網路上Vagrant的教學文還不少(而且還是中文的)，遇到問題還可以上stackoverflow查，個人覺得資源蠻多的。如果是docker的話我個人絕對沒有信心把它裝起來XD&lt;/p&gt;
-
-&lt;p&gt;不過說實在的，心底還是默默的期望可以買mac啊&amp;gt;&amp;lt;”&lt;/p&gt;
-
-&lt;p&gt;總而言之廢話不多說(已經講很多了)就來裝裝看吧！&lt;/p&gt;
-
-&lt;p&gt;BTW，在下的電腦目前是萬惡的 windows 10，所以安裝過程可能跟大家不太一樣，細節可以參考底下的教材。然後安裝過程中的問題跟雷點我也會一併分享的w&lt;/p&gt;
-
-&lt;h3 id=&quot;安裝步驟&quot;&gt;安裝步驟&lt;/h3&gt;
-
-&lt;h4 id=&quot;安裝vagrantvirtual-boxmobaxterm&quot;&gt;安裝Vagrant、Virtual Box、MobaxTerm&lt;/h4&gt;
-
-&lt;p&gt;首先來安裝等等會需要用到的東西：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.vagrantup.com/downloads.html&quot;&gt;Vagrant&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;依照自己的作業系統環境找適合的版本安裝&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;VirtualBox&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;VirtualBox platform packages&lt;/li&gt;
-      &lt;li&gt;VirtualBox 5.0.20 Oracle VM VirtualBox Extension Pack&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://mobaxterm.mobatek.net/download.html&quot;&gt;MobaXterm&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;可以拿來連telnet、ssh、http、ftp…等等的，很方便&lt;/li&gt;
-      &lt;li&gt;這次會拿來連ssh&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;安裝過程中只要一直按 &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; 基本上就會裝好了XD
-個人安裝沒有遇到什麼問題，有遇到的話可以google一下解決辦法。&lt;/p&gt;
-
-&lt;h4 id=&quot;生出虛擬機&quot;&gt;生出虛擬機&lt;/h4&gt;
-&lt;p&gt;接著到&lt;a href=&quot;https://atlas.hashicorp.com/boxes/search?utm_source=vagrantcloud.com&amp;amp;vagrantcloud=1&quot;&gt;Vagrant Cloud&lt;/a&gt;物色一下要安裝的box，個人這次用的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;ubuntu/trusty64&lt;/code&gt;。
-找到需要的版本以後會看到這樣一行command line，像這樣：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-{}&quot;&gt;$ vagrant init ubuntu/trusty64; vagrant up --provider virtualbox
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;這個時候只要愉快地把這行指令貼到terminal上，虛擬機就生出來了呢！這種時候就會覺得Vagrant真是強大呢！&lt;/p&gt;
-
-&lt;p&gt;不過第一次開會跑很久很久很久，請耐心等待XD&lt;/p&gt;
-
-&lt;h4 id=&quot;ssh連線&quot;&gt;ssh連線&lt;/h4&gt;
-&lt;p&gt;接著差不多跑玩了的時候，稍微翻一下terminal上的訊息，應該會有類似這樣的訊息：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-{}&quot;&gt;default: SSH address: 127.0.0.1:2222
-default: SSH username: vagrant
-default: SSH auth method: private key
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;到virtualbox那邊看，多了一個虛擬機。
-&lt;img src=&quot;http://i.imgur.com/0VPr8U6.png&quot; alt=&quot;new virtualbox&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;把MobaXterm打開以後，到session新增ssh session，在host、username、port填入：
-&lt;img src=&quot;http://i.imgur.com/ZF8sTSt.png&quot; alt=&quot;new session&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在左邊側欄對 &lt;code class=&quot;highlighter-rouge&quot;&gt;127.0.0.1(vibrant)&lt;/code&gt; 點兩下，照理來說會出現類似 &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant@vagrant-ubuntu-trusty-64:~$&lt;/code&gt; 的東西，或是要你輸入password。
-沒有的話，到 &lt;strong&gt;Settings &amp;gt; Configurations &amp;gt; Terminal&lt;/strong&gt; 把 &lt;code class=&quot;highlighter-rouge&quot;&gt;Use Windows PATH environment&lt;/code&gt;打勾。&lt;/p&gt;
-
-&lt;p&gt;預設的username和password都會是vagrant。&lt;/p&gt;
-
-&lt;h4 id=&quot;問題-vt-xamd-v-硬體加速在您的系統不可用&quot;&gt;問題: VT-x/AMD-V 硬體加速在您的系統不可用&lt;/h4&gt;
-&lt;p&gt;我個人就是遇到這個狀況，虛擬機開不起來。
-這個時候可以檢查一下虛擬化技術有沒有開起來，這個部分可以到 &lt;strong&gt;工作管理員 &amp;gt; CPU&lt;/strong&gt; 去看。
-&lt;img src=&quot;http://i.imgur.com/75QAWrA.png&quot; alt=&quot;虛擬化技術&quot; /&gt;
-英文版的應該會寫virtualization之類的。&lt;/p&gt;
-
-&lt;p&gt;如果上面不是寫著「已啟用」的話，那就到BIOS去把virtualization technology 開起來吧！怎麼把BIOS開起來可以google一下。&lt;/p&gt;
-
-&lt;p&gt;至於windows10的話，就一邊按著shift一邊重新啟動，出現藍藍畫面後選 &lt;strong&gt;進階選項 &amp;gt; UEFI韌體設定 &amp;gt; 重新啟動&lt;/strong&gt; 。
-接著電腦重新啟動後就可以來改設定了！按F10進去改設定，在advanced應該會有一個叫virtualization technology的選項，把它改成enabled，就OK了！
-再按F10電腦就會愉快的開機了，這一次虛擬機應該開得起來了。&lt;/p&gt;
-
-&lt;h4 id=&quot;回復原來的狀態&quot;&gt;回復原來的狀態&lt;/h4&gt;
-&lt;p&gt;如果過程中搞砸了(?)或是覺得虛擬機髒髒的越看越不順眼(?)，都可以還原成一開始的狀態呢。&lt;/p&gt;
-
-&lt;p&gt;這裡就試著回復成乾淨的狀態吧。&lt;/p&gt;
-
-&lt;p&gt;windows的話可以照著這個做：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-{}&quot;&gt;$ vagrant halt
-$ vagrant destroy --force
-$ del /F /Q  Vagrantfile
-$ rmdir /S /Q  .vagrant
-
-$ vagrant box remove ubuntu/trusty64
-$ rmdir /S /Q %USERPROFILE%\.vagrant.d\boxes\ubuntu-VAGRANTSLASH-trusty64
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;mac的話可以參考以下的寫法：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-{}&quot;&gt;$ vagrant halt ; vagrant destroy --force
-$ rm -rf .vagrant Vagrantfile
-
-$ vagrant box remove ubuntu/trusty64
-$ rm -rf $HOME/.vagrant.d/boxes/ubuntu-VAGRANTSLASH-trusty64
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;建立環境&quot;&gt;建立環境&lt;/h4&gt;
-&lt;p&gt;到這裡，我們已經學會怎麼把虛擬機開好了噢！而且還知道怎麼把它砍掉呢！可是網羅(?)還沒有結束，懂得把虛擬機開起來還要懂得安裝環境才行XDD
-開起來的乾乾淨淨的虛擬機是沒有git、ruby…什麼都沒有的XD 所以還是要把環境架起來才能開心寫rails(淚顏)&lt;/p&gt;
-
-&lt;p&gt;所以就來重新建一次虛擬機吧，不過這一次用人家架好的環境XDD
-原本看gorails上有一連串複雜有可怕的步驟，覺得頭暈目眩。後來發現github上有人家弄好的環境，最後一比commit是1小時前(還有在更新中)，而且star數也有一千多，就毫不猶豫拿來用了www&lt;/p&gt;
-
-&lt;p&gt;這一次的話就：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-{}&quot;&gt;$ git clone https://github.com/rails/rails-dev-box.git
-$ cd rails-dev-box
-$ vagrant up
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;就有人家弄好好的環境可以用了，覺得開心愉快。
-等到跑了好久好久以後，就有一台要git有git、要有ruby有ruby的虛擬機了~&lt;/p&gt;
-
-&lt;h4 id=&quot;把rails架起來&quot;&gt;把rails架起來&lt;/h4&gt;
-&lt;p&gt;不過rails-dev-box裡面有的只有寫rails會用到的東西，但是沒有rails！
-對，沒~有~rails~~&lt;/p&gt;
-
-&lt;p&gt;所以還是要自己裝一下XDD&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-{}&quot;&gt;sudo gem install rails --no-ri --no-rdoc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;到這裡恭喜大家，環境架得差不多了！
-祝大家玩耍愉快！&lt;/p&gt;
-
-&lt;h3 id=&quot;相關教材&quot;&gt;相關教材&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.codedata.com.tw/social-coding/vagrant-tutorial-1-developer-and-vm&quot;&gt;Vagrant Tutorial（1）雲端研發人員，你也需要虛擬機！&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.codedata.com.tw/social-coding/vagrant-tutorial-2-playing-vm-with-vagrant&quot;&gt;Vagrant Tutorial（2）跟著流浪漢把玩虛擬機&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://www.codedata.com.tw/social-coding/vagrant-tutorial-3-vm-lifecycle&quot;&gt;Vagrant Tutorial（3）細說虛擬機生滅狀態&lt;/a&gt;
-覺得以上的教材講得其實很詳細，除了安裝步驟還有很多的介紹跟閒聊w&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/chgu82837/ab1255846b5335407105&quot;&gt;在 Windows 用 Vagrant 快速建立你的 Linux 環境&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://gorails.com/guides/using-vagrant-for-rails-development&quot;&gt;Using Vagrant for Rails Development&lt;/a&gt;
-gorails 上的教學，不過這篇就比較複雜一些了。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/rails/rails-dev-box&quot;&gt;Rails dev box&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>文月</name></author><category term="rails" /><summary type="html">相信這個世界上有許多人和我一樣，窮窮的買不起mac， 又沒有可以用 linux 的腦袋跟耐心，所以只好一直被windows慘虐QAQ”</summary></entry></feed>
+&lt;p&gt;（筆者使用 tailwindcss v1.0.1）&lt;/p&gt;</content><author><name>文月</name></author><category term="css" /><category term="javascript" /><summary type="html">內容更新</summary></entry></feed>
