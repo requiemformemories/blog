@@ -1,3 +1,5 @@
+{% assign words_per_minute = site.words_per_minute | default: 200 %}
+
 {% for post in paginator.posts %}
     <article class="post-card {{ page.class }}{% unless post.cover %} no-image{% endunless %}">
         {% if post.cover %}
@@ -20,9 +22,6 @@
 
                     <h2 class="post-card-title">{{ post.title }}</h2>
                 </header>
-                <section class="post-card-excerpt">
-                    <p>{{  post.content | strip_html | truncatewords: 2, "..." }}</p>
-                </section>
             </a>
             <footer class="post-card-meta">
                 {% for author in site.data.authors %}
@@ -31,10 +30,18 @@
                         <img class="author-profile-image" src="{{ site.baseurl }}{{ author[1].picture }}" alt="{{ author[1].name }}" />
                         {% endif %}
                         <span class="post-card-author">
-                            {{ author[1].name }}
+                            <a href="{{ site.baseurl }}author/{{ post.author }}/">{{ author[1].name }}</a>
                         </span>
                     {% endif %}
                 {% endfor %}
+                <span class="reading-time">
+                    {% assign words = post.content | strip_html | number_of_words %}
+                    {% if words <= words_per_minute %}
+                      1 min read
+                    {% else %}
+                      {{ words | divided_by:words_per_minute }} min read
+                    {% endif %}
+                </span>
             </footer>
         </div>
     </article>

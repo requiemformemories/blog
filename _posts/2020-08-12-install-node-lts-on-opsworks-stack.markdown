@@ -6,8 +6,8 @@ subclass: 'post tag-speeches'
 cover: 'assets/images/stack.jpg'
 title: '三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs'
 date: 2020-08-11 12:09:00
-categories: opsworks
-tags: opsworks nodejs
+categories: aws
+tags: aws
 author: fumitsuki
 ---
 

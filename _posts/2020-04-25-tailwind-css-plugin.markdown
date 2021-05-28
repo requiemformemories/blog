@@ -7,7 +7,7 @@ cover: 'assets/images/tailwind-example-cover.jpg'
 title: '還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！'
 date: 2020-04-25 1:00:00
 categories: CSS
-tags: css javascript
+tags: css
 author: fumitsuki
 ---
 

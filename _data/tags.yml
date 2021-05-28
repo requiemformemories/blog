@@ -1,18 +1,28 @@
 rails:
   name: rails
-  description: Ruby on Rails 耍雷新手的小筆記分享。
+  description: Ruby on Rails 相關筆記。
   cover: assets/images/rails.jpg
 5xruby:
   name: 5xruby
   description: 五倍紅寶石實習點滴與心得。
   cover: assets/images/5xruby.jpg
 sql:
-  name: SQL
+  name: sql
   description: SQL 相關的知識彙整，新手容易犯的錯誤等等
-  cover: assets/images/sql.jpg
+  cover: assets/images/sql_cover.jpg
 cs50:
-  name: CS50
+  name: cs50
   description: 哈佛公開課 CS 50 的筆記彙整
-  cover: assets/images/cs50.jpg
-
-
+  cover: assets/images/cs50-cover.jpg
+css:
+  name: css
+  description: CSS 相關
+  cover: assets/images/css.jpg
+amp:
+  name: amp
+  description: Google AMP 相關
+  cover: assets/images/amp.jpg
+aws:
+  name: aws
+  description: Amazon Web Services 相關
+  cover: assets/images/aws.jpg

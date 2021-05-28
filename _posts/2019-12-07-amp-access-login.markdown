@@ -11,7 +11,6 @@ tags: amp
 author: fumitsuki
 ---
 
-
 （範例會以 Rails 來實作，登入的部分使用 [devise](https://github.com/plataformatec/devise) 套件為例）
 
 ### 前言
