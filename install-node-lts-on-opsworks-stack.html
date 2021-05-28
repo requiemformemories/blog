@@ -22,6 +22,17 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
     <style>.hljs { background: none; }</style>
 
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
     <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
@@ -39,7 +50,7 @@
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="2020-08-11T20:09:00+08:00" />
     <meta property="article:modified_time" content="2020-08-11T20:09:00+08:00" />
-    <meta property="article:tag" content="opsworks" />
+    <meta property="article:tag" content="Aws" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" />
     <meta name="twitter:description" content="最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。 Chef 都出到 16 了。AWS 是沒打算出新的意思嗎 😨 然後再來看看 Chef 11 的 build-in recipes 和 OS packages。 nodejs 的版本居然是 0.10.x，現在的 LTS 版本不是 12.x 嗎（抖抖抖 這個工具到底何時會被 AWS 淘汰啊，覺得驚恐。 nodejs 這麼舊，一定會有人反應對吧？沒錯！ 不過 AWS 官方的態度是希望大家都去用 community cookbooks，沒打算再更新現有的 cookbooks 了。 簡單第一句話打發了來開 issue、加一的眾人：" />
@@ -48,7 +59,7 @@
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="opsworks" />
+    <meta name="twitter:data2" content="Aws" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -114,19 +125,6 @@ into the {body} of the default.hbs template -->
     <div class="site-nav-right">
         <div class="social-links">
             
-                <a class="social-link social-link-fb" href="https://github.com/requiemformemories" target="_blank" rel="noopener"><?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 478.613 478.613" xml:space="default" width="19px" height="32px">
-<g id="XMLID_122_">
-	<g>
-		<path d="M427.501,200.695c1.776-11.238,2.884-23.56,3.163-37.377c-0.107-59.246-28.468-80.21-33.925-90.038    c8.037-44.89-1.331-65.309-5.688-72.299c-16.07-5.704-55.91,14.722-77.678,29.101c-35.491-10.389-110.494-9.375-138.621,2.689    C122.856-4.389,95.408,1.277,95.408,1.277s-17.745,31.82-4.691,78.371c-17.075,21.759-29.802,37.143-29.802,77.949    c0,9.773,0.607,19.008,1.637,27.893c14.705,77.318,75.97,110.674,136.15,116.426c-9.056,6.881-19.928,19.903-21.432,34.992    c-11.379,7.357-34.268,9.789-52.067,4.193c-24.939-7.88-34.486-57.266-71.833-50.221c-8.081,1.512-6.475,6.842,0.523,11.386    c11.378,7.38,22.094,16.554,30.354,36.185c6.344,15.072,19.687,41.982,61.873,41.982c16.747,0,28.477-1.979,28.477-1.979    s0.319,38.406,0.319,53.385c0,17.238-23.264,22.078-23.264,30.348c0,3.289,7.7,3.601,13.888,3.601    c12.229,0,37.673-10.186,37.673-28.103c0-14.237,0.227-62.081,0.227-70.46c0-18.307,9.811-24.136,9.811-24.136    s1.201,97.727-2.361,110.829c-4.177,15.408-11.744,13.219-11.744,20.076c0,10.233,30.589,2.502,40.735-19.897    c7.849-17.495,4.334-113.331,4.334-113.331l8.183-0.178c0,0,0.094,43.892-0.188,63.944c-0.295,20.769-2.438,47.025,9.898,59.417    c8.097,8.15,32.903,22.451,32.903,9.382c0-7.574-17.371-13.833-17.371-34.353V344.45c10.553,0,12.734,31.072,12.734,31.072    l3.804,57.727c0,0-2.526,21.065,22.756,29.856c8.925,3.126,28.018,3.976,28.913-1.271c0.897-5.26-22.99-13.038-23.217-29.342    c-0.123-9.93,0.445-15.742,0.445-58.934c0-43.168-5.799-59.137-26.007-71.863C355.669,295.681,416.536,269.51,427.501,200.695z" fill="white"/>
-	</g>
-</g>
-</svg>
-</a>
-            
-            
             
                 <a class="social-link social-link-tw" href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 </a>
@@ -145,7 +143,7 @@ into the {body} of the default.hbs template -->
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full post tag-speeches ">
+        <article class="post-full  tag-aws post tag-speeches ">
 
             <header class="post-full-header">
                 <section class="post-full-meta">
@@ -154,11 +152,7 @@ into the {body} of the default.hbs template -->
                         <span class="date-divider">/</span>
                         
                             
-                                OPSWORKS,
-                            
-                        
-                            
-                                NODEJS
+                               <a href='/blog/tag/aws/'>AWS</a>
                             
                         
                     
@@ -203,12 +197,12 @@ into the {body} of the default.hbs template -->
 
 <p>當我把 nodejs 加到 OS package 裡以後，跑一下 setup，再看一下 instance log ，發現加上了 nodejs 套件以後，多了 opsworks_nodejs 這個 cookbook。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INFO: Storing updated cookbooks/opsworks_nodejs/recipes/create_env_file.rb in the cache.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INFO: Storing updated cookbooks/opsworks_nodejs/recipes/create_env_file.rb in the cache.
 </code></pre></div></div>
 
-<p>要看看這個 cookbook 的內容可以不用直接上 <code class="highlighter-rouge">/opt/aws/opsworks/current/cookbooks/</code>，可以在 <a href="https://github.com/aws/opsworks-cookbooks/tree/release-chef-11.10/opsworks_nodejs">GitHub</a> 上把他下載下來。</p>
+<p>要看看這個 cookbook 的內容可以不用直接上 <code class="language-plaintext highlighter-rouge">/opt/aws/opsworks/current/cookbooks/</code>，可以在 <a href="https://github.com/aws/opsworks-cookbooks/tree/release-chef-11.10/opsworks_nodejs">GitHub</a> 上把他下載下來。</p>
 
-<p>打開 recipe 看看他是怎麼裝 node 的。會看到這個 <code class="highlighter-rouge">opsworks_commons_assets_installer</code></p>
+<p>打開 recipe 看看他是怎麼裝 node 的。會看到這個 <code class="language-plaintext highlighter-rouge">opsworks_commons_assets_installer</code></p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># opsworks_nodejs/recipes/default.rb:32-39</span>
 <span class="n">opsworks_commons_assets_installer</span> <span class="s2">"Install user space OpsWorks NodeJS package"</span> <span class="k">do</span>
@@ -221,14 +215,14 @@ into the {body} of the default.hbs template -->
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>也就是他是在這裡吃到 <code class="highlighter-rouge">node[:opsworks_nodejs][:version]</code> ，然後會試著把這個版本裝起來。</p>
+<p>也就是他是在這裡吃到 <code class="language-plaintext highlighter-rouge">node[:opsworks_nodejs][:version]</code> ，然後會試著把這個版本裝起來。</p>
 
-<p>那這個 installer 幫我們做了哪些事呢？我們可以在 <code class="highlighter-rouge">opsworks_commons/providers/assets_installer.rb</code> 看到他的實作。觀察一下可以看出來他會去一個 S3 bucket（預設是 <code class="highlighter-rouge">https://opsworks-instance-assets-us-east-1.s3.amazonaws.com</code>）把對應的套件包抓下來裝起來。根據 linux 發行版、發行版版本、處理器的不同決定在哪一個 path。</p>
+<p>那這個 installer 幫我們做了哪些事呢？我們可以在 <code class="language-plaintext highlighter-rouge">opsworks_commons/providers/assets_installer.rb</code> 看到他的實作。觀察一下可以看出來他會去一個 S3 bucket（預設是 <code class="language-plaintext highlighter-rouge">https://opsworks-instance-assets-us-east-1.s3.amazonaws.com</code>）把對應的套件包抓下來裝起來。根據 linux 發行版、發行版版本、處理器的不同決定在哪一個 path。</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@asset_url</span> <span class="o">||=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">node</span><span class="p">[</span><span class="ss">:opsworks_commons</span><span class="p">][</span><span class="ss">:assets_url</span><span class="p">]</span><span class="si">}</span><span class="s2">/packages/</span><span class="si">#{</span><span class="n">_platform</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">_platform_version</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">asset_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>例如 Amazon Linux 2018.03 最後的 asset_url 可能會長這樣 <code class="highlighter-rouge">/packages/amazon/2018.03/opsworks-nodejs-12.18.3-1.x86_64.rpm</code>。Ubuntu 14.04 可能會像這樣 <code class="highlighter-rouge">/packages/ubuntu/14.04/opsworks-nodejs_12.18.3-1_amd64.deb</code>。</p>
+<p>例如 Amazon Linux 2018.03 最後的 asset_url 可能會長這樣 <code class="language-plaintext highlighter-rouge">/packages/amazon/2018.03/opsworks-nodejs-12.18.3-1.x86_64.rpm</code>。Ubuntu 14.04 可能會像這樣 <code class="language-plaintext highlighter-rouge">/packages/ubuntu/14.04/opsworks-nodejs_12.18.3-1_amd64.deb</code>。</p>
 
 <p>AWS 提供的 bucket 上沒有我們要的 12.x 版本，但是我們可以自己指定我們要的 node 版本，放到我們自己的 S3 上。這樣也不需要魔改太多東西XD</p>
 
@@ -236,14 +230,14 @@ into the {body} of the default.hbs template -->
 
 <p>比方說我用 Rails 的 cookbook，就不能少了 ruby。如果開機器失敗了，可以檢查一下 log，應該會告訴你是少了哪一個 package 才會 setup 失敗。在 S3 補上對應的 package 即可。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to download asset opsworks-ruby2.5 for Install user space OpsWorks ruby package with url https://your-bucket-name.s3-your-region.amazonaws.com/packages/amazon/2018.03/opsworks-ruby25-2.5.1-1.x86_64.rpm.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to download asset opsworks-ruby2.5 for Install user space OpsWorks ruby package with url https://your-bucket-name.s3-your-region.amazonaws.com/packages/amazon/2018.03/opsworks-ruby25-2.5.1-1.x86_64.rpm.
 </code></pre></div></div>
 
 <h2 id="override-attributes--上傳-package-file--完成">Override Attributes + 上傳 package file = 完成！</h2>
 
-<p>所以我們要做的事情是，想辦法蓋掉原本的 <code class="highlighter-rouge">opsworks_nodejs</code> 的 <code class="highlighter-rouge">version</code>，然後把對應的 package 傳上 S3。</p>
+<p>所以我們要做的事情是，想辦法蓋掉原本的 <code class="language-plaintext highlighter-rouge">opsworks_nodejs</code> 的 <code class="language-plaintext highlighter-rouge">version</code>，然後把對應的 package 傳上 S3。</p>
 
-<p>至於怎麼覆蓋掉 version，可以看看 <code class="highlighter-rouge">opsworks_commons/attributes/customize.rb</code> 上面的說明</p>
+<p>至於怎麼覆蓋掉 version，可以看看 <code class="language-plaintext highlighter-rouge">opsworks_commons/attributes/customize.rb</code> 上面的說明</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">###</span>
 <span class="c1"># This is the place to override the opsworks_commons cookbook's default attributes.</span>
@@ -254,20 +248,20 @@ into the {body} of the default.hbs template -->
 <span class="c1">###</span>
 </code></pre></div></div>
 
-<p>他希望你另外開個 custom-cookbook，在裡面留下這個 customize.rb 來蓋掉 version 的值。所以我們可以先到 GitHub （或其他你喜歡的平台w）開個 repo 來放你的 custom-cookbook，然後在裡面複製貼上 <code class="highlighter-rouge">opsworks_commons/attributes/customize.rb</code>（那個註解要不要留著看你）。</p>
+<p>他希望你另外開個 custom-cookbook，在裡面留下這個 customize.rb 來蓋掉 version 的值。所以我們可以先到 GitHub （或其他你喜歡的平台w）開個 repo 來放你的 custom-cookbook，然後在裡面複製貼上 <code class="language-plaintext highlighter-rouge">opsworks_commons/attributes/customize.rb</code>（那個註解要不要留著看你）。</p>
 
 <p>在裡面加上你要的 node 版本：</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">normal</span><span class="p">[</span><span class="ss">:opsworks_nodejs</span><span class="p">][</span><span class="ss">:version</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'12.18.3'</span>
 </code></pre></div></div>
 
-<p>記得要去改 Stack setting，到<code class="highlighter-rouge">Use custom Chef cookbooks</code> 的區塊把這個 custom-cookbook 的 repo URL、branch name 加進去。</p>
+<p>記得要去改 Stack setting，到<code class="language-plaintext highlighter-rouge">Use custom Chef cookbooks</code> 的區塊把這個 custom-cookbook 的 repo URL、branch name 加進去。</p>
 
-<p>完成第一部分了，接著來做第二部分。到 S3 開個 bucket （名字看起來就是跟 OpsWorks 有關且不會誤刪即可w）。根據對應的 path 來放你的 assets。像上面提到的 <code class="highlighter-rouge">/packages/amazon/2018.03</code> 這樣。然後把 deb/rpm file 傳上來，名字改一改。像是我除了 node 還會用到 berkshelf 和 ruby，這些也要放上來。</p>
+<p>完成第一部分了，接著來做第二部分。到 S3 開個 bucket （名字看起來就是跟 OpsWorks 有關且不會誤刪即可w）。根據對應的 path 來放你的 assets。像上面提到的 <code class="language-plaintext highlighter-rouge">/packages/amazon/2018.03</code> 這樣。然後把 deb/rpm file 傳上來，名字改一改。像是我除了 node 還會用到 berkshelf 和 ruby，這些也要放上來。</p>
 
 <p>然後在 custom json 加上新開的 bucket：</p>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"opsworks_commons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"assets_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://your-bucket-name.s3-your-region.amazonaws.com"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"opsworks_commons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"assets_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://your-bucket-name.s3-your-region.amazonaws.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -318,6 +312,9 @@ into the {body} of the default.hbs template -->
                                 
                             </section>
                         </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/blog/author/fumitsuki">Read More</a>
+                        </div>
                     
                 
                 <!-- /author  -->
@@ -347,6 +344,7 @@ into the {body} of the default.hbs template -->
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
             
                 
+
     <article class="post-card post-template">
         
             <a class="post-card-image-link" href="/blog/cs50-notes-scratch">
@@ -366,9 +364,6 @@ into the {body} of the default.hbs template -->
 
                     <h2 class="post-card-title">CS50 筆記：第零講 Scratch</h2>
                 </header>
-                <section class="post-card-excerpt">
-                    <p>## 筆記前言...</p>
-                </section>
             </a>
             <footer class="post-card-meta">
                 
@@ -377,10 +372,16 @@ into the {body} of the default.hbs template -->
                         <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
                         
                         <span class="post-card-author">
-                            文月
+                            <a href="/blog/author/fumitsuki/">文月</a>
                         </span>
                     
                 
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
             </footer>
         </div>
     </article>
@@ -390,6 +391,7 @@ into the {body} of the default.hbs template -->
             <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
             
                 
+
     <article class="post-card post-template">
         
             <a class="post-card-image-link" href="/blog/sql-no-comma-seperated-list">
@@ -409,9 +411,6 @@ into the {body} of the default.hbs template -->
 
                     <h2 class="post-card-title">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</h2>
                 </header>
-                <section class="post-card-excerpt">
-                    <p>想當初小的在學校學 SQL...</p>
-                </section>
             </a>
             <footer class="post-card-meta">
                 
@@ -420,10 +419,16 @@ into the {body} of the default.hbs template -->
                         <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
                         
                         <span class="post-card-author">
-                            文月
+                            <a href="/blog/author/fumitsuki/">文月</a>
                         </span>
                     
                 
+                <span class="reading-time">
+                    
+                    
+                      2 min read
+                    
+                </span>
             </footer>
         </div>
     </article>
@@ -482,12 +487,12 @@ into the {body} of the default.hbs template -->
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
                 <section class="copyright"><a href="/blog/">Fumitsuki's magic box</a> &copy; 2021</section>
-                <section class="poweredby">Published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
                     <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
-                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                    <a href="https://github.com/jekyllt/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
                 <nav class="site-footer-nav">
                     <a href="/blog/">Latest Posts</a>
-                    <a href="https://GitHub.com/requiemformemories" target="_blank" rel="noopener">Github</a>
+                    
                     <a href="https://twitter.com/Fumitsuki0802" target="_blank" rel="noopener">Twitter</a>
                 </nav>
             </div>

@@ -11,7 +11,7 @@
 
 
 
-    <title>Fumitsuki's magic box</title>
+    <title>Cs50 - Fumitsuki's magic box</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -36,19 +36,19 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
     <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/blog/" />
+    <link rel="canonical" href="/blog/tag/cs50/" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="Fumitsuki's magic box" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Fumitsuki's magic box" />
+    <meta property="og:title" content="Cs50 - Fumitsuki's magic box" />
     <meta property="og:description" content="keep calm and eat eight Plates." />
-    <meta property="og:url" content="/blog/" />
+    <meta property="og:url" content="/blog/tag/cs50/" />
     <meta property="og:image" content="/blog/assets/images/blog-cover.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Fumitsuki's magic box" />
+    <meta name="twitter:title" content="Cs50 - Fumitsuki's magic box" />
     <meta name="twitter:description" content="keep calm and eat eight Plates." />
     <meta name="twitter:url" content="/blog/" />
     <meta name="twitter:image" content="/blog/assets/images/blog-cover.jpg" />
@@ -68,7 +68,7 @@
         "name": "Fumitsuki's magic box",
         "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "/blog/",
+    "url": "/blog/tag/cs50/",
     "image": {
         "@type": "ImageObject",
         "url": "/blog/assets/images/blog-cover.jpg",
@@ -77,7 +77,7 @@
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/blog/"
+        "@id": "/blog/tag/cs50/"
     },
     "description": "keep calm and eat eight Plates."
 }
@@ -92,31 +92,31 @@
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="Fumitsuki's magic box" href="/blog/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Tag Page" href="/blog/feed.xml" />
 
 
 </head>
-<body class="home-template">
+<body class="tag-template">
 
     <div class="site-wrapper">
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
-<!-- The tag above means: insert everything in this file
-into the {body} of the default.hbs template -->
+        <!-- default -->
+<!-- The tag above means - insert everything in this file into the {body} of the default.hbs template -->
 
 <!-- The big featured header, it uses blog cover image as a BG if available -->
-<header class="site-header outer " style="background-image:  url(/blog/assets/images/blog-cover.jpg) ">
+<!-- #tag -->
+<!-- dynamically loading backgrounds for tags,  descriptions and page titles -->
+
+
+
+<header class="site-header outer " style="background-image: url(/blog/assets/images/cs50-cover.jpg) ">
     <div class="inner">
-        <div class="site-header-content">
-            <h1 class="site-title">
-                
-                    <img class="site-logo" src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box"/>
-                
-            </h1>
-            <h2 class="site-description">keep calm and eat eight Plates.</h2>
-        </div>
         <nav class="site-nav">
     <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/blog/"><img src="/blog/assets/images/blog-icon.png" alt="Fumitsuki's magic box" /></a>
+            
         
         
             <ul class="nav" role="menu">
@@ -138,19 +138,27 @@ into the {body} of the default.hbs template -->
     </div>
 </nav>
 
+        <div class="site-header-content">
+            <h1 class="site-title">Cs50</h1>
+            <h2 class="site-description">
+                
+                    哈佛公開課 CS 50 的筆記彙整
+                
+            </h2>
+        </div>
     </div>
 </header>
+<!-- tag -->
 
 <!-- The main content area -->
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
-
         <div class="post-feed">
             <!-- The tag below includes the markup for each post - partials/post-card.hbs -->
             
 
 
-    <article class="post-card home-template">
+    <article class="post-card tag-template">
         
             <a class="post-card-image-link" href="/blog/cs50-notes-memory">
                 <div class="post-card-image" style="background-image: url(/blog/assets/images/cs50.jpg)"></div>
@@ -191,7 +199,7 @@ into the {body} of the default.hbs template -->
         </div>
     </article>
 
-    <article class="post-card home-template">
+    <article class="post-card tag-template">
         
             <a class="post-card-image-link" href="/blog/cs50-notes-algorithm">
                 <div class="post-card-image" style="background-image: url(/blog/assets/images/cs50.jpg)"></div>
@@ -232,7 +240,7 @@ into the {body} of the default.hbs template -->
         </div>
     </article>
 
-    <article class="post-card home-template">
+    <article class="post-card tag-template">
         
             <a class="post-card-image-link" href="/blog/cs50-notes-c">
                 <div class="post-card-image" style="background-image: url(/blog/assets/images/cs50.jpg)"></div>
@@ -273,7 +281,7 @@ into the {body} of the default.hbs template -->
         </div>
     </article>
 
-    <article class="post-card home-template">
+    <article class="post-card tag-template">
         
             <a class="post-card-image-link" href="/blog/cs50-notes-scratch">
                 <div class="post-card-image" style="background-image: url(/blog/assets/images/cs50.jpg)"></div>
@@ -314,259 +322,8 @@ into the {body} of the default.hbs template -->
         </div>
     </article>
 
-    <article class="post-card home-template">
-        
-            <a class="post-card-image-link" href="/blog/install-node-lts-on-opsworks-stack">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/stack.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/install-node-lts-on-opsworks-stack">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">Aws</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</h2>
-                </header>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-                <span class="reading-time">
-                    
-                    
-                      2 min read
-                    
-                </span>
-            </footer>
-        </div>
-    </article>
-
-    <article class="post-card home-template">
-        
-            <a class="post-card-image-link" href="/blog/sql-no-comma-seperated-list">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/sql.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/sql-no-comma-seperated-list">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">Sql</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</h2>
-                </header>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-                <span class="reading-time">
-                    
-                    
-                      2 min read
-                    
-                </span>
-            </footer>
-        </div>
-    </article>
-
-    <article class="post-card home-template">
-        
-            <a class="post-card-image-link" href="/blog/sql-primary-key">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/sql.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/sql-primary-key">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">Sql</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</h2>
-                </header>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-                <span class="reading-time">
-                    
-                    
-                      2 min read
-                    
-                </span>
-            </footer>
-        </div>
-    </article>
-
-    <article class="post-card home-template">
-        
-            <a class="post-card-image-link" href="/blog/tailwind-css-plugin">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/tailwind-example-cover.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/tailwind-css-plugin">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">Css</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</h2>
-                </header>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-                <span class="reading-time">
-                    
-                    
-                      7 min read
-                    
-                </span>
-            </footer>
-        </div>
-    </article>
-
-    <article class="post-card home-template">
-        
-            <a class="post-card-image-link" href="/blog/amp-access-login">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/amp_access_cover.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/amp-access-login">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">Amp</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">透過 amp-access 讓你在 Cache 頁面也能順利保持登入！</h2>
-                </header>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-                <span class="reading-time">
-                    
-                    
-                      3 min read
-                    
-                </span>
-            </footer>
-        </div>
-    </article>
-
-    <article class="post-card home-template">
-        
-            <a class="post-card-image-link" href="/blog/tailwind-nested-config">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/tailwind-post.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/tailwind-nested-config">
-                <header class="post-card-header">
-                    
-                        
-                            
-                               <span class="post-card-tags">Css</span>
-                            
-                        
-                            
-                                <span class="post-card-tags">Javascript</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">[工作日常] 如何用建立巢狀的 tailwindcss config？</h2>
-                </header>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-                <span class="reading-time">
-                    
-                    
-                      2 min read
-                    
-                </span>
-            </footer>
-        </div>
-    </article>
-
 
         </div>
-
     </div>
 </main>
 

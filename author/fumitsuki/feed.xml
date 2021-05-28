@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-05-28T14:04:39+08:00</updated><id>/blog/feed.xml</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">CS50 筆記：第四講 Memory</title><link href="/blog/cs50-notes-memory" rel="alternate" type="text/html" title="CS50 筆記：第四講 Memory" /><published>2021-02-25T15:34:00+08:00</published><updated>2021-02-25T15:34:00+08:00</updated><id>/blog/cs50-notes-memory</id><content type="html" xml:base="/blog/cs50-notes-memory">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/blog/author/fumitsuki/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/blog/" rel="alternate" type="text/html" />
+  <updated>2021-05-28T14:04:39+08:00</updated>
+  <id>/blog/author/fumitsuki/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Fumitsuki’s magic box | </title>
+  
+
+  
+    <subtitle>keep calm and eat eight Plates.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">CS50 筆記：第四講 Memory</title>
+      <link href="/blog/cs50-notes-memory" rel="alternate" type="text/html" title="CS50 筆記：第四講 Memory" />
+      <published>2021-02-25T15:34:00+08:00</published>
+      <updated>2021-02-25T15:34:00+08:00</updated>
+      <id>/blog/cs50-notes-memory</id>
+      <content type="html" xml:base="/blog/cs50-notes-memory">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;覺得這章是課程中我覺得蠻有趣的一章，除了學到了很多我以前不會的東西以外，這章的 &lt;a href=&quot;https://cs50.harvard.edu/college/2020/fall/psets/4/filter/more/&quot;&gt;problem set&lt;/a&gt; 很有趣，會帶著大家做一些基本的圖片處理（灰階、模糊、反轉、探測邊緣）。&lt;/p&gt;
 
@@ -207,7 +246,41 @@ x is 1, y is 2
 
 &lt;p&gt;3) If s and t are of type string, why can we not use s == t to check whether s and t contain the same characters?&lt;/p&gt;
 
-&lt;p&gt;我自己的答案：當 s 跟 t 都是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;char *&lt;/code&gt;，在做 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s == t&lt;/code&gt; 這件事情實際上的意思是在比較兩個記憶體位置，即便 t 指向的位置存的內容跟 s 指向的位置存的內容一樣，兩個記憶體位置有可能是不一樣的，所以無法用這種方式去比較 s 和 t 是否有相同的字串。&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第三講 Algorithms</title><link href="/blog/cs50-notes-algorithm" rel="alternate" type="text/html" title="CS50 筆記：第三講 Algorithms" /><published>2020-12-21T20:50:00+08:00</published><updated>2020-12-21T20:50:00+08:00</updated><id>/blog/cs50-notes-algorithm</id><content type="html" xml:base="/blog/cs50-notes-algorithm">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+&lt;p&gt;我自己的答案：當 s 跟 t 都是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;char *&lt;/code&gt;，在做 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;s == t&lt;/code&gt; 這件事情實際上的意思是在比較兩個記憶體位置，即便 t 指向的位置存的內容跟 s 指向的位置存的內容一樣，兩個記憶體位置有可能是不一樣的，所以無法用這種方式去比較 s 和 t 是否有相同的字串。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="cs50" />
+      
+
+      
+        <summary type="html">筆記前言</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">CS50 筆記：第三講 Algorithms</title>
+      <link href="/blog/cs50-notes-algorithm" rel="alternate" type="text/html" title="CS50 筆記：第三講 Algorithms" />
+      <published>2020-12-21T20:50:00+08:00</published>
+      <updated>2020-12-21T20:50:00+08:00</updated>
+      <id>/blog/cs50-notes-algorithm</id>
+      <content type="html" xml:base="/blog/cs50-notes-algorithm">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;本章先簡介了時間複雜度的概念，帶了一點 struct，最後一大半在講不同的 sorting 方式。&lt;/p&gt;
 
@@ -458,7 +531,41 @@ x is 1, y is 2
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第一講 C</title><link href="/blog/cs50-notes-c" rel="alternate" type="text/html" title="CS50 筆記：第一講 C" /><published>2020-12-20T20:09:00+08:00</published><updated>2020-12-20T20:09:00+08:00</updated><id>/blog/cs50-notes-c</id><content type="html" xml:base="/blog/cs50-notes-c">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="cs50" />
+      
+
+      
+        <summary type="html">筆記前言</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">CS50 筆記：第一講 C</title>
+      <link href="/blog/cs50-notes-c" rel="alternate" type="text/html" title="CS50 筆記：第一講 C" />
+      <published>2020-12-20T20:09:00+08:00</published>
+      <updated>2020-12-20T20:09:00+08:00</updated>
+      <id>/blog/cs50-notes-c</id>
+      <content type="html" xml:base="/blog/cs50-notes-c">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;本章主要在講 c 的 syntax ，最基本的資料型別、if、迴圈等等。
 有趣的是他拿 scratch 的元件來跟 c 對比。
@@ -645,7 +752,41 @@ x is 1, y is 2
 
 &lt;p&gt;舉例來說 三個燈泡(相當於3個 bits)可以表示大的數字為 7 (111)，當他再進味的時候會變成 (1000)，但因為只有 3 個 bits，所以等於回到 0 (000)。&lt;/p&gt;
 
-&lt;p&gt;當試圖放入 int 的數字大於他可以表示的最大範圍時也會發生這種現象，這就叫 overflow&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">CS50 筆記：第零講 Scratch</title><link href="/blog/cs50-notes-scratch" rel="alternate" type="text/html" title="CS50 筆記：第零講 Scratch" /><published>2020-12-19T20:01:00+08:00</published><updated>2020-12-19T20:01:00+08:00</updated><id>/blog/cs50-notes-scratch</id><content type="html" xml:base="/blog/cs50-notes-scratch">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
+&lt;p&gt;當試圖放入 int 的數字大於他可以表示的最大範圍時也會發生這種現象，這就叫 overflow&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="cs50" />
+      
+
+      
+        <summary type="html">筆記前言</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">CS50 筆記：第零講 Scratch</title>
+      <link href="/blog/cs50-notes-scratch" rel="alternate" type="text/html" title="CS50 筆記：第零講 Scratch" />
+      <published>2020-12-19T20:01:00+08:00</published>
+      <updated>2020-12-19T20:01:00+08:00</updated>
+      <id>/blog/cs50-notes-scratch</id>
+      <content type="html" xml:base="/blog/cs50-notes-scratch">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
 
 &lt;p&gt;誤打誤撞成為網站開發小雜工以後，默默地工作了一年，深刻地感受到基礎知識的不足。這也促使我決定跑來看看 CS50 的課，惡補一下 CS 領域的基礎知識。&lt;/p&gt;
 
@@ -720,7 +861,41 @@ else if 不在這一頁
 
 &lt;h3 id=&quot;抽象化abstraction&quot;&gt;抽象化(abstraction)&lt;/h3&gt;
 
-&lt;p&gt;把許多步驟細節包在一個 function 裡面，我知道這個 function 可以用來做什麼，但不需要知道實作細節&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title><link href="/blog/install-node-lts-on-opsworks-stack" rel="alternate" type="text/html" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" /><published>2020-08-11T20:09:00+08:00</published><updated>2020-08-11T20:09:00+08:00</updated><id>/blog/install-node-lts-on-opsworks-stack</id><content type="html" xml:base="/blog/install-node-lts-on-opsworks-stack">&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;
+&lt;p&gt;把許多步驟細節包在一個 function 裡面，我知道這個 function 可以用來做什麼，但不需要知道實作細節&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="cs50" />
+      
+
+      
+        <summary type="html">筆記前言</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title>
+      <link href="/blog/install-node-lts-on-opsworks-stack" rel="alternate" type="text/html" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" />
+      <published>2020-08-11T20:09:00+08:00</published>
+      <updated>2020-08-11T20:09:00+08:00</updated>
+      <id>/blog/install-node-lts-on-opsworks-stack</id>
+      <content type="html" xml:base="/blog/install-node-lts-on-opsworks-stack">&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/wVA9b2O.jpg&quot; alt=&quot;新增 stack&quot; /&gt;&lt;/p&gt;
 
@@ -841,7 +1016,41 @@ else if 不在這一頁
 
 &lt;p&gt;不過哪天沒有太多 issue 纏身，我還是想看看是否能改用其他工具www&lt;/p&gt;
 
-&lt;p&gt;最後也希望大家都有成功把 node 設定成想要的版本，一切順利 🌟&lt;/p&gt;</content><author><name>文月</name></author><category term="aws" /><category term="aws" /><summary type="html">最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。</summary></entry><entry><title type="html">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</title><link href="/blog/sql-no-comma-seperated-list" rel="alternate" type="text/html" title="[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？" /><published>2020-04-29T14:13:00+08:00</published><updated>2020-04-29T14:13:00+08:00</updated><id>/blog/sql-no-comma-seperated-list</id><content type="html" xml:base="/blog/sql-no-comma-seperated-list">&lt;p&gt;想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。&lt;/p&gt;
+&lt;p&gt;最後也希望大家都有成功把 node 設定成想要的版本，一切順利 🌟&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="aws" />
+      
+
+      
+        <summary type="html">最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？</title>
+      <link href="/blog/sql-no-comma-seperated-list" rel="alternate" type="text/html" title="[SQL] 為什麼要多一張表處理多對多關係？把數值都逗號分隔存起來不行嗎？" />
+      <published>2020-04-29T14:13:00+08:00</published>
+      <updated>2020-04-29T14:13:00+08:00</updated>
+      <id>/blog/sql-no-comma-seperated-list</id>
+      <content type="html" xml:base="/blog/sql-no-comma-seperated-list">&lt;p&gt;想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。&lt;/p&gt;
 
 &lt;p&gt;如果直接把資料想辦法塞在一個欄位裡，比方說在 table &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; 上新增 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orders&lt;/code&gt; 欄位（type 為 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VARCHAR&lt;/code&gt;），把 order_id 們像是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1, 34, 135&lt;/code&gt; 這樣地塞在 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orders&lt;/code&gt;欄位中，不是也可以嗎？（或是反過來新增 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; 欄位在資料表 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orders&lt;/code&gt; 上）&lt;/p&gt;
 
@@ -1053,7 +1262,41 @@ TEXT 不夠我可以用 LONGTEXT 呀 (☝ ՞ਊ ՞）☝&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第二章 Jaywalking 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content><author><name>文月</name></author><category term="SQL" /><category term="sql" /><summary type="html">想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。</summary></entry><entry><title type="html">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title><link href="/blog/sql-primary-key" rel="alternate" type="text/html" title="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" /><published>2020-04-27T14:13:00+08:00</published><updated>2020-04-27T14:13:00+08:00</updated><id>/blog/sql-primary-key</id><content type="html" xml:base="/blog/sql-primary-key">&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;
+&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第二章 Jaywalking 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="sql" />
+      
+
+      
+        <summary type="html">想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title>
+      <link href="/blog/sql-primary-key" rel="alternate" type="text/html" title="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" />
+      <published>2020-04-27T14:13:00+08:00</published>
+      <updated>2020-04-27T14:13:00+08:00</updated>
+      <id>/blog/sql-primary-key</id>
+      <content type="html" xml:base="/blog/sql-primary-key">&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;
 &lt;p&gt;primary key 主要的作用為：&lt;/p&gt;
 
 &lt;h3 id=&quot;1-避免產生一堆重複又無法識別的-row&quot;&gt;1. 避免產生一堆重複又無法識別的 row&lt;/h3&gt;
@@ -1424,7 +1667,41 @@ JOIN bug_products USING(bug_id)
 
 &lt;hr /&gt;
 
-&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第四章 ID required 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content><author><name>文月</name></author><category term="SQL" /><category term="sql" /><summary type="html">問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為：</summary></entry><entry><title type="html">還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</title><link href="/blog/tailwind-css-plugin" rel="alternate" type="text/html" title="還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！" /><published>2020-04-25T09:00:00+08:00</published><updated>2020-04-25T09:00:00+08:00</updated><id>/blog/tailwind-css-plugin</id><content type="html" xml:base="/blog/tailwind-css-plugin">&lt;h2 id=&quot;什麼是-tailwind-css&quot;&gt;什麼是 Tailwind CSS？&lt;/h2&gt;
+&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第四章 ID required 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="sql" />
+      
+
+      
+        <summary type="html">問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為：</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！</title>
+      <link href="/blog/tailwind-css-plugin" rel="alternate" type="text/html" title="還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！" />
+      <published>2020-04-25T09:00:00+08:00</published>
+      <updated>2020-04-25T09:00:00+08:00</updated>
+      <id>/blog/tailwind-css-plugin</id>
+      <content type="html" xml:base="/blog/tailwind-css-plugin">&lt;h2 id=&quot;什麼是-tailwind-css&quot;&gt;什麼是 Tailwind CSS？&lt;/h2&gt;
 
 &lt;p&gt;簡單來說 Tailwind CSS 是一套 Utility-First CSS，相當具有彈性，也非常適合快速刻板。在 Utility-First CSS 之間也算是殺出了一片天。不過這個工具的魅力到底在哪呢？且讓我慢慢說明。&lt;/p&gt;
 
@@ -2118,7 +2395,41 @@ yarn add @fullhuman/postcss-purgecss &lt;span class=&quot;nt&quot;&gt;-D&lt;/spa
 
 &lt;p&gt;本文撰寫時 Tailwind 在 v.1.2.0 左右，因此裡面有些資訊可能已經有點老舊，日後有空我會再重寫一篇推坑文與心得文給大家。&lt;/p&gt;
 
-&lt;script async=&quot;&quot; src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;</content><author><name>文月</name></author><category term="CSS" /><category term="css" /><summary type="html">什麼是 Tailwind CSS？</summary></entry><entry><title type="html">透過 amp-access 讓你在 Cache 頁面也能順利保持登入！</title><link href="/blog/amp-access-login" rel="alternate" type="text/html" title="透過 amp-access 讓你在 Cache 頁面也能順利保持登入！" /><published>2019-12-07T09:00:00+08:00</published><updated>2019-12-07T09:00:00+08:00</updated><id>/blog/amp-access-login</id><content type="html" xml:base="/blog/amp-access-login">&lt;p&gt;（範例會以 Rails 來實作，登入的部分使用 &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;devise&lt;/a&gt; 套件為例）&lt;/p&gt;
+&lt;script async=&quot;&quot; src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="css" />
+      
+
+      
+        <summary type="html">什麼是 Tailwind CSS？</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">透過 amp-access 讓你在 Cache 頁面也能順利保持登入！</title>
+      <link href="/blog/amp-access-login" rel="alternate" type="text/html" title="透過 amp-access 讓你在 Cache 頁面也能順利保持登入！" />
+      <published>2019-12-07T09:00:00+08:00</published>
+      <updated>2019-12-07T09:00:00+08:00</updated>
+      <id>/blog/amp-access-login</id>
+      <content type="html" xml:base="/blog/amp-access-login">&lt;p&gt;（範例會以 Rails 來實作，登入的部分使用 &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;devise&lt;/a&gt; 套件為例）&lt;/p&gt;
 
 &lt;h3 id=&quot;前言&quot;&gt;前言&lt;/h3&gt;
 
@@ -2400,7 +2711,41 @@ yarn add @fullhuman/postcss-purgecss &lt;span class=&quot;nt&quot;&gt;-D&lt;/spa
 
 &lt;p&gt;本文最初放在五倍紅寶石的專欄文章中，然而隨著公司分家改組，文章跟著被移除了QQ&lt;/p&gt;
 
-&lt;p&gt;因此將文章移至部落格中。&lt;/p&gt;</content><author><name>文月</name></author><category term="AMP" /><category term="amp" /><summary type="html">（範例會以 Rails 來實作，登入的部分使用 devise 套件為例）</summary></entry><entry><title type="html">[工作日常] 如何用建立巢狀的 tailwindcss config？</title><link href="/blog/tailwind-nested-config" rel="alternate" type="text/html" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" /><published>2019-08-22T14:13:00+08:00</published><updated>2019-08-22T14:13:00+08:00</updated><id>/blog/tailwind-nested-config</id><content type="html" xml:base="/blog/tailwind-nested-config">&lt;h2 id=&quot;內容更新&quot;&gt;內容更新&lt;/h2&gt;
+&lt;p&gt;因此將文章移至部落格中。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="amp" />
+      
+
+      
+        <summary type="html">（範例會以 Rails 來實作，登入的部分使用 devise 套件為例）</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">[工作日常] 如何用建立巢狀的 tailwindcss config？</title>
+      <link href="/blog/tailwind-nested-config" rel="alternate" type="text/html" title="[工作日常] 如何用建立巢狀的 tailwindcss config？" />
+      <published>2019-08-22T14:13:00+08:00</published>
+      <updated>2019-08-22T14:13:00+08:00</updated>
+      <id>/blog/tailwind-nested-config</id>
+      <content type="html" xml:base="/blog/tailwind-nested-config">&lt;h2 id=&quot;內容更新&quot;&gt;內容更新&lt;/h2&gt;
 
 &lt;p&gt;Tailwind 在 v1.2.0 的時候推出了 &lt;a href=&quot;https://github.com/tailwindcss/tailwindcss/pull/1162&quot;&gt;Allow plugins to extend the user’s config&lt;/a&gt;的功能，我在公司的技術文章中「&lt;a href=&quot;http://5xruby.tw/posts/tailwind-css-plugin/&quot;&gt;還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！&lt;/a&gt;」有提到這個功能，與 Tailwind 的基本介紹。&lt;/p&gt;
 
@@ -2606,4 +2951,34 @@ yarn add @fullhuman/postcss-purgecss &lt;span class=&quot;nt&quot;&gt;-D&lt;/spa
 
 &lt;p&gt;目前想到的方式就是 variants 還是固定寫某一個檔案就好這樣。但願之後 Tailwind 官方會有更好的實務做法。&lt;/p&gt;
 
-&lt;p&gt;（筆者使用 tailwindcss v1.0.1）&lt;/p&gt;</content><author><name>文月</name></author><category term="CSS" /><category term="css" /><category term="javascript" /><summary type="html">內容更新 Tailwind 在 v1.2.0 的時候推出了 Allow plugins to extend the user’s config的功能，我在公司的技術文章中「還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！」有提到這個功能，與 Tailwind 的基本介紹。 前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組 color）兩邊都要有，這個時候該怎麼辦呢？ 方案一：佛系解決問題，等待官方處理的那一天 如標題所示，緣份到來，問題自然解決。說不定哪一天官方的 new release 就幫你把問題處理好了。 如果對專案放置 play 問題就會解決，我也是很想這樣。 方案二：一邊一組 customized config 是個非常直觀簡單的解決方案，直接前台一個 tailwind.config.js ，後台一個 tailwind.config.js ，共同的部分就兩邊的 config 都放就好了。但是總覺得不夠 dry (Don’t repeat yourself)，維護的時候要小心保持兩邊的共同設定都一樣，實在不是個漂亮的作法。 方案三：把 tailwind 裡面的 ResolveConfigObjects() 拿來 merge 你的 customized config 如果打開 node_modules/tailwindcss 觀察觀察，會發現檔案 resolveConfig.js 中，Tailwind 透過一個叫 resolveConfigObjects() 的 function 幫你把你的 customized config 跟 Tailwind 的 default config 合併起來。 // node_modules/tailwindcss/resolveConfig.js const resolveConfigObjects = require('./lib/util/resolveConfig').default const defaultConfig = require('./stubs/defaultConfig.stub.js') module.exports = function resolveConfig(config) { return resolveConfigObjects([config, defaultConfig]) } 那如果我們把這個 resolveConfigObjects() 抽出來用，是不是也可以達到 nested config 的效果呢？ const resolveConfigObjects = require('tailwindcss/lib/util/resolveConfig').default const defaultConfig = require('#{共同設定的那個 config 檔案}'.js) const extendedConfig = { //這裡放你前台 or 後台的設定 } module.exports = resolveConfigObjects([extendedConfig, defaultTheme]) 經過實際測試後，發現會有難以解決的問題。 在 Tailwind 的 config 中，有一些部分的設定會像這樣： textColor: theme =&amp;gt; theme('colors') 經過 resolveConfigObjects() 這個 function 以後，這樣的 function 會被處理成 Object： textColor: { transparent: 'transparent', black: '#000', white: '#fff', gray: [Object], red: [Object], orange: [Object], yellow: [Object], green: [Object], teal: [Object], blue: [Object], indigo: [Object], purple: [Object], pink: [Object] } 如果這個時候在你的前台 config 裡加上一個新的顏色： const extendedConfig = { theme: { colors: { ...defaultTheme.theme.colors, sakura: '#f2a5b7', }, }, } textColor 是不會更新的！如果在網頁當中有 .text-sakura，會因為沒吃到設定而壞掉。 看來還是沒辦法漂亮地解決問題呢。 方案四：先把你的 customized config 都 deep merge 過 一樣分成共同的 config，還有前台、後台的 config。但是自行用 deepmerge 套件或 lodash 的 defaultsDeep() 把 customized config 合併起來。 const deepMerge = require('deepmerge') const baseTheme = require('#{共同設定的那個 config 檔案}') const extendedTheme = { //這裡放你前台 or 後台的設定 } const customizedTheme = deepMerge(baseTheme, extendedTheme) module.exports = customizedTheme 這四種方案（其實只有三種？）中，比較推薦這種呢。 顏色的 shallow merge 問題 在 Tailwind 中，customize 你的設定基本上分兩種方式： 蓋掉原本的設定（直接放到 theme 底下） 以下方的 code 為例，md 和 lg 的設定被更動成 666px 和 888px，同時 default 的其他設定也不復存在。比方說原本的 sm: '640px' 設定就沒有了。 module.exports = { theme: { screens: { md: '666px', lg: '888px', }, }, } 延展原本的設定（放到 theme.extend 底下） 和剛剛類似的範例，只是改成放在 extend底下。此時 md 和 lg 的設定被更動成 666px 和 888px之餘，其他 default 的設定依舊保持。比方說原本的 sm: '640px' 還會存在。 module.exports = { theme: { extend: { screens: { md: '666px', lg: '888px', }, }, }, } 但很奇妙地，Tailwind 的顏色設定無法好好的 extend。以底下的範例來說，我們的想像是 gray 原本的設定(100 ~ 900)都在，但奇蹟似地都會壞光光（欸 module.exports = { theme: { extend: { colors: { gray: { primary: '#9f9e9f', }, }, }, }, } 這個時候必須再加上一行 ...#{你的 defaultTheme 的名字}.theme.colors.gray，把 default 的資料代回來。 module.exports = { theme: { extend: { colors: { gray: { ...defaultTheme.theme.colors.gray, primary: '#9f9e9f', }, }, }, }, } 根據官方在 github issue 上的說法，似乎是因為設定還只是 shallow merge 而已。 這個問題就佛系等待官方解決吧。 variants 重複問題 如果同時在上層跟下層加上一樣的 variants 會發生什麼事情呢？ // 上層： module.exports = { variants: { borderColor: ['hover'] }, } // 下層： module.exports = { variants: { borderColor: ['responsive', 'hover'] }, } 因為兩個 config 是我們自己用 deepmerge 弄的，所以合併完會變成： borderColor: [ 'responsive', 'hover', 'hover' ] 接著你就會發現所有 hover 的 borderColor 的 css 都變成兩倍（哭） 目前想到的方式就是 variants 還是固定寫某一個檔案就好這樣。但願之後 Tailwind 官方會有更好的實務做法。 （筆者使用 tailwindcss v1.0.1）</summary></entry></feed>
+&lt;p&gt;（筆者使用 tailwindcss v1.0.1）&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="css" />
+      
+        <category term="javascript" />
+      
+
+      
+        <summary type="html">內容更新 Tailwind 在 v1.2.0 的時候推出了 Allow plugins to extend the user’s config的功能，我在公司的技術文章中「還在跟複雜的 CSS 的設定奮鬥嗎？用 Tailwind 來幫你實現真正的高效整潔！」有提到這個功能，與 Tailwind 的基本介紹。 前言 最近因為工作緣故使用到 Tailwind CSS 這款 css 框架。 有別於 bootstrap 把 各種元件都定義好（按鈕、導覽列、card…），Tailwind 提供比較基礎的 utility classes，讓大家可以根據自己的需求來刻元件、切版型。個人蠻喜歡這樣的工具的，要不然在大家都用 bootstrap 的年代，到處網站都一個樣，看得實在是蠻不舒服的w Tailwind 本身就提供一些 default settings，像是 margin: 0.25rem（.m-1），或是 color: #fff（.text-white） 等等。如果需要客製化，也可以在 tailwind.config.js 中新增顏色等等，而 Tailwind 會自動把 default config 和你的 customized config 合併在一起，搭配 purgeCSS 幫你把沒有用到的 css 設定拔掉，煞是方便呢。 可不可以建立 nested config？ 然而工具雖方便好用，總是會遇到 basic usage 無法滿足的需求的狀況。比方說一個網站分成前台、後台，兩邊想用不一樣的 customized config。與此同時，有一些共用的設定（比方說兩邊都要有 primary 這組 color）兩邊都要有，這個時候該怎麼辦呢？ 方案一：佛系解決問題，等待官方處理的那一天 如標題所示，緣份到來，問題自然解決。說不定哪一天官方的 new release 就幫你把問題處理好了。 如果對專案放置 play 問題就會解決，我也是很想這樣。 方案二：一邊一組 customized config 是個非常直觀簡單的解決方案，直接前台一個 tailwind.config.js ，後台一個 tailwind.config.js ，共同的部分就兩邊的 config 都放就好了。但是總覺得不夠 dry (Don’t repeat yourself)，維護的時候要小心保持兩邊的共同設定都一樣，實在不是個漂亮的作法。 方案三：把 tailwind 裡面的 ResolveConfigObjects() 拿來 merge 你的 customized config 如果打開 node_modules/tailwindcss 觀察觀察，會發現檔案 resolveConfig.js 中，Tailwind 透過一個叫 resolveConfigObjects() 的 function 幫你把你的 customized config 跟 Tailwind 的 default config 合併起來。 // node_modules/tailwindcss/resolveConfig.js const resolveConfigObjects = require('./lib/util/resolveConfig').default const defaultConfig = require('./stubs/defaultConfig.stub.js') module.exports = function resolveConfig(config) { return resolveConfigObjects([config, defaultConfig]) } 那如果我們把這個 resolveConfigObjects() 抽出來用，是不是也可以達到 nested config 的效果呢？ const resolveConfigObjects = require('tailwindcss/lib/util/resolveConfig').default const defaultConfig = require('#{共同設定的那個 config 檔案}'.js) const extendedConfig = { //這裡放你前台 or 後台的設定 } module.exports = resolveConfigObjects([extendedConfig, defaultTheme]) 經過實際測試後，發現會有難以解決的問題。 在 Tailwind 的 config 中，有一些部分的設定會像這樣： textColor: theme =&amp;gt; theme('colors') 經過 resolveConfigObjects() 這個 function 以後，這樣的 function 會被處理成 Object： textColor: { transparent: 'transparent', black: '#000', white: '#fff', gray: [Object], red: [Object], orange: [Object], yellow: [Object], green: [Object], teal: [Object], blue: [Object], indigo: [Object], purple: [Object], pink: [Object] } 如果這個時候在你的前台 config 裡加上一個新的顏色： const extendedConfig = { theme: { colors: { ...defaultTheme.theme.colors, sakura: '#f2a5b7', }, }, } textColor 是不會更新的！如果在網頁當中有 .text-sakura，會因為沒吃到設定而壞掉。 看來還是沒辦法漂亮地解決問題呢。 方案四：先把你的 customized config 都 deep merge 過 一樣分成共同的 config，還有前台、後台的 config。但是自行用 deepmerge 套件或 lodash 的 defaultsDeep() 把 customized config 合併起來。 const deepMerge = require('deepmerge') const baseTheme = require('#{共同設定的那個 config 檔案}') const extendedTheme = { //這裡放你前台 or 後台的設定 } const customizedTheme = deepMerge(baseTheme, extendedTheme) module.exports = customizedTheme 這四種方案（其實只有三種？）中，比較推薦這種呢。 顏色的 shallow merge 問題 在 Tailwind 中，customize 你的設定基本上分兩種方式： 蓋掉原本的設定（直接放到 theme 底下） 以下方的 code 為例，md 和 lg 的設定被更動成 666px 和 888px，同時 default 的其他設定也不復存在。比方說原本的 sm: '640px' 設定就沒有了。 module.exports = { theme: { screens: { md: '666px', lg: '888px', }, }, } 延展原本的設定（放到 theme.extend 底下） 和剛剛類似的範例，只是改成放在 extend底下。此時 md 和 lg 的設定被更動成 666px 和 888px之餘，其他 default 的設定依舊保持。比方說原本的 sm: '640px' 還會存在。 module.exports = { theme: { extend: { screens: { md: '666px', lg: '888px', }, }, }, } 但很奇妙地，Tailwind 的顏色設定無法好好的 extend。以底下的範例來說，我們的想像是 gray 原本的設定(100 ~ 900)都在，但奇蹟似地都會壞光光（欸 module.exports = { theme: { extend: { colors: { gray: { primary: '#9f9e9f', }, }, }, }, } 這個時候必須再加上一行 ...#{你的 defaultTheme 的名字}.theme.colors.gray，把 default 的資料代回來。 module.exports = { theme: { extend: { colors: { gray: { ...defaultTheme.theme.colors.gray, primary: '#9f9e9f', }, }, }, }, } 根據官方在 github issue 上的說法，似乎是因為設定還只是 shallow merge 而已。 這個問題就佛系等待官方解決吧。 variants 重複問題 如果同時在上層跟下層加上一樣的 variants 會發生什麼事情呢？ // 上層： module.exports = { variants: { borderColor: ['hover'] }, } // 下層： module.exports = { variants: { borderColor: ['responsive', 'hover'] }, } 因為兩個 config 是我們自己用 deepmerge 弄的，所以合併完會變成： borderColor: [ 'responsive', 'hover', 'hover' ] 接著你就會發現所有 hover 的 borderColor 的 css 都變成兩倍（哭） 目前想到的方式就是 variants 還是固定寫某一個檔案就好這樣。但願之後 Tailwind 官方會有更好的實務做法。 （筆者使用 tailwindcss v1.0.1）</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
