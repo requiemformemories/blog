@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/blog/tag/ruby/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/blog/" rel="alternate" type="text/html" />
+  <updated>2021-09-23T20:54:55+08:00</updated>
+  <id>/blog/tag/ruby/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Fumitsuki’s magic box | </title>
+  
+
+  
+    <subtitle>keep calm and eat eight Plates.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">ruby 的 permutation</title>
+      <link href="/blog/ruby-permutations" rel="alternate" type="text/html" title="ruby 的 permutation" />
+      <published>2021-09-02T17:00:00+08:00</published>
+      <updated>2021-09-02T17:00:00+08:00</updated>
+      <id>/blog/ruby-permutations</id>
+      <content type="html" xml:base="/blog/ruby-permutations">&lt;p&gt;不知道大家刷題的時候是不是有寫過 permutation，例如我有一個 array &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;['a', 'b', 'c']&lt;/code&gt;，我需要回傳的結果是這幾個元素的所有排列，例如&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;一般來說會試著窮舉所有可能性。
+底下自己試著實作了遞迴版和迴圈版（解題方面弱弱的，有什麼建議都可以跟我說QQ&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/requiemformemories/305600eaf585d3467536aa266497e462.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;結果發現 ruby 的 array 竟然有 &lt;a href=&quot;https://www.rubydoc.info/stdlib/core/Array:permutation&quot;&gt;permutation&lt;/a&gt; 有這個神奇的 method。&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'c'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;permutation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_a&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], [&quot;a&quot;, &quot;c&quot;, &quot;b&quot;], [&quot;b&quot;, &quot;a&quot;, &quot;c&quot;], [&quot;b&quot;, &quot;c&quot;, &quot;a&quot;], [&quot;c&quot;, &quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;b&quot;, &quot;a&quot;]]&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;permutation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_a&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# =&amp;gt; [[&quot;a&quot;, &quot;a&quot;, &quot;b&quot;], [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;], [&quot;a&quot;, &quot;a&quot;, &quot;b&quot;], [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;], [&quot;b&quot;, &quot;a&quot;, &quot;a&quot;], [&quot;b&quot;, &quot;a&quot;, &quot;a&quot;]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;搭配 uniq 或 to_set 就可以去除重複的結果，不需要自己很辛苦的寫扣窮舉，ruby 拿來刷題果然太奇怪了XD&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="ruby" />
+      
+
+      
+        <summary type="html">不知道大家刷題的時候是不是有寫過 permutation，例如我有一個 array ['a', 'b', 'c']，我需要回傳的結果是這幾個元素的所有排列，例如</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

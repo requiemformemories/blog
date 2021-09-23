@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/blog/tag/rails/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/blog/" rel="alternate" type="text/html" />
+  <updated>2021-09-23T20:54:55+08:00</updated>
+  <id>/blog/tag/rails/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Fumitsuki’s magic box | </title>
+  
+
+  
+    <subtitle>keep calm and eat eight Plates.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">BigSur 上開發 Rails， Rails 把 CPU 吃好吃滿？！</title>
+      <link href="/blog/gem-listen-high-cpu-usage" rel="alternate" type="text/html" title="BigSur 上開發 Rails， Rails 把 CPU 吃好吃滿？！" />
+      <published>2021-09-01T17:00:00+08:00</published>
+      <updated>2021-09-01T17:00:00+08:00</updated>
+      <id>/blog/gem-listen-high-cpu-usage</id>
+      <content type="html" xml:base="/blog/gem-listen-high-cpu-usage">&lt;p&gt;不知道大家換到 BigSur 有沒有遇到比較舊的 Rails 專案會讓 mac 發燙起飛的狀況。
+看一下 top 發生了什麼事，發現沒有在幹嘛的 Rails app 竟然把 CPU 吃好吃滿（咦&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/listen_high_cpu_usage_1.png&quot; alt=&quot;top 截圖&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;原本我以為是 M1 有什麼特別的 issue，查了一下發現原來不少換到 BigSur 的人都有這個困擾&lt;/p&gt;
+
+&lt;p&gt;會發生這個狀況是因為開發時會監控 file change 的 gem &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;listen&lt;/code&gt; 沒有套用到 Darwin 的 adapter，fall back to polling 形成高 CPU usage 的現象。
+ 
+&lt;a href=&quot;https://github.com/guard/listen/issues/478&quot;&gt;https://github.com/guard/listen/issues/478&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;至於為什麼沒有套用到 Darwin-adapter 呢？因為之前的 regex 不包含 darwin20 XD&lt;/p&gt;
+
+&lt;p&gt;會需要把 listen 升級至 3.3.0 以上，才不會有筆電起飛的困擾&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Gemfile&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'listen'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 3.3'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="rails" />
+      
+
+      
+        <summary type="html">不知道大家換到 BigSur 有沒有遇到比較舊的 Rails 專案會讓 mac 發燙起飛的狀況。 看一下 top 發生了什麼事，發現沒有在幹嘛的 Rails app 竟然把 CPU 吃好吃滿（咦</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
