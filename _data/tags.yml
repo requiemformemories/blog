@@ -2,6 +2,9 @@ rails:
   name: rails
   description: Ruby on Rails 相關筆記。
   cover: assets/images/rails.jpg
+ruby:
+  name: ruby
+  cover: assets/images/ruby.jpg
 5xruby:
   name: 5xruby
   description: 五倍紅寶石實習點滴與心得。
