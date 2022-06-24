@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>工作雜談：多餘的 DB 欄位跟關聯</title>
+        
+          <description>&lt;p&gt;最近在工作上遇到很困擾的事情之一，就是在資料的架構上，前人建了很多重複、多餘的關聯跟欄位。&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 23 Jun 2022 18:23:00 +0800</pubDate>
+        <link>
+        /single-source-of-truth-and-event-sourcing</link>
+        <guid isPermaLink="true">/single-source-of-truth-and-event-sourcing</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>ruby 的 permutation</title>
         
           <description>&lt;p&gt;不知道大家刷題的時候是不是有寫過 permutation，例如我有一個 array &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;['a', 'b', 'c']&lt;/code&gt;，我需要回傳的結果是這幾個元素的所有排列，例如&lt;/p&gt;
