@@ -6,8 +6,8 @@ subclass: 'post'
 cover: 'assets/images/black-background-key.jpg'
 title: '好淺好淺的談談訊息驗證碼 MAC'
 date: 2022-09-22 16:00:00
-categories: ruby
-tags: ruby
+categories: authentication
+tags: authentication
 author: fumitsuki
 ---
 
