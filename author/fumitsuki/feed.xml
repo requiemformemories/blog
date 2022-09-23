@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
   <link href="/blog/author/fumitsuki/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/blog/" rel="alternate" type="text/html" />
-  <updated>2022-06-24T16:03:17+08:00</updated>
+  <updated>2022-09-23T16:19:16+08:00</updated>
   <id>/blog/author/fumitsuki/feed.xml</id>
 
   
@@ -30,6 +30,64 @@
   
   
 
+  
+    <entry>
+      <title type="html">好淺好淺的談談訊息驗證碼 MAC</title>
+      <link href="/blog/message-authentication-code" rel="alternate" type="text/html" title="好淺好淺的談談訊息驗證碼 MAC" />
+      <published>2022-09-23T00:00:00+08:00</published>
+      <updated>2022-09-23T00:00:00+08:00</updated>
+      <id>/blog/message-authentication-code</id>
+      <content type="html" xml:base="/blog/message-authentication-code">&lt;h2 id=&quot;前言閒聊&quot;&gt;前言閒聊&lt;/h2&gt;
+&lt;p&gt;在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦）&lt;/p&gt;
+
+&lt;p&gt;但如果有記得他的英文全名 Message authentication code，其實就會比較直觀地知道，有個 code，是個用來做訊息驗證用的資訊，比較清楚他的角色是什麼。&lt;/p&gt;
+
+&lt;h2 id=&quot;mac&quot;&gt;MAC&lt;/h2&gt;
+&lt;p&gt;訊息驗證碼（Message authentication code，MAC）是一種常見驗證訊息來源、資料完整性（確保訊息沒有被竄改）的方式。&lt;/p&gt;
+
+&lt;p&gt;sender 在傳送訊息時會根據與 receiver 約定好的方法，用金鑰跟傳輸資料產出驗證碼，除了要送過去的資料以外帶上這個驗證碼。receiver 收到訊息以後，可以根據之前約定好的方法用同一把金鑰跟傳輸資料檢驗這個驗證碼是不是按照說好的方式產生的，來驗證送訊息過來的人就是 sender，不是別人。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/mac_usage.png&quot; alt=&quot;The example usage of MAC&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;「約定好的方法」可以有很多種，HMAC 就是一種產出驗證碼可以使用的方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;範例&quot;&gt;範例&lt;/h2&gt;
+
+&lt;p&gt;比方說 A 公司 server 和 B 公司 server 要互相傳送訊息，傳輸過程中經過大海般茫茫又不安全的網路，所以他們約定好一把 secret key，每次互送 request 的時用 key 和 payload 用 HMAC-SHA256 算出訊息驗證碼，在 HTTP header 的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X_HMAC&lt;/code&gt; 帶上（實務上似乎是放 query string 也有）。收到 request 方會需要用同一把 secret key 跟 payload 在產一次 mac，驗證和 header 上帶來的 mac 是否一樣，如果一樣才當作是可以信任的訊息。&lt;/p&gt;
+
+&lt;h2 id=&quot;變動的-iv-值&quot;&gt;變動的 IV 值&lt;/h2&gt;
+
+&lt;p&gt;有些合作廠商可能是使用像是 AES-256-GCM、AES-256-CBC 之類的方式產生訊息驗證碼，產出驗證碼的過程中，除了 key 和  payload 還需要動態產生一組 IV 值，一起帶過去給對方做驗證。如果這個 IV 值每次都送同一組的話，會怎麽樣呢？&lt;/p&gt;
+
+&lt;p&gt;我對於密碼學不太熟悉，比較多的說明這裡附上 &lt;a href=&quot;https://crypto.stackexchange.com/questions/57645/is-using-the-same-iv-in-aes-similar-to-not-using-an-iv-in-the-first-place&quot;&gt;stack overflow&lt;/a&gt; &amp;gt;&amp;lt;&lt;/p&gt;
+
+&lt;p&gt;但簡言之，帶同一組 IV 是有風險的。如果攻擊者可以找到明文類似的訊息，或是攻擊者有辦法製造出他想要的明文內容的訊息，有可能可以破解出 key 或是可以竄改訊息，讓訊息驗證碼失去其效用。因此，上述的情境裡不應該使用同一把 IV。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="ruby" />
+      
+
+      
+        <summary type="html">前言閒聊 在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦）</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">工作雜談：多餘的 DB 欄位跟關聯</title>
@@ -1496,411 +1554,6 @@ TEXT 不夠我可以用 LONGTEXT 呀 (☝ ՞ਊ ՞）☝&lt;/p&gt;
 
       
         <summary type="html">想當初小的在學校學 SQL 的時候，從來沒有仔細想過為什麼的多對多關聯都要再多用一個 table 來處理。</summary>
-      
-
-      
-      
-    </entry>
-  
-    <entry>
-      <title type="html">[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？</title>
-      <link href="/blog/sql-primary-key" rel="alternate" type="text/html" title="[SQL] 什麼要 primary key？primary key 一定要叫 id 嗎？" />
-      <published>2020-04-27T14:13:00+08:00</published>
-      <updated>2020-04-27T14:13:00+08:00</updated>
-      <id>/blog/sql-primary-key</id>
-      <content type="html" xml:base="/blog/sql-primary-key">&lt;h2 id=&quot;問題一可不可以不要-primary-key-沒有-primary-key-會怎樣&quot;&gt;問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？&lt;/h2&gt;
-&lt;p&gt;primary key 主要的作用為：&lt;/p&gt;
-
-&lt;h3 id=&quot;1-避免產生一堆重複又無法識別的-row&quot;&gt;1. 避免產生一堆重複又無法識別的 row&lt;/h3&gt;
-
-&lt;p&gt;例如底下的表格，上一筆跟下一筆長一模一樣，根本無法識別。&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;name&lt;/th&gt;
-      &lt;th&gt;price&lt;/th&gt;
-      &lt;th&gt;quantity&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;2-有辦法撈到特定的-row&quot;&gt;2. 有辦法撈到特定的 row&lt;/h3&gt;
-
-&lt;p&gt;如下，每個 row 都長一樣，根本無法撈到特定某個 row。&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;name&lt;/th&gt;
-      &lt;th&gt;price&lt;/th&gt;
-      &lt;th&gt;quantity&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;但是改成這樣：&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;id&lt;/th&gt;
-      &lt;th&gt;name&lt;/th&gt;
-      &lt;th&gt;price&lt;/th&gt;
-      &lt;th&gt;quantity&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;就可以用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WHERE id = 1&lt;/code&gt; 來撈到第一筆資料&lt;/p&gt;
-
-&lt;h3 id=&quot;3-foreign-key-reference&quot;&gt;3. foreign key reference&lt;/h3&gt;
-
-&lt;p&gt;比方說這張表是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orders&lt;/code&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;customer&lt;/th&gt;
-      &lt;th&gt;date&lt;/th&gt;
-      &lt;th&gt;total&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Carol&lt;/td&gt;
-      &lt;td&gt;2020-01-01&lt;/td&gt;
-      &lt;td&gt;2000&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Carl&lt;/td&gt;
-      &lt;td&gt;2020-01-01&lt;/td&gt;
-      &lt;td&gt;500&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Carol&lt;/td&gt;
-      &lt;td&gt;2020-01-06&lt;/td&gt;
-      &lt;td&gt;2500&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;有另一張表是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;order_items&lt;/code&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;name&lt;/th&gt;
-      &lt;th&gt;price&lt;/th&gt;
-      &lt;th&gt;quantity&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;如果 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orders&lt;/code&gt; 上沒有 primary key，無法透過在 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;order_items&lt;/code&gt; 加上 foreign key 來 reference order。&lt;/p&gt;
-
-&lt;p&gt;如果 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orders&lt;/code&gt; 改成這樣：&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;id&lt;/th&gt;
-      &lt;th&gt;customer&lt;/th&gt;
-      &lt;th&gt;date&lt;/th&gt;
-      &lt;th&gt;total&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;Carol&lt;/td&gt;
-      &lt;td&gt;2020-01-01&lt;/td&gt;
-      &lt;td&gt;2000&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;Carl&lt;/td&gt;
-      &lt;td&gt;2020-01-01&lt;/td&gt;
-      &lt;td&gt;500&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;Carol&lt;/td&gt;
-      &lt;td&gt;2020-01-06&lt;/td&gt;
-      &lt;td&gt;2500&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;就可以簡單透過在 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;order_items&lt;/code&gt; 上加 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;order_id&lt;/code&gt;，加上 foreign key 來做 reference&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;name&lt;/th&gt;
-      &lt;th&gt;price&lt;/th&gt;
-      &lt;th&gt;quantity&lt;/th&gt;
-      &lt;th&gt;order_id&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;沒有 primary key 的資料，就像是沒有書名的書，沒有歌名的音樂（欸）&lt;strong&gt;很容易造成整理上的困難。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;問題二如何選擇-primary-key&quot;&gt;問題二：如何選擇 primary key？&lt;/h2&gt;
-
-&lt;p&gt;primary key 有個必帶條件：一定要是&lt;strong&gt;唯一（unique）&lt;/strong&gt;的，不可以重複。&lt;/p&gt;
-
-&lt;p&gt;所以你通常會找個 unique 的欄位來當 primary key。然而很多大家以為 unique 的東西都沒有 unique，例如身分證字號。（身分證字號在古早年代是有可能不小心重複發的XD）&lt;/p&gt;
-
-&lt;p&gt;或者是你看完 spec 以後以為應該要 unique，結果哪一天老闆跑來跟你說：「這個欄位的內容可以重複嗎？」的資料。（這個時候都會 OS：要不是我還不能離職，要不然真想打扁你XD）&lt;/p&gt;
-
-&lt;p&gt;像是使用者的 email、電話等等。&lt;/p&gt;
-
-&lt;p&gt;如果 primary key 這麼難選擇，選錯就會造成自己日後還得要連夜加班，有的時候不如就用 pseudokey 就好了。那具體來說 pseudokey 是什麼呢？&lt;/p&gt;
-
-&lt;h3 id=&quot;pseudokey-surrogate-key&quot;&gt;Pseudokey (Surrogate key)&lt;/h3&gt;
-&lt;p&gt;基本上是一些刻意塞給每個 row 的資料，key 本身對資料來說沒有任何意義。&lt;/p&gt;
-
-&lt;p&gt;我們看回剛剛的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;order_items&lt;/code&gt;：&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;id&lt;/th&gt;
-      &lt;th&gt;name&lt;/th&gt;
-      &lt;th&gt;price&lt;/th&gt;
-      &lt;th&gt;quantity&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;banana&lt;/td&gt;
-      &lt;td&gt;100&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;上面的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt; 對我來說沒有什麼意義可言， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt; 為 2 什麼的對我來說一點意義都沒有。但是有了這個 key 以後我就不用去思考，要用哪些欄位來組合成 primary key 了。&lt;/p&gt;
-
-&lt;p&gt;各家 DB 提供 AUTO_INCREMENT、GENERATOR 等功能來讓 pseudokey 自動增加，且多個 client 同時來 DB 塞資料也不會重複&lt;/p&gt;
-
-&lt;p&gt;的確很常見到教材裡面，每張表都有用來放一個 id 的 primary key 欄位，會 auto increment，甚至有些 web framework 就直接這樣設計。這個慣例很不錯，但這並不是絕對的。如果有本來就有可以拿來當 primary key 的欄位，直接拿來用也無妨。&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;order_id&lt;/th&gt;
-      &lt;th&gt;customer&lt;/th&gt;
-      &lt;th&gt;date&lt;/th&gt;
-      &lt;th&gt;total&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;Carol&lt;/td&gt;
-      &lt;td&gt;2020-01-01&lt;/td&gt;
-      &lt;td&gt;2000&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;Carl&lt;/td&gt;
-      &lt;td&gt;2020-01-01&lt;/td&gt;
-      &lt;td&gt;500&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;Carol&lt;/td&gt;
-      &lt;td&gt;2020-01-06&lt;/td&gt;
-      &lt;td&gt;2500&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;很多 web framework 的設計讓或書籍裡，都會讓每張表的 primary key 叫 id，然而這不是絕對的！比方說把 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;products&lt;/code&gt; 這張 table 的 primary key 叫 product_id，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;users&lt;/code&gt; 的叫 user_id 也挺好的。而且這種命名法還有一種優點，可以透過 &lt;strong&gt;USING&lt;/strong&gt; 來 JOIN 資料表。&lt;/p&gt;
-
-&lt;p&gt;當 bugs 的 primary key 叫 bug_id，product 上對應的 foreign key 也叫 bug_id。 除了一般的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JOIN ... ON ...&lt;/code&gt;：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-SQL&quot;&gt;SELECT * FROM bugs
-JOIN bug_products ON bugs.bug_id = bug_products.bug_id
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;還可以改寫成：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-SQL&quot;&gt;SELECT * FROM bugs
-JOIN bug_products USING(bug_id)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;問題三只有-primary-key-無法避免資料重複&quot;&gt;問題三：只有 primary key 無法避免資料重複&lt;/h2&gt;
-
-&lt;p&gt;如果 code 沒寫好，還是有可能出現很多重複資料。比方說這個是管理訂單跟負責員工的關聯表 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assignments&lt;/code&gt;：&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;id&lt;/th&gt;
-      &lt;th&gt;order_id&lt;/th&gt;
-      &lt;th&gt;employee_id&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;330&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;330&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;331&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;除了去檢查為什麼你的 code 沒有好好地 validate 資料、避免重複，也可以檢討一下 DB 這邊沒有把 &lt;strong&gt;unique key&lt;/strong&gt; 加上去的部分。&lt;/p&gt;
-
-&lt;p&gt;在新增 table 的時候，可以針對 order_id 和 employee_id 加上 unique key，避免出現組合重複的 order_id、employee_id：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-SQL&quot;&gt;CREATE TABLE assignments(
-   ...,
-   UNIQUE(order_id,employee_id)
-);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;除此之外，直接拿 order_id 和 employee_id 組合成 compound key 來當 primary key 也是很 OK 的作法。&lt;/p&gt;
-
-&lt;h2 id=&quot;問題四maxid-vs-last_insert_id-&quot;&gt;問題四：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MAX(id)&lt;/code&gt; vs &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LAST_INSERT_ID() &lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;有些人會自己找 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MAX(id)&lt;/code&gt; (資料庫裡最大的id) 去 generate 新 id。
-這樣會有 Race Condition 的問題，當多個 client 同時操作資料庫，有可能不同 client 試圖塞一樣的 id 進來。為了避免 race condition 只好做 table lock，避免同時 insert，但這樣會導致效能瓶頸。&lt;/p&gt;
-
-&lt;p&gt;如果是用 AUTO_INCREAMENT ，MYSQL 可以用 LAST_INSERT_ID() 來取最後被 insert 進來的資料 id：&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT LAST_INSERT_ID() FROM products LIMIT 1;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;結論&quot;&gt;結論&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;primary key 是一種 constraint，不是一種 data type&lt;/li&gt;
-  &lt;li&gt;primary key 可以是 varchar, integer 等等等，沒有一定要是 integer&lt;/li&gt;
-  &lt;li&gt;primary key 可以是 auto_increment 的 pseudokey，也可以自己定義（反正 unique 就好）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;像 Rails 的理念是慣例優於設定（convention over configuration），這樣的理念使得大家可以降低開發成本，善用框架本身的設計帶來的便捷功能等等。一般來說就算不需要 Rails mibgration 幫你產生的 id，你也不會特別去拿掉他。&lt;/p&gt;
-
-&lt;p&gt;但是這可能會讓新手誤以為 primary key 就是一個叫 id、值為 integer 的欄位，其實不是這樣的。&lt;/p&gt;
-
-&lt;p&gt;最後，附上作者的提醒：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Don’t let inflexible conventions get in the way of good design&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;補充isoiec-11179&quot;&gt;補充：ISO/IEC 11179&lt;/h2&gt;
-&lt;p&gt;針對 metadata 制訂的標準，和其他標準一樣不好閱讀。Joe Celko 在他的書 SQL propgramming style 裡有實際使用這個規範。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;本文是參考 Bill Karwin 的 SQL Antipatterns 第四章 ID required 彙整而成。原書說明了很多不太好的設計模式，什麼時候可以使用以及為何要避免使用等等。大家有空可以去翻閱看看哦。&lt;/p&gt;</content>
-
-      
-      
-      
-      
-      
-
-      <author>
-          <name>文月</name>
-        
-        
-      </author>
-
-      
-
-      
-        <category term="sql" />
-      
-
-      
-        <summary type="html">問題一：可不可以不要 primary key？ 沒有 primary key 會怎樣？ primary key 主要的作用為：</summary>
       
 
       

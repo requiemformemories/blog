@@ -8,6 +8,22 @@
     
       
       <item>
+        <title>好淺好淺的談談訊息驗證碼 MAC</title>
+        
+          <description>&lt;h2 id=&quot;前言閒聊&quot;&gt;前言閒聊&lt;/h2&gt;
+&lt;p&gt;在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦）&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 23 Sep 2022 00:00:00 +0800</pubDate>
+        <link>
+        /message-authentication-code</link>
+        <guid isPermaLink="true">/message-authentication-code</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>工作雜談：多餘的 DB 欄位跟關聯</title>
         
           <description>&lt;p&gt;最近在工作上遇到很困擾的事情之一，就是在資料的架構上，前人建了很多重複、多餘的關聯跟欄位。&lt;/p&gt;
