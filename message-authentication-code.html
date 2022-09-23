@@ -50,7 +50,7 @@
     <meta property="article:author" content="https://www.facebook.com/" />
     <meta property="article:published_time" content="2022-09-23T00:00:00+08:00" />
     <meta property="article:modified_time" content="2022-09-23T00:00:00+08:00" />
-    <meta property="article:tag" content="Ruby" />
+    <meta property="article:tag" content="Authentication" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="好淺好淺的談談訊息驗證碼 MAC" />
     <meta name="twitter:description" content="前言閒聊 在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦） 但如果有記得他的英文全名 Message authentication code，其實就會比較直觀地知道，有個 code，是個用來做訊息驗證用的資訊，比較清楚他的角色是什麼。 MAC 訊息驗證碼（Message authentication code，MAC）是一種常見驗證訊息來源、資料完整性（確保訊息沒有被竄改）的方式。 sender 在傳送訊息時會根據與 receiver 約定好的方法，用金鑰跟傳輸資料產出驗證碼，除了要送過去的資料以外帶上這個驗證碼。receiver 收到訊息以後，可以根據之前約定好的方法用同一把金鑰跟傳輸資料檢驗這個驗證碼是不是按照說好的方式產生的，來驗證送訊息過來的人就是 sender，不是別人。 「約定好的方法」可以有很多種，HMAC 就是一種產出驗證碼可以使用的方式。 範例 比方說 A 公司 server 和 B 公司 server 要互相傳送訊息，傳輸過程中經過大海般茫茫又不安全的網路，所以他們約定好一把 secret key，每次互送 request 的時用" />
@@ -59,7 +59,7 @@
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Ruby" />
+    <meta name="twitter:data2" content="Authentication" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -143,7 +143,7 @@ into the {body} of the default.hbs template -->
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full  tag-ruby post ">
+        <article class="post-full  tag-authentication post ">
 
             <header class="post-full-header">
                 <section class="post-full-meta">
@@ -152,7 +152,7 @@ into the {body} of the default.hbs template -->
                         <span class="date-divider">/</span>
                         
                             
-                               <a href='/blog/tag/ruby/'>RUBY</a>
+                               <a href='/blog/tag/authentication/'>AUTHENTICATION</a>
                             
                         
                     
@@ -241,71 +241,6 @@ into the {body} of the default.hbs template -->
                 
                 
                 
-                
-                    <article class="read-next-card"
-                        
-                            style="background-image: url(/blog/assets/images/blog-cover.jpg)"
-                        
-                    >
-                        <header class="read-next-card-header">
-                            <small class="read-next-card-header-sitetitle">&mdash; Fumitsuki's magic box &mdash;</small>
-                            
-                                <h3 class="read-next-card-header-title"><a href="/blog/tag/ruby/">Ruby</a></h3>
-                            
-                        </header>
-                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
-</div>
-                        <div class="read-next-card-content">
-                            <ul>
-                                
-                                
-                                  
-                                    
-                                  
-                                
-                                  
-                                
-                                  
-                                    
-                                        
-                                        
-                                            <li><a href="/blog/ruby-permutations">ruby 的 permutation</a></li>
-                                        
-                                    
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                            </ul>
-                        </div>
-                        <footer class="read-next-card-footer">
-                            <a href="/blog/tag/ruby/">
-                                
-                                    See all 1 posts  →
-                                
-                            </a>
-                        </footer>
-                    </article>
                 
             
 

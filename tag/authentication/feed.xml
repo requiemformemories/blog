@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/blog/tag/authentication/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/blog/" rel="alternate" type="text/html" />
+  <updated>2022-09-23T16:35:27+08:00</updated>
+  <id>/blog/tag/authentication/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Fumitsuki’s magic box | </title>
+  
+
+  
+    <subtitle>keep calm and eat eight Plates.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">好淺好淺的談談訊息驗證碼 MAC</title>
+      <link href="/blog/message-authentication-code" rel="alternate" type="text/html" title="好淺好淺的談談訊息驗證碼 MAC" />
+      <published>2022-09-23T00:00:00+08:00</published>
+      <updated>2022-09-23T00:00:00+08:00</updated>
+      <id>/blog/message-authentication-code</id>
+      <content type="html" xml:base="/blog/message-authentication-code">&lt;h2 id=&quot;前言閒聊&quot;&gt;前言閒聊&lt;/h2&gt;
+&lt;p&gt;在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦）&lt;/p&gt;
+
+&lt;p&gt;但如果有記得他的英文全名 Message authentication code，其實就會比較直觀地知道，有個 code，是個用來做訊息驗證用的資訊，比較清楚他的角色是什麼。&lt;/p&gt;
+
+&lt;h2 id=&quot;mac&quot;&gt;MAC&lt;/h2&gt;
+&lt;p&gt;訊息驗證碼（Message authentication code，MAC）是一種常見驗證訊息來源、資料完整性（確保訊息沒有被竄改）的方式。&lt;/p&gt;
+
+&lt;p&gt;sender 在傳送訊息時會根據與 receiver 約定好的方法，用金鑰跟傳輸資料產出驗證碼，除了要送過去的資料以外帶上這個驗證碼。receiver 收到訊息以後，可以根據之前約定好的方法用同一把金鑰跟傳輸資料檢驗這個驗證碼是不是按照說好的方式產生的，來驗證送訊息過來的人就是 sender，不是別人。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/mac_usage.png&quot; alt=&quot;The example usage of MAC&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;「約定好的方法」可以有很多種，HMAC 就是一種產出驗證碼可以使用的方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;範例&quot;&gt;範例&lt;/h2&gt;
+
+&lt;p&gt;比方說 A 公司 server 和 B 公司 server 要互相傳送訊息，傳輸過程中經過大海般茫茫又不安全的網路，所以他們約定好一把 secret key，每次互送 request 的時用 key 和 payload 用 HMAC-SHA256 算出訊息驗證碼，在 HTTP header 的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X_HMAC&lt;/code&gt; 帶上（實務上似乎是放 query string 也有）。收到 request 方會需要用同一把 secret key 跟 payload 在產一次 mac，驗證和 header 上帶來的 mac 是否一樣，如果一樣才當作是可以信任的訊息。&lt;/p&gt;
+
+&lt;h2 id=&quot;變動的-iv-值&quot;&gt;變動的 IV 值&lt;/h2&gt;
+
+&lt;p&gt;有些合作廠商可能是使用像是 AES-256-GCM、AES-256-CBC 之類的方式產生訊息驗證碼，產出驗證碼的過程中，除了 key 和  payload 還需要動態產生一組 IV 值，一起帶過去給對方做驗證。如果這個 IV 值每次都送同一組的話，會怎麽樣呢？&lt;/p&gt;
+
+&lt;p&gt;我對於密碼學不太熟悉，比較多的說明這裡附上 &lt;a href=&quot;https://crypto.stackexchange.com/questions/57645/is-using-the-same-iv-in-aes-similar-to-not-using-an-iv-in-the-first-place&quot;&gt;stack overflow&lt;/a&gt; &amp;gt;&amp;lt;&lt;/p&gt;
+
+&lt;p&gt;但簡言之，帶同一組 IV 是有風險的。如果攻擊者可以找到明文類似的訊息，或是攻擊者有辦法製造出他想要的明文內容的訊息，有可能可以破解出 key 或是可以竄改訊息，讓訊息驗證碼失去其效用。因此，上述的情境裡不應該使用同一把 IV。&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="authentication" />
+      
+
+      
+        <summary type="html">前言閒聊 在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦）</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
