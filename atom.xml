@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>關於在 Ruby 中 unicode string 切成指定 bytes</title>
+        
+          <description>&lt;p&gt;在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 &lt;a href=&quot;https://www.rubydoc.info/stdlib/core/String:byteslice&quot;&gt;byteslice&lt;/a&gt; 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 25 Apr 2023 21:00:00 +0800</pubDate>
+        <link>
+        /slice-uincode-string-to-bytes</link>
+        <guid isPermaLink="true">/slice-uincode-string-to-bytes</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>好淺好淺的談談訊息驗證碼 MAC</title>
         
           <description>&lt;h2 id=&quot;前言閒聊&quot;&gt;前言閒聊&lt;/h2&gt;
