@@ -11,7 +11,7 @@
 
 
 
-    <title>好淺好淺的談談訊息驗證碼 MAC</title>
+    <title>關於生成式 AI 的心情雜談</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -36,30 +36,30 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
     <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/blog/message-authentication-code" />
+    <link rel="canonical" href="/blog/about-ai" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="Fumitsuki's magic box" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="好淺好淺的談談訊息驗證碼 MAC" />
-    <meta property="og:description" content="前言閒聊 在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦） 但如果有記得他的英文全名 Message authentication code，其實就會比較直觀地知道，有個 code，是個用來做訊息驗證用的資訊，比較清楚他的角色是什麼。 MAC 訊息驗證碼（Message authentication code，MAC）是一種常見驗證訊息來源、資料完整性（確保訊息沒有被竄改）的方式。 sender 在傳送訊息時會根據與 receiver 約定好的方法，用金鑰跟傳輸資料產出驗證碼，除了要送過去的資料以外帶上這個驗證碼。receiver 收到訊息以後，可以根據之前約定好的方法用同一把金鑰跟傳輸資料檢驗這個驗證碼是不是按照說好的方式產生的，來驗證送訊息過來的人就是 sender，不是別人。 「約定好的方法」可以有很多種，HMAC 就是一種產出驗證碼可以使用的方式。 範例 比方說 A 公司 server 和 B 公司 server 要互相傳送訊息，傳輸過程中經過大海般茫茫又不安全的網路，所以他們約定好一把 secret key，每次互送 request 的時用" />
-    <meta property="og:url" content="/blog/message-authentication-code" />
-    <meta property="og:image" content="/blog/assets/images/black-background-key.jpg" />
+    <meta property="og:title" content="關於生成式 AI 的心情雜談" />
+    <meta property="og:description" content="被 AI 嚇到的世界 從去年迸出一堆 AI 產圖，以及 chatGPT 推出以來，覺得大家對未來的想像產生天翻地覆的改變。 以前的我一直覺得 AI 只不過是個拿來炒作的 buzzword，看虛擬實境、元宇宙等等的被炒得這麼兇，結果雷聲大雨點小，就覺得那些宣稱拿 AI 做 OO 做 XX 的說不定背後都是外包給便宜印度人工人智慧而已。 但 chatGPT 完全讓人看到新的威脅與新的機會。雖然 GPT-3 聊起來數學很爛又愛瞎扯，但他產出人類買單的內容的能力真的非常強，有些我們以為是「智力密集」或是有門檻的事情，突然變得容易了。像是寫 code、翻譯等等，chatGPT 都可以給人很不錯的回覆。 心底真的覺得，天啊！未來寫 code 這行飯，大概是會變難吃 XD （difficult 的難吃而非 tastes bad XD） 未來的工程師環境想像 現在感受下來，如果善用生成式 AI 工具，像是網頁後端開發、DevOps 之類的一些工作都會變容易。對有經驗者來說很多程式可以透過 AI 產生再來檢驗修正，開發時間會縮短，產能隨之提升。對於入門者來說，AI 可以帶著自己學習不會的工具，甚至一步一步帶領自己寫出想寫的功能。 就上面的敘述來說，自己覺得未來的工程師環境說不定會有底下的變化： 1.「利用工具增加產能」變成工作門檻： 當工具可以讓一個工程師當兩、三個人用的時候，沒辦法當兩個人用的人在就業市場上就會岌岌可危。 舉例來說，如果同一個功能，員工甲不打算用任何生成式 AI 工具，總是獨自寫完功能，翻文件翻半天才把東西寫出來，跟員工乙善用工具產出再修正調整成可以用的 code。員工甲跟員工乙的產能可能會有非常大的差距，這個差距可能大到公司沒辦法接受員工甲的效率。 當工具可以榨出更多的人力，榨不出這個產能來就會很有問題。這讓我蠻警惕的，讓我開始要求自己從現在開始就要多試試看像是" />
+    <meta property="og:url" content="/blog/about-ai" />
+    <meta property="og:image" content="/blog/assets/images/talk.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2022-09-23T00:00:00+08:00" />
-    <meta property="article:modified_time" content="2022-09-23T00:00:00+08:00" />
-    <meta property="article:tag" content="Authentication" />
+    <meta property="article:published_time" content="2023-03-24T06:30:00+08:00" />
+    <meta property="article:modified_time" content="2023-03-24T06:30:00+08:00" />
+    <meta property="article:tag" content="Ai" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="好淺好淺的談談訊息驗證碼 MAC" />
-    <meta name="twitter:description" content="前言閒聊 在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦） 但如果有記得他的英文全名 Message authentication code，其實就會比較直觀地知道，有個 code，是個用來做訊息驗證用的資訊，比較清楚他的角色是什麼。 MAC 訊息驗證碼（Message authentication code，MAC）是一種常見驗證訊息來源、資料完整性（確保訊息沒有被竄改）的方式。 sender 在傳送訊息時會根據與 receiver 約定好的方法，用金鑰跟傳輸資料產出驗證碼，除了要送過去的資料以外帶上這個驗證碼。receiver 收到訊息以後，可以根據之前約定好的方法用同一把金鑰跟傳輸資料檢驗這個驗證碼是不是按照說好的方式產生的，來驗證送訊息過來的人就是 sender，不是別人。 「約定好的方法」可以有很多種，HMAC 就是一種產出驗證碼可以使用的方式。 範例 比方說 A 公司 server 和 B 公司 server 要互相傳送訊息，傳輸過程中經過大海般茫茫又不安全的網路，所以他們約定好一把 secret key，每次互送 request 的時用" />
+    <meta name="twitter:title" content="關於生成式 AI 的心情雜談" />
+    <meta name="twitter:description" content="被 AI 嚇到的世界 從去年迸出一堆 AI 產圖，以及 chatGPT 推出以來，覺得大家對未來的想像產生天翻地覆的改變。 以前的我一直覺得 AI 只不過是個拿來炒作的 buzzword，看虛擬實境、元宇宙等等的被炒得這麼兇，結果雷聲大雨點小，就覺得那些宣稱拿 AI 做 OO 做 XX 的說不定背後都是外包給便宜印度人工人智慧而已。 但 chatGPT 完全讓人看到新的威脅與新的機會。雖然 GPT-3 聊起來數學很爛又愛瞎扯，但他產出人類買單的內容的能力真的非常強，有些我們以為是「智力密集」或是有門檻的事情，突然變得容易了。像是寫 code、翻譯等等，chatGPT 都可以給人很不錯的回覆。 心底真的覺得，天啊！未來寫 code 這行飯，大概是會變難吃 XD （difficult 的難吃而非 tastes bad XD） 未來的工程師環境想像 現在感受下來，如果善用生成式 AI 工具，像是網頁後端開發、DevOps 之類的一些工作都會變容易。對有經驗者來說很多程式可以透過 AI 產生再來檢驗修正，開發時間會縮短，產能隨之提升。對於入門者來說，AI 可以帶著自己學習不會的工具，甚至一步一步帶領自己寫出想寫的功能。 就上面的敘述來說，自己覺得未來的工程師環境說不定會有底下的變化： 1.「利用工具增加產能」變成工作門檻： 當工具可以讓一個工程師當兩、三個人用的時候，沒辦法當兩個人用的人在就業市場上就會岌岌可危。 舉例來說，如果同一個功能，員工甲不打算用任何生成式 AI 工具，總是獨自寫完功能，翻文件翻半天才把東西寫出來，跟員工乙善用工具產出再修正調整成可以用的 code。員工甲跟員工乙的產能可能會有非常大的差距，這個差距可能大到公司沒辦法接受員工甲的效率。 當工具可以榨出更多的人力，榨不出這個產能來就會很有問題。這讓我蠻警惕的，讓我開始要求自己從現在開始就要多試試看像是" />
     <meta name="twitter:url" content="/blog/" />
-    <meta name="twitter:image" content="/blog/assets/images/black-background-key.jpg" />
+    <meta name="twitter:image" content="/blog/assets/images/talk.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Authentication" />
+    <meta name="twitter:data2" content="Ai" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -74,18 +74,18 @@
         "name": "Fumitsuki's magic box",
         "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "/blog/message-authentication-code",
+    "url": "/blog/about-ai",
     "image": {
         "@type": "ImageObject",
-        "url": "/blog/assets/images/black-background-key.jpg",
+        "url": "/blog/assets/images/talk.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/blog/message-authentication-code"
+        "@id": "/blog/about-ai"
     },
-    "description": "前言閒聊 在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦） 但如果有記得他的英文全名 Message authentication code，其實就會比較直觀地知道，有個 code，是個用來做訊息驗證用的資訊，比較清楚他的角色是什麼。 MAC 訊息驗證碼（Message authentication code，MAC）是一種常見驗證訊息來源、資料完整性（確保訊息沒有被竄改）的方式。 sender 在傳送訊息時會根據與 receiver 約定好的方法，用金鑰跟傳輸資料產出驗證碼，除了要送過去的資料以外帶上這個驗證碼。receiver 收到訊息以後，可以根據之前約定好的方法用同一把金鑰跟傳輸資料檢驗這個驗證碼是不是按照說好的方式產生的，來驗證送訊息過來的人就是 sender，不是別人。 「約定好的方法」可以有很多種，HMAC 就是一種產出驗證碼可以使用的方式。 範例 比方說 A 公司 server 和 B 公司 server 要互相傳送訊息，傳輸過程中經過大海般茫茫又不安全的網路，所以他們約定好一把 secret key，每次互送 request 的時用"
+    "description": "被 AI 嚇到的世界 從去年迸出一堆 AI 產圖，以及 chatGPT 推出以來，覺得大家對未來的想像產生天翻地覆的改變。 以前的我一直覺得 AI 只不過是個拿來炒作的 buzzword，看虛擬實境、元宇宙等等的被炒得這麼兇，結果雷聲大雨點小，就覺得那些宣稱拿 AI 做 OO 做 XX 的說不定背後都是外包給便宜印度人工人智慧而已。 但 chatGPT 完全讓人看到新的威脅與新的機會。雖然 GPT-3 聊起來數學很爛又愛瞎扯，但他產出人類買單的內容的能力真的非常強，有些我們以為是「智力密集」或是有門檻的事情，突然變得容易了。像是寫 code、翻譯等等，chatGPT 都可以給人很不錯的回覆。 心底真的覺得，天啊！未來寫 code 這行飯，大概是會變難吃 XD （difficult 的難吃而非 tastes bad XD） 未來的工程師環境想像 現在感受下來，如果善用生成式 AI 工具，像是網頁後端開發、DevOps 之類的一些工作都會變容易。對有經驗者來說很多程式可以透過 AI 產生再來檢驗修正，開發時間會縮短，產能隨之提升。對於入門者來說，AI 可以帶著自己學習不會的工具，甚至一步一步帶領自己寫出想寫的功能。 就上面的敘述來說，自己覺得未來的工程師環境說不定會有底下的變化： 1.「利用工具增加產能」變成工作門檻： 當工具可以讓一個工程師當兩、三個人用的時候，沒辦法當兩個人用的人在就業市場上就會岌岌可危。 舉例來說，如果同一個功能，員工甲不打算用任何生成式 AI 工具，總是獨自寫完功能，翻文件翻半天才把東西寫出來，跟員工乙善用工具產出再修正調整成可以用的 code。員工甲跟員工乙的產能可能會有非常大的差距，這個差距可能大到公司沒辦法接受員工甲的效率。 當工具可以榨出更多的人力，榨不出這個產能來就會很有問題。這讓我蠻警惕的，讓我開始要求自己從現在開始就要多試試看像是"
 }
     </script>
 
@@ -98,7 +98,7 @@
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="好淺好淺的談談訊息驗證碼 MAC" href="/blog/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="關於生成式 AI 的心情雜談" href="/blog/feed.xml" />
 
 
 </head>
@@ -143,55 +143,65 @@ into the {body} of the default.hbs template -->
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full  tag-authentication post ">
+        <article class="post-full  tag-ai post ">
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="23 September 2022">23 September 2022</time>
+                    <time class="post-full-meta-date" datetime="24 March 2023">24 March 2023</time>
                     
                         <span class="date-divider">/</span>
                         
                             
-                               <a href='/blog/tag/authentication/'>AUTHENTICATION</a>
+                               <a href='/blog/tag/ai/'>AI</a>
                             
                         
                     
                 </section>
-                <h1 class="post-full-title">好淺好淺的談談訊息驗證碼 MAC</h1>
+                <h1 class="post-full-title">關於生成式 AI 的心情雜談</h1>
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/blog/assets/images/black-background-key.jpg)">
+            <figure class="post-full-image" style="background-image: url(/blog/assets/images/talk.jpg)">
             </figure>
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <h2 id="前言閒聊">前言閒聊</h2>
-<p>在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦）</p>
+                    <h3 id="被-ai-嚇到的世界">被 AI 嚇到的世界</h3>
 
-<p>但如果有記得他的英文全名 Message authentication code，其實就會比較直觀地知道，有個 code，是個用來做訊息驗證用的資訊，比較清楚他的角色是什麼。</p>
+<p>從去年迸出一堆 AI 產圖，以及 chatGPT 推出以來，覺得大家對未來的想像產生天翻地覆的改變。</p>
 
-<h2 id="mac">MAC</h2>
-<p>訊息驗證碼（Message authentication code，MAC）是一種常見驗證訊息來源、資料完整性（確保訊息沒有被竄改）的方式。</p>
+<p>以前的我一直覺得 AI 只不過是個拿來炒作的 buzzword，看虛擬實境、元宇宙等等的被炒得這麼兇，結果雷聲大雨點小，就覺得那些宣稱拿 AI 做 OO 做 XX 的說不定背後都是外包給便宜印度人工人智慧而已。</p>
 
-<p>sender 在傳送訊息時會根據與 receiver 約定好的方法，用金鑰跟傳輸資料產出驗證碼，除了要送過去的資料以外帶上這個驗證碼。receiver 收到訊息以後，可以根據之前約定好的方法用同一把金鑰跟傳輸資料檢驗這個驗證碼是不是按照說好的方式產生的，來驗證送訊息過來的人就是 sender，不是別人。</p>
+<p>但 chatGPT 完全讓人看到新的威脅與新的機會。雖然 GPT-3 聊起來數學很爛又愛瞎扯，但他產出人類買單的內容的能力真的非常強，有些我們以為是「智力密集」或是有門檻的事情，突然變得容易了。像是寫 code、翻譯等等，chatGPT 都可以給人很不錯的回覆。</p>
 
-<p><img src="assets/images/mac_usage.png" alt="The example usage of MAC" /></p>
+<p>心底真的覺得，天啊！未來寫 code 這行飯，大概是會變難吃 XD （difficult 的難吃而非 tastes bad XD）</p>
 
-<p>「約定好的方法」可以有很多種，HMAC 就是一種產出驗證碼可以使用的方式。</p>
+<h3 id="未來的工程師環境想像">未來的工程師環境想像</h3>
 
-<h2 id="範例">範例</h2>
+<p>現在感受下來，如果善用生成式 AI 工具，像是網頁後端開發、DevOps 之類的一些工作都會變容易。對有經驗者來說很多程式可以透過 AI 產生再來檢驗修正，開發時間會縮短，產能隨之提升。對於入門者來說，AI 可以帶著自己學習不會的工具，甚至一步一步帶領自己寫出想寫的功能。</p>
 
-<p>比方說 A 公司 server 和 B 公司 server 要互相傳送訊息，傳輸過程中經過大海般茫茫又不安全的網路，所以他們約定好一把 secret key，每次互送 request 的時用 key 和 payload 用 HMAC-SHA256 算出訊息驗證碼，在 HTTP header 的 <code class="language-plaintext highlighter-rouge">X_HMAC</code> 帶上（實務上似乎是放 query string 也有）。收到 request 方會需要用同一把 secret key 跟 payload 在產一次 mac，驗證和 header 上帶來的 mac 是否一樣，如果一樣才當作是可以信任的訊息。</p>
+<p>就上面的敘述來說，自己覺得未來的工程師環境說不定會有底下的變化：</p>
 
-<h2 id="變動的-iv-值">變動的 IV 值</h2>
+<h4 id="1利用工具增加產能變成工作門檻">1.「利用工具增加產能」變成工作門檻：</h4>
 
-<p>有些合作廠商可能是使用像是 AES-256-GCM、AES-256-CBC 之類的方式產生訊息驗證碼，產出驗證碼的過程中，除了 key 和  payload 還需要動態產生一組 IV 值，一起帶過去給對方做驗證。如果這個 IV 值每次都送同一組的話，會怎麽樣呢？</p>
+<p>當工具可以讓一個工程師當兩、三個人用的時候，沒辦法當兩個人用的人在就業市場上就會岌岌可危。</p>
 
-<p>我對於密碼學不太熟悉，比較多的說明這裡附上 <a href="https://crypto.stackexchange.com/questions/57645/is-using-the-same-iv-in-aes-similar-to-not-using-an-iv-in-the-first-place">stack overflow</a> &gt;&lt;</p>
+<p>舉例來說，如果同一個功能，員工甲不打算用任何生成式 AI 工具，總是獨自寫完功能，翻文件翻半天才把東西寫出來，跟員工乙善用工具產出再修正調整成可以用的 code。員工甲跟員工乙的產能可能會有非常大的差距，這個差距可能大到公司沒辦法接受員工甲的效率。</p>
 
-<p>但簡言之，帶同一組 IV 是有風險的。如果攻擊者可以找到明文類似的訊息，或是攻擊者有辦法製造出他想要的明文內容的訊息，有可能可以破解出 key 或是可以竄改訊息，讓訊息驗證碼失去其效用。因此，上述的情境裡不應該使用同一把 IV。</p>
+<p>當工具可以榨出更多的人力，榨不出這個產能來就會很有問題。這讓我蠻警惕的，讓我開始要求自己從現在開始就要多試試看像是 GitHub Copilot 之類的工具，還有多問問 ChatGPT 問題，學習怎麼下咒語得到自己需要的東西。</p>
+
+<h4 id="2理解與檢驗能力變得重要">2.理解與檢驗能力變得重要：</h4>
+
+<p>覺得有硬底子固然很好，但未來可能懂得透過 AI 學習理解會比成為一個知識豐富的人更有優勢。因此，理解能力的重要性就大大增加了。說不定未來的面試，比起越問越刁鑽來證明一個人的實力，記得這些人各種知識記得清不清楚，會更重視丟出不會的東西時能不能迅速理解、找到解方。</p>
+
+<p>再來檢驗 AI 給的東西有沒有問題也很重要。現在用 GPT-3 問問題，還是真假參半，例如常常會拿到一段大致上可以用的 code，但裡面有幾個 method 是 chatGPT 捏造出來的之類的。AI 給出來的資訊不一定正確的狀況下，辨別能力就變得相當重要。</p>
+
+<h4 id="3產生新的鄙視鏈咦">3.產生新的鄙視鏈（咦</h4>
+
+<p>現在我就已經覺得工程師鄙視鏈蠻嚴重的，例如本科歧視非本科，自學仔歧視上課仔等等。未來從碰 AI 開始入門寫程式的人們跟本來就從事這個產業的工程師，可能又會開始有互看不順眼的相輕行為也說不定。</p>
+
+<p>至於會不會被 AI 取代，我覺得可能 ChatGPT 出現以後各行各業都擔心了起來。程式能力如此厲害的 ChatGPT 應該也讓許多工程師感受到了威脅。我自己覺得應該會讓這個行業出現很大的變化，有可能以後不在需要這麼多開發人力，我預期是薪資跟環境會變嚴峻。只能多保持學習新知，讓自己有競爭力跟價值XD</p>
 
                 </div>
             </section>
@@ -250,22 +260,26 @@ into the {body} of the default.hbs template -->
 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/blog/about-ai">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/talk.jpg)"></div>
+            <a class="post-card-image-link" href="/blog/slice-uincode-string-to-bytes">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/text.jpg)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/about-ai">
+            <a class="post-card-content-link" href="/blog/slice-uincode-string-to-bytes">
                 <header class="post-card-header">
                     
                         
                             
-                                <span class="post-card-tags">Ai</span>
+                               <span class="post-card-tags">Ruby</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Rails</span>
                             
                         
                     
 
-                    <h2 class="post-card-title">關於生成式 AI 的心情雜談</h2>
+                    <h2 class="post-card-title">關於在 Ruby 中 unicode string 切成指定 bytes</h2>
                 </header>
             </a>
             <footer class="post-card-meta">
@@ -297,22 +311,22 @@ into the {body} of the default.hbs template -->
 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/blog/single-source-of-truth-and-event-sourcing">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/mess.jpg)"></div>
+            <a class="post-card-image-link" href="/blog/message-authentication-code">
+                <div class="post-card-image" style="background-image: url(/blog/assets/images/black-background-key.jpg)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/single-source-of-truth-and-event-sourcing">
+            <a class="post-card-content-link" href="/blog/message-authentication-code">
                 <header class="post-card-header">
                     
                         
                             
-                                <span class="post-card-tags">Sql</span>
+                                <span class="post-card-tags">Authentication</span>
                             
                         
                     
 
-                    <h2 class="post-card-title">工作雜談：多餘的 DB 欄位跟關聯</h2>
+                    <h2 class="post-card-title">好淺好淺的談談訊息驗證碼 MAC</h2>
                 </header>
             </a>
             <footer class="post-card-meta">
@@ -353,18 +367,18 @@ into the {body} of the default.hbs template -->
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">好淺好淺的談談訊息驗證碼 MAC</div>
+    <div class="floating-header-title">關於生成式 AI 的心情雜談</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E5%A5%BD%E6%B7%BA%E5%A5%BD%E6%B7%BA%E7%9A%84%E8%AB%87%E8%AB%87%E8%A8%8A%E6%81%AF%E9%A9%97%E8%AD%89%E7%A2%BC+MAC&amp;url=https://requiemformemories.github.io/blog/message-authentication-code"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E9%97%9C%E6%96%BC%E7%94%9F%E6%88%90%E5%BC%8F+AI+%E7%9A%84%E5%BF%83%E6%83%85%E9%9B%9C%E8%AB%87&amp;url=https://requiemformemories.github.io/blog/about-ai"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/message-authentication-code"
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/about-ai"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
 

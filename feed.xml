@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-04-26T15:35:09+08:00</updated><id>/blog/feed.xml</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">關於在 Ruby 中 unicode string 切成指定 bytes</title><link href="/blog/slice-uincode-string-to-bytes" rel="alternate" type="text/html" title="關於在 Ruby 中 unicode string 切成指定 bytes" /><published>2023-04-25T21:00:00+08:00</published><updated>2023-04-25T21:00:00+08:00</updated><id>/blog/slice-uincode-string-to-bytes</id><content type="html" xml:base="/blog/slice-uincode-string-to-bytes">&lt;p&gt;在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 &lt;a href=&quot;https://www.rubydoc.info/stdlib/core/String:byteslice&quot;&gt;byteslice&lt;/a&gt; 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-04-26T16:01:03+08:00</updated><id>/blog/feed.xml</id><title type="html">Fumitsuki’s magic box</title><subtitle>keep calm and eat eight Plates.</subtitle><entry><title type="html">關於在 Ruby 中 unicode string 切成指定 bytes</title><link href="/blog/slice-uincode-string-to-bytes" rel="alternate" type="text/html" title="關於在 Ruby 中 unicode string 切成指定 bytes" /><published>2023-04-25T21:00:00+08:00</published><updated>2023-04-25T21:00:00+08:00</updated><id>/blog/slice-uincode-string-to-bytes</id><content type="html" xml:base="/blog/slice-uincode-string-to-bytes">&lt;p&gt;在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 &lt;a href=&quot;https://www.rubydoc.info/stdlib/core/String:byteslice&quot;&gt;byteslice&lt;/a&gt; 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。&lt;/p&gt;
 
 &lt;p&gt;我用 byteslice 來把 string 切成 9 bytes，先來切字串 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;跳摟下殺價&lt;/code&gt;：&lt;/p&gt;
 
@@ -38,7 +38,41 @@
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mb_chars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Rails 真的是什麼都有呢。&lt;/p&gt;</content><author><name>文月</name></author><category term="ruby" /><category term="ruby" /><category term="rails" /><summary type="html">在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 byteslice 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。</summary></entry><entry><title type="html">好淺好淺的談談訊息驗證碼 MAC</title><link href="/blog/message-authentication-code" rel="alternate" type="text/html" title="好淺好淺的談談訊息驗證碼 MAC" /><published>2022-09-23T00:00:00+08:00</published><updated>2022-09-23T00:00:00+08:00</updated><id>/blog/message-authentication-code</id><content type="html" xml:base="/blog/message-authentication-code">&lt;h2 id=&quot;前言閒聊&quot;&gt;前言閒聊&lt;/h2&gt;
+&lt;p&gt;Rails 真的是什麼都有呢。&lt;/p&gt;</content><author><name>文月</name></author><category term="ruby" /><category term="ruby" /><category term="rails" /><summary type="html">在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 byteslice 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。</summary></entry><entry><title type="html">關於生成式 AI 的心情雜談</title><link href="/blog/about-ai" rel="alternate" type="text/html" title="關於生成式 AI 的心情雜談" /><published>2023-03-24T06:30:00+08:00</published><updated>2023-03-24T06:30:00+08:00</updated><id>/blog/about-ai</id><content type="html" xml:base="/blog/about-ai">&lt;h3 id=&quot;被-ai-嚇到的世界&quot;&gt;被 AI 嚇到的世界&lt;/h3&gt;
+
+&lt;p&gt;從去年迸出一堆 AI 產圖，以及 chatGPT 推出以來，覺得大家對未來的想像產生天翻地覆的改變。&lt;/p&gt;
+
+&lt;p&gt;以前的我一直覺得 AI 只不過是個拿來炒作的 buzzword，看虛擬實境、元宇宙等等的被炒得這麼兇，結果雷聲大雨點小，就覺得那些宣稱拿 AI 做 OO 做 XX 的說不定背後都是外包給便宜印度人工人智慧而已。&lt;/p&gt;
+
+&lt;p&gt;但 chatGPT 完全讓人看到新的威脅與新的機會。雖然 GPT-3 聊起來數學很爛又愛瞎扯，但他產出人類買單的內容的能力真的非常強，有些我們以為是「智力密集」或是有門檻的事情，突然變得容易了。像是寫 code、翻譯等等，chatGPT 都可以給人很不錯的回覆。&lt;/p&gt;
+
+&lt;p&gt;心底真的覺得，天啊！未來寫 code 這行飯，大概是會變難吃 XD （difficult 的難吃而非 tastes bad XD）&lt;/p&gt;
+
+&lt;h3 id=&quot;未來的工程師環境想像&quot;&gt;未來的工程師環境想像&lt;/h3&gt;
+
+&lt;p&gt;現在感受下來，如果善用生成式 AI 工具，像是網頁後端開發、DevOps 之類的一些工作都會變容易。對有經驗者來說很多程式可以透過 AI 產生再來檢驗修正，開發時間會縮短，產能隨之提升。對於入門者來說，AI 可以帶著自己學習不會的工具，甚至一步一步帶領自己寫出想寫的功能。&lt;/p&gt;
+
+&lt;p&gt;就上面的敘述來說，自己覺得未來的工程師環境說不定會有底下的變化：&lt;/p&gt;
+
+&lt;h4 id=&quot;1利用工具增加產能變成工作門檻&quot;&gt;1.「利用工具增加產能」變成工作門檻：&lt;/h4&gt;
+
+&lt;p&gt;當工具可以讓一個工程師當兩、三個人用的時候，沒辦法當兩個人用的人在就業市場上就會岌岌可危。&lt;/p&gt;
+
+&lt;p&gt;舉例來說，如果同一個功能，員工甲不打算用任何生成式 AI 工具，總是獨自寫完功能，翻文件翻半天才把東西寫出來，跟員工乙善用工具產出再修正調整成可以用的 code。員工甲跟員工乙的產能可能會有非常大的差距，這個差距可能大到公司沒辦法接受員工甲的效率。&lt;/p&gt;
+
+&lt;p&gt;當工具可以榨出更多的人力，榨不出這個產能來就會很有問題。這讓我蠻警惕的，讓我開始要求自己從現在開始就要多試試看像是 GitHub Copilot 之類的工具，還有多問問 ChatGPT 問題，學習怎麼下咒語得到自己需要的東西。&lt;/p&gt;
+
+&lt;h4 id=&quot;2理解與檢驗能力變得重要&quot;&gt;2.理解與檢驗能力變得重要：&lt;/h4&gt;
+
+&lt;p&gt;覺得有硬底子固然很好，但未來可能懂得透過 AI 學習理解會比成為一個知識豐富的人更有優勢。因此，理解能力的重要性就大大增加了。說不定未來的面試，比起越問越刁鑽來證明一個人的實力，記得這些人各種知識記得清不清楚，會更重視丟出不會的東西時能不能迅速理解、找到解方。&lt;/p&gt;
+
+&lt;p&gt;再來檢驗 AI 給的東西有沒有問題也很重要。現在用 GPT-3 問問題，還是真假參半，例如常常會拿到一段大致上可以用的 code，但裡面有幾個 method 是 chatGPT 捏造出來的之類的。AI 給出來的資訊不一定正確的狀況下，辨別能力就變得相當重要。&lt;/p&gt;
+
+&lt;h4 id=&quot;3產生新的鄙視鏈咦&quot;&gt;3.產生新的鄙視鏈（咦&lt;/h4&gt;
+
+&lt;p&gt;現在我就已經覺得工程師鄙視鏈蠻嚴重的，例如本科歧視非本科，自學仔歧視上課仔等等。未來從碰 AI 開始入門寫程式的人們跟本來就從事這個產業的工程師，可能又會開始有互看不順眼的相輕行為也說不定。&lt;/p&gt;
+
+&lt;p&gt;至於會不會被 AI 取代，我覺得可能 ChatGPT 出現以後各行各業都擔心了起來。程式能力如此厲害的 ChatGPT 應該也讓許多工程師感受到了威脅。我自己覺得應該會讓這個行業出現很大的變化，有可能以後不在需要這麼多開發人力，我預期是薪資跟環境會變嚴峻。只能多保持學習新知，讓自己有競爭力跟價值XD&lt;/p&gt;</content><author><name>文月</name></author><category term="ai" /><category term="ai" /><summary type="html">被 AI 嚇到的世界</summary></entry><entry><title type="html">好淺好淺的談談訊息驗證碼 MAC</title><link href="/blog/message-authentication-code" rel="alternate" type="text/html" title="好淺好淺的談談訊息驗證碼 MAC" /><published>2022-09-23T00:00:00+08:00</published><updated>2022-09-23T00:00:00+08:00</updated><id>/blog/message-authentication-code</id><content type="html" xml:base="/blog/message-authentication-code">&lt;h2 id=&quot;前言閒聊&quot;&gt;前言閒聊&lt;/h2&gt;
 &lt;p&gt;在串各種金流交易的時候，常常會聽到 MAC 跟 HMAC。以前第一次聽到的時候不知道 MAC 是什麼、HMAC 跟 MAC 差異在哪裡，直接問同事說「MAC 是什麼啊？」，結果被同事鄙視（誤）了一番。同事一邊說著「你不會查 wiki 嗎？」一邊翻了 wiki 頁面給我，結果他打開的是「Minimum Alveolar Concentration」的頁面（最小肺泡分壓之類的，我也不太清楚）。打了這麼長的篇幅，其實只是想笑他 owo （但其實受到同事的照顧很多啦）&lt;/p&gt;
 
 &lt;p&gt;但如果有記得他的英文全名 Message authentication code，其實就會比較直觀地知道，有個 code，是個用來做訊息驗證用的資訊，比較清楚他的角色是什麼。&lt;/p&gt;
@@ -894,125 +928,4 @@ else if 不在這一頁
 
 &lt;h3 id=&quot;抽象化abstraction&quot;&gt;抽象化(abstraction)&lt;/h3&gt;
 
-&lt;p&gt;把許多步驟細節包在一個 function 裡面，我知道這個 function 可以用來做什麼，但不需要知道實作細節&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="cs50" /><summary type="html">筆記前言</summary></entry><entry><title type="html">三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs</title><link href="/blog/install-node-lts-on-opsworks-stack" rel="alternate" type="text/html" title="三分鐘教你如何在 OpsWorks Stack 上面用 12.x 的 nodejs" /><published>2020-08-11T20:09:00+08:00</published><updated>2020-08-11T20:09:00+08:00</updated><id>/blog/install-node-lts-on-opsworks-stack</id><content type="html" xml:base="/blog/install-node-lts-on-opsworks-stack">&lt;p&gt;最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/wVA9b2O.jpg&quot; alt=&quot;新增 stack&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Chef 都出到 16 了。AWS 是沒打算出新的意思嗎 😨&lt;/p&gt;
-
-&lt;p&gt;然後再來看看 Chef 11 的 build-in recipes 和 OS packages。 nodejs 的版本居然是 0.10.x，現在的 LTS 版本不是 12.x 嗎（抖抖抖&lt;/p&gt;
-
-&lt;p&gt;這個工具到底何時會被 AWS 淘汰啊，覺得驚恐。&lt;/p&gt;
-
-&lt;p&gt;nodejs 這麼舊，一定會有人&lt;a href=&quot;https://github.com/aws/opsworks-cookbooks/issues/377&quot;&gt;反應&lt;/a&gt;對吧？沒錯！&lt;/p&gt;
-
-&lt;p&gt;不過 AWS 官方的態度是希望大家都去用 community cookbooks，沒打算再更新現有的 cookbooks 了。 簡單第一句話打發了來開 issue、加一的眾人：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Yes, please use the Chef community cookbook for Nodejs on Chef 12 for OpsWorks.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;2020 年看到這句話的我覺得格外厭世，叫我上哪去找 community cookbooks 啦，Chef 11 跟 12 大家都差不多放棄支援了QQ&lt;/p&gt;
-
-&lt;p&gt;另外，Chef 12 Stack 再也沒有 build-in cookbooks 了，果然是官方不想在維護這個了嗎XD&lt;/p&gt;
-
-&lt;p&gt;所幸經過了黑暗的一個禮拜，終於成功把 nodejs override 成 12.x 了！真是謝天謝地！&lt;/p&gt;
-
-&lt;p&gt;接下來就跟大家說說該怎麼做。&lt;/p&gt;
-
-&lt;h2 id=&quot;觀察一下官方的-cookbook-做了什麼&quot;&gt;觀察一下官方的 cookbook 做了什麼&lt;/h2&gt;
-
-&lt;p&gt;當我把 nodejs 加到 OS package 裡以後，跑一下 setup，再看一下 instance log ，發現加上了 nodejs 套件以後，多了 opsworks_nodejs 這個 cookbook。&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;INFO: Storing updated cookbooks/opsworks_nodejs/recipes/create_env_file.rb in the cache.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;要看看這個 cookbook 的內容可以不用直接上 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/opt/aws/opsworks/current/cookbooks/&lt;/code&gt;，可以在 &lt;a href=&quot;https://github.com/aws/opsworks-cookbooks/tree/release-chef-11.10/opsworks_nodejs&quot;&gt;GitHub&lt;/a&gt; 上把他下載下來。&lt;/p&gt;
-
-&lt;p&gt;打開 recipe 看看他是怎麼裝 node 的。會看到這個 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opsworks_commons_assets_installer&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# opsworks_nodejs/recipes/default.rb:32-39&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;opsworks_commons_assets_installer&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Install user space OpsWorks NodeJS package&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;asset&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PACKAGE_BASENAME&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:opsworks_nodejs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;release&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:opsworks_nodejs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:pkgrelease&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;notifies&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;log[downloading]&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:immediately&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:install&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;也就是他是在這裡吃到 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;node[:opsworks_nodejs][:version]&lt;/code&gt; ，然後會試著把這個版本裝起來。&lt;/p&gt;
-
-&lt;p&gt;那這個 installer 幫我們做了哪些事呢？我們可以在 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opsworks_commons/providers/assets_installer.rb&lt;/code&gt; 看到他的實作。觀察一下可以看出來他會去一個 S3 bucket（預設是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://opsworks-instance-assets-us-east-1.s3.amazonaws.com&lt;/code&gt;）把對應的套件包抓下來裝起來。根據 linux 發行版、發行版版本、處理器的不同決定在哪一個 path。&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;vi&quot;&gt;@asset_url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;URI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:opsworks_commons&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:assets_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/packages/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_platform&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_platform_version&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asset_name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;例如 Amazon Linux 2018.03 最後的 asset_url 可能會長這樣 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/packages/amazon/2018.03/opsworks-nodejs-12.18.3-1.x86_64.rpm&lt;/code&gt;。Ubuntu 14.04 可能會像這樣 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/packages/ubuntu/14.04/opsworks-nodejs_12.18.3-1_amd64.deb&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;AWS 提供的 bucket 上沒有我們要的 12.x 版本，但是我們可以自己指定我們要的 node 版本，放到我們自己的 S3 上。這樣也不需要魔改太多東西XD&lt;/p&gt;
-
-&lt;p&gt;不過這邊要 &lt;strong&gt;特別注意&lt;/strong&gt;，&lt;strong&gt;注意！注意！注意！&lt;/strong&gt;，既然我們把 asset_url 改掉了，那之後 berkshelf 各種玩意兒都會試圖從我們新開的 S3 bucket 抓，所有會用到的套件等等都要記得放上來。&lt;/p&gt;
-
-&lt;p&gt;比方說我用 Rails 的 cookbook，就不能少了 ruby。如果開機器失敗了，可以檢查一下 log，應該會告訴你是少了哪一個 package 才會 setup 失敗。在 S3 補上對應的 package 即可。&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Failed to download asset opsworks-ruby2.5 for Install user space OpsWorks ruby package with url https://your-bucket-name.s3-your-region.amazonaws.com/packages/amazon/2018.03/opsworks-ruby25-2.5.1-1.x86_64.rpm.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;override-attributes--上傳-package-file--完成&quot;&gt;Override Attributes + 上傳 package file = 完成！&lt;/h2&gt;
-
-&lt;p&gt;所以我們要做的事情是，想辦法蓋掉原本的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opsworks_nodejs&lt;/code&gt; 的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;version&lt;/code&gt;，然後把對應的 package 傳上 S3。&lt;/p&gt;
-
-&lt;p&gt;至於怎麼覆蓋掉 version，可以看看 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opsworks_commons/attributes/customize.rb&lt;/code&gt; 上面的說明&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;###&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# This is the place to override the opsworks_commons cookbook's default attributes.&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Do not edit THIS file directly. Instead, create&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# &quot;opsworks_commons/attributes/customize.rb&quot; in your cookbook repository and&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# put the overrides in YOUR customize.rb file.&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;###&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;他希望你另外開個 custom-cookbook，在裡面留下這個 customize.rb 來蓋掉 version 的值。所以我們可以先到 GitHub （或其他你喜歡的平台w）開個 repo 來放你的 custom-cookbook，然後在裡面複製貼上 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opsworks_commons/attributes/customize.rb&lt;/code&gt;（那個註解要不要留著看你）。&lt;/p&gt;
-
-&lt;p&gt;在裡面加上你要的 node 版本：&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:opsworks_nodejs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'12.18.3'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;記得要去改 Stack setting，到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Use custom Chef cookbooks&lt;/code&gt; 的區塊把這個 custom-cookbook 的 repo URL、branch name 加進去。&lt;/p&gt;
-
-&lt;p&gt;完成第一部分了，接著來做第二部分。到 S3 開個 bucket （名字看起來就是跟 OpsWorks 有關且不會誤刪即可w）。根據對應的 path 來放你的 assets。像上面提到的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/packages/amazon/2018.03&lt;/code&gt; 這樣。然後把 deb/rpm file 傳上來，名字改一改。像是我除了 node 還會用到 berkshelf 和 ruby，這些也要放上來。&lt;/p&gt;
-
-&lt;p&gt;然後在 custom json 加上新開的 bucket：&lt;/p&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nl&quot;&gt;&quot;opsworks_commons&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;assets_url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://your-bucket-name.s3-your-region.amazonaws.com&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;最後去開台新的機器（或是把舊的停掉重開），看看有沒有順利完成 setup。如果當初檔名或 path 有設定錯，應該都可以在 log 中找到錯誤訊息。&lt;/p&gt;
-
-&lt;p&gt;如果順利 setup 了，連上機器檢查一下 node 版本是不是對的。&lt;/p&gt;
-
-&lt;p&gt;包含機器開開關關的過程可能不止三分鐘XD 這樣是不是有點標題詐欺 🤭&lt;/p&gt;
-
-&lt;h2 id=&quot;同場加映消失的-ruby-24-與-25&quot;&gt;同場加映：消失的 Ruby 2.4 與 2.5&lt;/h2&gt;
-&lt;p&gt;如果你有設定過 Rails App Server，會發現只有 Ruby 2.1、2.2、2.3、2.6。&lt;/p&gt;
-
-&lt;p&gt;咦？2.4 跟 2.5 飛去哪了？如果我想用 2.5 要怎麼辦？&lt;/p&gt;
-
-&lt;p&gt;這件事情也是有人&lt;a href=&quot;https://github.com/aws/opsworks-cookbooks/issues/421&quot;&gt;抱怨&lt;/a&gt;過，官方目前置之不理（？）&lt;/p&gt;
-
-&lt;p&gt;不過有善良的 user 上來告訴大家解方，其實&lt;a href=&quot;https://github.com/aws/opsworks-cookbooks/issues/421#issuecomment-423540014&quot;&gt;解法&lt;/a&gt;跟上述 nodejs 的差不多，一樣是改掉 ruby 版本、asset url，然後自己把各種套件包傳上 S3 這樣。&lt;/p&gt;
-
-&lt;h2 id=&quot;結論&quot;&gt;結論&lt;/h2&gt;
-
-&lt;p&gt;實際上操作使用以後，覺得 OpsWorks Stack 的確是對 DevOps 人力不足的團隊來說相當友善，很多服務都被抽象成各種 layer，很好做設定。尤其時使用 build-in cookbook，真的是滑鼠點一點一個好好的環境就出來了。真的是可以理解為什麼業主到現在都還是使用… (ry&lt;/p&gt;
-
-&lt;p&gt;如果今年還是 2018 年之類的，我可能還是會覺得 OpsWorks Stacks 真是棒 owo&lt;/p&gt;
-
-&lt;p&gt;不過哪天沒有太多 issue 纏身，我還是想看看是否能改用其他工具www&lt;/p&gt;
-
-&lt;p&gt;最後也希望大家都有成功把 node 設定成想要的版本，一切順利 🌟&lt;/p&gt;</content><author><name>文月</name></author><category term="aws" /><category term="aws" /><summary type="html">最近做案子才第一次碰到 Opsworks Stack，然而剛碰到這個工具覺得非常害怕。首先當你在新增 stack 的時候，會發現只有 Chef 11 的 stack 和 Chef 12 的 stack。</summary></entry></feed>
+&lt;p&gt;把許多步驟細節包在一個 function 裡面，我知道這個 function 可以用來做什麼，但不需要知道實作細節&lt;/p&gt;</content><author><name>文月</name></author><category term="cs50" /><category term="cs50" /><summary type="html">筆記前言</summary></entry></feed>
