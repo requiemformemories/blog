@@ -3,7 +3,7 @@ layout: post
 current: post
 class: post-template
 subclass: 'post'
-cover: 'assets/images/text.jpg'
+cover: 'assets/images/2023-coffee-expo-cover.jpg'
 title: '2023 南港茶酒咖啡展紀行'
 date: 2023-11-19 20:00:00
 categories: coffee
@@ -13,7 +13,7 @@ author: fumitsuki
 
 ## 前言
 
-![戰利品](/blog/assets/images/2013-coffee-expo1.jpg)
+![戰利品](/blog/assets/images/2023-coffee-expo1.jpg)
 
 忘記我第一年去茶酒咖啡展是哪一年的事情（似乎是 2017 年的樣子），應該是因為公館 1:12 咖啡的老闆的推薦才去茶酒咖啡展逛逛。
 
@@ -27,14 +27,14 @@ author: fumitsuki
 
 以往展場都只有在一館兩層樓，這次規模更大了，一二館都有展場分佈，咖啡展直接佔據二館的一樓跟四樓。感覺台灣咖啡發展得越加蓬勃成熟了，但也小小的擔心未來是不是會有衰退期的到來。
 
-![咖啡展四樓樓層簡介](/blog/assets/images/2013-coffee-expo2.png)
+![咖啡展四樓樓層簡介](/blog/assets/images/2023-coffee-expo2.png)
 
 
 早上一開始先直衝四樓台灣咖啡區，喝到很喜歡的是台南東山的大鋤花間，除此之外還有印象深刻，並且一直推銷朋友喝喝的科子林！
 
 科子林的 SL34 水洗跟 SL34 日曬都很棒。
 
-![科子林咖啡莊園攤位](/blog/assets/images/2013-coffee-expo3.jpg)
+![科子林咖啡莊園攤位](/blog/assets/images/2023-coffee-expo3.jpg)
 
 
 後來有買青葉的蜜處理，覺得想要來點甜感。
