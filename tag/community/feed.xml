@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/blog/tag/community/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/blog/" rel="alternate" type="text/html" />
+  <updated>2023-12-21T14:15:14+08:00</updated>
+  <id>/blog/tag/community/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Fumitsuki’s magic box | </title>
+  
+
+  
+    <subtitle>keep calm and eat eight Plates.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">RubyConf Taiwan 2023 心得</title>
+      <link href="/blog/ruby-conf-2023" rel="alternate" type="text/html" title="RubyConf Taiwan 2023 心得" />
+      <published>2023-12-18T17:00:00+08:00</published>
+      <updated>2023-12-18T17:00:00+08:00</updated>
+      <id>/blog/ruby-conf-2023</id>
+      <content type="html" xml:base="/blog/ruby-conf-2023">&lt;p&gt;上次的實體 RubyConf 是在 2019，今年久違的舉辦了實體研討會。過了四年，除了我的工作經驗讓心境有很大的不同，台灣的 Ruby 社群圈也有非常大的變化。
+手上沒有實際上的統計數據，但從參加的感受上會覺得台灣的參與者減少了許多，外國的參與者倒是增加了。外國會眾之所以會這麼多，是各方努力讓台灣的能見度變高了嗎（誤）&lt;/p&gt;
+
+&lt;p&gt;關於台灣會眾萎縮的部分，我覺得有點小小的擔心。在這幾年我待過的公司裡，有兩家都在「有 Rails 祖產(X)專案(O)但是希望可以替換他」的狀況，原因大概有兩個，第一個是覺得 Rails 在越長越龐大的時候維護變得複雜而困難，這個部分相當感同身受。今年的議程「Rethink Rails Architecture」也有在討論這部分的議題。&lt;/p&gt;
+
+&lt;p&gt;第二個原因則是覺得市場上的 Ruby 開發人員不夠，就算有也太 junior。但這就有點陷入惡性循環的感覺，公司覺得沒有 Ruby 工程師選擇換 tech stack，Ruby 工程師覺得沒有工作機會選擇換 tech stack，陷入沒有雞就沒有蛋、沒有蛋就沒有雞的情況中XD&lt;/p&gt;
+
+&lt;p&gt;所幸大家還是把 L405 填滿了（感動）&lt;/p&gt;
+
+&lt;p&gt;在開場 Matz 的 Keynote 中，Matz 大大也提到，Ruby 也 30 歲了，不再是一個閃亮亮的語言（也沒有一個程式語言可以永遠閃亮），但是他持續為這個世界創造價值。而 Matz 問道「第一次來 RubyConf 的人有哪些？」台下舉手的人們，正是這個社群的希望。&lt;/p&gt;
+
+&lt;p&gt;關於台灣的 Ruby 圈欠缺 senior 的議題，在 official party 時跟其他講者、會眾們討論時，覺得聽到一個很棒的觀點：「沒有人從一開始就是 senior」比起抱怨市場上沒有 senior，不如自己創造 senior。
+Okura Masafumi 桑在日本辦了 &lt;a href=&quot;https://growrb.doorkeeper.jp/events/past&quot;&gt;Grow.rb&lt;/a&gt; 的活動，每次的主題讓大家試著自己實作平常在用的 Data、Struct 等等，讓參與者從這些實作中學到 Ruby 的技巧與精髓。這次的議程「&lt;a href=&quot;https://speakerdeck.com/okuramasafumi/writing-minitest-clone-in-30-minutes&quot;&gt;Writing Minitest clone in 30 minutes&lt;/a&gt;」也是透過 30 分鐘 live coding，帶大家寫一個自己的 Minitest。
+覺得這個部分也帶給了我許多啟發，未來台灣 Ruby 社群還有很多有趣的事情可以做。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-minitest.jpg&quot; alt=&quot;Minitest 實作 live coding&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;和朋朋們也討論到現代人學習新事物的方式正在變化。從疫情以來不只是 Ruby 社群圈，其他社群圈也在面對社群萎縮、參加研討會的人變少的窘況。有可能新一代的人們更常看線上課程、youtube 頻道、抖音來學習新知。而實體的研討會不見得對這些人來說有吸引力。但我自己覺得實體研討會的互動交流是無可取代的，一方面聽到許多我沒有碰過的領域（eg. Ruby Parser）的議程，都讓我覺得 Ruby 圈有這些人做這些有趣的事情真是太好了。也對於其中一些領域想要做看看 side project （PicoRuby 好像很好玩！），躍躍欲試。另一方面，我也在互動中真實地感受到「The Ruby community is the most precious treasure」這句話，因為有大家的存在，Ruby 圈才有源源不絕的活力繼續往前走。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-treasure.jpg&quot; alt=&quot;The Ruby community is the most precious treasure&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;image from &lt;a href=&quot;https://twitter.com/hasumikin/status/1735914984906101140/photo/1&quot;&gt;hasumikin@twitter&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;不過這幾年直播等等的開始越來越盛行了，是不是應該要弄個台 V 紅寶石娘之類的推廣 Ruby 呀（腦洞大開）&lt;/p&gt;
+
+&lt;p&gt;另外過程中也跟其他會眾討論起了為什麼喜歡 Ruby、非 Ruby 不可的理由。某方面來說，我覺得喜歡 Ruby 的人們也是有著相當偏執的一面XD
+那時候也有聽到一個會眾說，大部分的語言很安全，就像是在限制小朋友似的告訴開發者「不可以這樣」「Type 要好好發樓！」。
+但是 Ruby 卻是把開發者當成充分具有自由與責任的大人，在 Ruby 的世界裡沒有這麼多限制，讓我們充滿發揮空間，但是我們同樣也有義務要用適當的方式去使用 Ruby 給我們的自由。Ruby 不只是一個無機的工具，而是能夠帶給開發者快樂的朋友。比方說 Ruby 就很適合拿來做 quine（自產生程式）XD&lt;/p&gt;
+
+&lt;p&gt;其中日本有一個很厲害的 mame 桑非常擅長做 quine，覺得相當厲害&amp;gt;&amp;lt;”&lt;/p&gt;
+
+&lt;p&gt;附幾個 mame 桑的 quine：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mame/all-ruby-quine&quot;&gt;https://github.com/mame/all-ruby-quine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tric/trick2022/blob/master/06-mame/entry.rb&quot;&gt;https://github.com/tric/trick2022/blob/master/06-mame/entry.rb&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;真的非常厲害哪XD&lt;/p&gt;
+
+&lt;h2 id=&quot;畫面集錦&quot;&gt;畫面集錦&lt;/h2&gt;
+
+&lt;p&gt;今年有松江市的官員（？）來宣傳松江市，台北市產發局也有人來致詞。第一次知道原來台北市跟松江市有備忘錄，還有建國花市會有來自松江市牡丹花展出XD
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-matsue.jpg&quot; alt=&quot;松江市工商&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;開場 Keynote 的結論，為了避免 boring pitfall，語言要一直前進。但同時也不能整個打掉重練，版本之間欠缺相容性的話會分裂社群（反觀隔壁 P 開頭語言？）
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-matz-conclusion.jpg&quot; alt=&quot;Matz 30 years of Ruby 結論&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;中午在活動中心二樓吃便當，總覺得漢字序順不影響讀閱呢XD
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-garbage-can.jpg&quot; alt=&quot;活動中心二樓的垃圾桶&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4 年前講者帶來了跑在 Dreamcast 上的 mruby 程式，今年又加上了 Wii support！
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-mruby-wii.jpg&quot; alt=&quot;Wii Support of MRuby&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;來自永和システムマネジメント的工程師似乎對於看到永和非常開心XD
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-yonghue.jpg&quot; alt=&quot;永和！&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;星際大戰風格的投影片
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-pico-ruby.jpg&quot; alt=&quot;PicoRuby 之於星際大戰&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;非常棒的現場 Demo！雖然由於中途一些小事故沒辦法看到完整的 Production Ready 實作 &amp;gt;&amp;lt;”
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-pico-ruby-demo.jpg&quot; alt=&quot;PicoRuby Demo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;LLM 做小遊戲，要想辦法搞定保全的闖入建築物，非常有趣的 Demo！
+雖然 LLM 很厲害，但是沒有加諸處理與約束的話很可能會在玩家玩遊戲的途中開始出戲XD
+怎麼用做好約束也是很有趣的議題&amp;gt;&amp;lt;”
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-llm-game.jpg&quot; alt=&quot;用 LLM 做的遊戲&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The forgotten web 帶大家走過一遍 web development 發展史，從 Web Master 開始職責越分越細
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-forgotten-web.jpg&quot; alt=&quot;Developer 發展史&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tim 大大的 ending keymote 非常棒！整個議程的安排跟美術都很用心（已被圈粉XD）
+用非常有趣的方式介紹 Ruby 工程師如何從好的開發方式、團隊合作擊敗 bugs 並持續前進。
+對於 Tim 大大提到的 Hanami2 features 也非常有興趣，覺得職責分離設計的很精巧
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-tim-riley-journey.jpg&quot; alt=&quot;Tim Riley 的 ending keynote&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;其他部分&quot;&gt;其他部分&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;整體來說這次認識好多新朋友，跟好多人都有聊到天，非常開心！這次和國外講者聊天深感英文會話的重要！能夠用英文對話的話多了很多可以互動的對象。從外國會眾中的交談取得許多靈感！&lt;/li&gt;
+  &lt;li&gt;有時候日本會眾蹦出日文的時候好像大概只能聽懂三成至七成，還是有點難理解跟會話呢…是不是也要來學日文了呢XD&lt;/li&gt;
+  &lt;li&gt;看到國外會眾到台北各處觀光、吃東西覺得很有趣XD 有時候也會有會眾問「推薦去哪裡呢？」「推薦買什麼伴手禮回家？」頓時發現自己也滿不知道台北有什麼有趣的地方好去的。可惡啊下次要準備好清單推薦好推薦滿XD&lt;/li&gt;
+  &lt;li&gt;意外發現台灣茶好像對日本會眾接受度很高，下次多帶幾包來推廣（欸） 也有喜歡咖啡的國外會眾，推銷台灣咖啡機不可失！&lt;/li&gt;
+  &lt;li&gt;再度參加 RubyKaraoke，覺得聽到許多有趣的歌，其中「みかんのうた」讓人印象深刻&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;這次研討會玩得相當開心，也讓人有一種充電了可以繼續前進的感覺，非常希望還可以一直有 RubyConf 可以參加 &amp;gt;&amp;lt;”&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="rubyconf" />
+      
+        <category term="community" />
+      
+
+      
+        <summary type="html">上次的實體 RubyConf 是在 2019，今年久違的舉辦了實體研討會。過了四年，除了我的工作經驗讓心境有很大的不同，台灣的 Ruby 社群圈也有非常大的變化。 手上沒有實際上的統計數據，但從參加的感受上會覺得台灣的參與者減少了許多，外國的參與者倒是增加了。外國會眾之所以會這麼多，是各方努力讓台灣的能見度變高了嗎（誤）</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

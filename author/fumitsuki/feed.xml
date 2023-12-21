@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
   <link href="/blog/author/fumitsuki/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/blog/" rel="alternate" type="text/html" />
-  <updated>2023-11-19T23:48:53+08:00</updated>
+  <updated>2023-12-21T14:15:14+08:00</updated>
   <id>/blog/author/fumitsuki/feed.xml</id>
 
   
@@ -30,6 +30,127 @@
   
   
 
+  
+    <entry>
+      <title type="html">RubyConf Taiwan 2023 心得</title>
+      <link href="/blog/ruby-conf-2023" rel="alternate" type="text/html" title="RubyConf Taiwan 2023 心得" />
+      <published>2023-12-18T17:00:00+08:00</published>
+      <updated>2023-12-18T17:00:00+08:00</updated>
+      <id>/blog/ruby-conf-2023</id>
+      <content type="html" xml:base="/blog/ruby-conf-2023">&lt;p&gt;上次的實體 RubyConf 是在 2019，今年久違的舉辦了實體研討會。過了四年，除了我的工作經驗讓心境有很大的不同，台灣的 Ruby 社群圈也有非常大的變化。
+手上沒有實際上的統計數據，但從參加的感受上會覺得台灣的參與者減少了許多，外國的參與者倒是增加了。外國會眾之所以會這麼多，是各方努力讓台灣的能見度變高了嗎（誤）&lt;/p&gt;
+
+&lt;p&gt;關於台灣會眾萎縮的部分，我覺得有點小小的擔心。在這幾年我待過的公司裡，有兩家都在「有 Rails 祖產(X)專案(O)但是希望可以替換他」的狀況，原因大概有兩個，第一個是覺得 Rails 在越長越龐大的時候維護變得複雜而困難，這個部分相當感同身受。今年的議程「Rethink Rails Architecture」也有在討論這部分的議題。&lt;/p&gt;
+
+&lt;p&gt;第二個原因則是覺得市場上的 Ruby 開發人員不夠，就算有也太 junior。但這就有點陷入惡性循環的感覺，公司覺得沒有 Ruby 工程師選擇換 tech stack，Ruby 工程師覺得沒有工作機會選擇換 tech stack，陷入沒有雞就沒有蛋、沒有蛋就沒有雞的情況中XD&lt;/p&gt;
+
+&lt;p&gt;所幸大家還是把 L405 填滿了（感動）&lt;/p&gt;
+
+&lt;p&gt;在開場 Matz 的 Keynote 中，Matz 大大也提到，Ruby 也 30 歲了，不再是一個閃亮亮的語言（也沒有一個程式語言可以永遠閃亮），但是他持續為這個世界創造價值。而 Matz 問道「第一次來 RubyConf 的人有哪些？」台下舉手的人們，正是這個社群的希望。&lt;/p&gt;
+
+&lt;p&gt;關於台灣的 Ruby 圈欠缺 senior 的議題，在 official party 時跟其他講者、會眾們討論時，覺得聽到一個很棒的觀點：「沒有人從一開始就是 senior」比起抱怨市場上沒有 senior，不如自己創造 senior。
+Okura Masafumi 桑在日本辦了 &lt;a href=&quot;https://growrb.doorkeeper.jp/events/past&quot;&gt;Grow.rb&lt;/a&gt; 的活動，每次的主題讓大家試著自己實作平常在用的 Data、Struct 等等，讓參與者從這些實作中學到 Ruby 的技巧與精髓。這次的議程「&lt;a href=&quot;https://speakerdeck.com/okuramasafumi/writing-minitest-clone-in-30-minutes&quot;&gt;Writing Minitest clone in 30 minutes&lt;/a&gt;」也是透過 30 分鐘 live coding，帶大家寫一個自己的 Minitest。
+覺得這個部分也帶給了我許多啟發，未來台灣 Ruby 社群還有很多有趣的事情可以做。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-minitest.jpg&quot; alt=&quot;Minitest 實作 live coding&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;和朋朋們也討論到現代人學習新事物的方式正在變化。從疫情以來不只是 Ruby 社群圈，其他社群圈也在面對社群萎縮、參加研討會的人變少的窘況。有可能新一代的人們更常看線上課程、youtube 頻道、抖音來學習新知。而實體的研討會不見得對這些人來說有吸引力。但我自己覺得實體研討會的互動交流是無可取代的，一方面聽到許多我沒有碰過的領域（eg. Ruby Parser）的議程，都讓我覺得 Ruby 圈有這些人做這些有趣的事情真是太好了。也對於其中一些領域想要做看看 side project （PicoRuby 好像很好玩！），躍躍欲試。另一方面，我也在互動中真實地感受到「The Ruby community is the most precious treasure」這句話，因為有大家的存在，Ruby 圈才有源源不絕的活力繼續往前走。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-treasure.jpg&quot; alt=&quot;The Ruby community is the most precious treasure&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;image from &lt;a href=&quot;https://twitter.com/hasumikin/status/1735914984906101140/photo/1&quot;&gt;hasumikin@twitter&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;不過這幾年直播等等的開始越來越盛行了，是不是應該要弄個台 V 紅寶石娘之類的推廣 Ruby 呀（腦洞大開）&lt;/p&gt;
+
+&lt;p&gt;另外過程中也跟其他會眾討論起了為什麼喜歡 Ruby、非 Ruby 不可的理由。某方面來說，我覺得喜歡 Ruby 的人們也是有著相當偏執的一面XD
+那時候也有聽到一個會眾說，大部分的語言很安全，就像是在限制小朋友似的告訴開發者「不可以這樣」「Type 要好好發樓！」。
+但是 Ruby 卻是把開發者當成充分具有自由與責任的大人，在 Ruby 的世界裡沒有這麼多限制，讓我們充滿發揮空間，但是我們同樣也有義務要用適當的方式去使用 Ruby 給我們的自由。Ruby 不只是一個無機的工具，而是能夠帶給開發者快樂的朋友。比方說 Ruby 就很適合拿來做 quine（自產生程式）XD&lt;/p&gt;
+
+&lt;p&gt;其中日本有一個很厲害的 mame 桑非常擅長做 quine，覺得相當厲害&amp;gt;&amp;lt;”&lt;/p&gt;
+
+&lt;p&gt;附幾個 mame 桑的 quine：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mame/all-ruby-quine&quot;&gt;https://github.com/mame/all-ruby-quine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tric/trick2022/blob/master/06-mame/entry.rb&quot;&gt;https://github.com/tric/trick2022/blob/master/06-mame/entry.rb&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;真的非常厲害哪XD&lt;/p&gt;
+
+&lt;h2 id=&quot;畫面集錦&quot;&gt;畫面集錦&lt;/h2&gt;
+
+&lt;p&gt;今年有松江市的官員（？）來宣傳松江市，台北市產發局也有人來致詞。第一次知道原來台北市跟松江市有備忘錄，還有建國花市會有來自松江市牡丹花展出XD
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-matsue.jpg&quot; alt=&quot;松江市工商&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;開場 Keynote 的結論，為了避免 boring pitfall，語言要一直前進。但同時也不能整個打掉重練，版本之間欠缺相容性的話會分裂社群（反觀隔壁 P 開頭語言？）
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-matz-conclusion.jpg&quot; alt=&quot;Matz 30 years of Ruby 結論&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;中午在活動中心二樓吃便當，總覺得漢字序順不影響讀閱呢XD
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-garbage-can.jpg&quot; alt=&quot;活動中心二樓的垃圾桶&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4 年前講者帶來了跑在 Dreamcast 上的 mruby 程式，今年又加上了 Wii support！
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-mruby-wii.jpg&quot; alt=&quot;Wii Support of MRuby&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;來自永和システムマネジメント的工程師似乎對於看到永和非常開心XD
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-yonghue.jpg&quot; alt=&quot;永和！&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;星際大戰風格的投影片
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-pico-ruby.jpg&quot; alt=&quot;PicoRuby 之於星際大戰&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;非常棒的現場 Demo！雖然由於中途一些小事故沒辦法看到完整的 Production Ready 實作 &amp;gt;&amp;lt;”
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-pico-ruby-demo.jpg&quot; alt=&quot;PicoRuby Demo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;LLM 做小遊戲，要想辦法搞定保全的闖入建築物，非常有趣的 Demo！
+雖然 LLM 很厲害，但是沒有加諸處理與約束的話很可能會在玩家玩遊戲的途中開始出戲XD
+怎麼用做好約束也是很有趣的議題&amp;gt;&amp;lt;”
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-llm-game.jpg&quot; alt=&quot;用 LLM 做的遊戲&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The forgotten web 帶大家走過一遍 web development 發展史，從 Web Master 開始職責越分越細
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-forgotten-web.jpg&quot; alt=&quot;Developer 發展史&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tim 大大的 ending keymote 非常棒！整個議程的安排跟美術都很用心（已被圈粉XD）
+用非常有趣的方式介紹 Ruby 工程師如何從好的開發方式、團隊合作擊敗 bugs 並持續前進。
+對於 Tim 大大提到的 Hanami2 features 也非常有興趣，覺得職責分離設計的很精巧
+&lt;img src=&quot;/blog/assets/images/rubyconftw-2023-tim-riley-journey.jpg&quot; alt=&quot;Tim Riley 的 ending keynote&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;其他部分&quot;&gt;其他部分&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;整體來說這次認識好多新朋友，跟好多人都有聊到天，非常開心！這次和國外講者聊天深感英文會話的重要！能夠用英文對話的話多了很多可以互動的對象。從外國會眾中的交談取得許多靈感！&lt;/li&gt;
+  &lt;li&gt;有時候日本會眾蹦出日文的時候好像大概只能聽懂三成至七成，還是有點難理解跟會話呢…是不是也要來學日文了呢XD&lt;/li&gt;
+  &lt;li&gt;看到國外會眾到台北各處觀光、吃東西覺得很有趣XD 有時候也會有會眾問「推薦去哪裡呢？」「推薦買什麼伴手禮回家？」頓時發現自己也滿不知道台北有什麼有趣的地方好去的。可惡啊下次要準備好清單推薦好推薦滿XD&lt;/li&gt;
+  &lt;li&gt;意外發現台灣茶好像對日本會眾接受度很高，下次多帶幾包來推廣（欸） 也有喜歡咖啡的國外會眾，推銷台灣咖啡機不可失！&lt;/li&gt;
+  &lt;li&gt;再度參加 RubyKaraoke，覺得聽到許多有趣的歌，其中「みかんのうた」讓人印象深刻&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;這次研討會玩得相當開心，也讓人有一種充電了可以繼續前進的感覺，非常希望還可以一直有 RubyConf 可以參加 &amp;gt;&amp;lt;”&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>文月</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="rubyconf" />
+      
+        <category term="community" />
+      
+
+      
+        <summary type="html">上次的實體 RubyConf 是在 2019，今年久違的舉辦了實體研討會。過了四年，除了我的工作經驗讓心境有很大的不同，台灣的 Ruby 社群圈也有非常大的變化。 手上沒有實際上的統計數據，但從參加的感受上會覺得台灣的參與者減少了許多，外國的參與者倒是增加了。外國會眾之所以會這麼多，是各方努力讓台灣的能見度變高了嗎（誤）</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">2023 南港茶酒咖啡展紀行</title>
@@ -1046,227 +1167,6 @@ x is 1, y is 2
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
-
-      
-      
-      
-      
-      
-
-      <author>
-          <name>文月</name>
-        
-        
-      </author>
-
-      
-
-      
-        <category term="cs50" />
-      
-
-      
-        <summary type="html">筆記前言</summary>
-      
-
-      
-      
-    </entry>
-  
-    <entry>
-      <title type="html">CS50 筆記：第一講 C</title>
-      <link href="/blog/cs50-notes-c" rel="alternate" type="text/html" title="CS50 筆記：第一講 C" />
-      <published>2020-12-20T20:09:00+08:00</published>
-      <updated>2020-12-20T20:09:00+08:00</updated>
-      <id>/blog/cs50-notes-c</id>
-      <content type="html" xml:base="/blog/cs50-notes-c">&lt;h2 id=&quot;筆記前言&quot;&gt;筆記前言&lt;/h2&gt;
-
-&lt;p&gt;本章主要在講 c 的 syntax ，最基本的資料型別、if、迴圈等等。
-有趣的是他拿 scratch 的元件來跟 c 對比。
-如果已經有程式相關的基礎知識，這章其實可以跳過w&lt;/p&gt;
-
-&lt;h2 id=&quot;lecture-1&quot;&gt;Lecture 1&lt;/h2&gt;
-
-&lt;p&gt;英文講義：https://cs50.harvard.edu/college/2020/fall/notes/1&lt;/p&gt;
-
-&lt;p&gt;寫程式需要注意的三個面向：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;correctness&lt;/strong&gt;: 執行結果正確如預期&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;well-designed&lt;/strong&gt;: 效率好，沒有多做不該做的 work&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;well-styled&lt;/strong&gt;: 好的 style 才能增加可讀性&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;hello-world-in-c&quot;&gt;hello world in C&lt;/h2&gt;
-
-&lt;h3 id=&quot;cs50-ide&quot;&gt;CS50 IDE&lt;/h3&gt;
-&lt;p&gt;https://ide.cs50.io/&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;看起來是被 AWS 買走的 cloud 9 （這是 AWS 贊助嗎，有錢真好w）&lt;/li&gt;
-  &lt;li&gt;相當於在操作一台遠端的機器&lt;/li&gt;
-  &lt;li&gt;視窗畫面主要包含 text editor 跟 terminal window 兩個部分&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;source-code--machine-code&quot;&gt;source code / machine code&lt;/h3&gt;
-
-&lt;p&gt;第一隻 C 小程式：&lt;/p&gt;
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;像這樣人類還可以理解閱讀的 code 叫做 source code。然而電腦只看得懂 0 跟 1，所以我們需要另一個程式來把 source code 轉換成 machine code。&lt;/p&gt;
-
-&lt;h3 id=&quot;scratch-to-c&quot;&gt;Scratch to C&lt;/h3&gt;
-
-&lt;h4 id=&quot;function&quot;&gt;function&lt;/h4&gt;
-&lt;p&gt;printf 相當於 scratch 的 say block，這裡的 f 代表 formatted(使用像是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;%s&lt;/code&gt; 這樣的 format code)。像這樣一小段可以運作的小程式就叫 &lt;strong&gt;function&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;argument -&amp;gt; function -&amp;gt; output
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;function 的 output 通常有兩種：&lt;/p&gt;
-
-&lt;h5 id=&quot;1-side-effects&quot;&gt;(1) side effects&lt;/h5&gt;
-&lt;p&gt;像 say block 跟 printf 會印出東西來的行為算是 side effect。&lt;/p&gt;
-
-&lt;h5 id=&quot;2-return-values--variables&quot;&gt;(2) return values / variables&lt;/h5&gt;
-
-&lt;p&gt;給你一個回傳值，讓你可以接起來繼續運用。例如 scratch 的 ask block，接住使用者輸入的內容之後把值傳回去給你。&lt;/p&gt;
-
-&lt;h4 id=&quot;assignment&quot;&gt;assignment&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=&lt;/code&gt; 非數學裡面的相等之意，在這裡叫 assignment&lt;/p&gt;
-
-&lt;h4 id=&quot;semicolon&quot;&gt;semicolon&lt;/h4&gt;
-&lt;p&gt;syntax 的一部分，一開始忘記打常常會 debug 找半天，別讓他挫折你w&lt;/p&gt;
-
-&lt;h4 id=&quot;main-函式&quot;&gt;main 函式&lt;/h4&gt;
-&lt;p&gt;總之先把它當成 scratch 的 start block&lt;/p&gt;
-
-&lt;h4 id=&quot;header-files&quot;&gt;header files&lt;/h4&gt;
-&lt;p&gt;副檔名為 h 的檔案，像範例中的 cs50 library
-用 scratch 的 extension 相當於在 c 裡加 header file&lt;/p&gt;
-
-&lt;h4 id=&quot;cs50-工具&quot;&gt;CS50 工具&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;help50：編譯錯誤解釋小工具，給你比 compiler 還要人性化一點的說明
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;help50 make hello
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;style50：調整 coding style 的工具&lt;/li&gt;
-  &lt;li&gt;check50：跑測資的工具&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;data-types&quot;&gt;data types&lt;/h4&gt;
-
-&lt;p&gt;資料型別可以讓電腦知道怎麼解析這些 data&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;中文名稱&lt;/th&gt;
-      &lt;th&gt;Data Type&lt;/th&gt;
-      &lt;th&gt;說明&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;布林值&lt;/td&gt;
-      &lt;td&gt;bool&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; 或 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;false&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;字元&lt;/td&gt;
-      &lt;td&gt;char&lt;/td&gt;
-      &lt;td&gt;單個 ASCII 字元，例如 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt; 或 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;雙精度浮點數&lt;/td&gt;
-      &lt;td&gt;double&lt;/td&gt;
-      &lt;td&gt;浮點數，比 float 更精確，小數點後面更多位&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;單精度浮點數&lt;/td&gt;
-      &lt;td&gt;float&lt;/td&gt;
-      &lt;td&gt;浮點數&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;整數&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-      &lt;td&gt;可以儲存特定大小以內的整數數字&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;長整數&lt;/td&gt;
-      &lt;td&gt;long&lt;/td&gt;
-      &lt;td&gt;用了更多 bits，比 int 可以放更大的數字&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;字串&lt;/td&gt;
-      &lt;td&gt;string&lt;/td&gt;
-      &lt;td&gt;一串字元&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&quot;operators&quot;&gt;operators&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+&lt;/code&gt;: 加法&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-&lt;/code&gt;: 減法&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*&lt;/code&gt;: 乘法&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/&lt;/code&gt;: 除法&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;%&lt;/code&gt;: 求餘數&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;選擇結構if&quot;&gt;選擇結構(if)&lt;/h4&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is less than y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is greater than y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x is equal to y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;重複結構&quot;&gt;重複結構&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;while 迴圈&lt;/p&gt;
-
-    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;for 迴圈&lt;/p&gt;
-
-    &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, world&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;float-limitation-integer-overflow&quot;&gt;float limitation, integer overflow&lt;/h4&gt;
-
-&lt;p&gt;舉例來說 三個燈泡(相當於3個 bits)可以表示大的數字為 7 (111)，當他再進味的時候會變成 (1000)，但因為只有 3 個 bits，所以等於回到 0 (000)。&lt;/p&gt;
-
-&lt;p&gt;當試圖放入 int 的數字大於他可以表示的最大範圍時也會發生這種現象，這就叫 overflow&lt;/p&gt;</content>
 
       
       

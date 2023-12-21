@@ -11,7 +11,7 @@
 
 
 
-    <title>關於在 Ruby 中 unicode string 切成指定 bytes</title>
+    <title>RubyConf Taiwan 2023 心得</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -36,30 +36,30 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="keep calm and eat eight Plates." />
     <link rel="shortcut icon" href="/blog/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/blog/slice-uincode-string-to-bytes" />
+    <link rel="canonical" href="/blog/ruby-conf-2023" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="Fumitsuki's magic box" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="關於在 Ruby 中 unicode string 切成指定 bytes" />
-    <meta property="og:description" content="在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 byteslice 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。 我用 byteslice 來把 string 切成 9 bytes，先來切字串 跳摟下殺價： str = '跳摟下殺價' str.byteslice(0, 9) # =&gt; "跳摟下" 結果看起來非常正常。接著改切 限時9折起： str = '限時9折起' str.byteslice(0, 9) # =&gt; "限時9\xE6\x8A" 折直接被切爛了。為什麼會這樣呢？ utf8 每個字元的 byte 長度從 1 byte 到" />
-    <meta property="og:url" content="/blog/slice-uincode-string-to-bytes" />
-    <meta property="og:image" content="/blog/assets/images/text.jpg" />
+    <meta property="og:title" content="RubyConf Taiwan 2023 心得" />
+    <meta property="og:description" content="上次的實體 RubyConf 是在 2019，今年久違的舉辦了實體研討會。過了四年，除了我的工作經驗讓心境有很大的不同，台灣的 Ruby 社群圈也有非常大的變化。 手上沒有實際上的統計數據，但從參加的感受上會覺得台灣的參與者減少了許多，外國的參與者倒是增加了。外國會眾之所以會這麼多，是各方努力讓台灣的能見度變高了嗎（誤） 關於台灣會眾萎縮的部分，我覺得有點小小的擔心。在這幾年我待過的公司裡，有兩家都在「有 Rails 祖產(X)專案(O)但是希望可以替換他」的狀況，原因大概有兩個，第一個是覺得 Rails 在越長越龐大的時候維護變得複雜而困難，這個部分相當感同身受。今年的議程「Rethink Rails Architecture」也有在討論這部分的議題。 第二個原因則是覺得市場上的 Ruby 開發人員不夠，就算有也太 junior。但這就有點陷入惡性循環的感覺，公司覺得沒有 Ruby 工程師選擇換 tech stack，Ruby 工程師覺得沒有工作機會選擇換 tech stack，陷入沒有雞就沒有蛋、沒有蛋就沒有雞的情況中XD 所幸大家還是把 L405 填滿了（感動） 在開場 Matz 的 Keynote 中，Matz 大大也提到，Ruby 也 30 歲了，不再是一個閃亮亮的語言（也沒有一個程式語言可以永遠閃亮），但是他持續為這個世界創造價值。而 Matz 問道「第一次來 RubyConf 的人有哪些？」台下舉手的人們，正是這個社群的希望。 關於台灣的 Ruby 圈欠缺 senior 的議題，在 official party 時跟其他講者、會眾們討論時，覺得聽到一個很棒的觀點：「沒有人從一開始就是 senior」比起抱怨市場上沒有" />
+    <meta property="og:url" content="/blog/ruby-conf-2023" />
+    <meta property="og:image" content="/blog/assets/images/rubyconftw-2023-cover.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2023-04-25T21:00:00+08:00" />
-    <meta property="article:modified_time" content="2023-04-25T21:00:00+08:00" />
-    <meta property="article:tag" content="Ruby" />
+    <meta property="article:published_time" content="2023-12-18T17:00:00+08:00" />
+    <meta property="article:modified_time" content="2023-12-18T17:00:00+08:00" />
+    <meta property="article:tag" content="Rubyconf" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="關於在 Ruby 中 unicode string 切成指定 bytes" />
-    <meta name="twitter:description" content="在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 byteslice 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。 我用 byteslice 來把 string 切成 9 bytes，先來切字串 跳摟下殺價： str = '跳摟下殺價' str.byteslice(0, 9) # =&gt; "跳摟下" 結果看起來非常正常。接著改切 限時9折起： str = '限時9折起' str.byteslice(0, 9) # =&gt; "限時9\xE6\x8A" 折直接被切爛了。為什麼會這樣呢？ utf8 每個字元的 byte 長度從 1 byte 到" />
+    <meta name="twitter:title" content="RubyConf Taiwan 2023 心得" />
+    <meta name="twitter:description" content="上次的實體 RubyConf 是在 2019，今年久違的舉辦了實體研討會。過了四年，除了我的工作經驗讓心境有很大的不同，台灣的 Ruby 社群圈也有非常大的變化。 手上沒有實際上的統計數據，但從參加的感受上會覺得台灣的參與者減少了許多，外國的參與者倒是增加了。外國會眾之所以會這麼多，是各方努力讓台灣的能見度變高了嗎（誤） 關於台灣會眾萎縮的部分，我覺得有點小小的擔心。在這幾年我待過的公司裡，有兩家都在「有 Rails 祖產(X)專案(O)但是希望可以替換他」的狀況，原因大概有兩個，第一個是覺得 Rails 在越長越龐大的時候維護變得複雜而困難，這個部分相當感同身受。今年的議程「Rethink Rails Architecture」也有在討論這部分的議題。 第二個原因則是覺得市場上的 Ruby 開發人員不夠，就算有也太 junior。但這就有點陷入惡性循環的感覺，公司覺得沒有 Ruby 工程師選擇換 tech stack，Ruby 工程師覺得沒有工作機會選擇換 tech stack，陷入沒有雞就沒有蛋、沒有蛋就沒有雞的情況中XD 所幸大家還是把 L405 填滿了（感動） 在開場 Matz 的 Keynote 中，Matz 大大也提到，Ruby 也 30 歲了，不再是一個閃亮亮的語言（也沒有一個程式語言可以永遠閃亮），但是他持續為這個世界創造價值。而 Matz 問道「第一次來 RubyConf 的人有哪些？」台下舉手的人們，正是這個社群的希望。 關於台灣的 Ruby 圈欠缺 senior 的議題，在 official party 時跟其他講者、會眾們討論時，覺得聽到一個很棒的觀點：「沒有人從一開始就是 senior」比起抱怨市場上沒有" />
     <meta name="twitter:url" content="/blog/" />
-    <meta name="twitter:image" content="/blog/assets/images/text.jpg" />
+    <meta name="twitter:image" content="/blog/assets/images/rubyconftw-2023-cover.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Fumitsuki's magic box" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Ruby" />
+    <meta name="twitter:data2" content="Rubyconf" />
     <meta name="twitter:site" content="@Fumitsuki0802" />
     <meta name="twitter:creator" content="@Fumitsuki0802" />
     <meta property="og:image:width" content="1400" />
@@ -74,18 +74,18 @@
         "name": "Fumitsuki's magic box",
         "logo": "/blog/assets/images/blog-icon.png"
     },
-    "url": "/blog/slice-uincode-string-to-bytes",
+    "url": "/blog/ruby-conf-2023",
     "image": {
         "@type": "ImageObject",
-        "url": "/blog/assets/images/text.jpg",
+        "url": "/blog/assets/images/rubyconftw-2023-cover.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/blog/slice-uincode-string-to-bytes"
+        "@id": "/blog/ruby-conf-2023"
     },
-    "description": "在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 byteslice 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。 我用 byteslice 來把 string 切成 9 bytes，先來切字串 跳摟下殺價： str = '跳摟下殺價' str.byteslice(0, 9) # =&gt; "跳摟下" 結果看起來非常正常。接著改切 限時9折起： str = '限時9折起' str.byteslice(0, 9) # =&gt; "限時9\xE6\x8A" 折直接被切爛了。為什麼會這樣呢？ utf8 每個字元的 byte 長度從 1 byte 到"
+    "description": "上次的實體 RubyConf 是在 2019，今年久違的舉辦了實體研討會。過了四年，除了我的工作經驗讓心境有很大的不同，台灣的 Ruby 社群圈也有非常大的變化。 手上沒有實際上的統計數據，但從參加的感受上會覺得台灣的參與者減少了許多，外國的參與者倒是增加了。外國會眾之所以會這麼多，是各方努力讓台灣的能見度變高了嗎（誤） 關於台灣會眾萎縮的部分，我覺得有點小小的擔心。在這幾年我待過的公司裡，有兩家都在「有 Rails 祖產(X)專案(O)但是希望可以替換他」的狀況，原因大概有兩個，第一個是覺得 Rails 在越長越龐大的時候維護變得複雜而困難，這個部分相當感同身受。今年的議程「Rethink Rails Architecture」也有在討論這部分的議題。 第二個原因則是覺得市場上的 Ruby 開發人員不夠，就算有也太 junior。但這就有點陷入惡性循環的感覺，公司覺得沒有 Ruby 工程師選擇換 tech stack，Ruby 工程師覺得沒有工作機會選擇換 tech stack，陷入沒有雞就沒有蛋、沒有蛋就沒有雞的情況中XD 所幸大家還是把 L405 填滿了（感動） 在開場 Matz 的 Keynote 中，Matz 大大也提到，Ruby 也 30 歲了，不再是一個閃亮亮的語言（也沒有一個程式語言可以永遠閃亮），但是他持續為這個世界創造價值。而 Matz 問道「第一次來 RubyConf 的人有哪些？」台下舉手的人們，正是這個社群的希望。 關於台灣的 Ruby 圈欠缺 senior 的議題，在 official party 時跟其他講者、會眾們討論時，覺得聽到一個很棒的觀點：「沒有人從一開始就是 senior」比起抱怨市場上沒有"
 }
     </script>
 
@@ -98,7 +98,7 @@
     </script> -->
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="關於在 Ruby 中 unicode string 切成指定 bytes" href="/blog/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RubyConf Taiwan 2023 心得" href="/blog/feed.xml" />
 
 
 </head>
@@ -143,75 +143,120 @@ into the {body} of the default.hbs template -->
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full  tag-ruby tag-rails post ">
+        <article class="post-full  tag-rubyconf tag-community post ">
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="25 April 2023">25 April 2023</time>
+                    <time class="post-full-meta-date" datetime="18 December 2023">18 December 2023</time>
                     
                         <span class="date-divider">/</span>
                         
                             
-                               <a href='/blog/tag/ruby/'>RUBY</a>,
+                               <a href='/blog/tag/rubyconf/'>RUBYCONF</a>,
                             
                         
                             
-                               <a href='/blog/tag/rails/'>RAILS</a>
+                               <a href='/blog/tag/community/'>COMMUNITY</a>
                             
                         
                     
                 </section>
-                <h1 class="post-full-title">關於在 Ruby 中 unicode string 切成指定 bytes</h1>
+                <h1 class="post-full-title">RubyConf Taiwan 2023 心得</h1>
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/blog/assets/images/text.jpg)">
+            <figure class="post-full-image" style="background-image: url(/blog/assets/images/rubyconftw-2023-cover.jpg)">
             </figure>
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>在 Ruby 裡面如果要把字串切成最接近且小於 N bytes，大家可能會看到網路上提到 <a href="https://www.rubydoc.info/stdlib/core/String:byteslice">byteslice</a> 這個 method。但是 byteslice 是沒在管 encoding 的，例如我想切一個 utf8 string，有機會切出 invalid characters。</p>
+                    <p>上次的實體 RubyConf 是在 2019，今年久違的舉辦了實體研討會。過了四年，除了我的工作經驗讓心境有很大的不同，台灣的 Ruby 社群圈也有非常大的變化。
+手上沒有實際上的統計數據，但從參加的感受上會覺得台灣的參與者減少了許多，外國的參與者倒是增加了。外國會眾之所以會這麼多，是各方努力讓台灣的能見度變高了嗎（誤）</p>
 
-<p>我用 byteslice 來把 string 切成 9 bytes，先來切字串 <code class="language-plaintext highlighter-rouge">跳摟下殺價</code>：</p>
+<p>關於台灣會眾萎縮的部分，我覺得有點小小的擔心。在這幾年我待過的公司裡，有兩家都在「有 Rails 祖產(X)專案(O)但是希望可以替換他」的狀況，原因大概有兩個，第一個是覺得 Rails 在越長越龐大的時候維護變得複雜而困難，這個部分相當感同身受。今年的議程「Rethink Rails Architecture」也有在討論這部分的議題。</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">str</span> <span class="o">=</span> <span class="s1">'跳摟下殺價'</span>
-<span class="n">str</span><span class="p">.</span><span class="nf">byteslice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
-<span class="c1"># =&gt; "跳摟下"</span>
-</code></pre></div></div>
+<p>第二個原因則是覺得市場上的 Ruby 開發人員不夠，就算有也太 junior。但這就有點陷入惡性循環的感覺，公司覺得沒有 Ruby 工程師選擇換 tech stack，Ruby 工程師覺得沒有工作機會選擇換 tech stack，陷入沒有雞就沒有蛋、沒有蛋就沒有雞的情況中XD</p>
 
-<p>結果看起來非常正常。接著改切 <code class="language-plaintext highlighter-rouge">限時9折起</code>：</p>
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">str</span> <span class="o">=</span> <span class="s1">'限時9折起'</span>
-<span class="n">str</span><span class="p">.</span><span class="nf">byteslice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
-<span class="c1"># =&gt; "限時9\xE6\x8A"</span>
-</code></pre></div></div>
+<p>所幸大家還是把 L405 填滿了（感動）</p>
 
-<p><code class="language-plaintext highlighter-rouge">折</code>直接被切爛了。為什麼會這樣呢？</p>
+<p>在開場 Matz 的 Keynote 中，Matz 大大也提到，Ruby 也 30 歲了，不再是一個閃亮亮的語言（也沒有一個程式語言可以永遠閃亮），但是他持續為這個世界創造價值。而 Matz 問道「第一次來 RubyConf 的人有哪些？」台下舉手的人們，正是這個社群的希望。</p>
 
-<p>utf8 每個字元的 byte 長度從 1 byte 到 4 bytes 不等，絕大多數的中文字是 3 bytes。在全部的字元都是漢字的時候切 3 倍數的 bytes 數可能不會注意到問題。但 <code class="language-plaintext highlighter-rouge">限時9折起</code> 中出現了 <code class="language-plaintext highlighter-rouge">9</code> 這個只有 1 byte 長度的字串，才導致<code class="language-plaintext highlighter-rouge">折</code>被切一半。</p>
+<p>關於台灣的 Ruby 圈欠缺 senior 的議題，在 official party 時跟其他講者、會眾們討論時，覺得聽到一個很棒的觀點：「沒有人從一開始就是 senior」比起抱怨市場上沒有 senior，不如自己創造 senior。
+Okura Masafumi 桑在日本辦了 <a href="https://growrb.doorkeeper.jp/events/past">Grow.rb</a> 的活動，每次的主題讓大家試著自己實作平常在用的 Data、Struct 等等，讓參與者從這些實作中學到 Ruby 的技巧與精髓。這次的議程「<a href="https://speakerdeck.com/okuramasafumi/writing-minitest-clone-in-30-minutes">Writing Minitest clone in 30 minutes</a>」也是透過 30 分鐘 live coding，帶大家寫一個自己的 Minitest。
+覺得這個部分也帶給了我許多啟發，未來台灣 Ruby 社群還有很多有趣的事情可以做。</p>
 
-<p>有一種做法是，把 byteslice 切完以後尾巴切爛的字元清除，透過 <a href="https://www.rubydoc.info/stdlib/core/String:valid_encoding%3F">valid_encoding?</a> 可以去檢查每個字元是不是 valid 的字元。</p>
+<p><img src="/blog/assets/images/rubyconftw-2023-minitest.jpg" alt="Minitest 實作 live coding" /></p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">str</span><span class="p">.</span><span class="nf">byteslice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">).</span><span class="nf">chars</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:valid_encoding?</span><span class="p">).</span><span class="nf">join</span>
-</code></pre></div></div>
+<p>和朋朋們也討論到現代人學習新事物的方式正在變化。從疫情以來不只是 Ruby 社群圈，其他社群圈也在面對社群萎縮、參加研討會的人變少的窘況。有可能新一代的人們更常看線上課程、youtube 頻道、抖音來學習新知。而實體的研討會不見得對這些人來說有吸引力。但我自己覺得實體研討會的互動交流是無可取代的，一方面聽到許多我沒有碰過的領域（eg. Ruby Parser）的議程，都讓我覺得 Ruby 圈有這些人做這些有趣的事情真是太好了。也對於其中一些領域想要做看看 side project （PicoRuby 好像很好玩！），躍躍欲試。另一方面，我也在互動中真實地感受到「The Ruby community is the most precious treasure」這句話，因為有大家的存在，Ruby 圈才有源源不絕的活力繼續往前走。</p>
 
-<p>或者是計算過到最接近 n byte 的字元時的 bytesize 後再來做 bytesclice</p>
+<p><img src="/blog/assets/images/rubyconftw-2023-treasure.jpg" alt="The Ruby community is the most precious treasure" /></p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">largest_valid_bytesize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="n">str</span><span class="p">.</span><span class="nf">size</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inject</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">accu</span><span class="p">,</span> <span class="n">idx</span><span class="o">|</span> 
-  <span class="k">break</span> <span class="n">accu</span> <span class="k">if</span> <span class="n">accu</span> <span class="o">+</span> <span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="nf">bytesize</span> <span class="o">&gt;</span> <span class="mi">9</span>
+<p>image from <a href="https://twitter.com/hasumikin/status/1735914984906101140/photo/1">hasumikin@twitter</a></p>
 
-  <span class="n">accu</span> <span class="o">+</span> <span class="n">str</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="nf">bytesize</span>
-<span class="k">end</span>
+<p>不過這幾年直播等等的開始越來越盛行了，是不是應該要弄個台 V 紅寶石娘之類的推廣 Ruby 呀（腦洞大開）</p>
 
-<span class="n">str</span><span class="p">.</span><span class="nf">byteslice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">largest_valid_bytesize</span><span class="p">)</span>
-</code></pre></div></div>
+<p>另外過程中也跟其他會眾討論起了為什麼喜歡 Ruby、非 Ruby 不可的理由。某方面來說，我覺得喜歡 Ruby 的人們也是有著相當偏執的一面XD
+那時候也有聽到一個會眾說，大部分的語言很安全，就像是在限制小朋友似的告訴開發者「不可以這樣」「Type 要好好發樓！」。
+但是 Ruby 卻是把開發者當成充分具有自由與責任的大人，在 Ruby 的世界裡沒有這麼多限制，讓我們充滿發揮空間，但是我們同樣也有義務要用適當的方式去使用 Ruby 給我們的自由。Ruby 不只是一個無機的工具，而是能夠帶給開發者快樂的朋友。比方說 Ruby 就很適合拿來做 quine（自產生程式）XD</p>
 
-<p>如果是 Rails 的話，Rails 當中直接有 <a href="https://api.rubyonrails.org/classes/ActiveSupport/Multibyte/Chars.html">ActiveSupport::Multibyte::Chars</a> 可以讓操作者不用理解 encoding 也能安全地對他們做操作。</p>
+<p>其中日本有一個很厲害的 mame 桑非常擅長做 quine，覺得相當厲害&gt;&lt;”</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">str</span><span class="p">.</span><span class="nf">mb_chars</span><span class="p">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">9</span><span class="p">).</span><span class="nf">to_s</span>
-</code></pre></div></div>
+<p>附幾個 mame 桑的 quine：</p>
+<ul>
+  <li><a href="https://github.com/mame/all-ruby-quine">https://github.com/mame/all-ruby-quine</a></li>
+  <li><a href="https://github.com/tric/trick2022/blob/master/06-mame/entry.rb">https://github.com/tric/trick2022/blob/master/06-mame/entry.rb</a></li>
+</ul>
 
-<p>Rails 真的是什麼都有呢。</p>
+<p>真的非常厲害哪XD</p>
+
+<h2 id="畫面集錦">畫面集錦</h2>
+
+<p>今年有松江市的官員（？）來宣傳松江市，台北市產發局也有人來致詞。第一次知道原來台北市跟松江市有備忘錄，還有建國花市會有來自松江市牡丹花展出XD
+<img src="/blog/assets/images/rubyconftw-2023-matsue.jpg" alt="松江市工商" /></p>
+
+<p>開場 Keynote 的結論，為了避免 boring pitfall，語言要一直前進。但同時也不能整個打掉重練，版本之間欠缺相容性的話會分裂社群（反觀隔壁 P 開頭語言？）
+<img src="/blog/assets/images/rubyconftw-2023-matz-conclusion.jpg" alt="Matz 30 years of Ruby 結論" /></p>
+
+<p>中午在活動中心二樓吃便當，總覺得漢字序順不影響讀閱呢XD
+<img src="/blog/assets/images/rubyconftw-2023-garbage-can.jpg" alt="活動中心二樓的垃圾桶" /></p>
+
+<p>4 年前講者帶來了跑在 Dreamcast 上的 mruby 程式，今年又加上了 Wii support！
+<img src="/blog/assets/images/rubyconftw-2023-mruby-wii.jpg" alt="Wii Support of MRuby" /></p>
+
+<p>來自永和システムマネジメント的工程師似乎對於看到永和非常開心XD
+<img src="/blog/assets/images/rubyconftw-2023-yonghue.jpg" alt="永和！" /></p>
+
+<p>星際大戰風格的投影片
+<img src="/blog/assets/images/rubyconftw-2023-pico-ruby.jpg" alt="PicoRuby 之於星際大戰" /></p>
+
+<p>非常棒的現場 Demo！雖然由於中途一些小事故沒辦法看到完整的 Production Ready 實作 &gt;&lt;”
+<img src="/blog/assets/images/rubyconftw-2023-pico-ruby-demo.jpg" alt="PicoRuby Demo" /></p>
+
+<p>LLM 做小遊戲，要想辦法搞定保全的闖入建築物，非常有趣的 Demo！
+雖然 LLM 很厲害，但是沒有加諸處理與約束的話很可能會在玩家玩遊戲的途中開始出戲XD
+怎麼用做好約束也是很有趣的議題&gt;&lt;”
+<img src="/blog/assets/images/rubyconftw-2023-llm-game.jpg" alt="用 LLM 做的遊戲" /></p>
+
+<p>The forgotten web 帶大家走過一遍 web development 發展史，從 Web Master 開始職責越分越細
+<img src="/blog/assets/images/rubyconftw-2023-forgotten-web.jpg" alt="Developer 發展史" /></p>
+
+<p>Tim 大大的 ending keymote 非常棒！整個議程的安排跟美術都很用心（已被圈粉XD）
+用非常有趣的方式介紹 Ruby 工程師如何從好的開發方式、團隊合作擊敗 bugs 並持續前進。
+對於 Tim 大大提到的 Hanami2 features 也非常有興趣，覺得職責分離設計的很精巧
+<img src="/blog/assets/images/rubyconftw-2023-tim-riley-journey.jpg" alt="Tim Riley 的 ending keynote" /></p>
+
+<h2 id="其他部分">其他部分</h2>
+
+<ul>
+  <li>整體來說這次認識好多新朋友，跟好多人都有聊到天，非常開心！這次和國外講者聊天深感英文會話的重要！能夠用英文對話的話多了很多可以互動的對象。從外國會眾中的交談取得許多靈感！</li>
+  <li>有時候日本會眾蹦出日文的時候好像大概只能聽懂三成至七成，還是有點難理解跟會話呢…是不是也要來學日文了呢XD</li>
+  <li>看到國外會眾到台北各處觀光、吃東西覺得很有趣XD 有時候也會有會眾問「推薦去哪裡呢？」「推薦買什麼伴手禮回家？」頓時發現自己也滿不知道台北有什麼有趣的地方好去的。可惡啊下次要準備好清單推薦好推薦滿XD</li>
+  <li>意外發現台灣茶好像對日本會眾接受度很高，下次多帶幾包來推廣（欸） 也有喜歡咖啡的國外會眾，推銷台灣咖啡機不可失！</li>
+  <li>再度參加 RubyKaraoke，覺得聽到許多有趣的歌，其中「みかんのうた」讓人印象深刻</li>
+</ul>
+
+<p>這次研討會玩得相當開心，也讓人有一種充電了可以繼續前進的感覺，非常希望還可以一直有 RubyConf 可以參加 &gt;&lt;”</p>
 
                 </div>
             </section>
@@ -262,82 +307,12 @@ into the {body} of the default.hbs template -->
                 
                 
                 
-                    <article class="read-next-card"
-                        
-                            style="background-image: url(/blog/assets/images/blog-cover.jpg)"
-                        
-                    >
-                        <header class="read-next-card-header">
-                            <small class="read-next-card-header-sitetitle">&mdash; Fumitsuki's magic box &mdash;</small>
-                            
-                                <h3 class="read-next-card-header-title"><a href="/blog/tag/ruby/">Ruby</a></h3>
-                            
-                        </header>
-                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
-</div>
-                        <div class="read-next-card-content">
-                            <ul>
-                                
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                    
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                    
-                                        
-                                        
-                                            <li><a href="/blog/ruby-permutations">ruby 的 permutation</a></li>
-                                        
-                                    
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                                  
-                                
-                            </ul>
-                        </div>
-                        <footer class="read-next-card-footer">
-                            <a href="/blog/tag/ruby/">
-                                
-                                    See all 1 posts  →
-                                
-                            </a>
-                        </footer>
-                    </article>
-                
             
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
             
                 
 
@@ -388,53 +363,6 @@ into the {body} of the default.hbs template -->
 
             
 
-            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
-            
-                
-
-    <article class="post-card post-template">
-        
-            <a class="post-card-image-link" href="/blog/about-ai">
-                <div class="post-card-image" style="background-image: url(/blog/assets/images/talk.jpg)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/blog/about-ai">
-                <header class="post-card-header">
-                    
-                        
-                            
-                                <span class="post-card-tags">Ai</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">關於生成式 AI 的心情雜談</h2>
-                </header>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/blog/assets/images/fumitsuki.jpg" alt="文月" />
-                        
-                        <span class="post-card-author">
-                            <a href="/blog/author/fumitsuki/">文月</a>
-                        </span>
-                    
-                
-                <span class="reading-time">
-                    
-                    
-                      1 min read
-                    
-                </span>
-            </footer>
-        </div>
-    </article>
-
-            
-
         </div>
     </div>
 </aside>
@@ -450,18 +378,18 @@ into the {body} of the default.hbs template -->
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">關於在 Ruby 中 unicode string 切成指定 bytes</div>
+    <div class="floating-header-title">RubyConf Taiwan 2023 心得</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E9%97%9C%E6%96%BC%E5%9C%A8+Ruby+%E4%B8%AD+unicode+string+%E5%88%87%E6%88%90%E6%8C%87%E5%AE%9A+bytes&amp;url=https://requiemformemories.github.io/blog/slice-uincode-string-to-bytes"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=RubyConf+Taiwan+2023+%E5%BF%83%E5%BE%97&amp;url=https://requiemformemories.github.io/blog/ruby-conf-2023"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/slice-uincode-string-to-bytes"
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://requiemformemories.github.io/blog/ruby-conf-2023"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
 
