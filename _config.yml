@@ -84,8 +84,9 @@ exclude:
   - gulpfile.js
   - LICENSE
   - package.json
-  - Rakefile
   - README.md
+  - AGENTS.md
+  - CLAUDE.md
   - script.py
   - changelog.md
   - "*.Rmd"
